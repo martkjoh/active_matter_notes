@@ -1,0 +1,95 @@
+\usepackage[
+  left=1.5cm, 
+  right=1.5cm, 
+  top=2cm, 
+  bottom=2cm, 
+]{geometry}
+
+% math mode additions
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools} 
+
+% nice derivatives
+\usepackage[ISO]{diffcoeff}[=v4]
+
+% in-document references
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% Colors, f.ex. in mdframed boxes
+\usepackage{xcolor}
+
+% make todo-notes
+\usepackage[
+  textsize=scriptsize,
+  textwidth=1.5cm,
+  linecolor=blue,
+  backgroundcolor=cyan,
+  colorinlistoftodos
+  ]{todonotes}
+
+% Text boxes
+\usepackage{framed}
+
+
+% Strike through (sout), without normalem, it overwrites \emph :(
+\usepackage[normalem]{ulem}
+
+% to write 'goes to zero/infinity' in equatoations
+\usepackage{cancel}
+
+
+% Tabel of contents
+\usepackage{tocloft}
+
+% Placing graphics
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Better titlepage
+\usepackage{titlesec}
+
+% Bold math
+\usepackage{bm}
+
+\usepackage{slashed}
+
+% Feynman diagrams
+% \usepackage{feynmf}fy
+\usepackage{feynmp-auto}
+\setlength{\unitlength}{1mm}
+
+\usepackage[%
+    style=numeric-comp, % Combine consecutive citations, e.g., [15]-[19]
+    sorting=none,       % Sorts citations after their appearance in the document
+    sortcites=true,     % Sorts within one "autocite", e.g., [15][17][44]
+    doi=true,
+    giveninits=true,    % use initials
+    hyperref,
+    % pages=false
+    ]{biblatex}
+\DeclareFieldFormat{pages}{#1}
+
+% only subsection in toc
+\setcounter{tocdepth}{0}
+
+% Nice part page
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\raggedleft\normalfont\large\bfseries}
+{\vspace{3pt}\MakeUppercase{\partname} \thepart}
+{0pt}
+{\vspace{1pc}\huge\MakeUppercase}
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+
+
+\bibliography{../ref.bib}
+\AtEveryBibitem{\clearfield{issue}} % Zotero messes up number and issue field
+\AtEveryBibitem{
+    \clearfield{urlyear}
+    \clearfield{urlmonth}
+}
