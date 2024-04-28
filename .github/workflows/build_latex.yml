@@ -1,4 +1,5 @@
 name: Build LaTeX document
+permissions: write-all
 on: [push]
 
 jobs:
