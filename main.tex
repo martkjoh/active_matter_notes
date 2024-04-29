@@ -32,6 +32,7 @@
     \setlength{\parindent}{0em}
     \setlength{\parskip}{0.8em}
 
+
     \input{intro.tex}
 
     \chapter{Scalar active matter}
@@ -44,8 +45,18 @@
     \input{chapters/polar_active_matter.tex}
 
 
-
     \bibliographystyle{ieeetr}
     \bibliography{ref.bib}
+
+    \phantomsection
+    \addcontentsline{toc}{section}{To do/Notes}
+    
+    \setcounter{tocdepth}{1}
+    \listoftodos
+    
+    \section*{Notes}
+    \begin{itemize}
+        \item Should we use $\bm \nabla$, for consistent vector notation?
+    \end{itemize}
 
 \end{document}

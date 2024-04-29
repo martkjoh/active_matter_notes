@@ -1,38 +1,97 @@
 \chapter{Introduction}
 
-These are the notes from the Active Matter course held at Göttine University by Benôit Mahault and Ramin Golestanian of the Max Planck Insitute of Dynamics and Self-Organization in the spring of 2024.
-They feature a range of guest lecturers and are typeset by Martin Kjøllesdal Johnsrud.
+These are lecture notes from the Active Matter course held at Göttine University in the summer semester.
+The lectures are by Benoît Mahault and Ramin Golestanian of the Max Planck Insitute of Dynamics and Self-Organization, featuring a range of guest lecturers, and the notes are typeset by Martin Kjøllesdal Johnsrud.
+The notes meant to give a short introduction to the Active Matter course, and present some background material in the form of concepts and mathematical tools that are often used to apprehend active systems.
 
-These notes are meant to give a short introduction to the Active Matter course, and present some background material in the form of concepts and mathematical tools that are often used to apprehend active systems.
+% Handwritten page I 
+
 
 \subsection{What is active matter?}
 
+\todo[inline]{Re-draw figures}
+
 As widely accepted definition of active matter consists to say that it is made of elementary units that locally dissipate energy in a continuous and sustained manner. Hence, the dynamics of active particles break time-reversal symmetry, \textit{it is inherently far from thermodynamic equilibrium}. In many cases, activity manifests as persistent motion, but can also take the form of local production of forces, sustaining of chemical reactions, growth (reproduction), or several of them at the same time. This definition is very broad and encompasses a multitude of biological examples spanning many scales:
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{Figures/introduction/scales.png}
+    \caption{The range of scales of active particles.}
+    \label{fig: scales active particles}
+\end{figure}
+
+
+% Handwritten page II
+
 \begin{itemize}
-    \item Enzymes, molecular motors (nm): Enzymes catalyse chemical reactions, and thus locally generate chemical gradients. Molecular motors couple chemical cycles to displacements or rotations, so that these molecular machines can exhibit self-propulsion.
-    \item Bacteria, cells ($\mu$m): Bacteria and algae usually move thanks to filamentous appendices called flagella or cilia, which are powered by molecular motors. Another example are cells which self-propel on substrate by polymerizing actin filaments at their front.
+    \item Enzymes, molecular motors (nm): Enzymes (E) catalyze chemical reactions of a substrate (S),
+    %
+    \begin{align}
+        E + S \longrightarrow  \underbrace{SE}_{\mathrm{binding}} \longrightarrow  E + P
+    \end{align}
+    %
+     and thus locally generate chemical gradients, $\bm \nabla P$. 
+     \begin{figure}[H]
+        \centering
+        \includegraphics[width=.3\textwidth]{Figures/introduction/enzymes.png}
+        \caption{The energy landscape for the chemical reaction is modified by the }
+        \label{fig: enzymes}
+    \end{figure}
+     Molecular motors couple chemical cycles to displacements or rotations, so that these molecular machines can exhibit self-propulsion.\\
+     \includegraphics[width=.3\textwidth]{Figures/introduction/motors.png}
+    \item Bacteria, cells ($\mu$m): Bacteria and algae usually move thanks to filamentous appendices called flagella or cilia, which are powered by molecular motors.
+    \\
+    \includegraphics[width=.3\textwidth]{Figures/introduction/bacteria.png} 
+    \\
+    Another example is cells that self-propel on the substrate by polymerizing actin filaments at their front.
+    \\
+    \includegraphics[width=.25\textwidth]{Figures/introduction/actin.png}
     \item Insect swarms (mm)
     \item Animal herds, human crowds (m)
 \end{itemize}
 
+
+% Handwritten page III
+
 \subsection{What makes active matter special?}
+
 Active systems, because they constantly dissipate energy in their bulk, and in contrast to passive systems globally driven (turbulence, shaken granulars, \ldots), are able to spontaneously self-organize and create macroscopic structures. 
 Again, these ideas are relevant to many examples in the living world including the architecture of the cytoskeleton, the morphogenesis of multicellular organisms, or the collective motion arising from social interactions in groups of several hundred or thousands of individuals. 
 
-Active matter is also not restricted to the study of biological systems, as the design and study of synthetic active particles now represents a large part of the field. Those allow for better controlled experiments, and often exhibit similar phenomenology as their biological counterpart, thus opening the way to biomimetic materials engineering. Notorious examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.
+Active matter is also not restricted to the study of biological systems, as the design and study of synthetic active particles now represent a large part of the field. Those allow for better controlled experiments and often exhibit similar phenomenology as their biological counterpart, thus opening the way to biomimetic materials engineering. 
+\todo[noinline]{Notorious? isn't that a bit negative?}
+Notorious examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.3\textwidth]{Figures/introduction/janus.png}
+    \caption{A self-propelled Janus particle, to be discussed in Lecture 7}
+    \label{fig: janus}
+\end{figure}
+\todo[noinline]{Give ref}
+
+
 
 \subsection{On the nonequilibriumness of active assemblies}
-As written above, active matter is inherently `far' from equilibrium, since it is assembled from particles whose dynamics constantly breaks time-reversal symmetry. This means that active systems lack many of the properties familiar to equilibrium systems. These include:
+
+As written above, active matter is inherently `far' from equilibrium, since it is assembled from particles whose dynamics constantly break time-reversal symmetry. This means that active systems lack many of the properties familiar to equilibrium systems. These include:
+%
 \begin{enumerate}
     \item Absence of minimization principle: active dynamics are not constrained by the second law, so that they do not converge over long times to a state with maximal entropy (or minimum free energy). In fact, whether an active system converges to a steady state or not is a priori unknown.
     \item No time-reversal symmetry: as a consequence of 1, active systems can (and do) generally produce macroscopic currents, leading to phases where TRS is collectively broken.
     \item Lack of thermodynamic framework: Basic equilibrium concepts such as temperature or thermodynamic pressure are usually not defined for active systems. Additionally, active systems generally do not exhibit an equation of state, meaning that their bulk properties are not only determined by their material properties but can also be substantially affected by the nature and shape of the container they live in.
     \item Memory: again, due to 1 and contrary to systems at equilibrium, the state of an active system may be dependent of its past history.
     \item In active matter, momentum is not conserved so that forces do not necessarily need to satisfy the action-reaction principle. Familiar examples of such `nonreciprocity' are encountered in predator-prey systems, while it also generally arises when particles interact via self-generated fields such as bacteria or phoretic colloids.
-\end{enumerate}	
+\end{enumerate}
+%
 In summary, the collective behaviours found in active systems thus generally break our intuition built on equilibrium physics, and their theoretical understanding requires to use and develop specifically tailored tools and concepts.
+In particular, we will construct field theory descriptions of active systems, such as IRR thermodynamics\todo{Irrecersible thermodynamics?} and performe coarse-graining using kinetic theory.\todo[noinline]{Is this right?}
+
+
+% Handwritten Page IV
 
 \subsection{The idea of this course}
+
 Active matter is very large and quickly developing field borrowing tools and concepts from various other areas of physics including soft matter, biological physics, hydrodynamics, and statistical physics. So, this course is only meant as an introduction to the basics of the very diverse phenomenology of active systems, and how it is usually apprehended. In particular, our journey will be driven by two general aspects which are still the topic of active research:
 \begin{itemize}
     \item How is active motion generated at the micro scale, and what are its consequences on the dynamics of active particles?
@@ -40,9 +99,14 @@ Active matter is very large and quickly developing field borrowing tools and con
 \end{itemize}
 These two lectures is meant to give an overview of the topic that will be addressed in the following weeks, while we will also introduce useful concepts and mathematical tools.
 
+
+
+% Handwritten page V
+
 \section{Hydrodynamics of microswimmers}
 
 Many active particles evolve in a fluid, which they need to displace in order to move. Understanding the locomotion of such swimmers thus requires to study the dynamics of the flow around them. The fluid surrounding the particles is generally incompressible so that it is defined by its local velocity $\bm v$ which obeys the Navier-Stokes equations:
+%
 \begin{subequations}
 \label{eq_NS}
 \begin{align}
@@ -52,8 +116,10 @@ Many active particles evolve in a fluid, which they need to displace in order to
     \nabla \cdot \bm v & = 0.
 \end{align}
 \end{subequations}
-The terms on the lhs of~\eqref{eq_NS_v} correspond to the material derivative and simply model the effect of inertia, while on the rhs the first term originates from viscous dissipation, the second is the pressure which ensures incompressibility~\eqref{eq_NS_inc}, while the active force $\bm f$ arises as a source term.
-In cases dominated by inertia or dissipation, the NSEq.~\eqref{eq_NS} simplifies. To understand this, let us define the problem typical length and velocity scales $L$ and $V$, and apply the following rescaling:
+%
+The terms on the left-hand side of~\eqref{eq_NS_v} correspond to the material derivative and simply model the effect of inertia, while on the right-hand side the first term originates from viscous dissipation, the second is the pressure which ensures incompressibility as required by~\eqref{eq_NS_inc}, while the active force $\bm f$ arises as a source term.
+In cases dominated by inertia or dissipation, the NS Eq.~\eqref{eq_NS} simplifies. To understand this, let us define the typical length and velocity scales of the problem, $L$ and $V$, and apply the following rescaling:
+%
 \begin{equation*}
     \bm v \to V \bm v', \quad
     \bm x \to L \bm x', \quad
@@ -61,36 +127,73 @@ In cases dominated by inertia or dissipation, the NSEq.~\eqref{eq_NS} simplifies
     P \to \frac{\eta V}{L} P', \quad
     \bm f \to \frac{\eta V}{L^2} \bm f'.
 \end{equation*}
+%
 We obtain the following equation in terms of the dimensionless primed variables
+%
 \begin{equation}
     {\rm Re}\left[ \partial_{t'} \bm v' + (\bm v' \cdot \nabla')\bm v' \right] = \nabla'^2\bm v' - \nabla' P' + \bm f',
 \end{equation}
+%
 where ${\rm Re} = \rho V L / \eta$ is known as the Reynolds number. 
 Alternatively, note that the Reynolds number can be obtained by the ratio of the typical scales associated with the convection ($\bm v\cdot \nabla \bm v$) and dissipation ($\eta\nabla^2\bm v$) in the Navier-Stokes equation. 
 Hence, the value of the Reynolds number controls the relative importance of inertial effects and viscous dissipation.
 For a micron-sized swimmer in water such as bacteria, we can evaluate $\rho \approx 10^3 \; {\rm kg / m^3}$, $\eta \approx 10^{-3} \; {\rm Pa \cdot s}$,
 $V \approx 10^{-5}\; {\rm m/s}$, and $L \approx 10^{-6} \; {\rm m}$, such that ${\rm Re} \approx 10^{-5}$.
-\textit{Microswimmer therefore evolve at vanishing Reynolds number} where inertial effects are negligible. Their dynamics then evolves in the so-called Stokes regime, 
+%
+% Handwritten page VI
+%
+\textit{Microswimmers therefore evolve at vanishing Reynolds number} where inertial effects are negligible. 
+Their dynamics then evolve in the so-called Stokes regime, 
 such that the flow they generate obeys the Stokes equation:
+%
 \begin{subequations}
 \label{eq_Stokes}
 \begin{align}
     \label{eq_Stokes_v}
-    \eta \nabla^2\bm v - \nabla P + \bm f & = \bm 0, \\
+    \eta \nabla^2\bm v -\nabla P + \bm f & = \bm 0, \\
     \label{eq_Stokes_inc}
     \nabla \cdot \bm v & = 0.
 \end{align}
 \end{subequations}
+%
 Contrary to the Navier-Stokes equation, Eqs.~\eqref{eq_Stokes} do not have time derivatives and are linear.
 The flow velocity $\bm v$ only therefore only depends on the instantaneous value of the force $\bm f$ (there is no inertia), and it varies linearly with it\footnote{By taking the divergence of~\eqref{eq_Stokes_v}, you can convince yourself that the pressure is also a linear function of the force.}. 
 An important consequence of these features is that is that Stokes flow obey kinematic reversibility, meaning that they obey the symmetry
+%
 \begin{equation*}
     \bm f \rightarrow -\bm f, \qquad \bm v \rightarrow -\bm v.
 \end{equation*}
+%
+As such, sequences of motion are reversible.
+One important consequence of this is the \emph{scallop theorem}, which states that a microswimmer cannot achieve self-propulsion with reciprocal motion.
+k 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.3\textwidth]{Figures/introduction/scallop.png}
+    \caption{A scallop moves by opening and closing its shells, which in the Stokes regime gives zero net motion}
+    \label{fig: scallop}
+\end{figure}
 
-[Further consequences: scallop theorem, no building of momentum (force and torque free swimmers...]
+The name comes from an example of reciprocal motion, a scallop opening and closing its shell
+Self-propulsion therefore requires at least 2 independent degrees of freedom (d.o.f.)\todo[noinline]{I think this is not a good statement, unless dof is well defined}
+Examples of this are swimmers with a corkscrew flagella or breast-stroke-like motion.
+Such swimmers are force and torque-free, as the net forces/torques from the flagella and the drag adds up to zero.
+
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.5\textwidth]{Figures/introduction/swimmers.png}
+    \caption{Twoexamples of microswimmers}
+    \label{fig: swimmers}
+\end{figure}
+
+
+
+% handwritten page VII
 
 \section{A minimal model for active motion}
+
 
 In the previous section, discussed by which mechanism active motion can arise (in the nontrivial context of microswimmers).
 Here, we will be rather ask the question of what the consequences of the presence of a self-propulsion speed on the dynamics of an active particle are.
