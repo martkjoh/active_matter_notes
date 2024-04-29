@@ -1,0 +1,127 @@
+
+\section{Multicomponent phase separation}
+Consider for simplicity two conserved density fields $\phi_1$ and $\phi_2$ corresponding to concentrations of two chemical species $1$ and $2$ respectively. Assume that the system at constant volume $V$ fractionates into two phases with volumes $V_1$, $V_2$ and compositions $\phi_1^{(1)}, \phi_2^{(1)}$ in phase 1 and $\phi_1^{(2)},\phi_2^{(2)}$ in the two phases. Our objective is obtain conditions for phase equilibrium. Volume and number conservation constrains these quantities as 
+\begin{eqnarray}{cc}
+    V_1 +V_2 &=& V  \\
+     \phi_1^{(1)} V_1 + \phi_1^{(2)} V_2 &=&  \bar{\phi_1} V \\
+     \phi_2^{(1)} V_1 + \phi_2^{(2)} V_2 &=&  \bar{\phi_2} V.
+     \label{eq:constraints}
+\end{eqnarray}
+The free energy of the homogeneous system is $\mathcal{F}(N_1,N_2,V,T)$. For constant temperature $T$ or any other external control parameter like Ph and noting that the free energy is extensive with respect to volume, the total free energy receives contribution from the two phases 
+\begin{eqnarray}
+\mathcal{F} = V_1 f(\phi_1^{(1)},\phi_2^{(1)}) + V_2 f(\phi_1^{(2)},\phi_2^{(2)}).
+\label{eq:TotalFreeEnergy}
+\end{eqnarray}
+The unconstrained free energy $\bar{\mathcal{F}}$ is obtained by introducing Lagrange multipliers $P$ conjugate to the total volume and $\mu_1,\mu_2$ conjugate to the two conserved fields - 
+\begin{eqnarray}
+\bar{\mathcal{F}} = \mathcal{F} +P(V_1 + V_2) - \mu_1 (V_1 \phi_1^1 + V_2 \phi_2^1) - \mu_2 (V_1 \phi_2^1 + V_2 \phi_2^2).
+\end{eqnarray}
+Minimizing $\bar{\mathcal{F}}$ with respect to the six unknown quantities, we find three more conditions for phase equilibrium
+\begin{eqnarray}
+\mu_1 &=& \frac{\partial f(\phi_1^1,\phi_2^1)}{\partial \phi_1^1} = \frac{\partial f(\phi_1^2,\phi_2^2)}{\partial \phi_1^2}. \\
+\mu_2 &=& \frac{\partial f(\phi_1^1,\phi_2^1)}{\partial \phi_1^1} = \frac{\partial f(\phi_1^2,\phi_2^2)}{\partial \phi_1^2}. \\
+P &=& -f + \mu_1 \phi_1^1 + \mu_2 \phi_2^1  = -f + \mu_1 \phi_1^2 + \mu_2 \phi_2^2. 
+\label{eq:Equilibrium}
+\end{eqnarray}
+Eqs. \eqref{eq:constraints} and \eqref{eq:Equilibrium} can be solved to obtain the Binodals. These equations represent a generalisation of the Maxwell construction for N=1. Similar equations can be written and solved for N components and $n$ phases. Gibbs phase rule restricts the number $n$. Going back to $N=2$, Figure \ref{fig:BinaryPD} shows the variety of phase diagrams and critical points that are possible. The relaxational dynamics of the fields $\phi_{1,2}$ are given by a generalisation of the Cahn-Hilliard dynamics. 
+\begin{eqnarray}
+\partial_t \phi_i(\bm{r},t) + \bm{\nabla} \cdot \bm{J}_i &=& 0 \\
+ \bm{j}_i &=& - \bm{\nabla} \mu_{i}^\mathrm{eq}   +  \bm{\zeta}_i,
+\end{eqnarray}
+We choose a general form for $f  = f_1(\phi_1) + f_2(\phi_2) + f_{I}(\phi_1,\phi_2)$. A simple choice, often made for the Flory-Huggins system is $f_I = \chi \phi_1 \phi_2$, contributes , linear terms to $\mu_{1,2}$. For $\chi <0$, the densities modulations co-locate simulating attractive microscopic interactions while $\chi>0$ the densities anti-co-locate simulating repulsive microscopic interactions.
+
+\section{Non-reciprocal Cahn-Hilliard Dynamics}
+We will now introduce a new kind of activity in the system - non-reciprocity. We add terms to the chemical potential which cannot be derived from a free energy.  
+
+\subsection{Non-reciprocal interactions in a binary mixture}
+For a binary mixture, the free energy can be written as
+\begin{eqnarray}
+F &=&  \int \mathrm{d}\bm{r} \bigg\{ \sum_{i=1}^{2} (\phi_i-c_{i,1})^2(\phi_i-c_{i,2})^2  \nonumber \\ 
+&& + \chi \phi_1 \phi_2 + \chi' \phi_1^2 \phi_2^2  
++ 
+% \revise{
+    \frac{\kappa}{2}
+    % }  
+    \sum_{i=1}^{2} |\bm{\nabla} \phi_i|^2  \bigg\},
+\label{FreeEnergy2}
+\end{eqnarray}
+which results in the equilibrium chemical potentials
+\begin{eqnarray}
+\mu_1^\mathrm{eq} &=& 
+% \revise{
+    2
+    % } 
+(\phi_1 - c_{1,1})(\phi_1 - c_{1,2})(2\phi_1 - c_{1,1}- c_{1,2}) + \chi \phi_2 \nonumber \\
+&& + 2 \chi' \phi_1 \phi_2^2, \nonumber \\
+\mu_2^\mathrm{eq} &=& 
+% \revise{
+    2
+    % } 
+(\phi_1 - c_{2,1})(\phi_1 - c_{2,2})(2\phi_1 - c_{2,1}- c_{2,2})  + \chi \phi_1 \nonumber \\
+&& + 2 \chi' \phi_2 \phi_1^2.
+\label{ChemPot}
+\end{eqnarray}
+We note that, at equilibrium, the sign and strength of the interaction between the two components is governed by $\chi$. If $\chi>0$, the interaction between the two species is repulsive (their overlap increases the free energy of the system), whereas if $\chi<0$, the interaction is attractive (overlap decreases the free energy of the system). For two components, the activity matrix $\alpha_{ij}$ is simply given by $\alpha_{11}=\alpha_{22}=0$, and $\alpha_{12}=-\alpha_{21}=\alpha$, and there is a single scalar parameter $\alpha$ representing the non-reciprocal activity. The non-equilibrium chemical potentials become 
+\begin{eqnarray}
+ \mu^\mathrm{neq}_1 = \mu_1^\mathrm{eq} + \alpha \phi_2, \nonumber \\
+ \mu^\mathrm{neq}_2 = \mu_2^\mathrm{eq} - \alpha \phi_1.
+ \label{ChemPot2}
+\end{eqnarray}
+
+Considering the form of the equilibrium chemical potentials (\ref{ChemPot}), it becomes clear that the activity $\alpha$ acts to modify the equilibrium interaction parameter $\chi$ within the non-equilibrium chemical potential, so that we find a term $(\chi + \alpha) \phi_2$ in $\mu^\mathrm{neq}_1$, and a term $(\chi - \alpha) \phi_1$ in $\mu^\mathrm{neq}_2$. A direct numerical simulation of the NRCH equations in \eqref{eq:nrch} starting from random initial conditions shows that the time translation invariance of the bulk-phase separated state is broken when $|\alpha|>|\chi|$. 
+
+\subsection{Stability analysis of the mixed binary system}
+In order to obtain more analytical insight into the nature of the instabilities in the system, we linearize the dynamics of the binary NRCH model around a homogeneous state $(\avOne, \avTwo)$ to obtain
+\begin{eqnarray}
+\begin{pmatrix}
+	\dot{\phi_1}(\bm{q}) \\
+	\dot{\phi_2}(\bm{q})
+\end{pmatrix}
+&=& \begin{pmatrix} \mathcal{D}_{11} & \mathcal{D}_{12} \\ \mathcal{D}_{21} & \mathcal{D}_{22} \end{pmatrix}  \begin{pmatrix}
+	{\phi_1}(\bm{q}) \\
+	{\phi_2}(\bm{q})
+\end{pmatrix}, \label{eq:matrixeq}
+\end{eqnarray}
+where the components of the matrix $\mathcal{D}$ are given by
+\begin{eqnarray}
+\mathcal{D}_{11} &=& -q^2 [ 2 (\avOne - c_{1,1})^2 + 8 (\avOne - c_{1,1}) (\avOne - c_{1,2})  \nonumber \\ && + 2 (\avOne - c_{1,2})^2 + 2 \avTwo^2 \chi'], \nonumber \\
+\mathcal{D}_{12} &=& -q^2 [ (\chi+\alpha) +  4 \avOne \avTwo \chi' ],  \nonumber \\
+\mathcal{D}_{21} &=& -q^2 [ (\chi-\alpha) +  4 \avOne \avTwo \chi' ],  \nonumber \\
+\mathcal{D}_{22} &=& -q^2 [ 2 (\avTwo - c_{2,1})^2 + 8 (\avTwo - c_{2,1}) (\avTwo - c_{2,2})  \nonumber \\ && + 2 (\avTwo - c_{2,2})^2 + 2 \avTwo^2 \chi'], \nonumber
+\end{eqnarray}
+Recall that the stability of the homogeneous state defined by uniform $\bar{\phi}_i$ is determined by the signs of the eigenvalues of the matrix \eqref{eq:matrixeq}. In the absence of activity $\alpha=0$, the matrix $\mathcal{D}_{ij}$ is symmetric and thus only admits real eigenvalues. When the non-reciprocal activity is turned on, however, $\mathcal{D}_{ij}$ is no longer symmetric and its eigenvalues may become complex, signaling the possibility of oscillations in the NRCH model.
+
+Indeed, a non-oscillatory instability will take place when one of the eigenvalues $\lambda_{1,2}$ is real and positive, whereas an oscillatory instability is expected when $\lambda_{1,2}$ are a complex conjugate pair with positive real part. To study the phase diagrams of the system, we define $\mathcal{C}_r$ as the region of the parameter space where either $\mbox{Re}(\lambda_1)>0$ or $\mbox{Re}(\lambda_2)>0$, and $\mathcal{C}_i$ as the region where $\mbox{Im}(\lambda) \neq 0$. A non-oscillatory instability will occur in regions of $\mathcal{C}_r$ that do not intersect with $\mathcal{C}_i$, whereas the instability will be oscillatory at the intersection between $\mathcal{C}_r$ and $\mathcal{C}_i$.
+
+\subsection{Exceptional points}
+Consider the case for which $\chi' = 0$.  
+
+\subsection{Oscillatory instability in the composition plane}
+
+\subsection{Some general points about the travelling wave state}
+
+\subsection{Comparison with non-conserving dynamics and the minimal oscillator}
+It is useful to compare the equations of NRCH with the non-reciprocal model A 
+\begin{eqnarray}
+    \partial_t \phi_1 &=& - \mu_1 + \alpha \phi_2 + K \nabla^2 \phi_1\\
+    \partial_t \phi_2 &=& - \mu_2 - \alpha \phi_1 + K \nabla^2 \phi_2.
+    \label{eq:NonReciprocalModelA}
+\end{eqnarray}
+Let us first look at the dynamical system described by $\dot{x_i} = - \mu_i$. 
+
+
+
+
+\subsection{Stability of the plane waves}
+In this subsection we will choose a different form for the free energy $f_I = \phi_1^2 \phi_2^2 /2 $. For this choice we can write down an exact form for the traveling waves and check their stability to linear perturbations. 
+\begin{eqnarray}
+\psi(\bm{r}, \bm{q},t) = R \exp^{i( \bm{q} \cdot \bm{r} - \omega t)}.
+\label{eq:planeWave}
+\end{eqnarray}
+is substituted in \eqref{variantNRCH} to obtain expressions for the amplitude $R(q)$ and the dispersion relation $\omega(q)$
+\begin{eqnarray}
+R &=& c \sqrt{1-\frac{q^2}{q_0^2}}, \; \forall q < q_0, \nonumber \\
+\omega(q) &=& {\Gamma} q^2 \left[- \alpha_0 + \alpha_1 c^2\left( 1- \frac{q^2}{q_0^2} \right) \right], 
+\label{eq:dispersion}
+\end{eqnarray}
+

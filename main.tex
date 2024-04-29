@@ -3,14 +3,27 @@
 \input{packages.tex}
 \input{newcommands.tex}
 
+
+
 \title{Active Matter Notes}
 % \author{Martin Kjøllesdal Johnsrud}
+
+% Subfolders containing chapter
+\graphicspath{
+    {chapters/}
+}
+\makeatletter
+\def\input@path{
+    {chapters/}
+}
+\makeatother
 
 
 \begin{document}
 
     \maketitle
     \clearpage
+
 
     \tableofcontents
     \clearpage
@@ -20,5 +33,19 @@
     \setlength{\parskip}{0.8em}
 
     \input{intro.tex}
+
+    \chapter{Scalar active matter}
+    \input{chapters/scalar_active_matter.tex}
+
+    \chapter{The Non-Reciprocal Cahn-Hilliard model}
+    \input{chapters/NRCH}
+
+    \chapter{Polar active matter}
+    \input{chapters/polar_active_matter.tex}
+
+
+
+    \bibliographystyle{ieeetr}
+    \bibliography{ref.bib}
 
 \end{document}
