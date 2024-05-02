@@ -166,7 +166,7 @@ An important consequence of these features is that is that Stokes flow obey kine
 %
 As such, sequences of motion are reversible.
 One important consequence of this is the \emph{scallop theorem}, which states that a microswimmer cannot achieve self-propulsion with reciprocal motion.
-k 
+%
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.3\textwidth]{Figures/introduction/scallop.png}
@@ -184,9 +184,11 @@ Such swimmers are force and torque-free, as the net forces/torques from the flag
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.5\textwidth]{Figures/introduction/swimmers.png}
-    \caption{Twoexamples of microswimmers}
+    \caption{Two examples of microswimmers}
     \label{fig: swimmers}
 \end{figure}
+
+
 
 
 
@@ -199,27 +201,39 @@ In the previous section, discussed by which mechanism active motion can arise (i
 Here, we will be rather ask the question of what the consequences of the presence of a self-propulsion speed on the dynamics of an active particle are.
 For this, assume that a particle is able to self-propel but we won't particularly focus on the details of its self-propulsion mechanism.
 
+
 \subsection{Some basics on Brownian motion}
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.25\textwidth]{Figures/introduction/brownian.png}
+    \caption{A Brownian particle is constantly and randomly interacting with smaller particles.}
+    \label{fig: brownian}
+\end{figure}
+
 Before discussing active motion, let us give a brief recap on the theory of Brownian motion.
-Consider a micron size particle in a fluid at temperature $T$. 
-The particle constantly undergoes collisions with the fluid molecules, and its mass is low enough that the results of such collisions result in a visible erratic dynamics known as Brownian motion.
-The dynamics of the particle is described by the Langevin equation
+Consider a micron-sized particle in a fluid at temperature $T$. 
+The particle constantly undergoes collisions with the fluid molecules, and its mass is low enough that the results of such collisions result in visible erratic dynamics known as Brownian motion.
+The dynamics of the particle is described by the \emph{Langevin equation}
+%
 \begin{equation} \label{eq_LangevinBM}
     m\frac{\rmd^2 \bm r}{\rmd t^2} + \zeta \frac{\rmd \bm r}{\rmd t} = \bm f(t).
 \end{equation}
-Equation~\eqref{eq_LangevinBM} is nothing but Newton's second law, so that the first term on the lhs represents the acceleration of the particle multiplied by its mass, and the second term accounts for the Stokes friction exerted by the fluid in response to the motion of the particle.
-In fact, the ration of the particle mass and friction coefficient defines a timescale $\tau = m / \zeta$ beyond which inertial effects can be neglected.
+%
+Equation~\eqref{eq_LangevinBM} is nothing but Newton's second law, so that the first term on the left hand side represents the acceleration of the particle multiplied by its mass, and the second term accounts for the Stokes friction exerted by the fluid in response to the motion of the particle.
+In fact, the ratio of the particle mass and friction coefficient defines a timescale $\tau = m / \zeta$ beyond which inertial effects can be neglected.
 For a micron-size sphere with a density comparable to that of water, we have
+%
 \begin{equation*}
     \tau = \frac{\rho \tfrac{4\pi}{3} R^3}{6 \pi \eta R} 
     = \frac{2\rho R^2}{9\eta} \approx 0.2 \; \mu{\rm s}.
 \end{equation*}
+%
 Hence, for observation times beyond the micro-second inertial effects can generally be safely neglected so that we can neglect the interaction term in~\eqref{eq_LangevinBM}, which can be expressed in this overdamped limit as
 \begin{equation} \label{eq_LangevinBM_ovd}
     \frac{\rmd \bm r}{\rmd t} = \frac{1}{\zeta}\bm f(t).
 \end{equation}
-
+%
 The force $\bm f$ arises from the multiple collisions that the particle undergoes with the solvent molecules. 
 Under the approximation that these collisions are isotropic, identically distributed and uncorrelated random events, we can use the central limit theorem to approximate the distribution of the stochastic process $\bm f$ by a normal distribution with zero mean and variance $\sigma$.
 Namely, denoting averages with independent realizations of the noise with the notation $\langle \cdot \rangle$, the first two moments of the components of $\bm f$ read
@@ -233,20 +247,27 @@ Equation~\eqref{eq_LangevinBM_ovd} can be easily solved as
     \Delta \bm r(t) = \bm r(t) - \bm r(t=0) = \frac{1}{\zeta} \int_0^t\rmd\tau \bm f(\tau).
 \end{equation*}
 Solution implies that $\langle \Delta \bm r(t) \rangle = \bm 0$ and $\langle |\Delta \bm r(t)|^2 \rangle = 2 d \sigma^2 / \zeta^2 t$.
-Two main features of Brownian motion (diffusion): no net motion and MSD grows linearly in time (diffusion coefficient is $D = \sigma^2 / \zeta^2$).
+Two main features of Brownian motion (diffusion): no net motion and mean-squared displacement (MSD) grows linearly in time (diffusion coefficient is $D = \sigma^2 / \zeta^2$).
 Additionally, the fluctuation-dissipation relation relates $D$ to the solvent temperature as $D = k_{\rm B}T / \zeta$. The signification of this relation is that the damping friction and fluctuations come from the same medium.
 
-Problem is sufficiently simple that one can actually obtain the full distribution of the particle position. For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)\rangle$, which obeys the Fokker-Planck equation:
+% Hand written page VIII
+
+This problem is sufficiently simple so that one can obtain the full distribution of the particle position. 
+For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)\rangle$, which obeys the Fokker-Planck equation:
+%
 \begin{equation} \label{eq_FP_BM}
     \partial_t \calP(\bm x,t) - D \nabla^2 \calP(\bm x,t) = 0
 \end{equation}
+%
 Assuming that the particle sits at $\bm x = \bm 0$ at time $t=0$, the solution of Equation~\eqref{eq_FP_BM} is given by
 \begin{equation*}
     \calP(\bm x,t) = \frac{1}{(4\pi D t)^{d/2}}e^{-\tfrac{|\bm x|^2}{4 D t}}.
 \end{equation*}
-Comments: no drift of the distribution, width grows as $\sqrt{t}$... 
+We notice that the mean of the distribution is at $\bm x = \bm 0$ at all times and that the width, i.e. the standard distributions, grows as $\sqrt{t}$.
 
-\textit{Homework: Consider a Brownian particle in a potential $U$, write the associated Fokker-Planck equation. Show that the stationary solution corresponds to the Boltzmann distribution.
+
+\textit{
+    {\bf Homework:} Consider a Brownian particle in a potential $U$, write the associated Fokker-Planck equation. Show that the stationary solution corresponds to the Boltzmann distribution.
 For a harmonic potential $U = \tfrac{1}{2} k |\bm x|^2$, the solution of the FPE is given by 
 \begin{equation*}
     \calP(\bm x,t) = \left(\frac{\lambda}{2\pi D (1 - e^{-2\lambda t})}\right)^{d/2}e^{-\tfrac{\lambda}{2 D} \tfrac{|\bm x|^2}{1 - e^{-2\lambda t}}},
@@ -254,6 +275,8 @@ For a harmonic potential $U = \tfrac{1}{2} k |\bm x|^2$, the solution of the FPE
 with $\lambda = k / \zeta$.
 Calculate mean displacement and MSD, comment.
 }
+
+
 
 \subsection{Active Brownian motion}
 
@@ -271,39 +294,212 @@ Other active swimmers like self-propelled colloids, on the other hand, follow sm
 In both cases, defining the typical particle velocity as $v_0$ and reorientation time $\tau_r$, the persistence length can be built from dimensional analysis as $\lp = v_0 \tau_r$.
 Physically, this means that on length scales below $\lp$ the active particle exhibits ballistic motion with a speed $\approx v_0$, while on scales $\gg \lp$ its direction of motion has randomized and its overall dynamics is diffusive. 
 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.2\textwidth]{Figures/introduction/runandtumble.png}
+    \includegraphics[width=.2\textwidth]{Figures/introduction/smooth.png}
+    \caption{Run and tumble versus smooth trajectories of self-propulsion}
+    \label{fig: run and tumble vs smooth}
+\end{figure}
+
 As a minimal model of active velocity, we can thus simply assume that the particle self-propels at constant speed $v_0$, while the unit vector $\he$ parametrizing its orientation is a colored noise with zero mean and exponential correlations:
 \begin{equation} \label{eq_cf_e}
     \langle \he(t) \cdot \he(t + \tau) \rangle = e^{-\tau / \tau_r}.
 \end{equation}
-% \textit{Homework problem:
-% In two dimensions, the vector $\he(\theta) = (\cos\theta, \sin\theta)$ is parametrized by the angle $\theta_t$. Assuming that $\theta_t$ is a Markov process, justify why we can write the joint distribution as $P(\theta_2,t_2;\theta_1,t_1) = P(\theta_2-\theta_1,t_2-t_1|0,0)P(\theta_1,t_1)$ for $t_2 > t_1$.
-% Deduce that
-% \begin{equation*}
-%     \langle \he(\theta_t) \cdot \he(\theta_{t+\tau}) \rangle = \int \rmd\phi \cos\phi \, P(\phi,\tau|0,0) \equiv \langle \cos\phi \rangle_0, 
-% \end{equation*}
-% %where $P(\theta,t)$ is the distribution of $\theta$ satisfying $P(\theta,0) = \delta(\theta)$.
-% %(Hint: Use the properties of $\theta$ to express the joint distribution $P(\theta_2,t_2;\theta_1,t_1)$
-% }
-We then immediately deduce that
+
+
+We then immediately deduce that, assuming the noise of the orientation and force is independent,
 \begin{align}
     \langle |\Delta \bm r(t)|^2 \rangle & = 2 d D t 
     + v_0^2 \int_0^t\rmd\tau_1\int_0^t\rmd\tau_2 \, e^{-|\tau_1-\tau_2|/\tau_r} \nonumber \\
     & = 2 d D t 
     + 2 \lp^2 \left( \frac{t}{\tau_r} - 1 + e^{-t/\tau_r} \right).
 \end{align}
-Limiting regimes:
+%
+This has two limiting regimes, much smaller and much larger times than the reorientation time,
+%
 \begin{align*}
     \langle |\Delta \bm r(t)|^2 \rangle & 
     \underset{t \ll \tau_r}{\simeq} 2 d D t + v_0^2 t^2 , \\
     \langle |\Delta \bm r(t)|^2 \rangle & 
     \underset{t \gg \tau_r}{\simeq} 2 d D_{\rm eff} t , \qquad  D_{\rm eff} = D + \frac{v_0^2\tau_r}{d}. 
 \end{align*}
-Three dynamical regimes: thermal diffusion at short times ($t < 2 d D / v_0^2)$, ballistic dynamics at intermediate times ($2 d D / v_0^2 < t < \tau_r)$ and diffusive motion at long times $t > \tau_r$. 
-Confirms the qualitative picture drawn earlier. 
+%
+This corresponds to three dynamical regimes, with thermal diffusion at short times ($t < 2 d D / v_0^2)$, ballistic dynamics at intermediate times ($2 d D / v_0^2 < t < \tau_r)$ and diffusive motion at long times $t > \tau_r$. 
+This confirms the qualitative picture drawn earlier, and is illustrated in \autoref{fig: MSD}.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.6\textwidth]{Figures/introduction/crossover.png}
+    \caption{The mean-square displacement for different regimes}
+    \label{fig: MSD}
+\end{figure}
+
+
+
+
+% Handwritten page 10
 
 \subsection{Description of the long-time regime via the moment expansion}
 
+We may recover the same result from the Fokker-Planck description.
+We will consider the 2D case, in which we may write the vector parametrizing the orientation of the particle in terms of a single angle,
+%
+\begin{align}
+    \hat {\bm e}(\theta) 
+    =
+    \begin{pmatrix}
+        \cos \theta \\ \sin \theta
+    \end{pmatrix},
+\end{align}
+%
+where the evolution of the angle is given by a Langevin equation,
+%
+\begin{align}
+    \odv{ \theta }{ t } = \sqrt{2 D_R} \eta_R(t).
+\end{align}
+%
+Here, $\eta_R$ is unit white noise.
+We define the probability density for the particle as before,
+%
+\begin{align}
+    \calP(\bm r, \phi, t)
+    =
+    \E{\delta(\bm x - \bm r(t))\delta(\phi - \theta(t))}.
+\end{align}
+%
+This obeys the Fokker-Planck equation
+%
+\begin{align}
+    \partial_t \calP(\bm r, \phi, t)
+    + \bm \nabla \cdot [
+        v_0 \hat {\bm e}(\theta ) \calP(\bm r, \phi, t)
+        - D \bm \nabla \calP(\bm r, \phi, t)
+    ]
+        - D_r \partial_\theta^2 \calP(\bm r, \phi, t)
+        = 0.
+\end{align}
+%
+This equation has no simple analytical solution.
+However, in the regime where $t\gg 1 / D_R \equiv \tau_R$ it may be described well using \emph{moment expansion}.
+This is a powerful technique is is also very useful for more complex situations.
+
+We begin by defining the particle density,
+%
+\begin{align}
+    \rho(\bm r, t) = \int_0^{2\pi} \dd \phi\, \calP(\bm r, \phi, t).
+\end{align}
+%
+We may find its equation of motion by taking a time derivative, and applying the Fokker-Planck, which gives us
+%
+\begin{align}\label{eq: density FP}
+    \partial_t \rho + v_0 \bm \nabla \cdot (\rho \bm q) - D \nabla^2 \rho = 0,
+\end{align}
+%
+where we have defined
+%
+\begin{align}
+    \bm q(\bm r, t)
+    =
+    \frac{1}{\rho}
+    \int_0^{2\pi} \dd \phi \, \hat {\bm e}(\phi) \calP(\bm r, \phi, t).
+\end{align}
+%
+This is the mean orientation.
+
+% Handwritten page XI
+
+In the same manner, we find the equation for $\bm q$, which is
+%
+\begin{align}
+    \partial_t (\rho \bm q)
+    =
+    -\frac{ 1 }{ 2 }v_0 \bm \nabla \rho - D_R \rho \bm q
+    - v_0 \bm \nabla (\rho Q) + D \nabla^2 (\rho \bm q),
+\end{align}
+%
+The momentum expansion means that we neglect terms higher than a certain order in spacial derivatives, $\bm \nabla$.
+The last terms are third-order in derivatives, and we therefore neglect it.
+We have defined the tension, also called the nematic order parameter,
+%
+\begin{align}
+    \rho Q_{ij}
+    = \int_0^{2 \pi} \dd \phi
+    \left[
+        \hat e_i(\phi)\hat e_j(\phi) - \frac{1}{2} \delta_{ij}
+    \right] \calP(\bm r, \phi, t).
+\end{align}
+%
+The Krönecker delt term ensures that the nematic tensor is traceless, $\text{Tr}(Q) = 0$.
+As we can see, this is a runaway process, and we need a criterion for closing this hierarchy of equations.
+We therefore apply the closure relation $Q = 0$, so we are left with
+%
+\begin{align}
+    \partial_t (\rho \bm q)
+    =
+    -\frac{ 1 }{ 2 }v_0 \bm \nabla \rho - D_R \rho \bm q
+\end{align}
+%
+We may now \emph{enslave} $\bm q$ by expressing it as a function of $\rho$.
+If we consider an equation of the form,
+%
+\begin{align}
+    \partial_t \rho \bm q = - D_R \rho \bm q + A(\bm r, t),
+\end{align}
+%
+we may solve it exactly as
+%
+\begin{align}
+    \rho(\bm r, t) \bm q(\bm r,t)
+    = e^{- t D_R} \left[\rho(\bm r, 0) \bm q(\bm r,0) + \int_0^t \dd t' \, e^{- t D_R} A(\bm r,t')\right].
+\end{align}
+%
+We will assume now that $t\gg \tau_R$, so that the first term is suppressed, and change variables to $\tau = t - t'$, which yields
+%
+\begin{align}
+    \rho(\bm r, t) \bm q(\bm r,t)
+    & = \int_0^t \dd \tau \, e^{- \tau  D_R} A(\bm r,t - \tau)\\
+    & \approx
+    \int_0^\infty \dd \tau \, e^{- \tau  D_R} [A(\bm r,t ) + \tau \partial_\tau A(\bm r, t) + ...]
+    \approx \tau_R A(\bm r, t),
+\end{align}
+%
+where we in the last step we assume $A$ does not vary much over the time-scale $t = \tau_R = 1 / D_R$.
+Substituting back in $A = -\frac{1}{2}v_0 \bm \nabla\rho$, we get
+%
+\begin{align}
+    \rho \bm q \approx - \frac{v_0}{2 D_R} \bm \nabla \rho,
+\end{align}
+%
+which when included in the Fokker-Planck for the density, \autoref{eq: density FP}, gives
+%
+\begin{align}
+    \partial_t \rho &= D_{\mathrm{eff}} \nabla^2 \rho, &
+    D_{\mathrm{eff}} = D + \frac{v_0}{2 D_R},
+\end{align}
+%
+as before.
+% Handwritten XII
+
+\textit{{\bf Homework}:
+In two dimensions, the vector $\he(\theta) = (\cos\theta, \sin\theta)$ is parametrized by the angle $\theta_t$. Assuming that $\theta_t$ is a Markov process, justify why we can write the joint distribution as $P(\theta_2,t_2;\theta_1,t_1) = P(\theta_2-\theta_1,t_2-t_1|0,0)P(\theta_1,t_1)$ for $t_2 > t_1$.
+Deduce that
+\begin{equation*}
+    \langle \he(\theta_t) \cdot \he(\theta_{t+\tau}) \rangle = \int \rmd\phi \cos\phi \, P(\phi,\tau|0,0) \equiv \langle \cos\phi \rangle_0, 
+\end{equation*}
+where $P(\theta,t)$ is the distribution of $\theta$ satisfying $P(\theta,0) = \delta(\theta)$.
+(Hint: Use the properties of $\theta$ to express the joint distribution $P(\theta_2,t_2;\theta_1,t_1)$)
+}
+
+
+
+% Handwritten page XIII
+
 \section{Phase transitions and critical phenomena}
+
+Phase transition is a central concept in active matter, and an important example is the flocking transition.
+
 
 \subsection{A simple example: the Ising model}
 

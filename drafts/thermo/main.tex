@@ -1,0 +1,127 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{AM Lecture 4 - A thermodynamic detour}
+\author{Luca Cocconi}
+
+\begin{document}
+\maketitle
+
+In this lecture we give an overview of the thermodynamic tools that we have at our disposal for the characterisation of active matter. As mentioned in Lecture 1, active matter defies thermodynamic equilibrium at the local scale. Some of the consequences of this property are: (i) the absence of a minimisation principle for the steady-state statistics; (ii) breaking of time-reversal symmetry of the steady-state dynamics; (iii) the absence of a generic thermodynamic framework. These are all related, as we will demonstrate shortly, via the concept of entropy production, which provides a measure of ``distance'' from equilibrium.
+
+\tableofcontents
+
+\section{Guessing the arrow of time}
+
+Imagine being given the equation of motion of a particular process, after which a video of a sample realisation of said process starts playing. How can you guess whether the video is currently being played in its original form, or whether it has been reversed?\\
+
+Optimal decision theory, in particular Wald's ratio test \cite{PhysRevLett.115.250602}, tells us that the best time to make a guess between two competing hypotheses (here F=forward movie, B=backward movie) is the first occurrence of the quantity 
+\begin{equation}\label{eq:Q_def}
+    Q = \ln \frac{P(F|O)}{P(B|O)}
+\end{equation}
+reaching either of the pre-defined values $\pm Q^*$ (i.e. it is a first passage problem),
+where $P(F,B|O)$ denote the posterior probability of either F or B being true given an observed realisation $O$ of the process. We can equivalently write,
+\begin{equation}
+    P(F|O) = \frac{1}{2} + \frac{\tanh(Q)}{2},\quad P(B|O) = \frac{1}{2} - \frac{\tanh(Q)}{2}~,
+\end{equation}
+whereby $Q^*$ can be translated into a given degree of confidence about our guess. Using Bayes' theorem,
+\begin{equation}
+    P(F|O) = \frac{\mathbb{P}(O|F)P(F)}{\mathbb{P}(O)}
+\end{equation}
+and similarly for $P(B|O)$,
+where we introduced the notation $\mathbb{P}$ to highlight the fact that these are ``path probabilities'' associated with a particular trajectory $O = \{o(t)\}_0^\tau$ of duration $\tau$. We set our prior probabilities $P(F) = P(B) = 1/2$ and substitute into \eqref{eq:Q_def} to obtain
+\begin{equation}\label{eq:Q_def_paths}
+    Q[O = \{o(t)\}_0^\tau] = \ln \frac{\mathbb{P}(O|F)}{\mathbb{P}(O|B)}~.
+\end{equation}
+Now, since the all possible sample trajectories, whether played backwards or not, originate from the original dynamics, we conclude that $\mathbb{P}(O|B) = \mathbb{P}(\hat{\Omega} O|F)$ with $\hat{\Omega}$ the time-reversal operator, i.e. the probability of being shown a particular trajectory O \emph{given that it was time-reversed} is simply the probability of the corresponding time-reversed trajectory $\hat{\Omega}O$ in the forward ensemble. It should be noted that the operator $\hat{\Omega}$ acts differently on different types of observables, depending in particular on their \emph{signature} under time-reversal: even quantities, such as densities and position, are invariant under time-reversal, while odd quantities, such as velocities and magnetic fields, change sign.\\
+
+The quantity $Q[O]$ appearing in \eqref{eq:Q_def_paths} is a random variable, being a functional of a random path. To determine the mean rate with which confidence about our guess of the arrow of time is built, we average with respect to the ensemble of possible observed trajectories and divide by the trajectory duration
+\begin{equation}
+    \dot{\bar{Q}} \equiv \frac{\bar{Q}}{\tau} = \frac{1}{\tau} \int \mathcal{D}O \ \mathbb{P}(O|F) \ln \frac{\mathbb{P}(O|F)}{\mathbb{P}(O|B)}~.
+\end{equation}
+The structure in the right-hand side can be recognised as the Kullbeck-Leibler divergence \cite{kullback1951information} per unit time of the forward and time-reversed ensembles. This is a standard measure of statistical distinguishibility, vanishing when the two path probability distributions are identical. \\
+
+Let us now compute this quantity for a simple case, specifically one-dimensional Brownian motion in the presence of an external position-dependent force. The governing Langevin equation reads
+\begin{equation}
+    \dot{x}(t) = \mu F(x(t)) + \sqrt{2k_B T \mu} \eta(t)
+\end{equation}
+where $\eta$ is a zero-mean Gaussian white noise of unit covariance, $\langle \eta(t)\eta(t')\rangle = \delta(t-t')$. In discrete time,
+\begin{equation}
+    dx_t = \mu F(x_t) dt + \sqrt{2k_B T \mu dt} \eta_t
+\end{equation}
+with $\eta_t \sim \mathcal{N}(0,1)$ now a set of iid zero-mean, unit variance Gaussian random variables. Thus, the probability of a particular realisation of the noise has a simple factorised form,
+\begin{equation}
+    \mathbb{P}[\{\eta_t\}] \propto \prod_{i=0}^{\tau/dt} {\rm exp}\left( - \frac{\eta_i^2}{2} \right) =  {\rm exp}\left( - \sum_i \frac{\eta_i^2}{2} \right)~.
+\end{equation}
+Given a particular initial condition $x(0)$, any trajectory $x(t \in [0,\tau])$ is uniquely defined by the corresponding noise realisation $\eta(t \in [0,\tau])$. Thus, for an observable $A[x(t)]$ depending on $x(t)$ we can write expectations as
+\begin{equation}
+    \langle A \rangle = \int \mathcal{D}\eta \ \mathbb{P}[\eta] A[x[\eta]] = \int \mathcal{D}x \ \underbrace{\mathbb{J}[x] \tilde{\mathbb{P}}[x]}_{\mathbb{P}[x]} A[x]
+\end{equation}
+where we have performed a change of variable by including the relevant Jacobian $\mathbb{J}[x] \equiv \mathcal{D}\eta/\mathcal{D}x$. Whether the latter is a trivial quantity or not, depends on the implicit convention about the interpretation of the relevant stochastic integrals (Ito vs Stratonovich, or generalisations thereof \cite{tauber2014critical}). This discussion falls beyond the scope of this course so we sweep this difficulty under the carpet and simply take for granted that $\mathbb{J}[x] = \mathbb{J}[\hat{\Omega}x]$ is invariant under time-reversal and that the Stratonovich mid-point convention can be assumed when looking at products of random variables (the only discretisation that allows for straightforward use of the standard chair rule of calculus). With all these caveats out of the way, we may write
+\begin{equation}
+    \mathbb{P}[x|F] \propto {\rm exp}\left( - \frac{1}{2} \sum_i \frac{(dx_t - \mu F(x_t)dt)^2}{2k_B T \mu dt} \right) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [\dot{x}(t) - \mu F(x(t))]^2 \right)
+\end{equation}
+having taken the continuum limit $dt \to 0$. Recalling that positions and velocities are even and odd under time-reversal, respectively, we then have
+\begin{align}
+    \mathbb{P}(x|B) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [-\dot{x}(t) - \mu F(x(t))]^2 \right)
+\end{align}
+whence
+\begin{equation}\label{eq:q_vs_eqr}
+    \dot{\bar{Q}} = \frac{\langle \dot{x}(t) F(x(t))\rangle}{k_B T}~. 
+\end{equation}
+Note how the numerator in the right-hand side of this expression is a product of the particle velocity times the force applied to it, and can thus be interpreted as the stochastic work done per unit time on the particle by the external force \cite{sekimoto1998langevin}. At steady-state, due to conservation of energy, that same power needs to be dissipated as heat into the bath providing the thermal fluctuations. This quantity is thus nothing but the rate of entropy generation in the heat reservoir, $ \dot{\bar{Q}} = \dot{\sigma}$. This is a sign of the profound connection between entropy production as an informatic measure of time-reversal symmetry breaking, and its more traditional thermodynamic interpretation \cite{gaspard2004time}. In the following sections we will follow a more traditional, i.e.\ thermodynamic, path for the derivation of this quantity. \\
+
+Before moving on, let us note one important property of \eqref{eq:q_vs_eqr}. For conservative forces originating from an external potential that is bounded below and constant in time, $F(x) = -\partial_x U(x)$, we have by the chain rule that $\langle \dot{x}(t) F(x(t))\rangle = -\langle \dot{U} \rangle = 0$. In other words, the steady-state of Brownian dynamics in a stable potential are equilibrium/time-reversal symmetric. 
+
+\section{Gibbs-Shannon entropy (axiomatically)}
+
+We briefly motivate the form of the Gibbs-Shannon entropy, which we will use in the following section. This can be derived ``axiomatically'' by imposing the following requirements on the thermodynamic entropy $S(\{p_i\}_{i=1,...,M})$ of a statistical ensemble, assuming for simplicity a discrete state space:
+
+\begin{enumerate}
+    \item For separate systems A and B treated as a single system, $S(A \cup B) = S(A) + S(B)$. Statistically speaking, the systems being ``separate'' or ``non-interacting'' means that the joint probability $p(a \in A, b \in B) = p(a)p(b)$ factorises ;
+    \item Continuity/smoothness with $p_i$;
+    \item $S(\{p_i\})$ should have a minimum $S=0$ when $p_i = 1$, $p_{j\neq i} = 0$ for some $i$;
+    \item $S(\{p_i\})$ should have a positive maximum when $p_i = 1/M$ for all $i$.
+\end{enumerate}
+The Gibbs-Shannon entropy satisfies all these constraints,
+\begin{equation}
+    S_{GS} = -k_B \sum_i p_i \ln p_i~.
+\end{equation}
+The ``modern'' view of thermodynamics ({\`a} la Callen) takes the entropy as the fundamental quantity. For example, the ideal gas equations of state can be derived from the Sackur-Tetrode entropy
+\begin{equation}
+    S = \frac{3}{2}N k_B \ln \epsilon + N k_B \ln V + N k_B \left[ \ln\left( N^{-1} \left( \frac{4\pi m}{2Nh^2}\right)^{\frac{3}{2}} + \frac{5}{2} \right) \right]~,
+\end{equation}
+with intensive quantities following from suitable differentiation
+\begin{equation}
+    P \equiv T \frac{\partial S}{\partial V} = \frac{Nk_B T}{V}~.
+\end{equation}
+Similarly, the Boltzmann distribution of equilibrium thermodynamics, which applies to open systems coupled to a heat reservoir, can be obtained by maximising the Gibbs-Shannon entropy while keeping the mean energy fixed (max-ent principle). In particular, one can check that $p_i \propto e^{-\beta E_i}$ with $\beta^{-1} = k_B T$ maximises the functional
+\begin{equation}
+    \mathcal{L}[\{p_i\}] = -k_B \sum_{i} p_i \ln p_i + \lambda_1 \left(\sum_i E_i p_i - \epsilon \right) + \lambda_2 \left(\sum_i p_i - 1 \right) 
+\end{equation}
+where $\epsilon = \langle E_i \rangle$ is the mean energy, while $\lambda_1$ and $\lambda_2$ are Lagrange multipliers enforcing the contraint on the mean energy and normalisation, respectively.
+
+\section{Entropy production rate from Gibbs-Boltzmann entropy}
+
+\section{(Non)conserved active field theories: fluctuation-dissipation}
+
+\section{A primer on linear irreversible thermodynamics}
+
+
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+\end{document}
