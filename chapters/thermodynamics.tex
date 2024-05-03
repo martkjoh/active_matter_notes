@@ -4,7 +4,7 @@ As mentioned in Lecture 1, active matter defies thermodynamic equilibrium at the
 
 \section{Guessing the arrow of time}
 
-Imagine being given the equation of motion of a particular process, after which a video of a sample realisation of said process starts playing. How can you guess whether the video is currently being played in its original form, or whether it has been reversed?
+Imagine being given the equation of motion of a particular process, after which a video of a sample realization of said process starts playing. How can you guess whether the video is currently being played in its original form, or whether it has been reversed?
 
 Optimal decision theory, in particular Wald's ratio test \cite{PhysRevLett.115.250602}, tells us that the best time to make a guess between two competing hypotheses (here F=forward movie, B=backward movie) is the first occurrence of the quantity 
 %
@@ -13,7 +13,7 @@ Optimal decision theory, in particular Wald's ratio test \cite{PhysRevLett.115.2
 \end{equation}
 %
 reaching either of the pre-defined values $\pm Q^*$ (i.e. it is a first passage problem),
-where $P(F,B|O)$ denote the posterior probability of either F or B being true given an observed realisation $O$ of the process. We can equivalently write,
+where $P(F,B|O)$ denote the posterior probability of either F or B being true given an observed realization $O$ of the process. We can equivalently write,
 %
 \begin{equation}
     P(F|O) = \frac{1}{2} + \frac{\tanh(Q)}{2},\quad P(B|O) = \frac{1}{2} - \frac{\tanh(Q)}{2}~,
@@ -32,7 +32,7 @@ where we introduced the notation $\mathbb{P}$ to highlight the fact that these a
     Q[O = \{o(t)\}_0^\tau] = \ln \frac{\mathbb{P}(O|F)}{\mathbb{P}(O|B)}~.
 \end{equation}
 %
-Now, since all possible sample trajectories, whether played backward or not, originate from the original dynamics, we conclude that $\mathbb{P}(O|B) = \mathbb{P}(\hat{\Omega} O|F)$ with $\hat{\Omega}$ the time-reversal operator, i.e. the probability of being shown a particular trajectory O \emph{given that it was time-reversed} is simply the probability of the corresponding time-reversed trajectory $\hat{\Omega}O$ in the forward ensemble. It should be noted that the operator $\hat{\Omega}$ acts differently on different types of observables, depending in particular on their \emph{signature} under time-reversal: even quantities, such as densities and position, are invariant under time-reversal, while odd quantities, such as velocities and magnetic fields, change sign.\\
+Now, since all possible sample trajectories, whether played backward or not, originate from the original dynamics, we conclude that $\mathbb{P}(O|B) = \mathbb{P}(\hat{\Omega} O|F)$ with $\hat{\Omega}$ the time-reversal operator, i.e. the probability of being shown a particular trajectory O \emph{given that it was time-reversed} is simply the probability of the corresponding time-reversed trajectory $\hat{\Omega}O$ in the forward ensemble. It should be noted that the operator $\hat{\Omega}$ acts differently on different types of observables, depending in particular on their \emph{signature} under time-reversal: even quantities, such as densities and position, are invariant under time-reversal, while odd quantities, such as velocities and magnetic fields, change sign.
 
 The quantity $Q[O]$ appearing in \eqref{eq:Q_def_paths} is a random variable, being a functional of a random path. To determine the mean rate with which confidence about our guess of the arrow of time is built, we average with respect to the ensemble of possible observed trajectories and divide by the trajectory duration
 %
@@ -57,7 +57,8 @@ where $\eta$ is a zero-mean Gaussian white noise of unit covariance, $\langle \e
 with $\eta_t \sim \mathcal{N}(0,1)$ now a set of iid zero-mean, unit variance Gaussian random variables. Thus, the probability of a particular realization of the noise has a simple factorized form,
 %
 \begin{equation}
-    \mathbb{P}[\{\eta_t\}] \propto \prod_{i=0}^{\tau/dt} {\rm exp}\left( - \frac{\eta_i^2}{2} \right) =  {\rm exp}\left( - \sum_i \frac{\eta_i^2}{2} \right)~.
+    \mathbb{P}[\{\eta_t\}] \propto \prod_{i=0}^{\tau/dt} {\rm exp}\left( - \frac{\eta_i^2}{2} \right) 
+    = {\rm exp}\left( - {\sum}_i \frac{\eta_i^2}{2} \right)~.
 \end{equation}
 %
 Given a particular initial condition $x(0)$, any trajectory $x(t \in [0,\tau])$ is uniquely defined by the corresponding noise realisation $\eta(t \in [0,\tau])$. Thus, for an observable $A[x(t)]$ depending on $x(t)$ we can write expectations as
@@ -266,7 +267,7 @@ Indeed, from the definition bove, we can show that
     \ln \frac{(\{n\}_0^\tau)}{(\{n^R\}_0^\tau)}
 \end{align}
 %
-is the Kullback-Leibler divergence per unit time of the forward versus backward paths~\cite[text]{gaspard2004time}.
+is the Kullback-Leibler divergence per unit time of the forward versus backward paths~\cite{gaspard2004time}.
 \todo[noinline]{This need som ellaboration...}
 
 
