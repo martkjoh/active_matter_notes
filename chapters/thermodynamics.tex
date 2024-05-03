@@ -1,69 +1,96 @@
+In this lecture, we give an overview of the thermodynamic tools that we have at our disposal for the characterization of active matter. 
+As mentioned in Lecture 1, active matter defies thermodynamic equilibrium at the local scale. Some of the consequences of this property are: (i) the absence of a minimization principle for the steady-state statistics; (ii) the breaking of time-reversal symmetry of the steady-state dynamics; (iii) the absence of a generic thermodynamic framework. These are all related, as we will demonstrate shortly, via the concept of entropy production, which provides a measure of ``distance'' from equilibrium.
 
-In this lecture we give an overview of the thermodynamic tools that we have at our disposal for the characterisation of active matter. As mentioned in Lecture 1, active matter defies thermodynamic equilibrium at the local scale. Some of the consequences of this property are: (i) the absence of a minimisation principle for the steady-state statistics; (ii) breaking of time-reversal symmetry of the steady-state dynamics; (iii) the absence of a generic thermodynamic framework. These are all related, as we will demonstrate shortly, via the concept of entropy production, which provides a measure of ``distance'' from equilibrium.
-
-\tableofcontents
 
 \section{Guessing the arrow of time}
 
-Imagine being given the equation of motion of a particular process, after which a video of a sample realisation of said process starts playing. How can you guess whether the video is currently being played in its original form, or whether it has been reversed?\\
+Imagine being given the equation of motion of a particular process, after which a video of a sample realisation of said process starts playing. How can you guess whether the video is currently being played in its original form, or whether it has been reversed?
 
 Optimal decision theory, in particular Wald's ratio test \cite{PhysRevLett.115.250602}, tells us that the best time to make a guess between two competing hypotheses (here F=forward movie, B=backward movie) is the first occurrence of the quantity 
+%
 \begin{equation}\label{eq:Q_def}
     Q = \ln \frac{P(F|O)}{P(B|O)}
 \end{equation}
+%
 reaching either of the pre-defined values $\pm Q^*$ (i.e. it is a first passage problem),
 where $P(F,B|O)$ denote the posterior probability of either F or B being true given an observed realisation $O$ of the process. We can equivalently write,
+%
 \begin{equation}
     P(F|O) = \frac{1}{2} + \frac{\tanh(Q)}{2},\quad P(B|O) = \frac{1}{2} - \frac{\tanh(Q)}{2}~,
 \end{equation}
+%
 whereby $Q^*$ can be translated into a given degree of confidence about our guess. Using Bayes' theorem,
+%
 \begin{equation}
     P(F|O) = \frac{\mathbb{P}(O|F)P(F)}{\mathbb{P}(O)}
 \end{equation}
+%
 and similarly for $P(B|O)$,
 where we introduced the notation $\mathbb{P}$ to highlight the fact that these are ``path probabilities'' associated with a particular trajectory $O = \{o(t)\}_0^\tau$ of duration $\tau$. We set our prior probabilities $P(F) = P(B) = 1/2$ and substitute into \eqref{eq:Q_def} to obtain
+%
 \begin{equation}\label{eq:Q_def_paths}
     Q[O = \{o(t)\}_0^\tau] = \ln \frac{\mathbb{P}(O|F)}{\mathbb{P}(O|B)}~.
 \end{equation}
-Now, since the all possible sample trajectories, whether played backwards or not, originate from the original dynamics, we conclude that $\mathbb{P}(O|B) = \mathbb{P}(\hat{\Omega} O|F)$ with $\hat{\Omega}$ the time-reversal operator, i.e. the probability of being shown a particular trajectory O \emph{given that it was time-reversed} is simply the probability of the corresponding time-reversed trajectory $\hat{\Omega}O$ in the forward ensemble. It should be noted that the operator $\hat{\Omega}$ acts differently on different types of observables, depending in particular on their \emph{signature} under time-reversal: even quantities, such as densities and position, are invariant under time-reversal, while odd quantities, such as velocities and magnetic fields, change sign.\\
+%
+Now, since all possible sample trajectories, whether played backward or not, originate from the original dynamics, we conclude that $\mathbb{P}(O|B) = \mathbb{P}(\hat{\Omega} O|F)$ with $\hat{\Omega}$ the time-reversal operator, i.e. the probability of being shown a particular trajectory O \emph{given that it was time-reversed} is simply the probability of the corresponding time-reversed trajectory $\hat{\Omega}O$ in the forward ensemble. It should be noted that the operator $\hat{\Omega}$ acts differently on different types of observables, depending in particular on their \emph{signature} under time-reversal: even quantities, such as densities and position, are invariant under time-reversal, while odd quantities, such as velocities and magnetic fields, change sign.\\
 
 The quantity $Q[O]$ appearing in \eqref{eq:Q_def_paths} is a random variable, being a functional of a random path. To determine the mean rate with which confidence about our guess of the arrow of time is built, we average with respect to the ensemble of possible observed trajectories and divide by the trajectory duration
+%
 \begin{equation}
     \dot{\bar{Q}} \equiv \frac{\bar{Q}}{\tau} = \frac{1}{\tau} \int \mathcal{D}O \ \mathbb{P}(O|F) \ln \frac{\mathbb{P}(O|F)}{\mathbb{P}(O|B)}~.
 \end{equation}
-The structure in the right-hand side can be recognised as the Kullbeck-Leibler divergence \cite{kullback1951information} per unit time of the forward and time-reversed ensembles. This is a standard measure of statistical distinguishibility, vanishing when the two path probability distributions are identical. \\
+%
+The structure in the right-hand side can be recognized as the Kullbeck-Leibler divergence \cite{kullback1951information} per unit time of the forward and time-reversed ensembles. This is a standard measure of statistical distinguishibility, vanishing when the two path probability distributions are identical. \\
 
 Let us now compute this quantity for a simple case, specifically one-dimensional Brownian motion in the presence of an external position-dependent force. The governing Langevin equation reads
+%
 \begin{equation}
     \dot{x}(t) = \mu F(x(t)) + \sqrt{2k_B T \mu} \eta(t)
 \end{equation}
+%
 where $\eta$ is a zero-mean Gaussian white noise of unit covariance, $\langle \eta(t)\eta(t')\rangle = \delta(t-t')$. In discrete time,
+%
 \begin{equation}
     dx_t = \mu F(x_t) dt + \sqrt{2k_B T \mu dt} \eta_t
 \end{equation}
-with $\eta_t \sim \mathcal{N}(0,1)$ now a set of iid zero-mean, unit variance Gaussian random variables. Thus, the probability of a particular realisation of the noise has a simple factorised form,
+%
+with $\eta_t \sim \mathcal{N}(0,1)$ now a set of iid zero-mean, unit variance Gaussian random variables. Thus, the probability of a particular realization of the noise has a simple factorized form,
+%
 \begin{equation}
     \mathbb{P}[\{\eta_t\}] \propto \prod_{i=0}^{\tau/dt} {\rm exp}\left( - \frac{\eta_i^2}{2} \right) =  {\rm exp}\left( - \sum_i \frac{\eta_i^2}{2} \right)~.
 \end{equation}
+%
 Given a particular initial condition $x(0)$, any trajectory $x(t \in [0,\tau])$ is uniquely defined by the corresponding noise realisation $\eta(t \in [0,\tau])$. Thus, for an observable $A[x(t)]$ depending on $x(t)$ we can write expectations as
+%
 \begin{equation}
     \langle A \rangle = \int \mathcal{D}\eta \ \mathbb{P}[\eta] A[x[\eta]] = \int \mathcal{D}x \ \underbrace{\mathbb{J}[x] \tilde{\mathbb{P}}[x]}_{\mathbb{P}[x]} A[x]
 \end{equation}
-where we have performed a change of variable by including the relevant Jacobian $\mathbb{J}[x] \equiv \mathcal{D}\eta/\mathcal{D}x$. Whether the latter is a trivial quantity or not, depends on the implicit convention about the interpretation of the relevant stochastic integrals (Ito vs Stratonovich, or generalisations thereof \cite{tauber2014critical}). This discussion falls beyond the scope of this course so we sweep this difficulty under the carpet and simply take for granted that $\mathbb{J}[x] = \mathbb{J}[\hat{\Omega}x]$ is invariant under time-reversal and that the Stratonovich mid-point convention can be assumed when looking at products of random variables (the only discretisation that allows for straightforward use of the standard chair rule of calculus). With all these caveats out of the way, we may write
+%
+where we have performed a change of variable by including the relevant Jacobian $\mathbb{J}[x] \equiv \mathcal{D}\eta/\mathcal{D}x$. Whether the latter is a trivial quantity or not, depends on the implicit convention about the interpretation of the relevant stochastic integrals (Ito vs Stratonovich, or generalizations thereof \cite{tauber2014critical}). This discussion falls beyond the scope of this course so we sweep this difficulty under the carpet and simply take for granted that $\mathbb{J}[x] = \mathbb{J}[\hat{\Omega}x]$ is invariant under time-reversal and that the Stratonovich mid-point convention can be assumed when looking at products of random variables (the only discretization that allows for straightforward use of the standard chair rule of calculus). With all these caveats out of the way, we may write
+%
 \begin{equation}
     \mathbb{P}[x|F] \propto {\rm exp}\left( - \frac{1}{2} \sum_i \frac{(dx_t - \mu F(x_t)dt)^2}{2k_B T \mu dt} \right) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [\dot{x}(t) - \mu F(x(t))]^2 \right)
 \end{equation}
+%
 having taken the continuum limit $dt \to 0$. Recalling that positions and velocities are even and odd under time-reversal, respectively, we then have
+%
 \begin{align}
     \mathbb{P}(x|B) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [-\dot{x}(t) - \mu F(x(t))]^2 \right)
 \end{align}
+%
 whence
+%
 \begin{equation}\label{eq:q_vs_eqr}
     \dot{\bar{Q}} = \frac{\langle \dot{x}(t) F(x(t))\rangle}{k_B T}~. 
 \end{equation}
-Note how the numerator in the right-hand side of this expression is a product of the particle velocity times the force applied to it, and can thus be interpreted as the stochastic work done per unit time on the particle by the external force \cite{sekimoto1998langevin}. At steady-state, due to conservation of energy, that same power needs to be dissipated as heat into the bath providing the thermal fluctuations. This quantity is thus nothing but the rate of entropy generation in the heat reservoir, $ \dot{\bar{Q}} = \dot{\sigma}$. This is a sign of the profound connection between entropy production as an informatic measure of time-reversal symmetry breaking, and its more traditional thermodynamic interpretation \cite{gaspard2004time}. In the following sections we will follow a more traditional, i.e.\ thermodynamic, path for the derivation of this quantity. \\
+%
+Note how the numerator in the right-hand side of this expression is a product of the particle velocity times the force applied to it, and can thus be interpreted as the stochastic work done per unit time on the particle by the external force \cite{sekimoto1998langevin}. At steady-state, due to the conservation of energy, that same power needs to be dissipated as heat into the bath providing the thermal fluctuations. This quantity is thus nothing but the rate of entropy generation in the heat reservoir, $ \dot{\bar{Q}} = \dot{\sigma}$. This is a sign of the profound connection between entropy production as an informatic measure of time-reversal symmetry breaking, and its more traditional thermodynamic interpretation \cite{gaspard2004time}. In the following sections, we will follow a more traditional, i.e.\ thermodynamic, path for the derivation of this quantity.
 
-Before moving on, let us note one important property of \eqref{eq:q_vs_eqr}. For conservative forces originating from an external potential that is bounded below and constant in time, $F(x) = -\partial_x U(x)$, we have by the chain rule that $\langle \dot{x}(t) F(x(t))\rangle = -\langle \dot{U} \rangle = 0$. In other words, the steady-state of Brownian dynamics in a stable potential are equilibrium/time-reversal symmetric. 
+Before moving on, let us note one important property of \eqref{eq:q_vs_eqr}. For conservative forces originating from an external potential that is bounded below and constant in time, $F(x) = -\partial_x U(x)$, we have by the chain rule that $\langle \dot{x}(t) F(x(t))\rangle = -\langle \dot{U} \rangle = 0$. In other words, the steady-state of Brownian dynamics in a stable potential is equilibrium/time-reversal symmetric. 
+
+
+
+% Handwritten notes section (2)
 
 \section{Gibbs-Shannon entropy (axiomatically)}
 
@@ -76,26 +103,458 @@ We briefly motivate the form of the Gibbs-Shannon entropy, which we will use in 
     \item $S(\{p_i\})$ should have a positive maximum when $p_i = 1/M$ for all $i$.
 \end{enumerate}
 The Gibbs-Shannon entropy satisfies all these constraints,
+%
 \begin{equation}
     S_{GS} = -k_B \sum_i p_i \ln p_i~.
 \end{equation}
+%
 The ``modern'' view of thermodynamics ({\`a} la Callen) takes the entropy as the fundamental quantity. For example, the ideal gas equations of state can be derived from the Sackur-Tetrode entropy
+%
 \begin{equation}
     S = \frac{3}{2}N k_B \ln \epsilon + N k_B \ln V + N k_B \left[ \ln\left( N^{-1} \left( \frac{4\pi m}{2Nh^2}\right)^{\frac{3}{2}} + \frac{5}{2} \right) \right]~,
 \end{equation}
+%
 with intensive quantities following from suitable differentiation
+%
 \begin{equation}
     P \equiv T \frac{\partial S}{\partial V} = \frac{Nk_B T}{V}~.
 \end{equation}
-Similarly, the Boltzmann distribution of equilibrium thermodynamics, which applies to open systems coupled to a heat reservoir, can be obtained by maximising the Gibbs-Shannon entropy while keeping the mean energy fixed (max-ent principle). In particular, one can check that $p_i \propto e^{-\beta E_i}$ with $\beta^{-1} = k_B T$ maximises the functional
+%
+% Handwritten notes section (2)
+Similarly, the Boltzmann distribution of equilibrium thermodynamics, which applies to open systems coupled to a heat reservoir, can be obtained by maximizing the Gibbs-Shannon entropy while keeping the mean energy fixed (max-ent principle). In particular, one can check that $p_i \propto e^{-\beta E_i}$ with $\beta^{-1} = k_B T$ maximises the functional
+%
 \begin{equation}
     \mathcal{L}[\{p_i\}] = -k_B \sum_{i} p_i \ln p_i + \lambda_1 \left(\sum_i E_i p_i - \epsilon \right) + \lambda_2 \left(\sum_i p_i - 1 \right) 
 \end{equation}
-where $\epsilon = \langle E_i \rangle$ is the mean energy, while $\lambda_1$ and $\lambda_2$ are Lagrange multipliers enforcing the contraint on the mean energy and normalisation, respectively.
+%
+where $\epsilon = \langle E_i \rangle$ is the mean energy, while $\lambda_1$ and $\lambda_2$ are Lagrange multipliers enforcing the constraint on the mean energy and normalization, respectively.
+
+
 
 \section{Entropy production rate from Gibbs-Boltzmann entropy}
 
+% Handwritten notes section (4)
+
+The entropy production rate (EPR) is exactly what it sounds like, the amount of entropy produced per unit of time.
+Given a system that evolves with time, which we assume to be discrete for simplicity, which evolves according to a master equation
+%
+\begin{align}
+    \odv{  }{ t } P_i(t) = K_{ij} P_j(t),
+\end{align}
+%
+where the transition rates must obey $\sum_i K_{ij} = 0$ to conserve probability.
+The corresponding Gibbs-Shannon entropy is
+%
+\begin{align}
+    S(t) = - \sum_i P_i(t) \ln P_i(t),
+\end{align}
+%
+which allows us to directly compute the entropy production rate
+%
+\begin{align}
+    \odv{  }{ t } S(t)
+    \equiv \dot S(t)
+    & = - \underbrace{{\sum}_i \dot P_i(t)}_{= 0}
+    + - \sum_i \dot P_i(t) \ln P_i(t)\\
+    & = 
+    -\frac{1}{2}\sum_{ij}
+    \left(
+        K_{ij}P_j \ln P_i
+        + K_{ji} P_i \ln P_j
+    \right) 
+\end{align}
+%
+Where we have inserted the master equation, and rewritten the sum as two copies where the dummy indices are renamed.
+With some more massaging, we can write this as
+%
+\begin{align}
+    \dot S(t) &=
+    -\frac{1}{2}\sum_{ij}
+    \left(
+        K_{ij}P_j \ln P_i
+        + K_{ji} P_i \ln P_j
+    \right) \\
+    & =
+    -\frac{1}{2}\sum_{ij}
+    \left(
+        K_{ij}P_j \ln P_i
+        - K_{ij} P_{j} \ln P_j
+        + K_{ji} P_{i} \ln P_i
+        + K_{ji} P_i \ln P_j
+    \right) \\
+    & =
+    -\frac{1}{2}\sum_{ij}
+    \left(
+        K_{ij}P_j \ln \frac{P_i}{P_j}
+        - K_{ji} P_i \ln \frac{P_i}{P_j}
+    \right) 
+    \\
+    & 
+    -\frac{1}{2}\sum_{ij}
+    \left(
+        K_{ij}P_j 
+        - K_{ji} P_i 
+    \right) \ln \frac{P_i}{P_j}\\
+    & =
+    -\frac{1}{2}\sum_{ij}
+    \left(K_{ij}P_j - K_{ji} P_i\right) 
+    \ln
+    \left(
+        \frac{K_{ji }P_i}{K_{ij}  P_j}
+        \frac{K_{ji}}{K_{ij}}
+    \right)
+    \equiv \dot S_e + \dot \sigma.
+\end{align}
+%
+In the last step, we have defined the external entropy production rate
+%
+\begin{align}
+    \dot S_e = - \frac{1}{2}\sum_{ij}
+    \underbrace{
+        ( K_{ij}P_j - K_{ji} P_i) 
+        }_{{{\mathcal J}_{ij}}}
+    \ln \left( \frac{K_{ji }}{K_{ij}}\right),
+\end{align}
+%
+This is the entropy flow, which represents the entropy that flows from the system to the environment, and $\mathcal J_{ij}$ is the current between two states.\todo[noinline]{Is this right?}
+The total entropy production is
+%
+\begin{align}
+    \dot \sigma = 
+    \frac{1}{2}\sum_{ij}
+    \left(K_{ij}P_j - K_{ji} P_i\right) 
+    \ln \left( \frac{K_{ij}}{K_{ji}}\right),
+\end{align}
+%
+which obeys $\dot \sigma \geq 0$.\todo{Can we see that here, or do we state it as the second law?}
+
+This is a very generic model.
+We introduce the physics into the model by enforcing local detail balance for the jumping rate,
+%
+\begin{align}
+    \frac{K_{ij}}{K_{ji}} = e^{\Delta Q_{ij} / k_b T}.
+\end{align}
+%
+This is an additional postulate that we make.\todo{Define Q?}
+It can be justified using Kramer theory, but may break down under (I CAN"T READ THE NOTES)\todo{what was this supposed to say?}
+With this, the external entropy production takes the form
+%
+\begin{align}
+    \dot S_e = \sum_{i<j} \frac{\mathcal J_{ij} \Delta Q_{ij}}{k_b T}
+\end{align}
+%
+This is the heat dissipated into the heat reservoir $\dot Q$, divided by $k_B T$.
+Thus the total entropy production rate is \todo{There is a sign wrong here I think.}
+%
+\begin{align}
+    \dot \sigma = \dot S + \frac{\dot Q}{K_B} \geq 0,
+\end{align}
+%
+which is the second law of thermodynamics!
+At a steady state, the probability distribution $P$ is independent of time, so $\dot S = 0$, which gives
+%
+\begin{align}
+    \dot \sigma = \frac{\dot Q}{k_B T}.
+\end{align}
+%
+Indeed, from the definition bove, we can show that
+%
+\begin{align}
+    \dot \sigma(t) = 
+    \lim_{\tau \rightarrow 0} \frac{1}{\tau}
+    \int \D n P(\{n\}_0^\tau)
+    \ln \frac{(\{n\}_0^\tau)}{(\{n^R\}_0^\tau)}
+\end{align}
+%
+is the Kullback-Leibler divergence per unit time of the forward versus backward paths~\cite[text]{gaspard2004time}.
+\todo[noinline]{This need som ellaboration...}
+
+
+
 \section{(Non)conserved active field theories: fluctuation-dissipation}
+
+% Handwritten notes section (5, 5b)
+
+
+We now consider systems described at a more coarse grain level, using \emph{hydrodynamic theory}. 
+in this case the relevant degrees of freedom are fields, which follow Langevin-field equations.
+These are to Langevin equations as PDEs are to ODEs.
+If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we consider a magnetization, driven quantum systems such as polariton Bose-Einstein condensates, or a density of cells that are born and die, we may generically write the equation of motion as
+%
+\begin{align}
+    \partial_t \psi(\bm x, t) 
+    = M[\psi(\bm x, t)] G_\psi[\psi(\bm x, t), \bm \nabla \psi(\bm x, t)] 
+    + \sqrt{ 2 k_B T \tilde M[\psi(\bm x, t)] } \eta(\bm x, t).
+\end{align}
+%
+Here, the mobility may in the simple case be $M = \gamma^{-1}$, or have a more complicated dependence on the field.
+For model A in the Halperin-Hohenberg (HH) classification~\cite{HohenbergRMP}, the potential takes the form $G = -(a \psi + b \psi^3)$. \todo[noinline]{gradient term?}
+
+In the case of, for example, a non-degrading chemical density, the order parameter $\rho$ is conserved, and its equation of motion is the conservation law
+%
+\begin{align}
+    \partial_t \rho(\bm x, t)
+    = 
+    \bm \nabla
+    \left[
+        M[\rho(\bm x, t)]
+        \bm \nabla G_\rho[\rho(\bm x, t), \bm \nabla\rho(\bm x, t)]
+        + \sqrt{ 2 k_B T \tilde M[\rho(\bm x, t)] }
+        \bm \eta(\bm x, t)
+    \right]
+\end{align}
+%
+Here again, the simplest case for the mobility is $M = \gamma^{-1}$.
+For model B in the HH classification, the forces are given by $\bm \nabla G_\rho = \bm \nabla (a \rho + b \rho^3 - \kappa \nabla^2 \rho)$.
+Model A is the canonical stochastic field theory for describing the spontaneous symmetry-breaking of the Ising model, while model B plays a similar role for the diffusive phase separation of a conserved scalar.
+We capture both models at once by writing
+%
+\begin{align}
+    \partial_t \phi(\bm x, t)
+    = 
+    \bm \nabla^{(k)}
+    \left[
+        M[\rho(\bm x, t)]
+        \bm \nabla^{(k)} G_\rho[\rho(\bm x, t), \bm \nabla\rho(\bm x, t)]
+        + \sqrt{ 2 k_B T  Q[\rho(\bm x, t)] }
+        \bm \eta(\bm x, t)
+    \right]
+\end{align}
+%
+Here, $k = 0$ in the case of model A, and $k = 1$ in the case of model B.\todo[noinline]{Are the signs here correct?}
+\todo[noinline]{Define Q?}
+Solving for the nose, we get
+%
+\begin{align}
+    \eta
+    = 
+    \frac{[\nabla^{(k)}]^{-1} \partial_t \phi - M(\phi) \nabla^{(k)} G}{\sqrt{ 2 k_ T M(\psi) }}.
+\end{align}
+%
+We now introduce the Onsager-Machlup function for the path probabilities,\todo[noinline]{more detail?}
+%
+\begin{align}
+    \mathbb{P}_F[\phi] \propto
+    \exp 
+    \left\{ 
+        - \frac{1}{4 k_B T}
+        \int_0^T \dd t \, \frac{[(\nabla^{(k)})^{-1} \partial_t \phi - M \nabla^{(k)}G]^2}{Q[\phi]}
+     \right\}.
+\end{align}
+%
+THe probability for the reverse path is $\mathbb{P}_R[\phi, \dot \phi] = \mathbb{P}_F[\phi, -\dot \phi]$,  so the Kullback-Leibler divergence is
+%
+\begin{align}
+    \ln \frac{\mathbb P_F}{\mathbb P_R}
+    = 
+    \frac{1}{k_B T}
+    \int_0^T \dd t\, \partial_t \phi [\nabla^{k}]^{-1}
+    \left[
+        \frac{M[\phi]}{Q[\phi]}
+        \nabla^{(k)}G(\phi)
+    \right].
+\end{align}
+%
+In the case of equilibrium, the fluctuation-dissipation theorem (FDT) means that $M = Q$, and the forces are given by minimizing free energy, $G = \fdv{F}{\phi}$.
+The integral may thus be easily solved,
+%
+\begin{align}
+    \int_0^T \dd t\, \partial_t \phi [\nabla^{k}]^{-1}
+    \left[
+        \nabla^{(k)}\fdv{F}{\phi}
+    \right]
+    = 
+    \int_0^T \dd t\, \odv{}{t} F(t)
+    = 
+    F(T) - F(0),
+\end{align}
+%
+which means the probabilities follow detail balance
+%
+\begin{align}
+    \frac{\mathbb P_F}{\mathbb P_R} = e^{\Delta F / k_B T}.
+\end{align}
+%
+
+As an example, take a dry, scalar active field theory for a conserved density.
+This can typically be written as a conservation law,
+%
+\begin{align}
+    \partial_t \rho = - \bm \nabla \cdot \bm J,
+\end{align}
+%
+where the current has an active and a passive term, $\bm J = \bm J^a + \bm J^p$.
+The passive terms alone are equilibrium effects and therefore have the form
+%
+\begin{align}
+    \bm J^p = - M \bm \nabla \fdv{F}{\rho} + \sqrt{2 k_b T M} \eta.
+\end{align}
+%
+This might be an ``effective'' passive term, which still originates from activity at the microscopic level, but which leads to an equilibrium state on a coarse-grained level.
+while the active current is
+%
+\begin{align}
+    \bm J^a = \sum_i \lambda_i \times (\text{active terms}).
+\end{align}
+%
+Here, $\lambda_i$ are activity parameters, e.g., for the dry polar active matter we may write $\bm J^{a} = \lambda_1 \rho \bm q$  and include an additional non-conserved field 
+%
+\begin{align}
+    \partial_t \bm q + \lambda_2 \bm q \cdot \bm \nabla \bm q
+    = - \Gamma \fdv{F}{\bm q} + \sqrt{ 2 k_B T\Gamma } \bm \eta.
+\end{align}
+%
+This reduces to the ``Toner-Tu model'', or dry flocking, if we set $M\rightarrow 0$, with the free energy
+\todo[noinline]{I have problems distinguishing rho and p in the notes....}
+%
+\begin{align}
+    F = \int \dd x \, 
+    \left(
+        \frac{1}{2}a q^2 + \frac{1}{4}bq^4 + \frac{1}{2} \bm \nabla \bm q : \bm \nabla \bm q
+        - \bar \omega \bm \nabla \cdot \bm q \rho + \frac{\lambda}{2 \Gamma} q^2 \bm \nabla \cdot \bm q
+    \right)
+\end{align}
+%
+``Wet'' active matter is more complicated, as we need to include the Navier-Stokes (NS) equation for the surrounding fluid.
+We will say a bit about this later.
+
+What we have done until now is a \emph{top-down approach}, where we add minimal active terms based on physical intuition and the symmetries of the microscopic description.
+A \emph{bottom-up approach} typically starts with a description of the microscopic dynamics and proceeds via a formal coarse-graining procedure.
+This is much harder, and you often end up with the same macroscopic theories, but with the addition of having a microscopic interpretation of the terms in the hydrodynamic equations.
+For dynamics near equilibrium, linear irreversible thermodynamics gives us a recipe to construct hydrodynamic theories.
+
 
 \section{A primer on linear irreversible thermodynamics}
 
+The rate of change of the energy $F = U - TS$ for the fields $\{\phi_i\}_{i=1}^N\cup \{\rho_i\}_{j=1}^M$ for an isothermal proces is
+%
+\begin{align}
+    \dot F = \dot U - T \dot S
+    = 
+    -\int \dd r \, 
+    \left[
+        \sum_{i} \dot \phi_i \left(-\fdv{F}{\phi_i}\right)
+        + \sum_{j} \dot \rho_j \left(- \fdv{F}{\rho_i}\right)
+    \right].
+\end{align}
+%
+We assume that $\rho_i$ follows the conservation law
+%
+\begin{align}
+    \partial_t \rho = \bm \nabla \cdot \bm J^{(c)},
+\end{align}
+%
+while the current of $\phi$, $\dot \phi_i = J^{(nc)}_i$ is non-concerved.
+We define the effective/thermodynamic forces as
+%
+\begin{align}
+    F_i^{(nc)} &= - \fdv{F}{\phi_i} &
+    \bm F_j^{(c)} &= - \bm \nabla \fdv{F}{\rho_j}.
+\end{align}
+%
+With this, and after a integration by parts, the change in free energy takes the form of displacement times force,
+%
+\begin{align}
+    \dot F = 
+    - \int \dd r \,
+    \left(
+        \sum_i J_i^{(nc)} F_i^{(nc)} 
+        + \sum_J \bm J_j^{(c)} \cdot \bm F_j^{(nc)}
+    \right).
+\end{align}
+%
+The effective forces have well-defined parity under time-reversal, and a particular set of  fields and $F$ is provided effective fluxes, on the other hand, can in general have both contributions
+\todo[inline]{This I had some problems understanding\dots}
+%
+\begin{align}
+    J_i^{(nc)} &=  J_{R,i}^{(nc)} + J_{D,i}^{(nc)},  &
+    \bm J_j^{(c)} &=  \bm J_{R,j}^{(c)} + \bm J_{D,j}^{(c)}.
+\end{align}
+%
+Here we have split the currents into ``reactive'' fluxes, which have the opposite time-reversal signature as a force and contribute to $\dot U$, and ``dissipative'' fluxes, which have the same time-revalsal signature as a force, and contribute to $T \dot S$.
+At equilibrium, all forces and fluxes vanish.
+In a ``small neighborhood'' of the equilibrium state, we might want to assume linear phenomenological laws.
+These take the form
+%
+\begin{align}
+    \bm J_{R,D,i}^{(\cdot)}
+    = L_{ij}(\{\phi_i\}, \{\rho_j\}) F_j,
+\end{align}
+%
+and are called \emph{constitutive equations}.
+The matrix $L_{ij}$ are made up of \emph{transport coefficients}.
+In these laws, all couplings with equal time-reversal signatures are allowed.
+The fact that $F$ is minimized at equilibrium implies that $L$ should be positive definite.
+Curie's principle states that the tensorial must be matched, e.g. vector currents need to be a sum of vector-like objects that transform in the same way under rotation, etc.
+Furthermore, the Onsager-Casimir relations states that dissipative fluxes must have symmetric (under time-reversal) couplings, while reactive fluxes must have antisymmetric couplings.
+In other words,
+%
+\begin{equation}
+    L_{ij}  = \epsilon_i \epsilon_j L_{ij},
+\end{equation}
+%
+where $\epsilon_i = \pm 1$ are the parity for the forces/fluxes.
+
+As an example, take the fluid and polar field adn particle number \todo[noinline]{This needs explanation}
+The rate of change of free energy is
+%
+\begin{align}
+    \dot F = - \int \dd r 
+    \left(\sigma_{\alpha \beta} u_{\alpha \beta} + h_\alpha q_\alpha + \Delta_\mu \dot r\right).
+\end{align}
+%
+Categorizing this as above, we have
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c}
+    Fluxes & Forces & Example, Parity \\
+    \hline
+    $\sigma_{\alpha \beta}$ 
+    & $u_{\alpha \beta} = \frac{1}{2}(\partial_\alpha v_\beta + \partial_\beta v_\alpha)$ 
+    & strain rate ($\epsilon = -1$)\\
+    $D_t q_\alpha$ &
+    $\fdv{F}{q_\alpha} = h_\alpha$ & crystal field ($\epsilon = +1$) \\
+    $\dot r$ & 
+    $\fdv{F}{r} = \Delta_\mu$ & 
+    Chemical potential ($\epsilon = +1$) \\
+\end{tabular}
+\end{table}
+
+We split the fluxes into the reactive and diffusive parts, 
+%
+\begin{align}
+    \sigma_{\alpha \beta} 
+    & = \underbrace{\sigma_{\alpha \beta}^{(R)}}_{\epsilon=+1}
+    + \underbrace{\sigma_{\alpha \beta}^{(D)}}_{\epsilon=-1}\\
+    q_\alpha
+    & = \underbrace{D_T q_\alpha^{(R)}}_{\epsilon=-1}
+    + \underbrace{D_T q_\alpha^{(D)}}_{\epsilon=+1}\\
+    D_T \dot r
+    & = \underbrace{\dot r^{(R)}}_{\epsilon=-1}
+    + \underbrace{\dot r^{(D)}}_{\epsilon=+1}.
+\end{align}
+%
+We see imendiatly that, for example, $\sigma^{d} \propto u$, since this is the only force that is odd, as required.
+Similarly, we must have
+%
+\begin{align}
+    D_t q_\alpha^{(D)} &= \lambda_{qq} h_\alpha + \lambda_{qr} \Delta_\mu \\
+    \dot r^{(D)} &= \lambda_{rr} \delta_\mu + \lambda_{rq} h_\alpha.
+\end{align}
+%
+By Onsager reciprocity, $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, $\lambda_{q r} \propto q$, as it needs to be a vector.
+On the other hand, $D_t P_\alpha^{(R)}$ and $\dot r^{(R)}$ cannot depend on $h$ and $\Delta_\mu$ due to time-partity mismatch.
+Using the Onsager relations, we get
+%
+\begin{align}
+    \sigma_{\alpha \beta}^{(R)} 
+    &= \dots
+    \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
+    \Delta_\mu, \\
+    \dot r^{(R)} 
+    &= -
+    \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
+    \Delta_\mu, \\
+\end{align}
+%
