@@ -498,9 +498,62 @@ where $P(\theta,t)$ is the distribution of $\theta$ satisfying $P(\theta,0) = \d
 
 \section{Phase transitions and critical phenomena}
 
-Phase transition is a central concept in active matter, and an important example is the flocking transition.
+Phase transition is a central concept in active matter.
+One important example is the flocking transition, where directed units spontaneously choose a direction to align in and move together as a flock.
+This is the Active Matter version of the ordering transition in the Ising model, in which spins align in the case of a ferromagnet or anti-align in the case of an anti-ferromagnet.
+Here, we will review some basic features of the theories of phase transitions at equilibrium, and introduce tools that we apply in the context of Active matter.
+
 
 
 \subsection{A simple example: the Ising model}
+
+One of these important features of phase transitions is that they are associated with the notion of scale-invariance.
+A minimal example of this is the Ising model.
+Take $N$ spins, $s_i = \pm 1$ on a lattice, whose energy is given by
+%
+\begin{align}
+    E = - \frac{1}{2}J \sum_{\E{ij}} s_i s_j.
+\end{align}
+%  
+Here, $\E{ij}$ indicates that the sum is first over all $i\in\{1...N\}$, then all nearest negihbours $j$ of $i$.
+The partition function, a sum over all possible configurations $\{s_i\}$, is
+%
+\begin{align}
+    Z = \sum_{\{s_i\}} e^{-\beta E}.
+\end{align}
+%
+We define the order parameter,
+%
+\begin{align}
+    m = \frac{1}{N}\sum_i s_i,
+\end{align}
+%
+which measures the magnetization.
+If all spins points in one direction, then $m  = \pm 1$, while if they are completely randomly distributed, $m = 1$
+First, we apply a simple mean-field analysis and assume that the value of each spin is close to that of the average, so $s_i \approx m + \delta s_i$, where $\delta s_i$ is small.
+Then,
+%
+\begin{align}
+    s_i  ks_j = m^2 + m(\delta s_i + \delta s_j) + \Oh(\delta s^2)
+    \approx m(s_i + s_j - m).
+\end{align}
+%
+Here, we have neglected terms that are second order in the perturbations $\delta s$.
+
+% Handwritten page XIV
+With this assumption, we may rewrite the energy as
+%
+\begin{align}
+    E_{MF} 
+    &= \frac{1}{2} J m \sum_{\E{ij}}(s_i + s_j - m)\\
+    & = \frac{1}{2} J m z \left( 2 \sum_{i} - m N  \right).
+\end{align}
+%
+Here, $z$ is the number of nearest neighbors for each site, the coordination number of the lattice.
+This depends on the structure of the lattice and the dimensionality in space.
+For square lattices, $z = 2 d$, where d is the dimension of space.
+
+
+
 
 \subsection{Continuous symmetry breaking: Goldstone modes and the Mermin-Wagner theorem}
