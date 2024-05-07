@@ -1,0 +1,84 @@
+\label{sec_top_down}
+
+In the previous section we have briefly reviewed the physics of phase separation at equilibirum using the minimal formulation offered by model B.
+A general question now is how to generalize model B to the case where the microscopic dynamics of the system is active, 
+i.e.\ breaks time-reversal symmetry at microscopic scales.
+As we want to describe scalar active systems, we can reasonably conjecture (and we will show it later) that the dynamics of their density field should obey an equation similar to~\eqref{eq_phi}. 
+Keeping a vanishing stochastic current, 
+a straightforward way to break the equilibrium structure of Eq.~\eqref{eq_phi} consists in adding to the chemical potential in Eq.~\eqref{eq_JD} a contribution that cannot be derived from a free energy.
+Considering reasonably smooth functions, we immediately see that any nonequilibrium contribution to $\mu$ must come from the nonlocal (proportional to the gradients of $\phi$) terms.
+We can thus write in general
+\begin{equation} \label{eq_neq_mu}
+\mu(\phi) = f'(\phi) - \kappa(\phi) \nabla^2\phi + \lambda(\phi)|\nabla\phi|^2 ,
+\end{equation}
+such that when the relation $2\lambda(\phi) + \kappa'(\phi) \ne 0$ is not satisfied, $\mu$ cannot be written as $\delta {\cal F}/ \delta \phi$.
+While only the local term $f'(\phi)$ in~\eqref{eq_neq_mu} affects the evaluation of the spinodals, 
+the absence of free energy structure prevents us to use the powerful formalism presented above to determine the binodals and thus the phase separated configurations.
+
+Fortunately, as was demonstrated in~\cite{Solon2018} an effective free energy structure can be recovered through a mapping of $\phi$ and ${\cal F}$ to generalized thermodynamic variables.
+Namely, let us consider the one to one mapping $\phi\to\psi$ and the functional ${\cal G}$ such that $\mu = \delta{\cal G}/\delta\psi$.
+Writing, ${\cal G} = \intd{r} [g(\phi) + \tfrac{1}{2}B(\phi)|\nabla\psi|^2]$, we get
+\begin{equation}
+\frac{\delta {\cal G}}{\delta \psi} = \frac{g'(\phi)}{\psi'(\phi)} +\frac{1}{2}\frac{B'(\phi)}{\psi'(\phi)}|\nabla\psi|^2 - \nabla \cdot ( B(\phi)\nabla\psi) ,
+\end{equation}
+where primes denote derivatives wrt $\phi$.
+Using that $\nabla\psi = \psi'\nabla\phi$, we obtain after straightforward algebra
+\begin{align}
+\mu & = \frac{g'(\phi)}{\psi'(\phi)} - B(\phi) \psi'(\phi) \nabla^2\phi  - \left[\psi''(\phi) B(\phi) + \frac{1}{2} B'(\phi)\psi'(\phi)\right]|\nabla\phi|^2 \\
+& = f'(\phi) - \kappa(\phi) \nabla^2\phi + \lambda(\phi) |\nabla\phi|^2. \nonumber
+\end{align}
+Equating the rhs of the above expressions term by term, we thus get
+\begin{equation}
+g(\phi) = \int^\phi \rmd\tilde{\phi} \, f'(\tilde{\phi}) \psi'(\tilde{\phi}) , \qquad
+B(\phi) = \frac{\kappa(\phi)}{\psi'(\phi)} , \qquad
+\kappa(\phi)\psi''(\phi) = -[2\lambda(\phi) + \kappa'(\phi)]\psi'(\phi).
+\end{equation}
+You can check that that in the case $2\lambda(\phi) + \kappa'(\phi) = 0$ the third equality above implies without much surprise that $\psi = \phi$ up to a constant term which can be set to zero without loss of generality.
+From the above, the dynamics of $\phi$ can now be written as minimizing a free-energy-like functional:
+\begin{equation}
+\partial_t \phi = \nabla\cdot \left[ M (\phi) \nabla\frac{\delta {\cal G}}{\delta\psi}\right] ,
+\end{equation}
+but where, in contrast with the equilibrium case, the minimization of ${\cal G}$ is performed over the auxiliary variable $\psi$ and not $\phi$ itself. 
+
+\noindent {\it Exercise: Derive the equation governing the dynamics of $\psi$, what is the essential difference between it and the equilibrium model B?}\\
+
+To identify the generalized pressure, we now note that the dynamics of $\phi$ can be generally expressed in terms of the stress tensor $\bm T$:
+\begin{align}
+\partial_t \phi & = \nabla\cdot \left [M(\phi) \nabla \frac{\delta {\cal F}}{\delta\phi} \right] = -\nabla\cdot\left[ \frac{M(\phi)}{\phi} \nabla \cdot \bm T\right] , \nonumber \\
+\label{eq_stress}
+T_{ij} & = \delta_{ij} \left[ F - \phi\frac{\delta {\cal F}}{\delta\phi} \right] - \frac{\partial F}{\partial (\partial_j \phi)}\partial_i \phi ,
+\end{align}
+with $F(\phi,\nabla\phi)$ defined from ${\cal F} = \intd{r} F$.
+
+\noindent{\it Exercise: Demonstrate Eq.~\eqref{eq_stress}.}\\
+
+It appears clearly from Eq.~\eqref{eq_stress} that the local diagonal part of the stress tensor corresponds to the pressure as defined from Eq.~\eqref{eq_binodal_P},
+while in general the nondiagonal part defines an anisotropic pressure.
+Therefore, neglecting nonlocal contributions as in the previous section we conclude from the above mapping that the generalized pressure for the active model B reads
+\begin{equation} \label{eq_genP}
+\Pi = \psi \mu  - g(\psi) =  \psi \frac{\rmd g}{\rmd \psi} - g(\psi) .
+\end{equation}
+Together, equalities of pressure and chemical potential between both phases therefore define a common tangent construction in terms of the variables $\psi$ and $g$ which
+allows to determine the binodal densities and consequently the volume of each phase. 
+The resulting phase diagram for active model B is therefore similar to the equilibirum one shown in Fig.~\ref{figeq}.
+
+Similarly to equilibrium, taking into account finite size effects one can show that in this case the generalized pressure~\eqref{eq_genP} follows the Laplace law, 
+such that the coarsening in active model B defined from Eq.~\eqref{eq_neq_mu} is also driven by Ostwald ripening.
+
+Overall, the phenomenology of active model B (AMB) is similar to that of phase separation at equilibrium as it also admits a generalized free-energy-like structure. 
+However, the generalized thermodynamic variables defined in this section do not carry any obvious mechanical interpretation and should only be seen as 
+a convenient calculation framework to study the active phase separation physics.
+These similarities to equilibrium are thus mostly due to the fact that time-reversal symmetry is broken in AMB in a `minimal way',
+while of course other nonequilibrium contributions can be added to the current~\eqref{eq_JD} which might have much more dramatic effect.
+
+An example worth mentioning here is the active model B+~\cite{Tjhung2018PRX} for which the current~\eqref{eq_JD} includes a term
+\begin{equation}\label{eq_AMB_plus}
+\bm J^{\rm AMB+}_{\rm D} = \zeta(\phi) (\nabla^2\phi) \nabla\phi ,
+\end{equation}
+that cannot be written as deriving from a generalized chemical potential.
+This new term changes qualitatively the structure of the problem as it 
+allows for non-curl-free currents ($\nabla \times \bm J \ne \bm 0$) in the steady state.
+Such feature leads to qualitative changes in the phenomenology of active phase separation,
+in particular the study of curved interfaces shows that $\bm J^{\rm AMB+}_{\rm D}$ is responsible for the emergence of negative interfacial tension, 
+leading to reversed Ostwald ripening selecting a preferred (finite) droplet radius.
+

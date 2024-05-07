@@ -1,26 +1,331 @@
 \section{Introduction}
 
-Scalar active systems are those whose large scale nonequilibrium dynamics can be captured by a real (scalar) field, hereafter denoted $\phi$. 
+Scalar active systems are those whose large-scale nonequilibrium dynamics can be captured by a real (scalar) field, hereafter denoted $\phi$ or $\rho$. 
 The field $\phi$ is usually referred to as the \emph{order parameter} of the theory and can represent various quantities (see below). 
 In many cases, though, it is related in various ways to the particle density.
 
 At equilibrium, the minimal continuous description of scalar systems with conserved order parameter 
 is achieved via \emph{model B} (see~\cite{HohenbergRMP} for a comprehensive classification).
-Model B indeed describes a class of equilibrium systems whose dissipative dynamics is captured by a conserved field, such that $\intd{r} \, \phi(\bm r,t) = {\rm const} \; \forall t$, 
-where hereafter the variables $\bm r$ and $t$ respectively account for space and time, while $d$ denotes the number of spatial dimensions.
-As model B describes the universal large scale features of many systems, it can be formulated based on relevant symmetries and conservation laws.
-Such phenomenological approach can moreover be supplemented by direct coarse-graining from microscopic (particle-based) theories which provide additional physical insights. 
+Model B indeed describes a class of equilibrium systems whose dissipative dynamics is captured by a conserved field, such that $\intd{r} \, \phi(\bm r,t) = {\rm const}$, for all times $t$,  where hereafter the variables $\bm r$ and $t$ account for space and time, respectively, while $d$ denotes the number of spatial dimensions.
+As model B describes the universal large-scale features of many systems, it can be formulated based on relevant symmetries and conservation laws.
+Such a phenomenological approach can moreover be supplemented by direct coarse-graining from microscopic (particle-based) theories, which provide additional physical insights. 
 
-In these notes, we will apply both approaches --phenomenological and coarse-grained-- to study the dynamics of scalar active systems. 
-After reviewing the essentials of equilibrium phase separation physics as described by model B in Section~\ref{sec_PMB}, 
-we will see how the latter can be generalized to active systems by relaxing constraints imposed for equilibrium dynamics such as free energy minimization or the fluctuation dissipation relation in Sections~\ref{sec_top_down} and~\ref{sec_BEC}.
-In Section~\ref{sec_bottom_up}, we will then derive the coarse grained description of a minimal particle-based scalar active matter model,
-which will allow us to uncover a physical origin for active phase separation, and show how it is markedly distinct from its counterpart at equilibrium.
+In these notes, we will apply both approaches---phenomenological and coarse-graining---to study the dynamics of scalar active systems.
+We begin with a bottom-up approach
+In \autoref{chapter: introduction}, we introduced the active Brownian particle (ABP). 
+By extending this model to a collection of interacting ABPs, we will employ coarse-graining techniques to obtain one of the paradigmatic examples of collective active matter, motility-induced phase separation (MIPS).
+Here we will review some of the essentials of equilibrium phase separation physics, what changes for methods that do not admit an equilibrium description, and discuss what is needed for this to be the case.
+We will then take a more phenomenological approach to derive the Active Model B (AMB) and the Non-Reciprocal Cahn-Hilliard (NRCH) model, and explore their rich out-of-equilibrium features.
 
-\section{Interacting Active Brownian Particles}
 
-\todo[inline]{Write notes from lecture 5}
 
+\section{Interacting Active Brownian particles}
+
+We will again consider the case of two spatial dimensions, but we now have $N$ particles at positions $\bm r_i$, $i \in \{1, \dots N\}$.
+The dynamics of each of these particles are described by an underdamped Langevin equation with an active velocity, as in \autoref{chapter: introduction}.
+Without interaction, it 
+%
+\begin{align}
+    \odv{\bm r_i}{t} = \bm v_{i,a}(t) + \sqrt{ 2 D_t } \bm \xi_i(t),
+\end{align}
+%
+where $\bm \xi_i(t)$ is white Gaussian noise, which obey
+%
+\begin{align}
+    \E{\xi_{k,i}(t)} &= 0, &
+    \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{ij} \delta_{kk'} \delta(t - t').
+\end{align}
+%
+In two dimensions, the active velocity may be parametrized in terms of a single angle, $\bm v_a(t) = v_0 \hat {\bm e}(\theta(t))$, where 
+%
+\begin{align}
+    \hat {\bm e}(\theta) 
+    =
+    \begin{pmatrix}
+        \cos \theta \\ \sin \theta
+    \end{pmatrix}.
+\end{align}
+%
+We focus on times much larger than the time scale of the rotational noise, $t\gg \tau_r = 1 / D_r$, so we may consider the rotational noise $\xi_i(t)$ to be white Gaussian noise as well.
+Including the interaction potential $U$, the full equations of motion for each particle becomes
+%
+\begin{align}
+    \odv{\bm r_i(t)}{t} & = v_0 \hat {\bm e}(\theta_i(t)) - \mu \nabla_{\bm r_i} U(\bm r_j(t)) + \sqrt{ 2 D } \bm \xi_i(t), \\
+    \odv{\theta_i(t)}{t} & = \sqrt{ 2 D_R } \chi_i(t).
+\end{align}
+%
+Here, $\mu$ is the mobility, which through Einsteins relation is related to the temperature and the diffusivity by $D = \mu k_b T$, and $D_r = 1 / \tau_r$ is the rotational diffusivity.
+We assume the potential to be a two-body interaction of the form
+%
+\begin{align}
+    U(\bm r_1, ..., \bm r_n) = \sum_{i \neq j} u(|\bm r_i - \bm r_j|).
+\end{align}
+%
+For the following calculation, $u$ is assumed to be short-ranged, isotropic and repulsive: two particles only interact within a finite range, and the $u$ only depends on the distance between their centers of mass.
+For example, $u$ can either model hard-core repulsion 
+\begin{equation}
+    u(r) = \begin{cases} +\infty & {\rm if}\; r < d_0\\
+        0 & {\rm otherwise} \end{cases} ,
+ \end{equation}
+with $d_0$ the particle diameter, or be a softer harmonic repulsion $u(r) = \tfrac{k}{2}(d_0 - r)^2\Theta(d_0 - r)$.
+
+
+\todo[inline]{Pictures of hard/soft-sphere repulsion}
+
+In \autoref{chapter: introduction}, we wrote down the Fokker-Planck equation for the single particle, \autoref{eq_FP_BM}, which describes the time evolution of the probability distribution of the system, $\calP(\bm x, t) = \E{\delta(\bm r(t) - x)}$.
+We can likewise write the Fokker-Planck for a single active Brownian particle, whose probability-density also depends on the angle of said particle
+%
+\begin{align}
+    \calP(\bm x, \phi, t)
+    =
+    \E{\delta(\bm x - \bm r(t))\delta(\phi - \theta(t))}.
+\end{align}
+%
+This obeys the Fokker-Planck equation
+%
+\begin{align}
+    \partial_t \calP(\bm x, \phi, t)
+    + \bm \nabla \cdot [
+        v_0 \hat {\bm e}(\phi ) \calP(\bm r, \phi, t)
+        - D \bm \nabla \calP(\bm x, \phi, t)
+    ]
+        - D_r \partial_\phi^2 \calP(\bm x, \phi, t)
+        = 0,
+\end{align}
+%
+which describes how the probability distribution of a single ABP, or equivalently density of a large number of non-interacting ABPs, evolves with time.
+
+When we consider $N$ \emph{interacting} particles, however, the picture becomes significantly more complicated.
+We now have to consider the $N$-body distribution,
+%
+\begin{align}
+    \calP_N(\{\bm x_i, \phi_i\}, t) = \E{ \prod_i \delta(\bm r_i(t) - \bm x_i)\delta(\theta_i(t) - \phi_i) },
+\end{align}
+%
+and its corresponding Fokker-Planck.
+If the particles are non-interacting, the probability distribution simply factors into $N$ independent one-body distributions, while interactions introduce non-trivial correlations.
+One way of tackling this is the Bogoliubov-Born-Green-Kirkwood-Yvon (BBGKY) hierarchy, which is described in \autoref{appendxi: BBKGY}.
+We will instead make a simplifying mean-field assumption about the effects of the interaction.
+
+Consider a single particle moving freely, far from any other particles.
+This will move at a velocity close to the self-propulsion velocity.
+If, instead, the particle is in an area with a high density, the other particles will act as barriers due to their repulsive interactions, slowing our particle down.
+As an analogy, imagine the difference between running in an open feel versus trying to move in a crowd at a concert.
+With this picture in mind, we assume that the effective self-propulsion speed will be lowered as the local density of particles increases, and replace the constant self-propulsion speed with one that depends on the density $\rho$,
+%
+\begin{align}
+    v_0 &\rightarrow v(\rho), &
+    \odv{v}{\rho} & < 0,
+\end{align}
+%
+and neglect any other effects of the interaction between the particles.
+The Fokker-Planck equation for the one-particle density is then
+%
+\begin{align} \label{eq: mips fokker planck}
+    \partial_t \calP(\bm r, \phi, t)
+    + \bm \nabla \cdot [
+        v(\rho) \hat {\bm e}(\phi ) \calP(\bm r, \phi, t)
+        - D \bm \nabla \calP(\bm r, \phi, t)
+    ]
+        - D_r \partial_\phi^2 \calP(\bm r, \phi, t)
+        = 0,
+\end{align}
+%
+This equation has no simple analytical solution.
+However, in the regime where $t\gg 1 / D_R \equiv \tau_R$ it may be described well using \emph{moment expansion}.
+This is a powerful technique is is also very useful for more complex situations.
+
+
+\subsection{Spatial variation}
+
+Before we start with the momentum expansion, we consider the case where the local velocity depends on space directly, not through the density of particles.
+This can be achieved experimentally by engineering the environment of active particles, which leads to rich behavior.\todo{add sources, discuss more?}
+The Fokker-Planck is then
+%
+\begin{align} \label{eq: mips fokker planck}
+    \partial_t \calP(\bm x, \phi, t)
+    + \bm \nabla \cdot [
+        v(\bm x) \hat {\bm e}(\phi ) \calP(\bm x, \phi, t)
+        - D \bm \nabla \calP(\bm x, \phi, t)
+    ]
+        - D_r \partial_\phi^2 \calP(\bm x, \phi, t)
+        = 0.
+\end{align}
+%
+A steady state configuration $P_{SS}$ obeys by assumption $\partial_t P_{SS} = 0$.
+Assuming it is isotropic, so $\partial_\phi P_{SS} = 0$, and that diffusion $D$ is small compared to the active velocity, then the steady-state distribution obeys \todo[noinline]{Are these the right assumptions?}
+%
+\begin{align}
+    \bm \nabla \cdot [v(\bm x) \hat {\bm e}(\phi ) \calP(\bm x, \phi, t)] = 0
+    \implies 
+    \calP(\bm x, \phi, t) \propto \frac{1}{v(\bm x)}.
+\end{align}
+%
+The particles thus clump together where the active velocity is high, leading to higher density, while in the regions with high active velocity, the density is low.
+
+\todo[inline]{Linear stability analysis}
+
+
+\subsection{Moment expansion}
+
+We begin by defining the particle density,
+%
+\begin{align}
+    \rho(\bm x, t) = \int_0^{2\pi} \dd \phi\, \calP(\bm x, \phi, t).
+\end{align}
+%
+We now seek to find the equation of motion of this field.
+By integrating the Fokker-Planck for the one-particle distribution over $\phi$, i.e. applying $\int \dd \phi$ to  \autoref{eq: mips fokker planck}, we obtain
+%
+\begin{align}\label{eq: density FP}
+    \partial_t \rho 
+    = 
+    - \bm \nabla \cdot [ v(\rho) \rho \bm p - D \nabla \rho ].
+\end{align}
+%
+The radial diffusion term $\propto D_r$ vanishes as it is a
+where we have defined the orientational order parameter
+%
+\begin{align}
+    \bm p(\bm x, t)
+    =
+    \frac{1}{\rho}
+    \int_0^{2\pi} \dd \phi \, \hat {\bm e}(\phi) \calP(\bm x, \phi, t).
+\end{align}
+%
+This measures how much the particles align.
+If there is no alignment, then $\cal P$ is constant as a function of $\phi$, and the integral vanishes.
+If all particles are oriented in some direction $\phi = \phi_0$, then $\calP \propto \delta(\phi - \phi_0)$  and $\rho = \hat {\bm e}(\phi_0)$ is a unit-vector pointing in the direction of alignment.
+% Handwritten page XI
+In the same manner, we find the equation of motion for $\bm p$ by applying $\int \dd\phi \, \hat{\bm e}(\phi)$ to \autoref{eq: mips fokker planck}, which yields
+%
+\begin{align} \label{eq: polarity FP}
+    \partial_t (\rho  p_i)
+    =
+    -
+    \nabla_{j}
+    \left[
+        v(\rho) \rho \left( Q_{ij} + \frac{ 1 }{ 2 }  \delta_{ij}\right)
+        - D \nabla_j (\rho p_i)
+    \right]
+    - D_r \rho p_i.
+\end{align}\todo[noinline]{check indices}
+%
+The last term is obtained by integration by parts.
+In this equation, we are using the Einstein summation convention, which means that repeated indices are summed over.
+We have defined the tension, also called the nematic order parameter,
+%
+\begin{align}
+    \rho Q_{ij}
+    = \int_0^{2 \pi} \dd \phi
+    \left[
+        \hat e_i(\phi)\hat e_j(\phi) - \frac{1}{2} \delta_{ij}
+    \right] \calP(\bm r, \phi, t).
+\end{align}
+%
+The Krönecker delt term ensures that the nematic tensor is traceless, $\text{Tr}(Q) = 0$.
+This quantity measures the \emph{nematic} alignment of particles, which means it neglects whether the particles are aligned or anti-aligned.
+\todo[inline]{Draw picture of nematic alignment}
+\noindent{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless (${\sum}_i Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}\\
+
+As we can see, this expansion is a runaway process, and we need a criterion for closing this hierarchy of equations.
+When we do coarse-graining, we are interested in the large-scale, long-term behavior of the system.
+We therefore remove terms that are fourth order or more in gradients.
+For example, the lowest order contribution to $\partial_t \rho $ is the diffusion term, so $\rho = \Oh(\nabla^2)$.
+If we were to write out the equation for the nematic tensor, we would see that $Q = \Oh(\nabla)$, so $\nabla_j [v(\rho) \rho Q] = \Oh(\nabla^4)$ and is therefore neglected.
+This closes the hierarchy of equations, and we are left with
+%
+\begin{align}
+    \label{eq: closed density}
+    \partial_t \rho &= - \nabla_i [v(\rho) \rho p_i - D \nabla_i \rho], \\
+    \label{eq: closed polarity}
+    \partial_t (\rho p_i)
+    & = 
+    - \nabla_j \left[\frac{1}{2} v(\rho) \rho \delta_{ij} - D\nabla_j (\rho p_i)\right] - D_r \rho p_i.
+\end{align}
+%
+As all terms in the density equation are proportional to at least one gradient term, the only time scale in this equation in this equation is the system size, $\partial_t^{-1} \sim \nabla^{-1} \sim L$, which diverges in the thermodynamic limit $L\rightarrow\infty$.
+We therefore expect this dynamics to be slow.
+The equation for the polar order parameter $p_i$, on the other hand, has a time scale inherited from the rotational diffusion, $\tau_r = 1 / D_r$.
+In this case, we expect any non-zero polar order to relax on a time-scale $\tau_r$, which given a large enough system will be much smaller than the time scale for the density field, leading to a \emph{separation of time scales}.
+\todo[inline]{This can probably be written better\dots}
+
+To see this, consider an equation of the form
+%
+\begin{align} \label{eq: enslave}
+    \partial_t \rho \bm p = - D_r \rho \bm p + A(\bm r, t),
+\end{align}
+%
+we may solve it exactly as
+%
+\begin{align}
+    \rho(\bm x, t) \bm p(\bm x,t)
+    = e^{- t D_r} \left[ \rho(\bm x, 0) \bm p(\bm x,0) + \int_0^t \dd t' \, e^{- t D_r} A(\bm x,t') \right].
+\end{align}
+%
+We will assume now that $t\gg \tau_R$, so that the first term is suppressed, and change variables to $\tau = t - t'$, which yields
+%
+\begin{align}
+    \rho(\bm r, t) \bm p(\bm x, t)
+    & = \int_0^t \dd \tau \, e^{- \tau  D_r} A(\bm x,t - \tau)\\
+    & \approx
+    \int_0^\infty \dd \tau \, e^{- \tau  D_r} [A(\bm x,t ) + \tau \partial_\tau A(\bm x, t) + ...]
+    \approx \frac{1}{D_r} A(\bm x, t),
+\end{align}
+%
+where we in the last step we assume $A$ does not vary much over the time-scale $\tau_R = 1 / D_R$.
+This shows that, given our assumptions, we may neglect the time-derivative term in the original equation \autoref{eq: enslave}, and dynamics of $\bm p$ is now complete determined by $A(\bm x, t)$.
+We say $\bm p$ is \emph{enslaved} to the slow dynamics of $A$.
+
+Finally, we see that the diffusion term, proportional to $D$ in \autoref{eq: closed polarity}, is fourth order in gradients, and should therefore be neglected.\todo[noinline]{Is this counting right?}
+We can now explicitly solve for the polar order,
+%
+\begin{align}
+    \rho p_i = 
+    - \frac{1}{2 D_r} \nabla_i  [v(\rho) \rho].
+\end{align}
+%
+
+A sanity check is to now substitute back in the special case $v(\rho) = v_0$, corresponding to non-interacting ABPs.
+The polar order-parameter is then given by
+%
+\begin{align}
+    \rho \bm p = - \frac{v_0}{2 D_R} \bm \nabla \rho,
+\end{align}
+%
+which when substituted back into Fokker-Planck for the density, \autoref{eq: density FP}, gives
+%
+\begin{align}
+    \partial_t \rho &= D_{\mathrm{eff}} \nabla^2 \rho, &
+    D_{\mathrm{eff}} = D + \frac{v_0^2}{2 D_R},
+\end{align}
+%
+which is excatly what we found in \autoref{chapter: introduction}.
+
+% Handwritten XII
+
+\textit{{\bf Homework}:
+In two dimensions, the vector $\he(\theta) = (\cos\theta, \sin\theta)$ is parametrized by the angle $\theta_t$. Assuming that $\theta_t$ is a Markov process, justify why we can write the joint distribution as $P(\theta_2,t_2;\theta_1,t_1) = P(\theta_2-\theta_1,t_2-t_1|0,0)P(\theta_1,t_1)$ for $t_2 > t_1$.
+Deduce that
+\begin{equation*}
+    \langle \he(\theta_t) \cdot \he(\theta_{t+\tau}) \rangle = \int \rmd\phi \cos\phi \, P(\phi,\tau|0,0) \equiv \langle \cos\phi \rangle_0, 
+\end{equation*}
+where $P(\theta,t)$ is the distribution of $\theta$ satisfying $P(\theta,0) = \delta(\theta)$.
+(Hint: Use the properties of $\theta$ to express the joint distribution $P(\theta_2,t_2;\theta_1,t_1)$)
+}
+
+
+
+\subsection{MIPS}
+
+If we take the more general case, where the active velocity depends on the density, $|v_a| = v(\rho)$, we may write the Fokker-Planck for the density as a conservation law
+%
+\begin{align}
+    \partial_t \rho(\bm x, t)  = - \bm \nabla \cdot \bm J(\bm x, t),
+\end{align}
+%
+where\dots
+\todo[inline]{write on mips}
 
 
 \section{Passive model B and Cahn-Hilliard dynamics}
@@ -29,12 +334,14 @@ which will allow us to uncover a physical origin for active phase separation, an
 
 \subsection{The dynamical theory for conserved scalar order parameter} 
 
-We learnt from statistical mechanics that the large scale dynamics of systems which microscopically obey detailed balance minimizes a free energy.
+We learned from statistical mechanics that the large-scale dynamics of systems that microscopically obey detailed balance minimize a free energy.
 Therefore, model B is generally written in terms of a functional ${\cal F}[\phi]$, whose expression can be generally\footnote{You can consider other terms up to order $|\nabla \phi|^2$, 
 and then think of why they cannot be allowed in the expression of ${\cal F}$.} expressed as
+%
 \begin{equation} \label{eq_F}
 {\cal F}[\phi] = \intd{r} \left[ f(\phi) + \frac{\kappa(\phi)}{2}|\nabla\phi|^2\right],
 \end{equation} 
+%
 where we have kept terms up to order $|\nabla \phi|^2$.
 In Eq.~\eqref{eq_F} $f$ denotes the `bulk' free energy density and $\kappa(\phi) > 0$ a generic constant.
 The bulk contribution consists of a free energy landscape due to e.g.\ entropic effects and interactions between microscopic elements, 
@@ -76,7 +383,12 @@ Such expansion is generally considered as formally valid close to a critical poi
 Note that $f_{\rm CH}$ can be obtained from $f_{\rm FH}$ by expanding the logarithms.
 \end{itemize}
 
+
+
+
 \subsection{Some elements on the physics of phase separation at equilibrium}
+
+\todo[inline]{Move to start (?)}
 
 From now one and for simplicity, we will restrict the presentation to the case of a scalar mobility $M(\phi) > 0$.\\
 
@@ -156,516 +468,21 @@ Over long times, small droplets thus typically shrink at the expense of larger o
 One can moreover show that under this process the mean droplet radius universally grows as $\sim t^{1/3}$,
 while the asymptotic ($t \to \infty$) state inevitably consists of two macroscopic phase separated domains. 
 
-\section{Active model B: a top-down approach}
-
-\label{sec_top_down}
-
-In the previous section we have briefly reviewed the physics of phase separation at equilibirum using the minimal formulation offered by model B.
-A general question now is how to generalize model B to the case where the microscopic dynamics of the system is active, 
-i.e.\ breaks time-reversal symmetry at microscopic scales.
-As we want to describe scalar active systems, we can reasonably conjecture (and we will show it later) that the dynamics of their density field should obey an equation similar to~\eqref{eq_phi}. 
-Keeping a vanishing stochastic current, 
-a straightforward way to break the equilibrium structure of Eq.~\eqref{eq_phi} consists in adding to the chemical potential in Eq.~\eqref{eq_JD} a contribution that cannot be derived from a free energy.
-Considering reasonably smooth functions, we immediately see that any nonequilibrium contribution to $\mu$ must come from the nonlocal (proportional to the gradients of $\phi$) terms.
-We can thus write in general
-\begin{equation} \label{eq_neq_mu}
-\mu(\phi) = f'(\phi) - \kappa(\phi) \nabla^2\phi + \lambda(\phi)|\nabla\phi|^2 ,
-\end{equation}
-such that when the relation $2\lambda(\phi) + \kappa'(\phi) \ne 0$ is not satisfied, $\mu$ cannot be written as $\delta {\cal F}/ \delta \phi$.
-While only the local term $f'(\phi)$ in~\eqref{eq_neq_mu} affects the evaluation of the spinodals, 
-the absence of free energy structure prevents us to use the powerful formalism presented above to determine the binodals and thus the phase separated configurations.
-
-Fortunately, as was demonstrated in~\cite{Solon2018} an effective free energy structure can be recovered through a mapping of $\phi$ and ${\cal F}$ to generalized thermodynamic variables.
-Namely, let us consider the one to one mapping $\phi\to\psi$ and the functional ${\cal G}$ such that $\mu = \delta{\cal G}/\delta\psi$.
-Writing, ${\cal G} = \intd{r} [g(\phi) + \tfrac{1}{2}B(\phi)|\nabla\psi|^2]$, we get
-\begin{equation}
-\frac{\delta {\cal G}}{\delta \psi} = \frac{g'(\phi)}{\psi'(\phi)} +\frac{1}{2}\frac{B'(\phi)}{\psi'(\phi)}|\nabla\psi|^2 - \nabla \cdot ( B(\phi)\nabla\psi) ,
-\end{equation}
-where primes denote derivatives wrt $\phi$.
-Using that $\nabla\psi = \psi'\nabla\phi$, we obtain after straightforward algebra
-\begin{align}
-\mu & = \frac{g'(\phi)}{\psi'(\phi)} - B(\phi) \psi'(\phi) \nabla^2\phi  - \left[\psi''(\phi) B(\phi) + \frac{1}{2} B'(\phi)\psi'(\phi)\right]|\nabla\phi|^2 \\
-& = f'(\phi) - \kappa(\phi) \nabla^2\phi + \lambda(\phi) |\nabla\phi|^2. \nonumber
-\end{align}
-Equating the rhs of the above expressions term by term, we thus get
-\begin{equation}
-g(\phi) = \int^\phi \rmd\tilde{\phi} \, f'(\tilde{\phi}) \psi'(\tilde{\phi}) , \qquad
-B(\phi) = \frac{\kappa(\phi)}{\psi'(\phi)} , \qquad
-\kappa(\phi)\psi''(\phi) = -[2\lambda(\phi) + \kappa'(\phi)]\psi'(\phi).
-\end{equation}
-You can check that that in the case $2\lambda(\phi) + \kappa'(\phi) = 0$ the third equality above implies without much surprise that $\psi = \phi$ up to a constant term which can be set to zero without loss of generality.
-From the above, the dynamics of $\phi$ can now be written as minimizing a free-energy-like functional:
-\begin{equation}
-\partial_t \phi = \nabla\cdot \left[ M (\phi) \nabla\frac{\delta {\cal G}}{\delta\psi}\right] ,
-\end{equation}
-but where, in contrast with the equilibrium case, the minimization of ${\cal G}$ is performed over the auxiliary variable $\psi$ and not $\phi$ itself. 
-
-\noindent {\it Exercise: Derive the equation governing the dynamics of $\psi$, what is the essential difference between it and the equilibrium model B?}\\
-
-To identify the generalized pressure, we now note that the dynamics of $\phi$ can be generally expressed in terms of the stress tensor $\bm T$:
-\begin{align}
-\partial_t \phi & = \nabla\cdot \left [M(\phi) \nabla \frac{\delta {\cal F}}{\delta\phi} \right] = -\nabla\cdot\left[ \frac{M(\phi)}{\phi} \nabla \cdot \bm T\right] , \nonumber \\
-\label{eq_stress}
-T_{ij} & = \delta_{ij} \left[ F - \phi\frac{\delta {\cal F}}{\delta\phi} \right] - \frac{\partial F}{\partial (\partial_j \phi)}\partial_i \phi ,
-\end{align}
-with $F(\phi,\nabla\phi)$ defined from ${\cal F} = \intd{r} F$.
-
-\noindent{\it Exercise: Demonstrate Eq.~\eqref{eq_stress}.}\\
-
-It appears clearly from Eq.~\eqref{eq_stress} that the local diagonal part of the stress tensor corresponds to the pressure as defined from Eq.~\eqref{eq_binodal_P},
-while in general the nondiagonal part defines an anisotropic pressure.
-Therefore, neglecting nonlocal contributions as in the previous section we conclude from the above mapping that the generalized pressure for the active model B reads
-\begin{equation} \label{eq_genP}
-\Pi = \psi \mu  - g(\psi) =  \psi \frac{\rmd g}{\rmd \psi} - g(\psi) .
-\end{equation}
-Together, equalities of pressure and chemical potential between both phases therefore define a common tangent construction in terms of the variables $\psi$ and $g$ which
-allows to determine the binodal densities and consequently the volume of each phase. 
-The resulting phase diagram for active model B is therefore similar to the equilibirum one shown in Fig.~\ref{figeq}.
-
-Similarly to equilibrium, taking into account finite size effects one can show that in this case the generalized pressure~\eqref{eq_genP} follows the Laplace law, 
-such that the coarsening in active model B defined from Eq.~\eqref{eq_neq_mu} is also driven by Ostwald ripening.
-
-Overall, the phenomenology of active model B (AMB) is similar to that of phase separation at equilibrium as it also admits a generalized free-energy-like structure. 
-However, the generalized thermodynamic variables defined in this section do not carry any obvious mechanical interpretation and should only be seen as 
-a convenient calculation framework to study the active phase separation physics.
-These similarities to equilibrium are thus mostly due to the fact that time-reversal symmetry is broken in AMB in a `minimal way',
-while of course other nonequilibrium contributions can be added to the current~\eqref{eq_JD} which might have much more dramatic effect.
-
-An example worth mentioning here is the active model B+~\cite{Tjhung2018PRX} for which the current~\eqref{eq_JD} includes a term
-\begin{equation}\label{eq_AMB_plus}
-\bm J^{\rm AMB+}_{\rm D} = \zeta(\phi) (\nabla^2\phi) \nabla\phi ,
-\end{equation}
-that cannot be written as deriving from a generalized chemical potential.
-This new term changes qualitatively the structure of the problem as it 
-allows for non-curl-free currents ($\nabla \times \bm J \ne \bm 0$) in the steady state.
-Such feature leads to qualitative changes in the phenomenology of active phase separation,
-in particular the study of curved interfaces shows that $\bm J^{\rm AMB+}_{\rm D}$ is responsible for the emergence of negative interfacial tension, 
-leading to reversed Ostwald ripening selecting a preferred (finite) droplet radius.
-
-\section{Bose-Einstein-like physics in scalar active matter}
-
-\label{sec_BEC}
-
-\subsection{The diffusivity edge class}
-
-In this section we discuss another class of nonequilibrium systems whose active nature lies in the explicit breaking of the fluctuation dissipation theorem (FDT).
-Indeed, let us consider a diffusive dynamics in the presence of an externally applied potential $U$. 
-At equilibrium, the corresponding (deterministic) current simply reads\footnote{Assuming FDT, what are the free energy functional and chemical potential corresponding to Eq.~\eqref{eq_currentU}?}
-\begin{equation} \label{eq_currentU}
-\bm J(\phi) = -M(\phi) \phi \nabla U - D(\phi) \nabla\phi ,
-\end{equation}
-where FDT implies that the effective diffusion coefficient is related to the mobility via the surrounding medium temperature: $D(\phi) = M(\phi) k_B T$.
-In presence of activity, this relation does in general not hold and one is in principle allowed to consider arbitrary values for the ratio $D(\phi) / M(\phi)$.
-
-Namely, we now consider a scalar density field whose dynamics is described by the current~\eqref{eq_currentU} while
-the diffusivity over mobility ratio takes the general form
-\begin{equation}
-\frac{D(\phi)}{M(\phi)} = k_B \Teff \vartheta(\phi),
-\end{equation}
-where the subscript `eff' highlights that $\Teff$ does not correspond to a temperature in the thermodynamic sense, 
-but should rather be interpreted as a control parameter for the dynamics.
-Due to the absence of FDT, the function $\vartheta(\phi)$ is general but nonetheless assumed positive ($\vartheta(\phi) \ge 0$), 
-while $\vartheta(\phi = 0) = 1$ such that $k_B \Teff$ can be viewed as an effective temperature for the system in the dilute limit.
-
-On a physical viewpoint, the $\phi$ dependency of $\vartheta$ usually results from the integration of pairwise interactions between the particles.
-Increasing (resp.\ decreasing) $\vartheta$ can thus be interpreted as collective inhibition (resp.\ activation) caused by the interplay of activity and interactions.
-Moreover, as both $M$ and $\vartheta$ in general remain positive nonlocal contributions giving rise to higher order gradient terms in Eq.~\eqref{eq_currentU} are neglected.
-As we discuss below, an interesting subclass of systems are those which exhibit a \emph{diffusivity edge}, 
-i.e.\ those for which $\vartheta(\phi)$ is identically zero for $\phi$ above a certain threshold value $\phi_c$~\cite{GolestanianBEC}.
-
-\subsection{The steady state solution}
-
-In absence of external currents, the steady state configuration is obtained by setting $\bm J = \bm 0$,
-which for $M(\phi) > 0$ implies the following relation between the density and the potential $U$:
-\begin{equation} \label{eq_sol_diff_edge}
-\frac{{\rm d}\beta U}{{\rm d}\phi} = -\frac{\vartheta(\phi)}{\phi},
-\end{equation}
-where we have defined $\beta \equiv (k_B\Teff)^{-1}$.
-As $\vartheta(\phi) \ge 0$, we see from~\eqref{eq_sol_diff_edge} that $\phi$ is always a decreasing function of $U$. 
-We thus denote $\phi_0$ as the maximal value that $\phi$ takes in the ground state $U=0$.
-Integrating Eq.~\eqref{eq_sol_diff_edge} consequently leads to the following expression for the potential
-\begin{equation} \label{eq_sol_diff_edge_2}
-\beta U(\phi) = -\int_{\phi_0}^{\phi} {\rm d}\varphi \, \frac{\vartheta(\varphi)}{\varphi} .
-\end{equation}
-When $\phi_0 < \phi_c$, $\phi(U)$ can be obtained simply by performing the integral and inverting Eq.~\eqref{eq_sol_diff_edge_2}.
-
-\noindent{\it Exercise: for $\vartheta(\phi) = 1$ which familiar distribution is recovered? Give a simple interpretation of this result.}\\
-
-The integration constant $\phi_0$ is then determined from the density normalization, namely
-\begin{equation} \label{eq_diff_edge_defN}
-N = \intd{r} \phi(U(\bm r)) .
-\end{equation}
-with $N$ the total number of particles.
-We now consider the case where the potential is harmonic: $U(\bm r) = \tfrac{k}{2}r^2$, such that we can rewrite the normalization condition~\eqref{eq_diff_edge_defN} as
-\begin{equation} \label{eq_diff_edge_N}
-N = {\cal S}_d \int_0^{\infty} \rmd r \, r^{d-1}\phi(U(r)) = \int_0^{\infty} \rmd U \, g(U) \phi(U).
-\end{equation}
-where ${\cal S}_d = 2 \pi^{d/2}/\Gamma(d/2)$ denotes the surface of the unit sphere embedded in $d$ dimensions,
-while the second equality was obtained via the change of variable $r \to U$ and the density of state is given by 
-\begin{equation} \label{eq_density_state}
-g(U) = {\cal S}_d r^{d-1}(U)\tfrac{\rmd r}{\rmd U} = \frac{(2\pi)^{d/2}}{\Gamma\left(d/2\right)}\frac{U^{d/2-1}}{k^{d/2}}.
-\end{equation}
-
-We now use the fact that the density $\phi$ varies monotonously with $U$ to apply the change of variable $U \to \phi$
-such that Eq.~\eqref{eq_diff_edge_N} is recast as
-\begin{equation} \label{eq_diff_edge_N2}
-N = \frac{k_B \Teff}{\Gamma(d/2)}\left(\frac{2\pi}{k}\right)^{\tfrac{d}{2}} \int_0^{\phi_0} \rmd \varphi \, U^{d/2-1}(\varphi) \vartheta(\varphi) \quad (\phi_0 < \phi_c).
-\end{equation}
-The expression given in Eq.~\eqref{eq_diff_edge_N2} is of course only valid for $\phi_0 < \phi_c$, i.e.\ when all the density profile takes values below the diffusivity edge. 
-In the opposite case of $\phi_0 \ge \phi_c$, 
-the integrand in Eq.~\eqref{eq_diff_edge_N2} vanishes identically in the interval $[\phi_c,\phi_0]$ and no longer contributes, 
-which makes it impossible for the normalization to be satisfied. 
-This feature can be traced back from Eq.~\eqref{eq_sol_diff_edge} to the fact that the profile $\phi(U)$ develops a vertical tangent at $U = 0$ for $\phi_0 \ge \phi_c$ (see Fig.~\ref{fig_BEC}(a)),
-which can be interpreted as the creation of a singular condensate at the ground state of the potential.
-
-It is easily shown from Eq.~\eqref{eq_diff_edge_N2} that $\phi_0$ is a decreasing function of 
-$\Teff$ $({\rm d}\phi_0/{\rm d}\Teff \le 0)$.
-Therefore, the normalization~\eqref{eq_diff_edge_N2} only holds for $\Teff  > T_c$, 
-where $T_c$ is defined as the value of $\Teff$ for which $\phi_0$ reaches $\phi_c$.
-In the condensation regime, the normalization of the stationary distribution requires to consider the contribution of the condensate separately.
-Namely, denoting $N_c$ as the total number of particles in the condensate Eq.~\eqref{eq_diff_edge_N2} becomes for $\Teff \le T_c$, 
-\begin{equation} \label{eq_diff_edge_Ncond}
-N = N_c + \frac{k_B \Teff}{\Gamma(d/2)}\left(\frac{2\pi}{k}\right)^{\tfrac{d}{2}} \int_0^{\phi_c} \rmd \varphi \, U^{d/2-1}(\varphi) \vartheta(\varphi) \quad (\phi_0 \ge \phi_c).
-\end{equation}
-To simplify this expression, we note that for for $\Teff \le T_c$ Eq.~\eqref{eq_sol_diff_edge_2} implies that $\beta U$ is a function of $\phi/\phi_c$.
-Denoting $u(\phi/\phi_c) = \beta U(\phi)$ as well as $\vartheta(\phi) \to \vartheta(\phi/\phi_c)$, and noting that $N_c = 0$ for $\Teff = T_c$,
-Eq.~\eqref{eq_diff_edge_Ncond} is simplified as
-\begin{equation} \label{eq_diff_edge_Ncond2}
-\frac{N_c}{N} = 1 - \left( \frac{\Teff}{T_c}\right)^{\tfrac{d}{2}} \qquad (\Teff \le T_c),
-\end{equation}
-with 
-\begin{equation*}
-k_B T_c =  \frac{k}{2\pi} \left( \frac{\phi_c \int_0^1{\rm d}s\; \vartheta\left( s \right) u^{d/2 - 1}(s) }{N \, \Gamma(d/2)} \right)^{-\tfrac{2}{d}} .
-\end{equation*}
-
-Note that, in contrast with passive and active phase separation, the condensation phenomenon described here requires the system to evolve in a potential landscape.
-Indeed, setting $U(\bm r)=0$ in Eq.~\eqref{eq_currentU} one can check that the diffusivity edge is unable to trigger an instability of homogeneous configurations, even for $\bphi > \phi_c$.
-
-%-----------------------------------------------------------------------------------------------------------%
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width = .75\textwidth]{Figures/Fig_BEC.pdf}
-	\caption{The diffusivity edge induced condensation.
-	(a) The steady state density for different values of $\phi_0/\phi_c$.
-	(b) The fraction of particles in the condensate as function of the effective temperature.
-	(c-f) The thermodynamics of condensation for a step function diffusivity profile:
-	average energy (c), heat capacity (d) and chemical potential (f) as function of $\Teff/T_c$,
-	(e) pressure isotherm computed by varying the potential stiffness $k$.}
-	\label{fig_BEC}
-\end{figure}
-%-----------------------------------------------------------------------------------------------------------%
-
-\subsection{The thermodynamics of condensation}
-
-Remarkably, although the diffusivity edge condensation has a purely nonequilibrium origin, as for AMB it still admits an effective thermodynamic description.
-In this section, we will detail the properties of the condensation transition outlined above by deriving the appropriate thermodynamic framework.
 
 
 
-While this can be done for the general case, 
-for the sake of clarity we will focus here on the case where the function $\vartheta(\phi/\phi_c)$ is equal to one for $\phi/\phi_c < 1$ and zero otherwise.
-Formally, 
-\begin{equation} \label{eq_diff_edge_thetastep}
-\vartheta(x) = \Theta(1-x) = \begin{cases}
-1 & {\rm for} \; x < 1\\ 0 & {\rm for} \; x \ge 1 \end{cases} ,
-\end{equation} 
-where $\Theta$ denotes the Heaviside distribution.
-So long as $\vartheta(x < 1)$ remains finite, the results presented below will remain qualitatively applicable to more general $\vartheta(x)$ profiles.
-For $\vartheta$ given by Eq.~\eqref{eq_diff_edge_thetastep}, 
-the density is easily obtained from~\eqref{eq_sol_diff_edge_2} as
-\begin{equation} \label{eq_diff_edge_rhou}
-\phi(u) = \begin{cases} \phi_0\exp(-u) & (\Teff > T_c) \\
-N_c \delta(u) g^{-1}(u) + \phi_c\exp(-u) & (\Teff \le T_c) \end{cases} ,
-\end{equation}
-where $u = \beta U$ as defined above and $g(u)$ is the density of state given by Eq.~\eqref{eq_density_state}. 
-In the condensation regime ($\Teff \le T_c$), we have explicitly accounted for the existence of a singular condensate at the ground state of $U$ through a delta function. 
 
-\noindent{\it Exercise: show that Eq.~\eqref{eq_diff_edge_Ncond2} can be recovered directly from Eq.~\eqref{eq_diff_edge_rhou}.}\\
 
-Using the expression~\eqref{eq_diff_edge_rhou}, we can evaluate the integral in Eq.~\eqref{eq_diff_edge_N} and get the following expression for $\phi_0$:
-\begin{equation} \label{eq_diff_edge_rho0Tc}
-\phi_0 = \phi_c \left( \frac{T_c}{\Teff} \right)^{\tfrac{d}{2}}, \qquad 
-k_BT_c = \frac{k}{2\pi}\left( \frac{N}{\phi_c} \right)^{\tfrac{2}{d}} \,.
-\end{equation}
-Similarly, We can easily calculate the average internal energy of the system, defined as $\langle U \rangle \equiv k_B T_{\rm eff} \int_0^\infty {\rm d}u \, g(u) u \phi(u)$, yielding
-\begin{equation} \label{eq_diff_edge_U}
-\langle U \rangle = \frac{d}{2} Nk_B \Teff \times  \begin{cases} 1 & (\Teff > T_c) \\ 
-\left( \frac{\Teff}{T_c} \right)^{d/2} & (\Teff \le T_c) \end{cases} .
-\end{equation}
-Consequently, we obtain the following expression for the generalized heat capacity:
-\begin{equation} \label{eq_diff_edge_Cv}
-C \equiv \frac{\rmd\langle U \rangle}{\rmd\Teff} = \frac{d}{2} Nk_B \times  \begin{cases} 1 & (\Teff > T_c) \\ 
-\left(\frac{d}{2} + 1 \right)\left( \frac{\Teff}{T_c} \right)^{d/2} & (\Teff \le T_c) \end{cases} .
-\end{equation}
-As it appears clearly from the above expressions, the internal energy exhibits a discontinuous slope at the condensation transition, resulting in a jump of the generalized heat capacity, as shown in Figs.~\ref{fig_BEC}(c,d).
-Namely, the change of heat capacity at the condensation transition is defined by 
-$\Delta C \equiv C(\Teff = T_c^-) - C(\Teff = T_c^+) = d^2Nk_B/4 > 0$.
-An entropy for the system can moreover be constructed via the relation ${\rm d}S = {\rm d}\langle U \rangle/\Teff$, 
-which leads to
-\begin{equation} \label{eq_diff_edge_S}
-S = Nk_B \times  \begin{cases} \left(\frac{d}{2} + 1 \right) + \frac{d}{2}\ln\left( \frac{\Teff}{T_c} \right) & (\Teff > T_c) \\ 
-\left(\frac{d}{2} + 1 \right)\left( \frac{\Teff}{T_c} \right)^{d/2} & (\Teff \le T_c) \end{cases} .
-\end{equation}
-The expression for $\Teff \le T_c$ satisfies the Nernst rule and can be written as 
-$S(\Teff \le T_c) = \left(\tfrac{d}{2} + 1\right)k_B(N - N_c)$, 
-which reveals that condensed particles carry zero entropy and that there is a latent heat associated with the transition in a coexistence between the condensate and the surrounding gas.
 
-Because of the presence of the potential $U$, the system occupies a finite volume (the distribution $\phi$ keeps a finite spread).
-This results in a pressure difference between the ground state and $r \to \infty$ that is given by
-$\Delta p \equiv \int_0^\infty {\rm d}r \, U'(r) \phi(U(r)) =  k_B \Teff \int_0^\infty {\rm d}u \, \phi(u)$.
-Using~\eqref{eq_diff_edge_rhou}, the evaluation of the integral is straightforward, and yields
-\begin{equation} \label{eq_diff_edge_dp}
-\Delta p = \phi_c k_B\Teff \times  \begin{cases} \phi_0/\phi_c & (\Teff > T_c) \\ 
-1 & (\Teff \le T_c) \end{cases} .
-\end{equation}
 
-As the finite volume of the system is solely due to the presence of the confining potential $U$, 
-the former depends on the effective temperature $\Teff$.
-However, one can draw `isotherms' for the system 
-at fixed $N$ by varying the potential stiffness $k$, which are shown in Fig.~\ref{fig_BEC}(e).
-From Eq.~\eqref{eq_diff_edge_rho0Tc}, the transition then happens at critical stiffness $k_c = 2\pi k_B\Teff(N/\phi_c)^{-2/d}$,
-such that for $k \ge k_c$ the pressure difference between the ground state and infinity becomes independent of $k$
-and the isothermal compressibility of the system $\kappa_{\Teff} \propto - 1/\left(\partial P / \partial k\right)_{\Teff}$ diverges,
-resulting in characteristic plateau of the isotherms below condensation.
-To conclude our construction of the thermodynamic framework for the diffusivity-edge induced condensation, 
-we define a generalized chemical potential for the system:
-\begin{equation} \label{eq_diff_edge_mu}
-\mu \equiv \left( \frac{\partial {\cal F}}{\partial N} \right)_{\Teff,V} 
-= \begin{cases} k_B \Teff \ln\left( \frac{\phi_0}{\phi_c} \right) & \Teff > T_c \\
-0 & \Teff \le T_c  \end{cases} ,
-\end{equation}
-where the generalized free energy ${\cal F} = \langle U\rangle - \Teff S$. 
-We thus find that $\mu$ vanishes at the transition for which $\phi_0 = \phi_c$ and remains identically 0 in the condensed phase, as shown in Fig.~\ref{fig_BEC}(f).
 
-\subsection{The analogy with Bose-Einstein condensation}
 
-Equations~\eqref{eq_diff_edge_Ncond2}, \eqref{eq_diff_edge_U}-\eqref{eq_diff_edge_mu} highlight a strong analogy with Bose-Einstein condensation (BEC)~\cite{Ziff1977BoseGas}.
-Indeed, in both cases $T_c$ delimits a transition to coexistence between a gas and a singular phase carrying no energy or entropy,
-resulting in the peculiar generalized thermodynamic behavior presented above.
-There are nevertheless qualitative differences, which we discuss here.
 
-First, we note that our mean field theory predicts a transition to a condensed phase with $T_c > 0$ for all dimensions $d \ge 1$. 
-Conventional BEC is in fact expected to happen only in $d \ge 3$ for an ideal Bose gas in free space, 
-and in $d \ge 2$ if this one is confined in a harmonic trap~\cite{Ziff1977BoseGas}. 
-Eq.~\eqref{eq_diff_edge_Cv} predicts a discontinuity of the heat capacity curve at the transition,
-which does not exist in $d \le 5$ for normal BEC.
-The (dis)continuity of $C$ at the transition in BEC can be affected by external confinement as well~\cite{Dalfovo1999RMP}.
 
-Secondly, quantum BEC occurs in momentum space, whereas the condensation phenomenon described above happens in real space,
-leading to phase separation between a point-wise condensate located at the energy ground state and a surrounding gas.
-Moreover, because of the choice of $\vartheta$ made in~\eqref{eq_diff_edge_thetastep}, 
-we found in Eq.~\eqref{eq_diff_edge_rhou} that the particle density outside the ground state follows Maxwell-Boltzmann statistics,
-as opposed to the quantum statistics of Bosons:
-\begin{equation} \label{eq_BE_stat}
-\phi^{\rm BE}(u) = \frac{ \lambda_{\rm dB}^{-d} }{ \exp(u - \beta\mu) - 1 } \, ,
-\end{equation} 
-where $\lambda_{\rm dB}$ denotes the de Broglie thermal wavelength.
-Denoting $\phi_Q \equiv \lambda_{\rm dB}^{-d}$ and rewriting this equation in the form of~\eqref{eq_sol_diff_edge} then yields
-$\vartheta^{\rm BE}(\phi/\phi_Q) = (1 + \phi/\phi_Q)^{-1}$.
-This shows that for densities higher than the quantum concentration $\phi_Q$ the system will effectively experience 
-an inhibited diffusivity in the language of our description.
-The reason why a smooth decay which is not cut off by a diffusivity edge leads to BEC is due to the fact that Eq.~\eqref{eq_BE_stat}
-is derived in the Grand Canonical ensemble, allowing $\phi(u)$ to diverge as $u$ and $\mu \to 0$,
-which contrasts from our model where the particle number $N$ and the maximum density $\phi_0$ are assumed finite.
-
-We end this part by noting a more conceptual difference between our classical nonequiibrium system and BEC.
-As a Bose-Einstein condensate behaves as a macroscopic quantum object, the associated wavefunction possesses a phase
-such that the associated transition is described in terms of a complex order parameter and is accompanied by a spontaneous breaking 
-of the $U(1)$ gauge symmetry.
-BEC is moreover associated with the presence of the so-called off-diagonal-long-range order in the quantum density matrices
---of which the density correlation functions are the diagonal elements-- 
-which results from macroscopic coherence of the condensate~\cite{Ziff1977BoseGas}.
-By construction, such features have no counterpart in classical statistical mechanics. 
 
 \section{Scalar active matter: a bottom-up approach}
 
-\label{sec_bottom_up}
 
-So far, our discussions of the phenomena of nonequilibrium phase separation and condensation were restricted to the study of phenomenological theories.
-Although we have studied equations whose structures are generic and should capture the large scale dynamics of a broad class of systems, we do not know how their coefficients vary with the microscopic level parameters.
-This, in fact, limits our knowledge of the physics at play. 
-Indeed, although we know that active phase separation can arise and are able to characterize its generalized thermodynamics, we still do not know which are the physical processes leading to it.
-
-In this chapter, we will therefore adopt a complementary approach which will allow us to link the generic equation~\eqref{eq_phi} to the particle-level physics. 
-Indeed, we will derive a similar equation for an active dynamics by direct coarse-graining of the microscopic model.
-This approach will allow us to uncover new physics, impossible at equilibrium.
-Indeed, although phase separation at equilibrium requires attractive interactions\footnote{\noindent \it Exercise: Show this by considering the free energy ${\cal F}[\phi] = k_B T\intd{r} \phi (\ln(\phi) - 1) + \intd{r}\intd{r'} \phi(\bm r) U(\bm r - \bm r')\phi(\bm r')$. Propose an interpretation for the two terms of this expression.}, this is no more true in presence of activity.
-In particular, in what follows we will discuss the phenomenon of Motility Induced Phase Separation (MIPS). For a detailed review about MIPS, we recommend Ref.~\cite{CatesMIPS}.
-
-\subsection{The microscopic model: Active Brownian Particles}
-
-Let us know consider one of the simplest model of active particles: Active Brownian Particles (ABPs). 
-This model indeed deals with overdamped particles moving at constant speed $v_0$ (c.f.\ Lecture 2), such that the only source of activity is the persistent motion created by self propulsion.
-In two dimensions, the microscopic dynamics of ABPs is thus described by the following set of Langevin equations expressed for particle $i$ at position $\bm r_i$ and with self propulsion orientation $\theta_i$:
-\begin{subequations} \label{eq_ABP_micro}
-\begin{align} \label{eq_ABP_micro_r}
-        \dot{\bm r}_i & = -M \nabla_{\bm r_i} U(\bm r_i) + v_0 \hat{\bm e}(\theta_i) + \sqrt{2 D}\bm \xi_i, \\
-        \label{eq_ABP_micro_theta}
-        \dot{\theta_i} & = \sqrt{2 D_r} \chi_i ,
-    \end{align}
-\end{subequations}
-where $M$ denotes the particles' mobility, $D = M k_B T$ and $D_r$ are respectively the positional and rotational diffusivities.
-The noises $\bm \xi_i$ and $\chi_i$ are Gaussian, delta-correlated with zero mean and unit variance.
-Finally, $\hat{\bm e}(\theta)$ denotes the unit vector oriented along the direction set by the angle $\theta \in [0;2\pi)$.
-
-In Eq.~\eqref{eq_ABP_micro_r}, we have moreover assumed that the particles interact via a pairwise potential $U= \sum_{j\ne i} u(|\bm r_i - \bm r_j|)$. 
-For the following calculation, $u$ is assumed to be short-ranged and isotropic: two particles only interact within a finite range, and the $u$ only depends on the distance between their centers of mass.
-For example, $u$ can either model hard core repulsion 
-\begin{equation}
-    u(r) = \begin{cases} +\infty & {\rm if}\; r < d_0\\
-        0 & {\rm otherwise} \end{cases} ,
- \end{equation}
-with $d_0$ the particle diameter, or be a softer harmonic repulsion $u(r) = \tfrac{k}{2}(d_0 - r)^2\Theta(d_0 - r)$.
-
-\subsection{The Fokker-Planck equation and BBGKY hierarchy}
-
-To begin with, we denote $N$ the total particle number and $P_N(\{r_i,\theta_i\},t)$ the $N$-body particle distribution.
-From standard stochastic calculus, $P_N$ obeys the Fokker-Planck equation
-\begin{equation} \label{eq_FPN}
-    \partial_t P_N = \sum_{i=1}^{N} \nabla_{\bm r_i}\cdot \left[ \left( M \nabla_{\bm r_i}U - v_0 \hat{\bm e}(\theta_i) + D\nabla_{\bm r_i} \right)P_N\right] + D_r \sum_{i=1}{N} \partial_{\theta_i\theta_i}^2 P_N ,
-\end{equation}
-where, to lighten notations, we make the dependencies of the distribution in the degrees of freedom and time implicit.
-
-Eq.~\eqref{eq_FPN} is exact. However it is of limited practical use as we went from a description of the system in terms of $3N$ microscopic degrees of freedom to a partial differential equation (PDE) for a distribution with $3N$ independent variables. 
-Our goal now is to derive a simpler description of the system, essentially by integrating out `fast' processes which do not affect the dynamics over large scales.
-To achieve this, we now consider the single-body distribution
-\begin{equation} \label{eq_FP_P1}
-    P(\bm r,\theta,t) = N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] P_N(\{\bm r,\theta,\bm r_2,\theta_2,\ldots,\bm r_N,\theta_N\},t),
-\end{equation}
-obtained by integrating $P_N$ over $3(N-1)$ degrees of freedom and where the $N$ factor on the rhs accounts for the fact that the particles are indistinguishable.  
-Note that here for simplicity we have dropped the `1' subscript. 
-Integrating Eq.~\eqref{eq_FPN} over $3(N-1)$ degrees of freedom, we find that $P$ obeys
-\begin{equation} \label{eq_FP1}
-    \partial_t P = \nabla \cdot \left[ - \bm J_{\rm eff} - v_0 \hat{\bm e}(\theta) P + D\nabla P \right] + D_r \partial_{\theta\theta}^2 P ,
-\end{equation}
-where the effective flux coming from the interaction term reads
-\begin{align*}
-    \bm J_{\rm eff} & = -M N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] \, P_N(\{\bm r,\theta,\ldots,\bm r_N,\theta_N\},t) \sum_{j \ne 1} \nabla u(|\bm r - \bm r_j|) \\
-    & = -M \int \rmd^2 \bm r' \, \tilde{P}_2(\bm r,\theta,\bm r',t) \nabla u(|\bm r - \bm r'|) \\
-    & = -M \int \rmd^2 \bm r' \, \tilde{P}_2(\bm r,\theta,\bm r',t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} ,
-\end{align*}
-where 
-\begin{equation}
-    \tilde{P}_2(\bm r,\theta,\bm r',t) = N(N-1) \int \rmd\theta' \prod_{j=3}^N [\rmd^2 \bm r_j \rmd \theta_j] P_N(\{\bm r,\theta,\bm r',\theta',\ldots,\bm r_N,\theta_N\},t) ,
-\end{equation}
-denotes the two body probability density to find a particle at position $\bm r$ with an orientation $\theta$ while another particle is at position $\bm r'$ with an arbitrary orientation. 
-    
-Due to the pairwise interactions, the equation for $P$ is thus coupled to the two body particle distribution. Similarly, if we had derived the equation for $\tilde{P}_2$ we would have found that it depends on the three body distribution, etc. 
-This structure commonly appears when one coarse-grains interacting systems, and is known as the \emph{BBGKY hierarchy}, where the letters stand for Bogoliubov–Born–Green–Kirkwood–Yvon. To proceed further, we thus need to truncate the BBGKY hierarchy in order to get a closed equation for $P$. This can be done by means of various approximation schemes, the most common one being the molecular chaos hypothesis (or `Stosszahlansatz' for German speakers) which can be used to derive e.g.\ the Boltzmann equation for dilute gases. The molecular chaos assumption consists in factorizing the two body particle distribution into the product of two single body distributions.    
-This amounts to assume that the positions and/or velocities of two particles on average decorrelate between collisions. This approximation works decently at low particle density, but of course becomes increasingly worse at higher densities.
-Here, we therefore write
-\begin{equation} \label{eq_P2}
-    \tilde{P}_2(\bm r,\theta,\bm r',t) = P(\bm r,\theta,t) \, \phi(\bm r',t) \, g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t),
-\end{equation}
-where $\phi$ denotes the particle density field, while $g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t)$ 
-is the conditional probability to find another 
-particle at position $\bm r'$ given that there is another particle at position $\bm r$ self propelling along $\theta$, the angle $\varphi$ being that formed by the vectors $\bm r' - \bm r$ and $\hat{\bm e}(\theta)$.
-
-Setting $g=1$ in Eq.~\eqref{eq_P2} corresponds to the molecular chaos assumption. 
-Getting an explicit expression for $g$, however, would require to consider the dynamics of the two body distribution. In general, such approach is quite tedious and we won't pursue it here.
-For quantitative descriptions, a simpler approach is to measure $g$ directly from simulations of the microscopic dynamics~\eqref{eq_ABP_micro}. 
-Doing this in a dilute suspension, one finds that $g$ is generally maximal 
-at $\varphi = 0$, i.e.\ there is more chance for a tagged particle to find another one at its front (where here `front' and `back' are defined wrt the particle polarity $\hat{\bm e}(\theta)$) than behind it~\cite{Bialk_2013}.
-
-Using~\eqref{eq_P2}, we now rewrite the effective current as
-\begin{align}
-    \bm J_{\rm eff} & = -M P(\bm r,\theta,t) \int \rmd^2 \bm r' \, \phi(\bm r',t) g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} , \\
-    & = M P(\bm r,\theta,t) \int_0^\infty s \rmd s \int_0^{2\pi} \rmd\varphi \, \phi(\bm r + s\hat{\bm e}(\theta + \varphi),t) g(s,\varphi|\bm r,\theta,t) u'(s) \hat{\bm e}(\theta + \varphi) ,
-    \end{align}
-where $\bm s = \bm r' - \bm r = s \hat{\bm e}(\theta + \varphi)$.
-Assuming that $u$ is sufficiently short-ranged such that we can neglect variations of $\phi$ over the length scale of the interaction, while supposing that $g$ is homogeneous and stationary: $g(s,\varphi|\bm r,\theta,t) \simeq g(s,\varphi)$,
-we moreover get that $\bm J_{\rm eff} = M P(\bm r,\theta,t) \bm F_{\rm eff}(\bm r,\theta,t)$ with
-\begin{equation}
-    \bm F_{\rm eff}(\bm r,\theta,t) = -\phi(\bm r,t) \bm \zeta(\theta) = \phi(\bm r,t) \int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \bm \hat{\bm e}(\varphi+\theta)
-\end{equation}
-Given the other terms in the positional current on the rhs of Eq.~\eqref{eq_FP1}, we now express $\bm \zeta(\theta)$ in the (nonorthogonal) basis formed by $\hat{\bm e}(\theta)$ and $\nabla P$.
-Keeping terms up to ${\cal O}(|\nabla P|^2)$, we get
-\begin{equation}
-    \bm \zeta(\theta) = \zeta_\| \hat{\bm e}(\theta) + \left( \frac{\bm \zeta \cdot \nabla P - \zeta_\| \hat{\bm e}(\theta) \cdot \nabla P}{|\nabla P|^2}  \right)\nabla P + {\cal O}(|\nabla P|^2),
-\end{equation}
-where the important parameter $\zeta_\|$ is given by
-\begin{equation}
-    \zeta_\| = -\int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \cos(\varphi).
-\end{equation}
-
-Putting back the explicit expression of $\bm J_{\rm eff}$ into Eq.~\eqref{eq_FP_P1}, we finally end up with a drift-diffusion-type equation:
-\begin{equation} \label{eq_FP_P}
-    \partial_t P = -\nabla \cdot \left[ v_{\rm eff} \hat{\bm e}(\theta) P - D_{\rm eff}\nabla P \right] + D_r \partial_{\theta\theta}^2 P ,
-\end{equation}
-whose effective coefficients read
-\begin{equation}
-    v_{\rm eff} = v_0 - M \zeta_\| \phi, \qquad
-    D_{\rm eff} = D + M \phi P \bm \zeta \cdot \left( \frac{ \nabla P - (\hat{\bm e}(\theta) \cdot \nabla P) \hat{\bm e}(\theta)}{|\nabla P|^2}  \right).
-\end{equation}
-
-Some comments are now in order:
-\begin{itemize}
-    \item Activity shows at the level of $g$ by its anisotropic behavior wrt the angle $\varphi$. Therefore, we find that activity renormalizes both the self propulsion velocity and active fluctuations. In a passive system, one would indeed get $\bm \zeta = 0$ by symmetry.
-    \item For repulsive interactions between the particles $u'(r) < 0$. Moreover, we know that $g(r,\varphi)$ is maximum in the sector $-\tfrac{\pi}{2} \le \varphi \le \tfrac{\pi}{2}$ where $\cos(\varphi) \ge 0$, so one expects $\zeta_\| > 0$ in general. Therefore, our derivation reveals that the main effect of coupling self-propulsion with interactions is to slow down particles in dense regions ($v_{\rm eff} < v_0$ for $\phi > 0$). As one can already anticipate, this phenomenon amounts to having effective attractive interactions between the particles despite their absence at the microscopic level.
-    Note that the linear decay of $v_{\rm eff}(\phi)$ is actually in agreement with numerical simulations of repelling ABPs~\cite{CatesMIPS}.
-    \item In contrast, diffusivity is renormalized in a non-trivial way. In practice, this effect is weak which we can understand from Eq.~\eqref{eq_FP_P} by noting that in steady state $\nabla P$ and $\hat{\bm e}(\theta)$ must be aligned. In what follows, we will thus neglect corrections to the diffusivity and consider that it is given by a constant coefficient.
-\end{itemize}
-
-\subsection{The large scale dynamics and moment expansion}
-
-Until now, we have achieved to derive Eq.~\eqref{eq_FP_P} for the single-particle distribution $P(\bm r,\theta,t)$ by coarse graining the microscopic rules~\eqref{eq_ABP_micro} and closing the BBGKY hierarchy.
-Eq.~\eqref{eq_FP_P}, however, still involves the particle orientational dynamics and is thus not quite similar to Eq.~\eqref{eq_phi} for which the current only depends on spatial gradients of the density.
-As we show below, we can coarse-grain further the model and derive an equation for $\phi(\rm r,t) = \int\rmd\theta\, P(\bm r,\theta,t)$ via a procedure known as \emph{moment expansion}.
-
-In the following we drop the `eff' indices on the effective drift and positional diffusivity, while for generality we consider that all coefficients can take arbitrary dependency in the position $\bm r$. 
-We also assume that Eq.~\eqref{eq_FP_P} holds in any dimension $d \ge 2$ such that we start the moment expansion from the general equation
-\begin{equation} \label{eq_FP_Pd}
-    \partial_t P(\bm r, \hat{\bm e},t) = - \nabla \cdot \left[ v(\bm r) \hat{\bm e} P(\bm r, \hat{\bm e},t) - D(\bm r)\nabla P(\bm r, \hat{\bm e},t) \right] + D_r(\bm r) \nabla^2_{\hat{\bm e}} P(\bm r, \hat{\bm e},t),
-\end{equation}
-where $\nabla^2_{\hat{\bm e}} = (\delta_{ij} - \hat{e}_i\hat{e}_j)\partial^2_{\hat{e}_i\hat{e}_j} - (d-1)\hat{e}_i \partial_{\hat{e}_i}$ denotes the Laplacian on the sphere\footnote{Einstein summation rule is implied.}.
-The first three orientational moments of $P$ are given by
-\begin{subequations}
-\begin{align}
-    \phi(\bm r,t) & = \int\rmd \hat{\bm e} \, P(\bm r, \hat{\bm e},t) \, \\
-    \phi(\bm r,t)\bm p(\bm r,t) & = \int\rmd \hat{\bm e} \, \hat{\bm e} P(\bm r, \hat{\bm e},t) \, \\
-    \phi(\bm r,t)\bm Q(\bm r,t) & = \int\rmd \hat{\bm e} \, \left(\hat{\bm e} \hat{\bm e} - \frac{\bm I_d}{d}\right) P(\bm r, \hat{\bm e},t) \,
-\end{align}
-\end{subequations}
-where as we have seen $\phi$ corresponds to the local particle density, while $\bm p$ and $\bm Q$ measure respectively local polar and nematic order with $\bm I_d$ denoting the identity matrix in $d$ dimensions. 
-
-\noindent{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless ($Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}\\
-    
-The equations for the moments are therefore obtained by multiplying~\eqref{eq_FP_Pd} with the relevant $\hat{\bm e}$ polynomial and integrating over orientations. 
-For the first two moments, we find
-\begin{subequations}
-\begin{align} \label{eq_mom_phi}
-    \partial_t \phi & = -\nabla\cdot\left[ v(\bm r)\phi \bm p - D(\bm r)\nabla\phi \right] , \\
-    \label{eq_mom_p}
-    \partial_t (\phi \bm p) & = -\nabla\cdot\left[ v(\bm r)\phi \left(\bm Q + \frac{\bm I_d}{d} \right) - D(\bm r)\nabla(\phi\bm p) \right] - (d-1)D_r(\bm r)\phi\bm p.
-\end{align}
-\end{subequations}
-Similarly to the BBGKY hierarchy, we see that because of the active drift term that couples spatial and orientational dynamics the equation for a given moment includes a higher order contribution. 
-Therefore, here too we must close the hierarchy of orientational moment equations by relying on (controlled) approximations. 
-    
-We note that the rhs of Eq.~\eqref{eq_mom_phi} only includes drift terms, while that of Eq.~\eqref{eq_mom_p} includes a linear damping term due to orientational diffusion. In fact, it is easy to show that this linear damping is present in the equations of all moments except $\phi$. 
-Therefore, while $\phi$ relaxes on timescales $\sim \nabla^{-1} \sim L$ which diverge in the thermodynamic limit, all higher order moments relax on a finite timescale $\sim D_r^{-1}$.
-On long enough timescales and large enough lengthscales, the dynamics of the system should thus be fully captured by $\phi$ only. In statistical physics language, $\phi$ is thus said to be a \emph{slow mode} or a \emph{hydrodynamic mode}.
-    
-Considering timescales $\gg D_r^{-1}$, we thus set $\partial_t (\phi \bm p) = \bm 0$ in Eq.~\eqref{eq_mom_p}, which leads to
-\begin{equation} \label{eq_p_enslaved}
-    \phi\bm p = -\frac{\nabla(v(\bm r)\phi)}{d(d-1)D_r(\bm r)} + {\cal O}(\nabla^2),
-\end{equation}
-where we have also taken into account that the term proportional to the nematic order contributes to order $\nabla^2$ in Eq.~\eqref{eq_p_enslaved}\footnote{You can show this by deriving the corresponding dynamical equation for $\phi \bm Q$ and performing a similar enslaving as was done here.}.
-Replacing the expression~\eqref{eq_p_enslaved} into Eq.~\eqref{eq_mom_phi}, we finally obtain a closed equation for the particle density:
-\begin{equation} \label{eq_closed_phi}
-    \partial_t \phi = \nabla\cdot\left[ \frac{v(\bm r)}{d(d-1)D_r(\bm r)}\nabla(v(\bm r)\phi) + D(\bm r)\nabla\phi \right].
-\end{equation}
-
-Because of activity, Eq.~\eqref{eq_closed_phi} includes a nonequilibrium current $\sim v(\bm r)\nabla(v(\bm r)\phi)$. 
-In the case where $v$ does not depend on the position $\bm r$, it can be taken out of the gradient such that activity leads to an enhancement of the particle diffusivity: $D \to D + v^2/(d(d-1)D_r)$. 
-In the general case, stationary solutions associated with Eq.~\eqref{eq_closed_phi} read
-\begin{equation} \label{eq_ss_phi}
-    \nabla \ln(\phi) = -\frac{\nabla \ln(v)}{1 + d(d-1)D D_r /v^2}.
-\end{equation}
-Thus, that active particles tend to accumulate in slow regions ($\phi$ decreases with $v$).
-In particular, setting $D = 0$ we recover a well known result of the field: $\phi(\bm r) \sim 1/v(\bm r)$~\cite{CatesMIPS}.
-Remarkably, Eq.~\eqref{eq_ss_phi} implies that patterns of self propelled particles can be engineered in absence of externally applied potential but simply by imposing spatially varying self propulsion landscapes.
-This emergent organization principle has in particular been illustrated by beautiful experiments whose results can be found in Refs.~\cite{Arlt2018,Frangipane2018}.
 
 \subsection{Motility Induced Phase Separation}
 
