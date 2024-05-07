@@ -136,21 +136,22 @@ where $\epsilon = \langle E_i \rangle$ is the mean energy, while $\lambda_1$ and
 
 % Handwritten notes section (4)
 
-The entropy production rate (EPR) is exactly what it sounds like, the amount of entropy produced per unit of time.
-Given a system that evolves with time, which we assume to be discrete for simplicity, which evolves according to a master equation
+We now demonstrate how a formula analogous to \eqref{eq:q_vs_eqr} can be derived from thermodynamic, rather than informatic, considerations, taking the Gibbs-Boltzmann entropy as a starting point. 
+%The entropy production rate (EPR) is exactly what it sounds like, the amount of entropy produced per unit of time.
+Given a system that evolves stochastically with time, which we assume to be discrete for simplicity, we can write the Markov master equation
 %
 \begin{align}
     \odv{  }{ t } P_i(t) = K_{ij} P_j(t),
 \end{align}
 %
-where the transition rates must obey $\sum_i K_{ij} = 0$ to conserve probability.
+where $K_{ij}$ denotes the (Poisson) rate of transitioning from state $j$ to state $i$. The transition rates must obey $\sum_i K_{ij} = 0$ to conserve probability.
 The corresponding Gibbs-Shannon entropy is
 %
 \begin{align}
     S(t) = - \sum_i P_i(t) \ln P_i(t),
 \end{align}
 %
-which allows us to directly compute the entropy production rate
+which allows us to directly compute the rate of change of the entropy
 %
 \begin{align}
     \odv{  }{ t } S(t)
@@ -165,7 +166,7 @@ which allows us to directly compute the entropy production rate
     \right) 
 \end{align}
 %
-Where we have inserted the master equation, and rewritten the sum as two copies where the dummy indices are renamed.
+where we have inserted the master equation, and rewritten the sum as two copies where the dummy indices are renamed. Assuming that a statistical steady-state exists, we have that $\lim_{t \to \infty} \dot{S}(t)=0$ and in this limit $P_i$ converges to the eigenvector of $K$ with eigenvalue zero.
 With some more massaging, we can write this as
 %
 \begin{align}
@@ -189,8 +190,8 @@ With some more massaging, we can write this as
         K_{ij}P_j \ln \frac{P_i}{P_j}
         - K_{ji} P_i \ln \frac{P_i}{P_j}
     \right) 
-    \\
-    & 
+    %\\
+    %& 
     -\frac{1}{2}\sum_{ij}
     \left(
         K_{ij}P_j 
@@ -198,54 +199,43 @@ With some more massaging, we can write this as
     \right) \ln \frac{P_i}{P_j}\\
     & =
     -\frac{1}{2}\sum_{ij}
-    \left(K_{ij}P_j - K_{ji} P_i\right) 
-    \ln
-    \left(
-        \frac{K_{ji }P_i}{K_{ij}  P_j}
-        \frac{K_{ji}}{K_{ij}}
-    \right)
-    \equiv \dot S_e + \dot \sigma.
-\end{align}
-%
-In the last step, we have defined the external entropy production rate
-%
-\begin{align}
-    \dot S_e = - \frac{1}{2}\sum_{ij}
     \underbrace{
         ( K_{ij}P_j - K_{ji} P_i) 
         }_{{{\mathcal J}_{ij}}}
-    \ln \left( \frac{K_{ji }}{K_{ij}}\right),
+    \ln
+    \left(
+        \frac{K_{ji }P_i}{K_{ij}  P_j}
+        \frac{K_{ij}}{K_{ji}}
+    \right)
+    \equiv \dot S_e + \dot \sigma~, \label{eq:epr_decomp}
 \end{align}
 %
-This is the entropy flow, which represents the entropy that flows from the system to the environment, and $\mathcal J_{ij}$ is the current between two states.\todo[noinline]{Is this right?}
-The total entropy production is
+where $\mathcal J_{ij}$ is the net probability current from state $j$ to state $i$.
+In the last step, we have defined the external entropy production rate or the entropy flow,
+%
+\begin{align}
+    \dot S_e = - \frac{1}{2}\sum_{ij}
+        ( K_{ij}P_j - K_{ji} P_i) 
+    \ln \left( \frac{K_{ij}}{K_{ji}}\right) = - \sum_{i<j} \frac{\mathcal J_{ij} \Delta Q_{ij}}{k_b T}
+\end{align}
+%
+which quantifies the rate of increase in entropy due to heat dissipation from the system to the isothermal environment. To see this, we have invoked a physical principle knows as \emph{local detailed balance}, which formally amounts to demanding 
+\begin{align}
+    \frac{K_{ij}}{K_{ji}} = e^{\Delta Q_{ij} / k_b T}~,
+\end{align}
+i.e.\ that the ratio of forward and backward rates associated with a transition between two states is equal to the exponential of the heat release in the transition, $\Delta Q_{ij}$, in units of the thermal energy scale. It should be noted that this relation is introduced on physical grounds and might not apply in all cases. In cases where it does apply, it can often be justified using Kramer's reaction rate theory.
+
+Eq.~\eqref{eq:epr_decomp} additionally defines the total entropy production rate
 %
 \begin{align}
     \dot \sigma = 
     \frac{1}{2}\sum_{ij}
     \left(K_{ij}P_j - K_{ji} P_i\right) 
-    \ln \left( \frac{K_{ij}}{K_{ji}}\right),
+    \ln \left( \frac{K_{ij}P_j}{K_{ji} P_i}\right), \label{eq:epr_int_discr}
 \end{align}
 %
-which obeys $\dot \sigma \geq 0$.\todo{Can we see that here, or do we state it as the second law?}
-
-This is a very generic model.
-We introduce the physics into the model by enforcing local detail balance for the jumping rate,
-%
-\begin{align}
-    \frac{K_{ij}}{K_{ji}} = e^{\Delta Q_{ij} / k_b T}.
-\end{align}
-%
-This is an additional postulate that we make.\todo{Define Q?}
-It can be justified using Kramer theory, but may break down under (I CAN"T READ THE NOTES)\todo{what was this supposed to say?}
-With this, the external entropy production takes the form
-%
-\begin{align}
-    \dot S_e = \sum_{i<j} \frac{\mathcal J_{ij} \Delta Q_{ij}}{k_b T}
-\end{align}
-%
-This is the heat dissipated into the heat reservoir $\dot Q$, divided by $k_B T$.
-Thus the total entropy production rate is \todo{There is a sign wrong here I think.}
+which obeys $\dot \sigma \geq 0$. To see that $\dot \sigma$ is non-negative, consider that $(a-b)\ln(a/b) > 0$ for all $a,b>0$.
+Thus the total entropy production rate can be written as 
 %
 \begin{align}
     \dot \sigma = \dot S + \frac{\dot Q}{K_B} \geq 0,
@@ -255,20 +245,12 @@ which is the second law of thermodynamics!
 At a steady state, the probability distribution $P$ is independent of time, so $\dot S = 0$, which gives
 %
 \begin{align}
-    \dot \sigma = \frac{\dot Q}{k_B T}.
+    \dot \sigma = \frac{\dot Q}{k_B T}~.
 \end{align}
+Thus, finite entropy production at steady state (a signature of activity) is accompanied by a finite rate of heat dissipation into the surrounding environment.
 %
-Indeed, from the definition bove, we can show that
-%
-\begin{align}
-    \dot \sigma(t) = 
-    \lim_{\tau \rightarrow 0} \frac{1}{\tau}
-    \int \D n P(\{n\}_0^\tau)
-    \ln \frac{(\{n\}_0^\tau)}{(\{n^R\}_0^\tau)}
-\end{align}
-%
-is the Kullback-Leibler divergence per unit time of the forward versus backward paths~\cite{gaspard2004time}.
-\todo[noinline]{This need som ellaboration...}
+Indeed, it is also possible to show that \eqref{eq:epr_int_discr} corresponds to the the Kullbeck-Leibler divergence per unit time of the ensemble of forwards vs backward paths on the discrete state space \cite{gaspard2004time}, completing the parallel with the calculation presented in the first part of this lecture. 
+
 
 
 
@@ -277,8 +259,8 @@ is the Kullback-Leibler divergence per unit time of the forward versus backward 
 % Handwritten notes section (5, 5b)
 
 
-We now consider systems described at a more coarse grain level, using \emph{hydrodynamic theory}. 
-in this case the relevant degrees of freedom are fields, which follow Langevin-field equations.
+We now consider the thermodynamics of systems described at a more coarse grain level, using \emph{hydrodynamic theory}. 
+In this case the relevant degrees of freedom are fields, which follow Langevin-field equations.
 These are to Langevin equations as PDEs are to ODEs.
 If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we consider a magnetization, driven quantum systems such as polariton Bose-Einstein condensates, or a density of cells that are born and die, we may generically write the equation of motion as
 %
@@ -288,10 +270,11 @@ If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we co
     + \sqrt{ 2 k_B T \tilde M[\psi(\bm x, t)] } \eta(\bm x, t).
 \end{align}
 %
-Here, the mobility may in the simple case be $M = \gamma^{-1}$, or have a more complicated dependence on the field.
-For model A in the Halperin-Hohenberg (HH) classification~\cite{HohenbergRMP}, the potential takes the form $G = -(a \psi + b \psi^3)$. \todo[noinline]{gradient term?}
+In the simplest case, the mobilities $M$ and $\tilde{M}$ is constant, but in principle it can have a more complicated dependence on the field.
+For model A in the Halperin-Hohenberg (HH) classification~\cite{HohenbergRMP}, the potential takes the form $G = -(a \psi + b \psi^3 + \kappa \nabla^2 \psi)$ with $M=\tilde{M}=\gamma^{-1}$. 
+%
 
-In the case of, for example, a non-degrading chemical density, the order parameter $\rho$ is conserved, and its equation of motion is the conservation law
+In the case of, for example, a non-degrading chemical density, the order parameter $\rho$ is conserved, and its equation of motion is the conservation law (aka continuity equation)
 %
 \begin{align}
     \partial_t \rho(\bm x, t)
@@ -302,11 +285,12 @@ In the case of, for example, a non-degrading chemical density, the order paramet
         \bm \nabla G_\rho[\rho(\bm x, t), \bm \nabla\rho(\bm x, t)]
         + \sqrt{ 2 k_B T \tilde M[\rho(\bm x, t)] }
         \bm \eta(\bm x, t)
-    \right]
+    \right]~.
 \end{align}
 %
-Here again, the simplest case for the mobility is $M = \gamma^{-1}$.
-For model B in the HH classification, the forces are given by $\bm \nabla G_\rho = \bm \nabla (a \rho + b \rho^3 - \kappa \nabla^2 \rho)$.
+Here again, the mobilities are constant in the simplest case.
+For model B in the HH classification, the forces are given by $\bm \nabla G_\rho = \bm \nabla (a \rho + b \rho^3 - \kappa \nabla^2 \rho)$ with $M = \tilde{M} = \gamma^{-1}$.
+
 Model A is the canonical stochastic field theory for describing the spontaneous symmetry-breaking of the Ising model, while model B plays a similar role for the diffusive phase separation of a conserved scalar.
 We capture both models at once by writing
 %
@@ -322,45 +306,44 @@ We capture both models at once by writing
     \right]
 \end{align}
 %
-Here, $k = 0$ in the case of model A, and $k = 1$ in the case of model B.\todo[noinline]{Are the signs here correct?}
-\todo[noinline]{Define Q?}
-Solving for the nose, we get
+Here, $k = 0$ in the case of model A, and $k = 1$ in the case of model B.
+Solving for the noise, we get
 %
 \begin{align}
     \eta
     = 
-    \frac{[\nabla^{(k)}]^{-1} \partial_t \phi - M(\phi) \nabla^{(k)} G}{\sqrt{ 2 k_ T M(\psi) }}.
+    \frac{[\nabla^{(k)}]^{-1} \partial_t \phi + M(\phi) \nabla^{(k)} G}{\sqrt{ 2 k_ T Q(\psi) }}.
 \end{align}
 %
-We now introduce the Onsager-Machlup function for the path probabilities,\todo[noinline]{more detail?}
+We now draw the Onsager-Machlup function for the path probabilities, which was introduced in the first part of the lecture. Once again, the idea is to relate the probability of a certain history of the field to the probability of the corresponding noise realisation, keeping in mind that an additional integral over space needs to be introduced to account for the spatially-extended nature of the fluctuations,
 %
 \begin{align}
     \mathbb{P}_F[\phi] \propto
     \exp 
     \left\{ 
         - \frac{1}{4 k_B T}
-        \int_0^T \dd t \, \frac{[(\nabla^{(k)})^{-1} \partial_t \phi - M \nabla^{(k)}G]^2}{Q[\phi]}
+        \int_0^T \dd t \int \dd^d r \, \frac{[(\nabla^{(k)})^{-1} \partial_t \phi - M \nabla^{(k)}G]^2}{Q[\phi]}
      \right\}.
 \end{align}
 %
-THe probability for the reverse path is $\mathbb{P}_R[\phi, \dot \phi] = \mathbb{P}_F[\phi, -\dot \phi]$,  so the Kullback-Leibler divergence is
+The probability for the reverse path is $\mathbb{P}_R[\phi, \dot \phi] = \mathbb{P}_F[\phi, -\dot \phi]$,  so the log ratio of the path probabilities becomes
 %
 \begin{align}
     \ln \frac{\mathbb P_F}{\mathbb P_R}
     = 
     \frac{1}{k_B T}
-    \int_0^T \dd t\, \partial_t \phi [\nabla^{k}]^{-1}
+    \int_0^T \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{k}]^{-1}
     \left[
         \frac{M[\phi]}{Q[\phi]}
         \nabla^{(k)}G(\phi)
     \right].
 \end{align}
 %
-In the case of equilibrium, the fluctuation-dissipation theorem (FDT) means that $M = Q$, and the forces are given by minimizing free energy, $G = \fdv{F}{\phi}$.
+In the case of equilibrium, the fluctuation-dissipation theorem (FDT) means that $M = Q$, and the forces are given by minimizing free energy, $G =\fdv{F}{\phi}$.
 The integral may thus be easily solved,
 %
 \begin{align}
-    \int_0^T \dd t\, \partial_t \phi [\nabla^{k}]^{-1}
+    \int_0^T \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{k}]^{-1}
     \left[
         \nabla^{(k)}\fdv{F}{\phi}
     \right]
@@ -370,43 +353,49 @@ The integral may thus be easily solved,
     F(T) - F(0),
 \end{align}
 %
-which means the probabilities follow detail balance
+which means the path probabilities follow detail balance
 %
 \begin{align}
     \frac{\mathbb P_F}{\mathbb P_R} = e^{\Delta F / k_B T}.
 \end{align}
 %
+Furthermore, as long as $F$ is bounded below, the Kullbeck-Leibler divergence per unit time, $\langle F(T)-F(0)\rangle/T$, will vanish at steady state as $T \to \infty$ and necessarily so will the total entropy production $\dot\sigma$.
+When either the FDT is not satisfied by our (a priori generic) choice of $M$ and $Q$, or the generalised force $G$ cannot be expressed as the functional derivative of a free-energy-like functional, all the above simplifications fail to apply and we should expect a non-vanishing value of $\dot\sigma$.
 
-As an example, take a dry, scalar active field theory for a conserved density.
+As an example of how this undestanding can help us build models of active matter, take a ``dry'' active field theory for a conserved density.
 This can typically be written as a conservation law,
 %
 \begin{align}
     \partial_t \rho = - \bm \nabla \cdot \bm J,
 \end{align}
 %
-where the current has an active and a passive term, $\bm J = \bm J^a + \bm J^p$.
+where the current can be split into an active and a passive term, $\bm J = \bm J^a + \bm J^p$.
 The passive terms alone are equilibrium effects and therefore have the form
 %
 \begin{align}
-    \bm J^p = - M \bm \nabla \fdv{F}{\rho} + \sqrt{2 k_b T M} \eta.
+    \bm J^p = - M \bm \nabla \fdv{F}{\rho} + \sqrt{2 k_b T M} \eta
 \end{align}
 %
-This might be an ``effective'' passive term, which still originates from activity at the microscopic level, but which leads to an equilibrium state on a coarse-grained level.
-while the active current is
+satisfying both FDT and the derivative structure of the force.
+Note that this might still be an ``effective'' passive term, i.e. the dynamics could still originate from activity at the microscopic level, but such activity might lead to effective equilibrium dynamics of the slow modes on a coarse-grained level.
+The active current, on the other hand, can generically be written as
 %
 \begin{align}
     \bm J^a = \sum_i \lambda_i \times (\text{active terms}).
 \end{align}
 %
-Here, $\lambda_i$ are activity parameters, e.g., for the dry polar active matter we may write $\bm J^{a} = \lambda_1 \rho \bm q$  and include an additional non-conserved field 
+Here, $\lambda_i$ are sometimes referred to as activity parameters \cite{cates2022active}.
+
+\subsubsection{Example: dry polar active matter}
+
+For the case of dry polar active matter we may write $\bm J^{a} = \lambda_1 \rho \bm q$ with $\bm q$ the local polar order parameter to indicate, e.g., that particles like to self-propel in the direction of their polarity, leading to additional currents in regions where particles are oriented in a similar direction. To close our system of equations, we then need to include a second Langevin-field equation
 %
 \begin{align}
     \partial_t \bm q + \lambda_2 \bm q \cdot \bm \nabla \bm q
     = - \Gamma \fdv{F}{\bm q} + \sqrt{ 2 k_B T\Gamma } \bm \eta.
 \end{align}
 %
-This reduces to the ``Toner-Tu model'', or dry flocking, if we set $M\rightarrow 0$, with the free energy
-\todo[noinline]{I have problems distinguishing rho and p in the notes....}
+This reduces to the ``Toner-Tu model'' of dry flocking, if we set $M\rightarrow 0$, with particular choice of free energy
 %
 \begin{align}
     F = \int \dd x \, 
@@ -421,132 +410,148 @@ We will say a bit about this later.
 
 What we have done until now is a \emph{top-down approach}, where we add minimal active terms based on physical intuition and the symmetries of the microscopic description.
 A \emph{bottom-up approach} typically starts with a description of the microscopic dynamics and proceeds via a formal coarse-graining procedure.
-This is much harder, and you often end up with the same macroscopic theories, but with the addition of having a microscopic interpretation of the terms in the hydrodynamic equations.
-For dynamics near equilibrium, linear irreversible thermodynamics gives us a recipe to construct hydrodynamic theories.
+This is typically much harder, and you often end up with the same macroscopic theories, but with the additional advantage of having a microscopic interpretation of the terms in the hydrodynamic equations. In particular, it might be possible to establish a clear relationship between the effective parameters of the coarse grained theory and those of the microscopic dynamics, essential for connection with experiments.
+
+For dynamics near equilibrium, linear irreversible thermodynamics gives us a more systematic (although still top-down) recipe to construct hydrodynamic theories. We briefly review this approach in the following.
 
 
 \section{A primer on linear irreversible thermodynamics}
 
-The rate of change of the energy $F = U - TS$ for the fields $\{\phi_i\}_{i=1}^N\cup \{\rho_i\}_{j=1}^M$ for an isothermal proces is
+The following is based on the more extended discussions in \cite{pottier2009nonequilibrium} and \cite{de2013non}. Consider the dynamics of a set of $N+M$ interacting fields $\{\phi_i\}_{i=1}^N\cup \{\rho_i\}_{j=1}^M$, where $\phi$ and $\rho$ denote non-conserved and conserved densities, respectively.
+The rate of change of the energy $\mathcal{F} = U - TS$ under isothermal conditions is
 %
 \begin{align}
-    \dot F = \dot U - T \dot S
+    \dot{\mathcal{F}} = \dot U - T \dot S
     = 
     -\int \dd r \, 
     \left[
-        \sum_{i} \dot \phi_i \left(-\fdv{F}{\phi_i}\right)
-        + \sum_{j} \dot \rho_j \left(- \fdv{F}{\rho_i}\right)
+        \sum_{i} \dot \phi_i \left(-\fdv{\mathcal{F}}{\phi_i}\right)
+        + \sum_{j} \dot \rho_j \left(- \fdv{\mathcal{F}}{\rho_j}\right)
     \right].
 \end{align}
 %
-We assume that $\rho_i$ follows the conservation law
+Again, we assume that $\rho_i$ follows the conservation law
 %
 \begin{align}
     \partial_t \rho = \bm \nabla \cdot \bm J^{(c)},
 \end{align}
 %
-while the current of $\phi$, $\dot \phi_i = J^{(nc)}_i$ is non-concerved.
+while the current of $\phi$, $\dot \phi_i = J^{(nc)}_i$, is non-conserved.
 We define the effective/thermodynamic forces as
 %
 \begin{align}
-    F_i^{(nc)} &= - \fdv{F}{\phi_i} &
-    \bm F_j^{(c)} &= - \bm \nabla \fdv{F}{\rho_j}.
+    F_i^{(nc)} &= - \fdv{\mathcal{F}}{\phi_i} &
+    \bm F_j^{(c)} &= - \bm \nabla \fdv{\mathcal{F}}{\rho_j}.
 \end{align}
 %
-With this, and after a integration by parts, the change in free energy takes the form of displacement times force,
+With this, and after a integration by parts, the change in free energy takes the form of fluxes times force,
 %
 \begin{align}
-    \dot F = 
+    \dot{\mathcal{F}} = 
     - \int \dd r \,
     \left(
         \sum_i J_i^{(nc)} F_i^{(nc)} 
-        + \sum_J \bm J_j^{(c)} \cdot \bm F_j^{(nc)}
+        + \sum_j \bm J_j^{(c)} \cdot \bm F_j^{(nc)}
     \right).
 \end{align}
 %
-The effective forces have well-defined parity under time-reversal, and a particular set of  fields and $F$ is provided effective fluxes, on the other hand, can in general have both contributions
-\todo[inline]{This I had some problems understanding\dots}
+Given that the free energy $F$ is invariant under time reversal and assuming well-defined parity under time reversal of the fields $\phi$ and $\rho$, it follows
+that the effective forces also have well-defined parity under time-reversal. 
+On the other hand, the fluxes $J^{(nc)}$ and $J^{(c)}$ are as of yet unconstrained and can in general have both contributions
 %
 \begin{align}
     J_i^{(nc)} &=  J_{R,i}^{(nc)} + J_{D,i}^{(nc)},  &
     \bm J_j^{(c)} &=  \bm J_{R,j}^{(c)} + \bm J_{D,j}^{(c)}.
 \end{align}
 %
-Here we have split the currents into ``reactive'' fluxes, which have the opposite time-reversal signature as a force and contribute to $\dot U$, and ``dissipative'' fluxes, which have the same time-revalsal signature as a force, and contribute to $T \dot S$.
+Here we have split the currents into ``reactive'' fluxes, which have the opposite time-reversal signature as the associated force, thus contributing to $\dot U$, and ``dissipative'' fluxes, which have the same time-reversal signature of the associated force, and contribute to $T \dot S$.
+
+
 At equilibrium, all forces and fluxes vanish.
-In a ``small neighborhood'' of the equilibrium state, we might want to assume linear phenomenological laws.
+In a ``small neighborhood'' of the equilibrium state, we will assume the existence of linear phenomenological laws.
 These take the form
 %
 \begin{align}
-    \bm J_{R,D,i}^{(\cdot)}
-    = L_{ij}(\{\phi_i\}, \{\rho_j\}) F_j,
+    J_{\bullet,i}
+    = L_{ij}(\{\phi_i\}, \{\rho_j\}) F_j, 
 \end{align}
 %
-and are called \emph{constitutive equations}.
-The matrix $L_{ij}$ are made up of \emph{transport coefficients}.
-In these laws, all couplings with equal time-reversal signatures are allowed.
-The fact that $F$ is minimized at equilibrium implies that $L$ should be positive definite.
-Curie's principle states that the tensorial must be matched, e.g. vector currents need to be a sum of vector-like objects that transform in the same way under rotation, etc.
-Furthermore, the Onsager-Casimir relations states that dissipative fluxes must have symmetric (under time-reversal) couplings, while reactive fluxes must have antisymmetric couplings.
-In other words,
-%
-\begin{equation}
-    L_{ij}  = \epsilon_i \epsilon_j L_{ij},
-\end{equation}
-%
-where $\epsilon_i = \pm 1$ are the parity for the forces/fluxes.
+with $\bullet \in \{R,D\}$ and are called \emph{constitutive equations}. Note that we have dropped the superscript distinguishing currents of (non)conserved fields for the sake of readability.
+Here $F_j$ enumerates generalised forces acting on both conserved and non-conserved fields: it is \emph{not} the case that currents of conserved fields can only depend on effective forces acting on conserved fields, and similarly for non-conserved fields. However, it \emph{is} the case that current contributions with a given signature under time-reversal can only depend on generalised forces with the same signature. 
 
-As an example, take the fluid and polar field adn particle number \todo[noinline]{This needs explanation}
-The rate of change of free energy is
+The matrix $L_{ij}$ are made up of \emph{transport coefficients}, which can in general be functions of the fields themselves.
+Again, in these laws, all couplings with equal time-reversal signatures are allowed.
+The fact that $\mathcal{F}$ is minimized at equilibrium implies that $L$ should be positive definite, since we can write
+\begin{equation}
+    \dot{\mathcal{F}} = - F_i L_{ij} F_j \leq 0~.
+\end{equation}
+The possible values of the transport coefficients $L_{ij}$ can be further constrained based on the following physical principles:
+\begin{itemize}
+    \item {\bf Curie's principle} states that the tensorial must be matched, e.g. vector currents need to be a sum of vector-like objects that transform in the same way under rotation, etc.
+    \item Furthermore, the {\bf  Onsager-Casimir relations}, rooted in the microscopic reversibility of Hamiltonian dynamics, state that dissipative fluxes must have symmetric (under transposition) couplings, while reactive fluxes must have antisymmetric couplings.
+    In other words,
+    %
+    \begin{equation}
+        L_{ij}  = \epsilon_i \epsilon_j L_{ji},
+    \end{equation}
+    %
+    where $\epsilon_i = \pm 1$ are the parity of the associated force.
+\end{itemize}
+
+\subsubsection{Example: active gel theory}
+
+As an example, take the case of a ``wet'' system consisting of a fluid (with velocity $v$) coupled to a non-conserved polar field (q) and to the non-conserved scalar density of chemical species, e.g. ATP (r). This is sometimes referred to as an active gel theory \cite{kruse2005generic}.
+For the purpose of this example, let us just assume that the time derivative of the free energy can be written as 
 %
 \begin{align}
-    \dot F = - \int \dd r 
-    \left(\sigma_{\alpha \beta} u_{\alpha \beta} + h_\alpha q_\alpha + \Delta_\mu \dot r\right).
+    \dot{\mathcal{F}} = - \int \dd r 
+    \left(\sigma_{\alpha \beta} u_{\alpha \beta} + h_\alpha D_t q_\alpha + \Delta_\mu \dot r\right)
 \end{align}
 %
+where $\sigma$ is the stress tensor, $u$ is the symmetrised strain rate tensor, $h$ is the crystal field, $D_t q$ is the comoving \& corotational time derivative of the local polarity, $\Delta\mu$ is the chemical free energy associated with the removal of a particle of chemical from the system and $\dot{r}$ is the instantaneous rate of particle removal.
 Categorizing this as above, we have
 
 \begin{table}[h]
 \centering
 \begin{tabular}{c|c|c}
-    Fluxes & Forces & Example, Parity \\
+    Fluxes & Forces & Parity of Force \\
     \hline
     $\sigma_{\alpha \beta}$ 
     & $u_{\alpha \beta} = \frac{1}{2}(\partial_\alpha v_\beta + \partial_\beta v_\alpha)$ 
-    & strain rate ($\epsilon = -1$)\\
+    & $\epsilon = -1$\\
     $D_t q_\alpha$ &
-    $\fdv{F}{q_\alpha} = h_\alpha$ & crystal field ($\epsilon = +1$) \\
+    $\fdv{F}{q_\alpha} = h_\alpha$ & $\epsilon = +1$ \\
     $\dot r$ & 
     $\fdv{F}{r} = \Delta_\mu$ & 
-    Chemical potential ($\epsilon = +1$) \\
+    $\epsilon = +1$ \\
 \end{tabular}
 \end{table}
 
-We split the fluxes into the reactive and diffusive parts, 
+We split the fluxes into the reactive and diffusive parts, according to the parity under time-reversal of the corresponding force
 %
 \begin{align}
     \sigma_{\alpha \beta} 
     & = \underbrace{\sigma_{\alpha \beta}^{(R)}}_{\epsilon=+1}
     + \underbrace{\sigma_{\alpha \beta}^{(D)}}_{\epsilon=-1}\\
-    q_\alpha
-    & = \underbrace{D_T q_\alpha^{(R)}}_{\epsilon=-1}
-    + \underbrace{D_T q_\alpha^{(D)}}_{\epsilon=+1}\\
-    D_T \dot r
+    D_t q_\alpha
+    & = \underbrace{D_t q_\alpha^{(R)}}_{\epsilon=-1}
+    + \underbrace{D_t q_\alpha^{(D)}}_{\epsilon=+1}\\
+    \dot r
     & = \underbrace{\dot r^{(R)}}_{\epsilon=-1}
     + \underbrace{\dot r^{(D)}}_{\epsilon=+1}.
 \end{align}
 %
-We see imendiatly that, for example, $\sigma^{d} \propto u$, since this is the only force that is odd, as required.
-Similarly, we must have
+We now proceed to introduce linear phenomenological relations by writing fluxes as linear superposition of forces with suitable time-reversal signatures. We see immediately that, for example, $\sigma^{(D)} \propto u$, since this is the only force that is odd, as required.
+Following similar arguments, we must have
 %
 \begin{align}
     D_t q_\alpha^{(D)} &= \lambda_{qq} h_\alpha + \lambda_{qr} \Delta_\mu \\
-    \dot r^{(D)} &= \lambda_{rr} \delta_\mu + \lambda_{rq} h_\alpha.
+    \dot r^{(D)} &= \lambda_{rr} \Delta_\mu + \lambda_{rq} h_\alpha.
 \end{align}
 %
-By Onsager reciprocity, $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, $\lambda_{q r} \propto q$, as it needs to be a vector.
-On the other hand, $D_t P_\alpha^{(R)}$ and $\dot r^{(R)}$ cannot depend on $h$ and $\Delta_\mu$ due to time-partity mismatch.
-Using the Onsager relations, we get
+By Onsager reciprocity, we further need to impose $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, we also demand that $\lambda_{q r} \propto q$, as each term in the right hand side of the first equation needs to be a vector.
+On the other hand, $D_t q_\alpha^{(R)}$ and $\dot r^{(R)}$ cannot depend on $h$ and $\Delta_\mu$ due to time-parity mismatch. They will thus only depend on $u$ via coefficients involving the polarity as required to combine with $u$ into a vector and a scalar respectively.
+Using the Onsager relations, we get, for the terms coupling fluid velocity and chemical reaction rate
 %
 \begin{align}
     \sigma_{\alpha \beta}^{(R)} 
@@ -556,6 +561,6 @@ Using the Onsager relations, we get
     \dot r^{(R)} 
     &= -
     \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
-    \Delta_\mu, \\
+    u_{\alpha \beta}~.
 \end{align}
-%
+As one might suspect, this approach typically leads to models which are somewhat too generic to be amenable to analytical treatment. Approaches based on linear irreversible thermodynamics often proceed by reducing the number of parameters by physically arguing for the irrelevance of some of the ``off-diagonal'' couplings introduced along the way. 
