@@ -119,7 +119,7 @@ The ``modern'' view of thermodynamics ({\`a} la Callen) takes the entropy as the
     S = \frac{3}{2}N k_B \ln \epsilon + N k_B \ln V + N k_B \left[ \ln\left( N^{-1} \left( \frac{4\pi m}{2Nh^2}\right)^{\frac{3}{2}} + \frac{5}{2} \right) \right]~,
 \end{equation}
 %
-with intensive quantities following from suitable differentiation
+with intensive quantities following from suitable differentiation, e.g.
 %
 \begin{equation}
     P \equiv T \frac{\partial S}{\partial V} = \frac{Nk_B T}{V}~.
@@ -215,7 +215,7 @@ With some more massaging, we can write this as
 \end{align}
 %
 where $\mathcal J_{ij}$ is the net probability current from state $j$ to state $i$.
-In the last step, we have defined the external entropy production rate or the entropy flow,
+In the last step, we have defined the external entropy production rate or entropy flow,
 %
 \begin{align}
     \dot S_e = - \frac{1}{2}\sum_{ij}
@@ -223,11 +223,11 @@ In the last step, we have defined the external entropy production rate or the en
     \ln \left( \frac{K_{ij}}{K_{ji}}\right) = - \sum_{i<j} \frac{\mathcal J_{ij} \Delta Q_{ij}}{k_b T}
 \end{align}
 %
-which quantifies the rate of increase in entropy due to heat dissipation from the system to the isothermal environment. To see this, we have invoked a physical principle knows as \emph{local detailed balance}, which formally amounts to demanding 
+which quantifies the rate of increase in total entropy due to heat dissipation from the system to the isothermal environment. To see this, we have invoked an important physical principle known as \emph{local detailed balance}, which formally amounts to demanding 
 \begin{align}
     \frac{K_{ij}}{K_{ji}} = e^{\Delta Q_{ij} / k_b T}~,
 \end{align}
-i.e.\ that the ratio of forward and backward rates associated with a transition between two states is equal to the exponential of the heat release in the transition, $\Delta Q_{ij}$, in units of the thermal energy scale. It should be noted that this relation is introduced on physical grounds and might not apply in all cases. In cases where it does apply, it can often be justified using Kramer's reaction rate theory.
+i.e.\ that the ratio of forward and backward rates associated with a microscopically reversible transition between two states is equal to the exponential of the heat release in the transition, $\Delta Q_{ij}$, in units of the thermal energy scale. It should be noted that this relation is introduced on physical grounds and might not apply in all cases. In cases where it does apply, it can often be justified using Kramer's reaction rate theory.
 
 Eq.~\eqref{eq:epr_decomp} additionally defines the total entropy production rate
 %
@@ -242,16 +242,16 @@ which obeys $\dot \sigma \geq 0$. To see that $\dot \sigma$ is non-negative, con
 Thus the total entropy production rate can be written as 
 %
 \begin{align}
-    \dot \sigma = \dot S + \frac{\dot Q}{K_B} \geq 0,
+    \dot \sigma = \dot S + \frac{\dot Q}{k_b T} \geq 0,
 \end{align}
 %
 which is the second law of thermodynamics!
 At a steady state, the probability distribution $P$ is independent of time, so $\dot S = 0$, which gives
 %
 \begin{align}
-    \dot \sigma = \frac{\dot Q}{k_B T}~.
+    \dot \sigma = \frac{\dot Q}{k_b T}~.
 \end{align}
-Thus, finite entropy production at steady state (a signature of activity) is accompanied by a finite rate of heat dissipation into the surrounding environment.
+Thus, finite entropy production at steady state (a signature of activity) must be accompanied by a finite rate of heat dissipation into the surrounding environment.
 %
 Indeed, it is also possible to show that \eqref{eq:epr_int_discr} corresponds to the the Kullbeck-Leibler divergence per unit time of the ensemble of forwards vs backward paths on the discrete state space \cite{gaspard2004time}, completing the parallel with the calculation presented in the first part of this lecture. 
 
@@ -274,7 +274,7 @@ If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we co
     + \sqrt{ 2 k_B T \tilde M[\psi(\bm x, t)] } \eta(\bm x, t).
 \end{align}
 %
-In the simplest case, the mobilities $M$ and $\tilde{M}$ is constant, but in principle it can have a more complicated dependence on the field.
+In the simplest case, the mobilities $M$ and $\tilde{M}$ are constant, but in principle they can have a more complicated dependence on the field.
 For model A in the Halperin-Hohenberg (HH) classification~\cite{HohenbergRMP}, the potential takes the form $G = -(a \psi + b \psi^3 + \kappa \nabla^2 \psi)$ with $M=\tilde{M}=\gamma^{-1}$. 
 %
 
@@ -319,7 +319,7 @@ Solving for the noise, we get
     \frac{[\nabla^{(k)}]^{-1} \partial_t \phi + M(\phi) \nabla^{(k)} G}{\sqrt{ 2 k_ T Q(\psi) }}.
 \end{align}
 %
-We now draw the Onsager-Machlup function for the path probabilities, which was introduced in the first part of the lecture. Once again, the idea is to relate the probability of a certain history of the field to the probability of the corresponding noise realisation, keeping in mind that an additional integral over space needs to be introduced to account for the spatially-extended nature of the fluctuations,
+We now draw on the Onsager-Machlup function for the path probabilities, which was introduced in the first part of the lecture, to calculate the average rate of entropy production associated with the field dynamics. Once again, the idea is to relate the probability of a certain history of the field to the probability of the corresponding noise realisation, keeping in mind that an additional integral over space needs to be introduced to account for the spatially-extended nature of the fluctuations,
 %
 \begin{align}
     \mathbb{P}_F[\phi] \propto
@@ -459,7 +459,7 @@ With this, and after a integration by parts, the change in free energy takes the
     \right).
 \end{align}
 %
-Given that the free energy $F$ is invariant under time reversal and assuming well-defined parity under time reversal of the fields $\phi$ and $\rho$, it follows
+Given that the free energy $\mathcal{F}$ is invariant under time reversal and assuming well-defined parity under time reversal of the fields $\phi$ and $\rho$, it follows
 that the effective forces also have well-defined parity under time-reversal. 
 On the other hand, the fluxes $J^{(nc)}$ and $J^{(c)}$ are as of yet unconstrained and can in general have both contributions
 %
@@ -491,7 +491,7 @@ The fact that $\mathcal{F}$ is minimized at equilibrium implies that $L$ should 
 \end{equation}
 The possible values of the transport coefficients $L_{ij}$ can be further constrained based on the following physical principles:
 \begin{itemize}
-    \item {\bf Curie's principle} states that the tensorial must be matched, e.g. vector currents need to be a sum of vector-like objects that transform in the same way under rotation, etc.
+    \item {\bf Curie's principle} states that the tensorial structure of currents and forces must be matched in the constitutive equation, e.g. vector currents need to be a sum of vector-like objects that transform in the same way under rotation, etc.
     \item Furthermore, the {\bf  Onsager-Casimir relations}, rooted in the microscopic reversibility of Hamiltonian dynamics, state that dissipative fluxes must have symmetric (under transposition) couplings, while reactive fluxes must have antisymmetric couplings.
     In other words,
     %
@@ -545,7 +545,7 @@ We split the fluxes into the reactive and diffusive parts, according to the pari
     + \underbrace{\dot r^{(D)}}_{\epsilon=+1}.
 \end{align}
 %
-We now proceed to introduce linear phenomenological relations by writing fluxes as linear superposition of forces with suitable time-reversal signatures. We see immediately that, for example, $\sigma^{(D)} \propto u$, since this is the only force that is odd, as required.
+We now proceed to introduce linear phenomenological relations by writing fluxes as linear superposition of forces with suitable time-reversal signatures. We see immediately that, for example, $\sigma^{(D)} \propto u$, since this is the only force that is odd under time reversal, as required.
 Following similar arguments, we must have
 %
 \begin{align}
@@ -553,7 +553,7 @@ Following similar arguments, we must have
     \dot r^{(D)} &= \lambda_{rr} \Delta_\mu + \lambda_{rq} h_\alpha.
 \end{align}
 %
-By Onsager reciprocity, we further need to impose $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, we also demand that $\lambda_{q r} \propto q$, as each term in the right hand side of the first equation needs to be a vector.
+By Onsager reciprocity, we further need to impose $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, we also demand that $\lambda_{q r} \propto q$, as each term in the right hand side of the first (second) equation needs to be a vector (scalar).
 On the other hand, $D_t q_\alpha^{(R)}$ and $\dot r^{(R)}$ cannot depend on $h$ and $\Delta_\mu$ due to time-parity mismatch. They will thus only depend on $u$ via coefficients involving the polarity as required to combine with $u$ into a vector and a scalar respectively.
 Using the Onsager relations, we get, for the terms coupling fluid velocity and chemical reaction rate
 %
@@ -567,4 +567,4 @@ Using the Onsager relations, we get, for the terms coupling fluid velocity and c
     \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
     u_{\alpha \beta}~.
 \end{align}
-As one might suspect, this approach typically leads to models which are somewhat too generic to be amenable to analytical treatment. Approaches based on linear irreversible thermodynamics often proceed by reducing the number of parameters by physically arguing for the irrelevance of some of the ``off-diagonal'' couplings introduced along the way. 
+As one might suspect, this approach to constructing a field theory typically leads to models which are somewhat too generic to be amenable to analytical treatment. Approaches based on linear irreversible thermodynamics often proceed by reducing the number of parameters by physically arguing for the irrelevance of some of the ``off-diagonal'' couplings introduced along the way. 
