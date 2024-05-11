@@ -17,7 +17,7 @@ Optimal decision theory, in particular Wald's ratio test \cite{PhysRevLett.115.2
 \end{equation}
 %
 reaching either of the pre-defined values $\pm Q^*$ (i.e. it is a first passage problem),
-where $P(F,B|O)$ denote the posterior probability of either F or B being true given an observed realization $O$ of the process. We can equivalently write,
+where $P(F,B|O)$ denotes the posterior probability of either F or B being true given an observed realization $O$ of the process. We can equivalently write,
 %
 \begin{equation}
     P(F|O) = \frac{1}{2} + \frac{\tanh(Q)}{2},\quad P(B|O) = \frac{1}{2} - \frac{\tanh(Q)}{2}~,
@@ -77,7 +77,7 @@ where we have performed a change of variable by including the relevant Jacobian 
     \mathbb{P}[x|F] \propto {\rm exp}\left( - \frac{1}{2} \sum_i \frac{(dx_t - \mu F(x_t)dt)^2}{2k_B T \mu dt} \right) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [\dot{x}(t) - \mu F(x(t))]^2 \right)
 \end{equation}
 %
-having taken the continuum limit $dt \to 0$. Recalling that positions and velocities are even and odd under time-reversal, respectively, we then have
+having taken the continuum limit $dt \to 0$. Recalling that positions and velocities are even and odd under time reversal, respectively, we then have
 %
 \begin{align}
     \mathbb{P}(x|B) \propto {\rm exp}\left( - \frac{1}{4k_B T \mu} \int dt\  [-\dot{x}(t) - \mu F(x(t))]^2 \right)
@@ -91,7 +91,7 @@ whence
 %
 Note how the numerator in the right-hand side of this expression is a product of the particle velocity times the force applied to it, and can thus be interpreted as the stochastic work done per unit time on the particle by the external force \cite{sekimoto1998langevin}. At steady-state, due to the conservation of energy, that same power needs to be dissipated as heat into the bath providing the thermal fluctuations. This quantity is thus nothing but the rate of entropy generation in the heat reservoir, $ \dot{\bar{Q}} = \dot{\sigma}$. This is a sign of the profound connection between entropy production as an informatic measure of time-reversal symmetry breaking, and its more traditional thermodynamic interpretation \cite{gaspard2004time}. In the following sections, we will follow a more traditional, i.e.\ thermodynamic, path for the derivation of this quantity.
 
-Before moving on, let us note one important property of \eqref{eq:q_vs_eqr}. For conservative forces originating from an external potential that is bounded below and constant in time, $F(x) = -\partial_x U(x)$, we have by the chain rule that $\langle \dot{x}(t) F(x(t))\rangle = -\langle \dot{U} \rangle = 0$. In other words, the steady-state of Brownian dynamics in a stable potential is equilibrium/time-reversal symmetric. 
+Before moving on, let us note one important property of \eqref{eq:q_vs_eqr}. For conservative forces originating from an external potential that is bounded below and constant in time, $F(x) = -\partial_x U(x)$, we have by the chain rule that $\langle \dot{x}(t) F(x(t))\rangle = -\langle \dot{U} \rangle = 0$. In other words, the steady state of Brownian dynamics in a stable potential is equilibrium/time-reversal symmetric. 
 
 
 
@@ -251,9 +251,9 @@ At a steady state, the probability distribution $P$ is independent of time, so $
 \begin{align}
     \dot \sigma = \frac{\dot Q}{k_b T}~.
 \end{align}
-Thus, finite entropy production at steady state (a signature of activity) must be accompanied by a finite rate of heat dissipation into the surrounding environment.
+Thus, finite entropy production in a steady state (a signature of activity) must be accompanied by a finite rate of heat dissipation into the surrounding environment.
 %
-Indeed, it is also possible to show that \eqref{eq:epr_int_discr} corresponds to the the Kullbeck-Leibler divergence per unit time of the ensemble of forwards vs backward paths on the discrete state space \cite{gaspard2004time}, completing the parallel with the calculation presented in the first part of this lecture. 
+Indeed, it is also possible to show that \eqref{eq:epr_int_discr} corresponds to the Kullbeck-Leibler divergence per unit time of the ensemble of forwards vs backward paths on the discrete state space \cite{gaspard2004time}, completing the parallel with the calculation presented in the first part of this lecture. 
 
 
 
@@ -266,7 +266,7 @@ Indeed, it is also possible to show that \eqref{eq:epr_int_discr} corresponds to
 We now consider the thermodynamics of systems described at a more coarse grain level, using \emph{hydrodynamic theory}. 
 In this case the relevant degrees of freedom are fields, which follow Langevin-field equations.
 These are to Langevin equations as PDEs are to ODEs.
-If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we consider a magnetization, driven quantum systems such as polariton Bose-Einstein condensates, or a density of cells that are born and die, we may generically write the equation of motion as
+If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we consider magnetization, driven quantum systems such as polariton Bose-Einstein condensates, or a density of cells that are born and die, we may generically write the equation of motion as
 %
 \begin{align}
     \partial_t \psi(\bm x, t) 
@@ -274,7 +274,7 @@ If we assume the density $\psi(\bm x)$ is not conserved, as is the case if we co
     + \sqrt{ 2 k_B T \tilde M[\psi(\bm x, t)] } \eta(\bm x, t).
 \end{align}
 %
-In the simplest case, the mobilities $M$ and $\tilde{M}$ are constant, but in principle they can have a more complicated dependence on the field.
+In the simplest case, the mobilities $M$ and $\tilde{M}$ are constant, but in principle, they can have a more complicated dependence on the field.
 For model A in the Halperin-Hohenberg (HH) classification~\cite{HohenbergRMP}, the potential takes the form $G = -(a \psi + b \psi^3 + \kappa \nabla^2 \psi)$ with $M=\tilde{M}=\gamma^{-1}$. 
 %
 
@@ -364,7 +364,7 @@ which means the path probabilities follow detail balance
 \end{align}
 %
 Furthermore, as long as $F$ is bounded below, the Kullbeck-Leibler divergence per unit time, $\langle F(T)-F(0)\rangle/T$, will vanish at steady state as $T \to \infty$ and necessarily so will the total entropy production $\dot\sigma$.
-When either the FDT is not satisfied by our (a priori generic) choice of $M$ and $Q$, or the generalised force $G$ cannot be expressed as the functional derivative of a free-energy-like functional, all the above simplifications fail to apply and we should expect a non-vanishing value of $\dot\sigma$.
+When either the FDT is not satisfied by our (a priori generic) choice of $M$ and $Q$, or the generalized force $G$ cannot be expressed as the functional derivative of a free-energy-like functional, all the above simplifications fail to apply and we should expect a non-vanishing value of $\dot\sigma$.
 
 As an example of how this undestanding can help us build models of active matter, take a ``dry'' active field theory for a conserved density.
 This can typically be written as a conservation law,
@@ -392,20 +392,20 @@ Here, $\lambda_i$ are sometimes referred to as activity parameters \cite{cates20
 
 \subsubsection{Example: dry polar active matter}
 
-For the case of dry polar active matter we may write $\bm J^{a} = \lambda_1 \rho \bm q$ with $\bm q$ the local polar order parameter to indicate, e.g., that particles like to self-propel in the direction of their polarity, leading to additional currents in regions where particles are oriented in a similar direction. To close our system of equations, we then need to include a second Langevin-field equation
+For the case of dry polar active matter, we may write $\bm J^{a} = \lambda_1 \rho \bm p$ with $\bm p$ the local polar order parameter to indicate, e.g., that particles like to self-propel in the direction of their polarity, leading to additional currents in regions where particles are oriented in a similar direction. To close our system of equations, we then need to include a second Langevin-field equation
 %
 \begin{align}
-    \partial_t \bm q + \lambda_2 \bm q \cdot \bm \nabla \bm q
-    = - \Gamma \fdv{F}{\bm q} + \sqrt{ 2 k_B T\Gamma } \bm \eta.
+    \partial_t \bm p + \lambda_2 \bm p \cdot \bm \nabla \bm p
+    = - \Gamma \fdv{F}{\bm p} + \sqrt{ 2 k_B T\Gamma } \bm \eta.
 \end{align}
 %
-This reduces to the ``Toner-Tu model'' of dry flocking, if we set $M\rightarrow 0$, with particular choice of free energy
+This reduces to the ``Toner-Tu model'' of dry flocking, if we set $M\rightarrow 0$, with a particular choice of free energy
 %
 \begin{align}
     F = \int \dd x \, 
     \left(
-        \frac{1}{2}a q^2 + \frac{1}{4}bq^4 + \frac{1}{2} \bm \nabla \bm q : \bm \nabla \bm q
-        - \bar \omega \bm \nabla \cdot \bm q \rho + \frac{\lambda}{2 \Gamma} q^2 \bm \nabla \cdot \bm q
+        \frac{1}{2}a q^2 + \frac{1}{4}bq^4 + \frac{1}{2} \bm \nabla \bm p : \bm \nabla \bm p
+        - \bar \omega \bm \nabla \cdot \bm p \rho + \frac{\lambda}{2 \Gamma} p^2 \bm \nabla \cdot \bm p
     \right)
 \end{align}
 %
@@ -414,7 +414,7 @@ We will say a bit about this later.
 
 What we have done until now is a \emph{top-down approach}, where we add minimal active terms based on physical intuition and the symmetries of the microscopic description.
 A \emph{bottom-up approach} typically starts with a description of the microscopic dynamics and proceeds via a formal coarse-graining procedure.
-This is typically much harder, and you often end up with the same macroscopic theories, but with the additional advantage of having a microscopic interpretation of the terms in the hydrodynamic equations. In particular, it might be possible to establish a clear relationship between the effective parameters of the coarse grained theory and those of the microscopic dynamics, essential for connection with experiments.
+This is typically much harder, and you often end up with the same macroscopic theories, but with the additional advantage of having a microscopic interpretation of the terms in the hydrodynamic equations. In particular, it might be possible to establish a clear relationship between the effective parameters of the coarse-grained theory and those of the microscopic dynamics, essential for connection with experiments.
 
 For dynamics near equilibrium, linear irreversible thermodynamics gives us a more systematic (although still top-down) recipe to construct hydrodynamic theories. We briefly review this approach in the following.
 
@@ -448,7 +448,7 @@ We define the effective/thermodynamic forces as
     \bm F_j^{(c)} &= - \bm \nabla \fdv{\mathcal{F}}{\rho_j}.
 \end{align}
 %
-With this, and after a integration by parts, the change in free energy takes the form of fluxes times force,
+With this, and after integration by parts, the change in free energy takes the form of fluxes times force,
 %
 \begin{align}
     \dot{\mathcal{F}} = 
@@ -460,7 +460,7 @@ With this, and after a integration by parts, the change in free energy takes the
 \end{align}
 %
 Given that the free energy $\mathcal{F}$ is invariant under time reversal and assuming well-defined parity under time reversal of the fields $\phi$ and $\rho$, it follows
-that the effective forces also have well-defined parity under time-reversal. 
+that the effective forces also have well-defined parity under time reversal. 
 On the other hand, the fluxes $J^{(nc)}$ and $J^{(c)}$ are as of yet unconstrained and can in general have both contributions
 %
 \begin{align}
@@ -468,7 +468,7 @@ On the other hand, the fluxes $J^{(nc)}$ and $J^{(c)}$ are as of yet unconstrain
     \bm J_j^{(c)} &=  \bm J_{R,j}^{(c)} + \bm J_{D,j}^{(c)}.
 \end{align}
 %
-Here we have split the currents into ``reactive'' fluxes, which have the opposite time-reversal signature as the associated force, thus contributing to $\dot U$, and ``dissipative'' fluxes, which have the same time-reversal signature of the associated force, and contribute to $T \dot S$.
+Here we have split the currents into ``reactive'' fluxes, which have the opposite time-reversal signature as the associated force, thus contributing to $\dot U$, and ``dissipative'' fluxes, which have the same time-reversal signature of the associated force and contribute to $T \dot S$.
 
 
 At equilibrium, all forces and fluxes vanish.
@@ -481,9 +481,9 @@ These take the form
 \end{align}
 %
 with $\bullet \in \{R,D\}$ and are called \emph{constitutive equations}. Note that we have dropped the superscript distinguishing currents of (non)conserved fields for the sake of readability.
-Here $F_j$ enumerates generalised forces acting on both conserved and non-conserved fields: it is \emph{not} the case that currents of conserved fields can only depend on effective forces acting on conserved fields, and similarly for non-conserved fields. However, it \emph{is} the case that current contributions with a given signature under time-reversal can only depend on generalised forces with the same signature. 
+Here $F_j$ enumerates generalized forces acting on both conserved and non-conserved fields: it is \emph{not} the case that currents of conserved fields can only depend on effective forces acting on conserved fields, and similarly for non-conserved fields. However, it \emph{is} the case that current contributions with a given signature under time reversal can only depend on generalized forces with the same signature. 
 
-The matrix $L_{ij}$ are made up of \emph{transport coefficients}, which can in general be functions of the fields themselves.
+The matrix $L_{ij}$ is made up of \emph{transport coefficients}, which can in general be functions of the fields themselves.
 Again, in these laws, all couplings with equal time-reversal signatures are allowed.
 The fact that $\mathcal{F}$ is minimized at equilibrium implies that $L$ should be positive definite, since we can write
 \begin{equation}
@@ -512,7 +512,7 @@ For the purpose of this example, let us just assume that the time derivative of 
     \left(\sigma_{\alpha \beta} u_{\alpha \beta} + h_\alpha D_t q_\alpha + \Delta_\mu \dot r\right)
 \end{align}
 %
-where $\sigma$ is the stress tensor, $u$ is the symmetrised strain rate tensor, $h$ is the crystal field, $D_t q$ is the comoving \& corotational time derivative of the local polarity, $\Delta\mu$ is the chemical free energy associated with the removal of a particle of chemical from the system and $\dot{r}$ is the instantaneous rate of particle removal.
+where $\sigma$ is the stress tensor, $u$ is the symmetrized strain rate tensor, $h$ is the crystal field, $D_t q$ is the comoving \& corotational time derivative of the local polarity, $\Delta\mu$ is the chemical free energy associated with the removal of a particle of chemical from the system and $\dot{r}$ is the instantaneous rate of particle removal.
 Categorizing this as above, we have
 
 \begin{table}[h]
@@ -538,14 +538,14 @@ We split the fluxes into the reactive and diffusive parts, according to the pari
     & = \underbrace{\sigma_{\alpha \beta}^{(R)}}_{\epsilon=+1}
     + \underbrace{\sigma_{\alpha \beta}^{(D)}}_{\epsilon=-1}\\
     D_t q_\alpha
-    & = \underbrace{D_t q_\alpha^{(R)}}_{\epsilon=-1}
-    + \underbrace{D_t q_\alpha^{(D)}}_{\epsilon=+1}\\
+    & = \underbrace{D_t p_\alpha^{(R)}}_{\epsilon=-1}
+    + \underbrace{D_t p_\alpha^{(D)}}_{\epsilon=+1}\\
     \dot r
     & = \underbrace{\dot r^{(R)}}_{\epsilon=-1}
     + \underbrace{\dot r^{(D)}}_{\epsilon=+1}.
 \end{align}
 %
-We now proceed to introduce linear phenomenological relations by writing fluxes as linear superposition of forces with suitable time-reversal signatures. We see immediately that, for example, $\sigma^{(D)} \propto u$, since this is the only force that is odd under time reversal, as required.
+We now proceed to introduce linear phenomenological relations by writing fluxes as linear superpositions of forces with suitable time-reversal signatures. We see immediately that, for example, $\sigma^{(D)} \propto u$, since this is the only force that is odd under time reversal, as required.
 Following similar arguments, we must have
 %
 \begin{align}
@@ -553,18 +553,18 @@ Following similar arguments, we must have
     \dot r^{(D)} &= \lambda_{rr} \Delta_\mu + \lambda_{rq} h_\alpha.
 \end{align}
 %
-By Onsager reciprocity, we further need to impose $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curies principle, we also demand that $\lambda_{q r} \propto q$, as each term in the right hand side of the first (second) equation needs to be a vector (scalar).
+By Onsager reciprocity, we further need to impose $\lambda_{pr}(r, q) = \lambda_{rp}(r, q)$, and by Curie's principle, we also demand that $\lambda_{q r} \propto q$, as each term in the right-hand side of the first (second) equation needs to be a vector (scalar).
 On the other hand, $D_t q_\alpha^{(R)}$ and $\dot r^{(R)}$ cannot depend on $h$ and $\Delta_\mu$ due to time-parity mismatch. They will thus only depend on $u$ via coefficients involving the polarity as required to combine with $u$ into a vector and a scalar respectively.
 Using the Onsager relations, we get, for the terms coupling fluid velocity and chemical reaction rate
 %
 \begin{align}
     \sigma_{\alpha \beta}^{(R)} 
     &= \dots
-    \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
+    \left(- \xi p_\alpha p_\beta - \bar \xi \delta_{\alpha \beta} - \xi' p_\gamma qp_\gamma \delta_{\alpha \beta}\right)
     \Delta_\mu, \\
     \dot r^{(R)} 
     &= -
-    \left(- \xi q_\alpha q_\beta - \bar \xi \delta_{\alpha \beta} - \xi' q_\gamma q_\gamma \delta_{\alpha \beta}\right)
+    \left(- \xi p_\alpha p_\beta - \bar \xi \delta_{\alpha \beta} - \xi' p_\gamma p_\gamma \delta_{\alpha \beta}\right)
     u_{\alpha \beta}~.
 \end{align}
-As one might suspect, this approach to constructing a field theory typically leads to models which are somewhat too generic to be amenable to analytical treatment. Approaches based on linear irreversible thermodynamics often proceed by reducing the number of parameters by physically arguing for the irrelevance of some of the ``off-diagonal'' couplings introduced along the way. 
+As one might suspect, this approach to constructing a field theory typically leads to models that are somewhat too generic to be amenable to analytical treatment. Approaches based on linear irreversible thermodynamics often proceed by reducing the number of parameters by physically arguing for the irrelevance of some of the ``off-diagonal'' couplings introduced along the way. 

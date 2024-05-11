@@ -60,7 +60,7 @@ Again, these ideas are relevant to many examples in the living world including t
 
 Active matter is also not restricted to the study of biological systems, as the design and study of synthetic active particles now represent a large part of the field. Those allow for better controlled experiments and often exhibit similar phenomenology as their biological counterpart, thus opening the way to biomimetic materials engineering. 
 \todo[noinline]{Notorious? isn't that a bit negative?}
-Notorious examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.
+Notorious examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.\todo[noinline]{Give ref}
 
 \begin{figure}[!htb]
     \centering
@@ -68,7 +68,6 @@ Notorious examples of artificial active matter include assemblies of self-propel
     \caption{A self-propelled Janus particle, to be discussed in Lecture 7}
     \label{fig: janus}
 \end{figure}
-\todo[noinline]{Give ref}
 
 
 
@@ -81,11 +80,11 @@ As written above, active matter is inherently `far' from equilibrium, since it i
     \item No time-reversal symmetry: as a consequence of 1, active systems can (and do) generally produce macroscopic currents, leading to phases where TRS is collectively broken.
     \item Lack of thermodynamic framework: Basic equilibrium concepts such as temperature or thermodynamic pressure are usually not defined for active systems. Additionally, active systems generally do not exhibit an equation of state, meaning that their bulk properties are not only determined by their material properties but can also be substantially affected by the nature and shape of the container they live in.
     \item Memory: again, due to 1 and contrary to systems at equilibrium, the state of an active system may be dependent of its past history.
-    \item In active matter, momentum is not conserved so that forces do not necessarily need to satisfy the action-reaction principle. Familiar examples of such `nonreciprocity' are encountered in predator-prey systems, while it also generally arises when particles interact via self-generated fields such as bacteria or phoretic colloids.
+    \item In active matter, momentum is not conserved so forces do not necessarily need to satisfy the action-reaction principle. Familiar examples of such `nonreciprocity' are encountered in predator-prey systems, while it also generally arises when particles interact via self-generated fields such as bacteria or phoretic colloids.
 \end{enumerate}
 %
-In summary, the collective behaviours found in active systems thus generally break our intuition built on equilibrium physics, and their theoretical understanding requires to use and develop specifically tailored tools and concepts.
-In particular, we will construct field theory descriptions of active systems, such as IRR thermodynamics\todo{Irrecersible thermodynamics?} and performe coarse-graining using kinetic theory.\todo[noinline]{Is this right?}
+In summary, the collective behaviors found in active systems thus generally break our intuition built on equilibrium physics, and their theoretical understanding requires to use and develop specifically tailored tools and concepts.
+In particular, we will construct field theory descriptions of active systems, such as irreversible thermodynamics and perform coarse-graining using kinetic theory.\todo[noinline]{Is this right?}
 
 
 % Handwritten Page IV
@@ -386,21 +385,379 @@ Then,
 \end{align}
 %
 Here, we have neglected terms that are second order in the perturbations $\delta s$.
-
 % Handwritten page XIV
 With this assumption, we may rewrite the energy as
 %
 \begin{align}
     E_{MF} 
     &= \frac{1}{2} J m \sum_{\E{ij}}(s_i + s_j - m)\\
-    & = \frac{1}{2} J m z \left( 2 \sum_{i} - m N  \right).
+    & = \frac{1}{2} J m z \left( 2 \sum_{i} s_i - m N  \right).
 \end{align}
 %
 Here, $z$ is the number of nearest neighbors for each site, the coordination number of the lattice.
 This depends on the structure of the lattice and the dimensionality in space.
 For square lattices, $z = 2 d$, where d is the dimension of space.
+Inserting this into the partition function gives
+%
+\begin{align}
+    Z_{MF} & = \sum_{\{s_i\}} \exp \left\{\frac{1}{2}\beta J m z \left( 2\sum_{i} s_i - mN \right) \right\}\\
+    & = e^{-\frac{1}{2}\beta J z m^2} 
+    \left[\exp \left\{\frac{1}{2}\beta J m z \left( 2\sum_{s=\pm} s \right) \right\}\right]^2\\
+    & = e^{-\frac{1}{2}\beta J z m^2} \left[2 \cosh \beta J m z\right]^N.
+\end{align}
+%
+The Helmholtz free energy is given by the logarithm of the partition function, $F = - k_B T \ln Z$, so the mean-field free energy is \todo[noinline]{we should use either $\beta$ or $k_BT$.}
+%
+\begin{align}
+    F_{MF} = N k_B T \left[ \frac{1}{2}\beta Jm^2 z - \ln\left(\cosh \beta J m z\right) \right].
+\end{align}
+%
+The system will, left to its own devices at constant volume and temperature, minimize the free energy.
+The magnetization of the system is therefore found by minimizing $F$,
+%
+\begin{align}
+    \pdv{F_{MF}}{m} = 0
+    \iff m = \tanh \beta J m z.
+\end{align}
+%
+We may solve this graphically by drawing both functions, as illustrated below.
+This shows that for inverse temperatures $\beta = 1 / k_B T$ so that $\beta J z < 1$, there is only one stationary point free energy, $m = 0$.
+In this case, this is also a minimum.
+For $\beta J z > 1$, there appear two additional stationary $m = \pm m_0$ points.
+These are now two degenerate minima of the free energy, while $m = 0$ is a local maximum.
+There is thus a \emph{phase transition} at the finite, critical temperature defined by $k_B T_c = J z$.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{chapters/Figures/introduction/minimize.png}
+    \caption{Minimization for different cases}
+    \label{fig: free energy minimization}
+\end{figure}
+
+At the phase transition, the $m \rightarrow - m$ symmetry is spontaneously broken, as the magnetization $m$ picks out one of the degenerate minima $m = \pm m_0$.
+If we expand the free energy around the point of phase transition $T \approx T_c$ where $m$ is small, we get
+%
+\begin{align}
+    F_{MF}
+    \sim 
+    \frac{1}{2} Nk_B TC
+    \left[
+        \left(\frac{T - T_c}{T} m^2 + \frac{T_c}{T} \frac{m^4}{6}\right)
+    \right]
+    + \Oh(m^6).
+\end{align}
+%
+This is the \emph{Landau Free energy}.
+With the reduced temperature $t = (T - T_c) / T_c$, often called the control parameter, t has the form $F = \frac{1}{2} \alpha t m^2 + \beta \frac{1}{4} m^4$.
+As the $m^2$ changes sign at $t = 0$, this free energy goes from a single-well potential to a double-well one.
+This is a characteristic feature of phase transitions.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{chapters/Figures/introduction/double_well.png}
+    \caption{The double Landau free energy changes from a single to a double well as the control parameter is tuned past the critical point.}
+    \label{fig: double well}
+\end{figure}
+
+To go beyond the mean-field approach, we include spatial dynamics.
+This means that the magnetization field now depends on space, $m = m(\bm x)$.
+We assume the free energy density has the same Landau form close to the critical temperature, 
+%
+\begin{align}
+    f(m) = \frac{1}{2}\alpha t  m^2 + \frac{1}{4} \beta m^4,
+\end{align}
+%
+where $\alpha \approx N K_B T_c$ and $\beta \approx N k_B T_C / 3 \approx \alpha / 3 $. \todo[noinline]{shoudl we not divide out $N$ to get an intensive quantity?}
+This is the ``Bulk free energy density''.
+The full free energy is the integral of this density, plus a term that takes into account the cost of gradients.
+The lowest order term which is invariant under spatial orientations, which we must have as this is a symmetry of the microscopic dynamics, is $|\nabla m|^2$.
+Combining these terms together gives us the Ginzburg-Landau free energy functional\footnote{\emph{Functional}, not function, as this is a function of a function $m(\bm x)$. This means derivatives $\odv{}{M}$ now becomes functional derivatives, $\fdv{}{m(\bm x)}$.}
+%
+\begin{align}
+    F[m] = \int \dd \bm x 
+    \left(f(m) + \frac{1}{2} K |\nabla m|^2\right).
+\end{align}
+%
 
 
+To obtain a dynamical equation for this system, which governs the time-evolution of $m$, we assume pureyly dissipative dynamics, 
+%
+\begin{align}
+    \pdv{}{t} m(\bm x, t)
+    =
+    \fdv{F}{{M(\bm x, t)}} 
+    = - [\alpha t + \beta m(\bm x, t)] m(\bm x, t) + K \nabla^2 m^2.
+\end{align}
+%
+If we assume a homogeneous configuration $m = m_0$, where $\nabla m_0 = 0$, the steady state solution is
+%
+\begin{align}
+    (\alpha t + \beta m_0^2) m_0 = 0
+    \implies
+    \begin{cases}
+        m_0 = 0, & t > 0, \\
+        m_0 = \sqrt{ \frac{ \alpha |t| }{ \beta } }, & t < 0,
+    \end{cases}
+\end{align}
+%
+as before.
+However, we may now also consider how this state responds to fluctuation.
+We write $m(\bm x, t) = m_0 + \delta m(\bm x, t)$, and study the dynamics of $\delta m$ at linear level.
+The equation of motion is
+%
+\begin{align}
+    \pdv{}{t} \delta m = - a^2 \delta m  + K \nabla^2 \delta m + \xi,
+\end{align}
+%
+where
+%
+\begin{align}
+    a = 
+    \begin{cases}
+        \alpha t, & t > 0, \\
+        2 \alpha |t|, & t < 0,
+    \end{cases}
+\end{align}
+%
+and $\xi$ is Gaussian white noise, satisfying
+%
+\begin{align}
+    \E{\xi(\bm x, t)} &= 0, &
+    \E{\xi(\bm x, t) \xi(\bm x', t')}
+    = \Xi \delta^d(\bm x - \bm x') \delta(t - t').
+\end{align}
+%
+We consider the equations in Fourier space by inserting the fourier transform of the perturbation,
+%
+\begin{align}
+    \delta \hat m(\bm q, \omega)
+    =
+    \int \dd \bm x \dd t \, e^{i(\bm q \cdot \bm r + \omega t)} \delta m(\bm x, t),
+\end{align}
+%
+which gives
+%
+\begin{align}
+    (i \omega + a^2 + Kq^2)\delta \hat m = \hat \xi(\bm q, \omega).
+\end{align}
+%
+The Fourier transform of the noise also has vanishing expectation value and the covariance
+%
+\begin{align}
+    \E{\hat \xi(\bm q, \omega)\hat\xi(\bm q', \bm \omega')}
+    = \Xi (2\pi)^{d + 2}\delta^d(\bm q + \bm q') \delta(\omega + \omega').
+\end{align}
+%
+With this, we easily can explicitly calculate the Fourier transform of the two-point correlation function,
+%
+\begin{align}
+    \hat C(\bm q, \bm \omega)
+    = 
+    \frac{\E{\delta \hat m(\bm q, \omega) \delta \hat m(\bm q', \omega')}}{(2\pi)^{d + 2}\delta^d(\bm q + \bm q') \delta(\omega + \omega')  }
+    = 
+    \frac{\Xi}{\omega^2 + (a^2 + K q^2)^2}.
+\end{align}
+%
+We obtain the equal-time correlation by integrating over frequency space, corresponding to the Fourier-transform at $t = 0$, which we can perform by contour integration \todo[noinline]{Draw contour, explain}
+%
+\begin{align}
+    \hat C(\bm q) = \int \frac{\dd \omega}{2 \pi} \hat C(\bm q, \omega)
+    = 
+    \frac{1}{2}\frac{\Xi }{a^2 + K q^2}.
+\end{align}
+%
+In real space, the two-point function is
+%
+\begin{align}
+    C(\bm x)
+    = \E{\delta m(0) \delta m(\bm x)}
+    = \frac{\Xi}{2 K}
+    \int \frac{\dd \bm q}{(2 \pi)^d} \frac{e^{-i\bm q \cdot \bm x}}{\xi^{-2} + q^2},
+\end{align}
+%
+where we have introduced the \emph{correlation length}
+%
+\begin{align}
+    \xi = \sqrt{ \frac{ K }{ a^2 } }.
+\end{align}
+%
+The two-point function measures how correlated the magnetization at two different spatial points, separated by $\bm x$, are.
+The correlation length $\xi$ is the length scale over which this correlation is significant.
+We may see this by taking the two limits of the integral
+%
+\begin{align}
+    C(r) = 
+    \begin{cases}
+        \frac{1}{r^{\frac{d - 2}{2}}} e^{- r / \xi}, & r \gg \xi, \\
+        \frac{1}{r^{d - 2}}, & r \ll \xi.
+    \end{cases}
+\end{align}
+%
+Thus, for distances less than the correlation length, the correlation falls off algebraically, $C \sim r^{2 - d}$, while at longer distances it is exponentially suppressed.
+In other words, when $\xi \sim \sqrt{ |t| }$ is finite, spins are correlated at a scale $\xi$.
+When we approach the critical point $t \rightarrow 0$, the correlation length diverges and the systems becomes \emph{scale free}.
+
+At the critical point, the physics is independent of the microscopic details of the dynamics.
+The large-scale behavior of the system is set by the correlation length, which may be arbitrarily large.
+These are the ideas at the root of the powerful concept of \emph{universality} in physics.
+At a critical point, the only thing that governs the physics of a system is its characteristics like the symmetries, conservation laws and dimensionality, placing it in its universality group, not the specific of the microscopic equation of motion.
+
+A critical point is characterized by a set of critical exponents, which governs how measurable quantities scales with the control parameter.
+Examples are
+%
+\begin{align}
+    |m_0| &\sim |t|^\beta, &
+    \xi & \sim |t|^{-\nu}, &
+    C(r) & \sim r^{d - 2 + \eta}.
+\end{align}
+%
+However, the mean-field predictions that we obtained earlier for these exponents are generally incorrect, because we have neglected the non-linearities in the equation, and we have not taken into account the effects of fluctuations.
+In fact, the one-dimensional Ising model can be solved exactly, and \emph{does not} feature a phase transition at finite temperature.
+In one dimension, there are too few nearest neighbors to keep spins ordered when thermal noise is introduced, and any non-zero temperature results in a finite correlation length.
+
+In the case of the Ising model, the mean-field breaks down for all dimensions lower than its \emph{critical dimension}, $d < d_c = 4$.
+To go beyond the mean field prediction and obtain accurate results for the critical exponents, one has to employ the \emph{Renormalization Group} or RG for short.
+In this method, one explicitly integrates out the short-wavelength dynamics.
+With this, one may derive equations describing how the parameters in the free energy, such as $\alpha$ and $\beta$ above, change as one changes the scale of the theory.
+These are the \emph{Renormalizatio Group Equations}.
+A fixed point in the RG equations means that the parameters do not change, and thus that the corresponding model is scale-free.
+Below we report some of the exponents for the Ising model.
+In 2 dimensions, the Ising model was solved by Lars Onsager in 1944.
+This allows for the computation of exact exponents.
+In 3 dimensions, one has to resort to renormalization or numerics.
+In the table below, we provide some the exponents in various dimensions.
+Thos in 2D are exact, the 3D ones are from numerics, while those above 4D are the mean-field exponents.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{r|c c c}
+        $d$ & 2 & 3 & >4 \\
+        \hline
+        $\beta$ & $1/8$ & $0.3264$ & $1 / 2$ \\
+        $\nu$ & $1$ & $0.6300$ & $1 / 2$ \\
+        $\eta$ & $1/4$ & $0.363$ & $0$
+    \end{tabular}        
+\end{table}
 
 
 \subsection{Continuous symmetry breaking: Goldstone modes and the Mermin-Wagner theorem}
+
+
+Similar ideas also hold for systems out-of-equilibrium when scale-free behavior is present.
+This motivates the classification of active systems in terms of their conservation laws and symmetries.
+The Ising model has the discrete symmetry $s_i \rightarrow -s_i$, in mathematical terms $\mathbb{Z}_2$.
+The equations of motion, and thus all physics, remain unchanged if all spins are flipped upside-down.
+We will now consider spins that are free to rotate around, and not just point up or down so that the spin at each site is represented by a vector $\bm s_i$.
+The corresponding magnetization is also a vector, 
+%
+\begin{align}
+    \bm m = \frac{ 1 }{ N } \E{{\sum}_i \bm s_i}.
+\end{align}
+%
+We still consider the nearest-neighbor interactions, so the energy is
+%
+\begin{align}
+    E = - \frac{1}{2}J \sum_{\E{ij}} \bm s_i \cdot \bm s_j.
+\end{align}
+%
+This energy is invariant under the rotation of all the spins at the same time.
+This symmetry, which in group theory is called a $\mathrm{O}(N)$ symmetry where $N$ is the number of dimensions of the vector being rotated, is continuous.
+
+If we take the Ginzburg-Landau approach, we may write down a low-order expansion of the free energy which is invariant under $ \mathrm{O}(N)$, 
+%
+\begin{align}
+    F = \int \dd \bm x \, 
+    \left(
+        \frac{1}{2} t |m|^2 + \frac{1}{4} |m|^4 + \frac{1}{2} K |\nabla m|^2
+    \right)
+\end{align}
+%
+This free energy has the famous Mexican-hat shape, illustrated below.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.4\textwidth]{chapters/Figures/introduction/mexican.png}
+    \caption{The Mexican-hat potential.}
+    \label{fig: mexican}
+\end{figure}
+
+Here, the gradient term represents a dot-product of both the gradients and the magnetization, $|\nabla m|^2 = \nabla_\alpha m_\beta \nabla_\alpha m_\beta$.
+We now follow the same procedure, leading to the dynamics,
+%
+\begin{align}
+    \partial_t \bm m = - (t + |m|^2) \bm m + K \nabla^2 \bm m,
+\end{align}
+%
+and the steady-state solution
+%
+\begin{align}
+    |m|^2 = 
+    |m_0|^2 
+    =
+    \begin{cases}
+        0, & t > 0 \\
+        |t|, & t < 0 
+    \end{cases}
+\end{align}
+%
+Now, the steady-state solution is picked not from two degenerate minima, but instead from a continuum of degenerate minima.
+The minimizing solution has the form $\bm m_0 = m_0 \hat {\bm u}_\parallel$, where $\hat {\bm u}_\parallel$ is a unit vector spontaneously breaking the rotational symmetry by pointing out a direction int $\bm m$-space.
+
+We then perform a linear perturbation, bu now we must write
+%
+\begin{align}
+    \bm m &= (m_0 + \delta m_\parallel) \hat {\bm u}_\parallel + \delta \bm m_\perp, &
+    \delta \bm m_\perp \cdot \hat {\bm u}_\parallel &= 0.
+\end{align}
+%
+We consider the case where $m_0 = 0$, i.e., $t < 0$.
+The equations of the perturbations, at linear order, is
+%
+\begin{align}
+    \partial_t \delta m_\parallel 
+    & = 
+    2 t \delta m_\parallel + K \nabla^2 \delta m_\parallel + \xi_\parallel, \\
+    \partial_t \delta \bm m_\perp
+    & = K \nabla^2 \delta \bm m_\perp + \xi_\perp.
+\end{align}
+%
+We see that $\delta m_\parallel$ follows a similar equation as for the Ising model, with a correlation length $\xi = \sqrt{ K / 2 |t| }$, while for $\delta \bm m_\perp$ there is seemingly no correlation length.
+$\delta \bm m_\perp$ is therefore a \emph{Goldstone mode}, with infinite correlation.
+In the language of high-energy physics, the modes are massless.
+This results from the spontaneous breaking of a continuous symmetry.
+When this happens, there is no energetic cost associated with a global rotation.
+Consider the Mexican hat, given some direction of symmetry breaking, one can always rotate the corresponding unit vector around the center without incurring an energetic cost.
+
+This, furthermore, implies that the corresponding two-point same-time correlation functions, in Fourier space, have the form
+%
+\begin{align}
+    \hat C(\bm q) = (d - 1)\frac{\eta_\perp}{2 K q^2}.
+\end{align}
+%
+The corresponding real-space correlation functions quantify the typical amplitude of thermal fluctuations.
+By imposing a Lattice size, $a$ and a system size $L$, we get finite limits for our integral and consider the dominant behavior as we approach a continuous system, $a \rightarrow 0$, in the thermodynamic limit, $L \rightarrow \infty$,
+%
+\begin{align}
+    \E{|\delta(\bm x)|^2} = \int \frac{\dd\bm q}{(2 \pi)^d} 
+    \propto \int_{1 / L}^{1/a} q^{d - 3}
+    \sim
+    \begin{cases}
+        L^{2 - d}, & d < 2, \\
+        \ln\frac{L}{a}, & d = 2, \\
+        a^{2 - d}, & d > 2.
+    \end{cases}
+\end{align}
+%
+For $d > 0$, the fluctuations diverge as the lattice spacing goes to zero.
+These are called ultra-violet (UV) divergences because they are divergences due to dynamics at short wave lengths, which for light is the ultra-violet part of the spectrum.
+No statistical-mechanical system, however, has infinitely small units, there is always some small wave-length for which the field theory description breaks down.
+This divergence is therefore unphysical, and something we have to regularize our theory to deal with.
+For $d < 2$, however, the fluctuations diverge in the thermodynamic limit where the system size becomes infinite.
+These are called infra-red (IR) divergences, as they are due to the large-wavelength dynamics.
+This is exactly the regime where we are hoping our model is a good description and not something we can sweep under the rug.
+In $d = 2$, the lower critical dimension for the $\mathrm{O}(N)$ model, the theory diverges both in the IR and the UV.
+
+The IR divergence is a physical prediction.
+What it tells us is that our assumption of a state that is mostly ordered, with small fluctuations $\bm m = \bm m_0 + \delta \bm m $ is wrong.
+In fact, for $d \leq 2$, there cannot be long-range order.
+This is an instance of the \emph{Mermin-Wagner theorem}, which states that there cannot be spontaneous breaking of a continuous symmetry in dimension $d = 2$ or lower.
