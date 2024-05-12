@@ -1,8 +1,8 @@
 \label{chapter: introduction}
 
-These are lecture notes from the Active Matter course held at Göttine University in the summer semester.
+These are lecture notes from the Active Matter course held in the summer semester of 2024 at the University of Göttingen.
 The lectures are by Benoît Mahault and Ramin Golestanian of the Max Planck Insitute of Dynamics and Self-Organization, featuring a range of guest lecturers, and the notes are typeset by Martin Kjøllesdal Johnsrud.
-The notes meant to give a short introduction to the Active Matter course, and present some background material in the form of concepts and mathematical tools that are often used to apprehend active systems.
+The notes meant to give a short introduction to the field of Active Matter Physics, and present some background material in the form of concepts and mathematical tools used to study active systems.
 
 % Handwritten page I 
 
@@ -22,6 +22,7 @@ As widely accepted definition of active matter consists to say that it is made o
 
 
 % Handwritten page II
+Some examples of active systems are:
 
 \begin{itemize}
     \item Enzymes, molecular motors (nm): Enzymes (E) catalyze chemical reactions of a substrate (S),
@@ -380,7 +381,7 @@ First, we apply a simple mean-field analysis and assume that the value of each s
 Then,
 %
 \begin{align}
-    s_i  ks_j = m^2 + m(\delta s_i + \delta s_j) + \Oh(\delta s^2)
+    s_i  s_j = m^2 + m(\delta s_i + \delta s_j) + \Oh(\delta s^2)
     \approx m(s_i + s_j - m).
 \end{align}
 %
@@ -471,7 +472,7 @@ where $\alpha \approx N K_B T_c$ and $\beta \approx N k_B T_C / 3 \approx \alpha
 This is the ``Bulk free energy density''.
 The full free energy is the integral of this density, plus a term that takes into account the cost of gradients.
 The lowest order term which is invariant under spatial orientations, which we must have as this is a symmetry of the microscopic dynamics, is $|\nabla m|^2$.
-Combining these terms together gives us the Ginzburg-Landau free energy functional\footnote{\emph{Functional}, not function, as this is a function of a function $m(\bm x)$. This means derivatives $\odv{}{M}$ now becomes functional derivatives, $\fdv{}{m(\bm x)}$.}
+Combining these terms together gives us the Ginzburg-Landau free energy functional\footnote{\emph{Functional}, not function, as this is a function of a function $m(\bm x)$. This means derivatives $\odv{}{m}$ now becomes functional derivatives, $\fdv{}{m(\bm x)}$.}
 %
 \begin{align}
     F[m] = \int \dd \bm x 
