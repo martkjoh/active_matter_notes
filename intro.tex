@@ -1,8 +1,9 @@
 \label{chapter: introduction}
 
 These are lecture notes from the Active Matter course held in the summer semester of 2024 at the University of Göttingen.
-The lectures are by Benoît Mahault and Ramin Golestanian of the Max Planck Insitute of Dynamics and Self-Organization, featuring a range of guest lecturers, and the notes are typeset by Martin Kjøllesdal Johnsrud.
-The notes meant to give a short introduction to the field of Active Matter Physics, and present some background material in the form of concepts and mathematical tools used to study active systems.
+The lectures are organized by Benoît Mahault and Ramin Golestanian of the Max Planck Insitute of Dynamics and Self-Organization, featuring a range of guest lecturers: Yuto Hosaka, Luca Cocconi, Suropriya Saha, Gennaro Tucci, Giulia Pisegna, and Navdeep Rana. 
+The notes are typeset by Martin Kjøllesdal Johnsrud.
+These notes are meant to give a short introduction to the field of Active Matter Physics, and present some background material in the form of concepts and mathematical tools used to study what is known as \textit{active matter}.
 
 % Handwritten page I 
 
@@ -11,7 +12,7 @@ The notes meant to give a short introduction to the field of Active Matter Physi
 
 \todo[inline]{Re-draw figures}
 
-As widely accepted definition of active matter consists to say that it is made of elementary units that locally dissipate energy in a continuous and sustained manner. Hence, the dynamics of active particles break time-reversal symmetry, \textit{it is inherently far from thermodynamic equilibrium}. In many cases, activity manifests as persistent motion, but can also take the form of local production of forces, sustaining of chemical reactions, growth (reproduction), or several of them at the same time. This definition is very broad and encompasses a multitude of biological examples spanning many scales:
+A general definition of active matter consists to say that it is made of elementary units that locally dissipate energy in a continuous and sustained manner. Hence, the dynamics of active particles break time-reversal symmetry, \textit{it is inherently far from thermodynamic equilibrium}. In many cases, activity manifests as persistent motion, but can also take the form of local production of forces, sustaining of chemical reactions, growth (reproduction), or several of them at the same time. This definition is very broad and encompasses a multitude of biological examples spanning many scales:
 
 \begin{figure}[!htb]
     \centering
@@ -31,24 +32,25 @@ Some examples of active systems are:
         E + S \longrightarrow  \underbrace{SE}_{\mathrm{binding}} \longrightarrow  E + P
     \end{align}
     %
-     and thus locally generate chemical gradients, $\bm \nabla P$. 
+     and thus locally sustains chemical gradients $\bm \nabla S$ and $\bm \nabla P$ of its substrate and product. 
      \begin{figure}[H]
         \centering
         \includegraphics[width=.3\textwidth]{Figures/introduction/enzymes.png}
-        \caption{The energy landscape for the chemical reaction is modified by the }
+        \caption{A sketch of how an enzyme works. By its presence, the enzyme lowers the effective free energy barrier associated with the $S \to P$ reaction. In the case where a constant supply of substrate is provided, the effect of the enzyme will therefore materialize in the production of chemical currents in some reaction coordinate space.}
         \label{fig: enzymes}
     \end{figure}
-     Molecular motors couple chemical cycles to displacements or rotations, so that these molecular machines can exhibit self-propulsion.\\
+     Molecular motors are a particular kind of enzyme for which chemical cycles are coupled to displacements or rotations, so that these molecular machines can perform work that materialize, e.g., as self-propulsion.\\
      \includegraphics[width=.3\textwidth]{Figures/introduction/motors.png}
     \item Bacteria, cells ($\mu$m): Bacteria and algae usually move thanks to filamentous appendices called flagella or cilia, which are powered by molecular motors.
+    Thanks to their internal machinery, these organisms are therefore able to displace the fluid around them, resulting in a self-propelled motion.
     \\
     \includegraphics[width=.3\textwidth]{Figures/introduction/bacteria.png} 
     \\
-    Another example is cells that self-propel on the substrate by polymerizing actin filaments at their front.
+    Another example of self-propulsion at the micrometer scale can be found in some types of cells that are able to glide on substrates by performing cycles of polymerization and depolymerization of actin filaments.
     \\
     \includegraphics[width=.25\textwidth]{Figures/introduction/actin.png}
-    \item Insect swarms (mm)
-    \item Animal herds, human crowds (m)
+     
+    \item Many familiar examples of active entities are found at larger scales, this incluces e.g.  insect swarms at the millimeter scale, and animal herds or human crowds at (roughly) the meter scale.
 \end{itemize}
 
 
@@ -56,12 +58,13 @@ Some examples of active systems are:
 
 \subsection{What makes active matter special?}
 
-Active systems, because they constantly dissipate energy in their bulk, and in contrast to passive systems globally driven (turbulence, shaken granulars, \ldots), are able to spontaneously self-organize and create macroscopic structures. 
+Active systems, because they constantly dissipate energy at the level of their elementary constituents, and in contrast to passive systems globally driven (relevant examples are turbulence, shaken granulars, \ldots), are able to spontaneously self-organize and create macroscopic structures. 
 Again, these ideas are relevant to many examples in the living world including the architecture of the cytoskeleton, the morphogenesis of multicellular organisms, or the collective motion arising from social interactions in groups of several hundred or thousands of individuals. 
 
 Active matter is also not restricted to the study of biological systems, as the design and study of synthetic active particles now represent a large part of the field. Those allow for better controlled experiments and often exhibit similar phenomenology as their biological counterpart, thus opening the way to biomimetic materials engineering. 
-\todo[noinline]{Notorious? isn't that a bit negative?}
-Notorious examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.\todo[noinline]{Give ref}
+Famous examples of artificial active matter include assemblies of self-propelled colloids (Phoretic Janus particles, so-called Quincke rollers), artificial microswimmers (self-propelled drops, magnetic swimmers), and robots.
+\todo[noinline]{Give ref
+BM: I propose to refer to some review here.}
 
 \begin{figure}[!htb]
     \centering
@@ -74,38 +77,36 @@ Notorious examples of artificial active matter include assemblies of self-propel
 
 \subsection{On the nonequilibriumness of active assemblies}
 
-As written above, active matter is inherently `far' from equilibrium, since it is assembled from particles whose dynamics constantly break time-reversal symmetry. This means that active systems lack many of the properties familiar to equilibrium systems. These include:
+As written above, active matter is inherently `far' from equilibrium, since it is assembled from particles whose dynamics constantly break time-reversal symmetry. This means that active systems lack most of the properties on which our intuition of systems in equilibrium is based. These include:
 %
 \begin{enumerate}
-    \item Absence of minimization principle: active dynamics are not constrained by the second law, so that they do not converge over long times to a state with maximal entropy (or minimum free energy). In fact, whether an active system converges to a steady state or not is a priori unknown.
-    \item No time-reversal symmetry: as a consequence of 1, active systems can (and do) generally produce macroscopic currents, leading to phases where TRS is collectively broken.
-    \item Lack of thermodynamic framework: Basic equilibrium concepts such as temperature or thermodynamic pressure are usually not defined for active systems. Additionally, active systems generally do not exhibit an equation of state, meaning that their bulk properties are not only determined by their material properties but can also be substantially affected by the nature and shape of the container they live in.
-    \item Memory: again, due to 1 and contrary to systems at equilibrium, the state of an active system may be dependent of its past history.
-    \item In active matter, momentum is not conserved so forces do not necessarily need to satisfy the action-reaction principle. Familiar examples of such `nonreciprocity' are encountered in predator-prey systems, while it also generally arises when particles interact via self-generated fields such as bacteria or phoretic colloids.
+    \item \textit{Absence of minimization principle:} active dynamics are not constrained by the second law of thermodynamics, so that they do not converge over long times to a state of maximal entropy (or minimum free energy). In fact, there is no general argument telling us whether the dynamics of a many-body active system converges to a steady state or not.
+    \item \textit{No time-reversal symmetry (TRS):} as a consequence of 1, active systems can (and do) generally produce macroscopic currents, leading to phases where TRS is collectively broken.
+    \item \textit{Lack of a thermodynamic framework:} Basic equilibrium concepts such as temperature or thermodynamic pressure are usually not defined for active systems. Additionally, active systems generally do not exhibit an equation of state, meaning that their bulk behavior is not only determined by their material properties, but can also be substantially affected by the nature and shape of the container they live in.
+    \item \textit{The presence of memory:} again due to 1, and contrary to systems at equilibrium, the state of an active system may be dependent of its past history.
+    \item \textit{Emergence of nonreciprocal couplings:} In active matter, momentum is not conserved so forces do not necessarily need to satisfy the action-reaction principle. Familiar examples of such `nonreciprocity' are encountered in predator-prey dynamics, while it also generally arises when particles interact via self-generated fields such as bacteria or phoretic colloids.
 \end{enumerate}
 %
-In summary, the collective behaviors found in active systems thus generally break our intuition built on equilibrium physics, and their theoretical understanding requires to use and develop specifically tailored tools and concepts.
-In particular, we will construct field theory descriptions of active systems, such as irreversible thermodynamics and perform coarse-graining using kinetic theory.\todo[noinline]{Is this right?}
+In summary, the collective behaviors found in active systems thus generally break our intuition built on equilibrium physics, and their theoretical understanding requires to use and develop tools and concepts specifically tailored to address nonequilibrium dynamics.
+In the following lectures, we will in particular see how field theory descriptions of active systems can be obtained phenomenologically from the framework of irreversible thermodynamics, as well as by coarse-graining microscopic models using tools borrowed from kinetic theory.
 
 
 % Handwritten Page IV
 
 \subsection{The idea of this course}
 
-Active matter is very large and quickly developing field borrowing tools and concepts from various other areas of physics including soft matter, biological physics, hydrodynamics, and statistical physics. So, this course is only meant as an introduction to the basics of the very diverse phenomenology of active systems, and how it is usually apprehended. In particular, our journey will be driven by two general aspects which are still the topic of active research:
+Active matter is very large and quickly developing field, borrowing tools and concepts from various other areas of physics including soft matter, biological physics, hydrodynamics, and statistical physics. Hence, this course is only meant as an introduction to the basics of the very diverse phenomenology found in active systems, and how it is usually apprehended. In particular, our journey will be driven by two general aspects which are still the topic of ongoing research:
 \begin{itemize}
     \item How is active motion generated at the micro scale, and what are its consequences on the dynamics of active particles?
     \item How do active systems convert energy dissipated at the molecular scale into the formation of structure and order macroscopic scales?
 \end{itemize}
-These two lectures is meant to give an overview of the topic that will be addressed in the following weeks, while we will also introduce useful concepts and mathematical tools.
-
-
+These two lectures are meant to give an overview of the topics that will be addressed in the following lectures, while we will also introduce physics concepts and mathematical tools that will be useful later.
 
 % Handwritten page V
 
 \section{Hydrodynamics of microswimmers}
 
-Many active particles evolve in a fluid, which they need to displace in order to move. Understanding the locomotion of such swimmers thus requires to study the dynamics of the flow around them. The fluid surrounding the particles is generally incompressible so that it is defined by its local velocity $\bm v$ which obeys the Navier-Stokes equations:
+Many (if not most) active particles evolve in a fluid, which they need to displace in order to move. Understanding the locomotion of such swimmers thus requires to study the dynamics of the flow around them. The fluid surrounding the particles is generally incompressible, so that it is defined by its local velocity $\bm v$ which obeys the Navier-Stokes (NS) equations:
 %
 \begin{subequations}
 \label{eq_NS}
@@ -118,7 +119,7 @@ Many active particles evolve in a fluid, which they need to displace in order to
 \end{subequations}
 %
 The terms on the left-hand side of~\eqref{eq_NS_v} correspond to the material derivative and simply model the effect of inertia, while on the right-hand side the first term originates from viscous dissipation, the second is the pressure which ensures incompressibility as required by~\eqref{eq_NS_inc}, while the active force $\bm f$ arises as a source term.
-In cases dominated by inertia or dissipation, the NS Eq.~\eqref{eq_NS} simplifies. To understand this, let us define the typical length and velocity scales of the problem, $L$ and $V$, and apply the following rescaling:
+In cases dominated by inertia or dissipation, the NS Eq.~\eqref{eq_NS} simplifies. To understand this, let us define the typical length and velocity scales of the problem, $L$ and $V$, and apply the following rescalings:
 %
 \begin{equation*}
     \bm v \to V \bm v', \quad
@@ -128,21 +129,21 @@ In cases dominated by inertia or dissipation, the NS Eq.~\eqref{eq_NS} simplifie
     \bm f \to \frac{\eta V}{L^2} \bm f'.
 \end{equation*}
 %
-We obtain the following equation in terms of the dimensionless primed variables
+We then obtain the following equation in terms of the dimensionless primed variables
 %
 \begin{equation}
     {\rm Re}\left[ \partial_{t'} \bm v' + (\bm v' \cdot \nabla')\bm v' \right] = \nabla'^2\bm v' - \nabla' P' + \bm f',
 \end{equation}
 %
-where ${\rm Re} = \rho V L / \eta$ is known as the Reynolds number. 
-Alternatively, note that the Reynolds number can be obtained by the ratio of the typical scales associated with the convection ($\bm v\cdot \nabla \bm v$) and dissipation ($\eta\nabla^2\bm v$) in the Navier-Stokes equation. 
+where the dimensionless quantity ${\rm Re} = \rho V L / \eta$ is known as the Reynolds number. 
+Alternatively, note that the Reynolds number can be obtained by taking the ratio of the typical scales associated with the convection ($\bm v\cdot \nabla \bm v$) and dissipation ($\eta\nabla^2\bm v$) terms in the Navier-Stokes equation. 
 Hence, the value of the Reynolds number controls the relative importance of inertial effects and viscous dissipation.
 For a micron-sized swimmer in water such as bacteria, we can evaluate $\rho \approx 10^3 \; {\rm kg / m^3}$, $\eta \approx 10^{-3} \; {\rm Pa \cdot s}$,
 $V \approx 10^{-5}\; {\rm m/s}$, and $L \approx 10^{-6} \; {\rm m}$, such that ${\rm Re} \approx 10^{-5}$.
 %
 % Handwritten page VI
 %
-\textit{Microswimmers therefore evolve at vanishing Reynolds number} where inertial effects are negligible. 
+\textit{Microswimmers, therefore, live in a world at basically zero Reynolds number} where inertial effects are negligible. 
 Their dynamics then evolve in the so-called Stokes regime, 
 such that the flow they generate obeys the Stokes equation:
 %
@@ -158,7 +159,7 @@ such that the flow they generate obeys the Stokes equation:
 %
 Contrary to the Navier-Stokes equation, Eqs.~\eqref{eq_Stokes} do not have time derivatives and are linear.
 The flow velocity $\bm v$ only therefore only depends on the instantaneous value of the force $\bm f$ (there is no inertia), and it varies linearly with it\footnote{By taking the divergence of~\eqref{eq_Stokes_v}, you can convince yourself that the pressure is also a linear function of the force.}. 
-An important consequence of these features is that is that Stokes flow obey kinematic reversibility, meaning that they obey the symmetry
+An important consequence of these features is that is that Stokes flow obey kinematic reversibility, meaning that they satisfy the symmetry
 %
 \begin{equation*}
     \bm f \rightarrow -\bm f, \qquad \bm v \rightarrow -\bm v.
@@ -174,32 +175,35 @@ One important consequence of this is the \emph{scallop theorem}, which states th
     \label{fig: scallop}
 \end{figure}
 
-The name comes from an example of reciprocal motion, a scallop opening and closing its shell
-Self-propulsion therefore requires at least 2 independent degrees of freedom (d.o.f.)\todo[noinline]{I think this is not a good statement, unless dof is well defined}
-Examples of this are swimmers with a corkscrew flagella or breast-stroke-like motion.
-Such swimmers are force and torque-free, as the net forces/torques from the flagella and the drag adds up to zero.
+The name comes from an example of reciprocal motion, a scallop opening and closing its shell.
+A nonzero net self-propulsion therefore requires 
+for the active particle to perform what is known as nonreciprocal cycles in some configuration space.
+\todo[noinline]{BM: we should add a schematics here.}
+The solutions nature has found to overcome this problem include rotating a bundle of helical flagella, as is done by \textit{E. coli}, or using two independent degrees of freedom allowing, e.g., to perform breast-stroke-like motion, as is done by \textit{Chlamydomonas}. 
 
-
+%at least 2 independent degrees of freedom (d.o.f.) Examples of this are swimmers with a corkscrew flagella or breast-stroke-like motion.
+Another consequence of the absence of inertia in the Stokes regime is that the swimmers cannot experience any net force or torque (the Stokes equation corresponding to a balance of momentum).
+Hence, the force and torque generated by the flagella of the swimmers shown in Fig.~\ref{fig: swimmers} must be compensated by the drag their body exerts on the fluid\footnote{Assuming that the drag coming from the flagella can be neglected.}. 
+Hence, in the far field most microswimmers can essentially be seen as force and/or torque dipoles, whose nature will depend on how they locally displace the fluid.\todo[noinline]{BM: Clear? Maybe need to rephrase in a better way...}
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.5\textwidth]{Figures/introduction/swimmers.png}
-    \caption{Two examples of microswimmers}
+    \caption{Two examples of microswimmers showing the so-called \textit{pusher} and \textit{puller} configurations.}
     \label{fig: swimmers}
 \end{figure}
 
-
-
-
+We have therefore seen that generating active motion at microscopic scales is far from being a simple task. The design and characterization of microscimmer self-propulsion mechanisms is in fact an active area of research. 
+In lecture 3, we'll discuss microswimmers hydrodynamics in more details.
 
 % handwritten page VII
 
 \section{A minimal model for active motion}
 
 
-In the previous section, discussed by which mechanism active motion can arise (in the nontrivial context of microswimmers).
-Here, we will be rather ask the question of what the consequences of the presence of a self-propulsion speed on the dynamics of an active particle are.
-For this, assume that a particle is able to self-propel but we won't particularly focus on the details of its self-propulsion mechanism.
+In the previous section, we discussed by which mechanism(s) active motion can arise in the context of microswimmers.
+Here, we will be rather ask a different question: what are the consequences of the presence of a self-propulsion speed on the dynamics of an active particle?
+For this, we will model our swimmer/crawler/glider as an abstract `particle', and assume that it is able to sustain a finite self-propulsion velocity, but we won't be interested in the details of how this self-propulsion is realized.
 
 
 \subsection{Some basics on Brownian motion}
@@ -207,14 +211,14 @@ For this, assume that a particle is able to self-propel but we won't particularl
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.25\textwidth]{Figures/introduction/brownian.png}
-    \caption{A Brownian particle is constantly and randomly interacting with smaller particles.}
+    \caption{A Brownian particle is constantly interacting with the solvent molecules, resulting in an a priori erratic motion.}
     \label{fig: brownian}
 \end{figure}
 
-Before discussing active motion, let us give a brief recap on the theory of Brownian motion.
-Consider a micron-sized particle in a fluid at temperature $T$. 
-The particle constantly undergoes collisions with the fluid molecules, and its mass is low enough that the results of such collisions result in visible erratic dynamics known as Brownian motion.
-The dynamics of the particle is described by the \emph{Langevin equation}
+Before discussing active motion, let us give a brief recap on the theory of the motion of Brownian (dead) particles.
+Consider a micron-sized particle (e.g. a grain of polen, a colloid, etc..) in a fluid maintained at temperature $T$. 
+The particle constantly undergoes collisions with the fluid molecules, and its mass is low enough so that such collisions result in an apparent erratic dynamics known as Brownian motion.
+The dynamics of the particle can be modeled by the \emph{Langevin equation}
 %
 \begin{equation} \label{eq_LangevinBM}
     m\frac{\rmd^2 \bm r}{\rmd t^2} + \zeta \frac{\rmd \bm r}{\rmd t} = \bm f(t).
@@ -222,38 +226,45 @@ The dynamics of the particle is described by the \emph{Langevin equation}
 %
 Equation~\eqref{eq_LangevinBM} is nothing but Newton's second law, so that the first term on the left hand side represents the acceleration of the particle multiplied by its mass, and the second term accounts for the Stokes friction exerted by the fluid in response to the motion of the particle.
 In fact, the ratio of the particle mass and friction coefficient defines a timescale $\tau = m / \zeta$ beyond which inertial effects can be neglected.
-For a micron-size sphere with a density comparable to that of water, we have
+For a micron-sized sphere with a density comparable to that of water, we have
 %
 \begin{equation*}
     \tau = \frac{\rho \tfrac{4\pi}{3} R^3}{6 \pi \eta R} 
     = \frac{2\rho R^2}{9\eta} \approx 0.2 \; \mu{\rm s}.
 \end{equation*}
 %
-Hence, for observation times beyond the micro-second inertial effects can generally be safely neglected so that we can neglect the interaction term in~\eqref{eq_LangevinBM}, which can be expressed in this overdamped limit as
+For observation times beyond the micro-second, inertial effects can therefore be safely neglected. Hence, we will neglect the inertial term in~\eqref{eq_LangevinBM}, which can be re-expressed in this so-called overdamped limit as
 \begin{equation} \label{eq_LangevinBM_ovd}
     \frac{\rmd \bm r}{\rmd t} = \frac{1}{\zeta}\bm f(t).
 \end{equation}
 %
-The force $\bm f$ arises from the multiple collisions that the particle undergoes with the solvent molecules. 
+The force term $\bm f$ is meant to model the large number of collisions that the particle undergoes with the solvent molecules, and is thus stochastic in nature.
 Under the approximation that these collisions are isotropic, identically distributed and uncorrelated random events, we can use the central limit theorem to approximate the distribution of the stochastic process $\bm f$ by a normal distribution with zero mean and variance $\sigma$.
-Namely, denoting averages with independent realizations of the noise with the notation $\langle \cdot \rangle$, the first two moments of the components of $\bm f$ read
+Namely, denoting averages with independent realizations of the noise with the notation $\langle \cdot \rangle$, the first two moments that fully characterize the distribution read
 \begin{equation*}
     \langle f_i(t) \rangle = 0, \qquad
     \langle f_i(t) f_j(t') \rangle = \sigma^2 \delta_{ij}\delta(t - t').
 \end{equation*}
 
-Equation~\eqref{eq_LangevinBM_ovd} can be easily solved as
+Equation~\eqref{eq_LangevinBM_ovd} can be easily solved by integration, which leads to
 \begin{equation*}
-    \Delta \bm r(t) = \bm r(t) - \bm r(t=0) = \frac{1}{\zeta} \int_0^t\rmd\tau \bm f(\tau).
+    \Delta \bm r(t) \equiv \bm r(t) - \bm r(t=0) = \frac{1}{\zeta} \int_0^t\rmd\tau \bm f(\tau).
 \end{equation*}
-Solution implies that $\langle \Delta \bm r(t) \rangle = \bm 0$ and $\langle |\Delta \bm r(t)|^2 \rangle = 2 d \sigma^2 / \zeta^2 t$.
-Two main features of Brownian motion (diffusion): no net motion and Mean-Squared Displacement (MSD) grows linearly in time (diffusion coefficient is $D = \sigma^2 / \zeta^2$).
-Additionally, the fluctuation-dissipation relation relates $D$ to the solvent temperature as $D = k_{\rm B}T / \zeta$. The signification of this relation is that the damping friction and fluctuations come from the same medium.
+Taking averages over the noise, this solution implies in particular that 
+\begin{equation} \label{eq_BM_moments}
+    \langle \Delta \bm r(t) \rangle = \bm 0, \qquad 
+    \langle |\Delta \bm r(t)|^2 \rangle = 2 d \sigma^2 / \zeta^2 t,
+\end{equation}
+where $d$ is the number of spatial dimensions.
+Equation~\eqref{eq_BM_moments} summarizes the two main features of Brownian (or diffusive) motion : it is associated with no net motion, and leads to a mean-squared displacement (MSD) linear in time.
+The quantity $D = \sigma^2 / \zeta^2$ corresponds to the diffusion coefficient of the particle.
+Since both the viscous drag and stochastic force in~\eqref{eq_LangevinBM_ovd} originate from interactions between the particle and the solvent, the diffusion and friction coefficients are related by Einstein relation as $D = k_{\rm B}T / \zeta$.
+This relation belongs to a more general class of equalities known as fluctuation-dissipation relations, and which are a hallmark of equilibrium (or near-equilibrium) dynamics.
 
 % Hand written page VIII
 
-This problem is sufficiently simple so that one can obtain the full distribution of the particle position. 
-For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$, which obeys the Fokker-Planck equation \todo[noinline]{Explain this more?}
+In fact the problem of overdamped Brownian motion is sufficiently simple so that one can determine the full statistics of the particle displacement. 
+For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$ as the distribution of the particle position, which obeys the Fokker-Planck equation\footnote{A simple way to demonstrate Eq.~\eqref{eq_FP_BM} is to take the time derivative of $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$, and use Ito's lemma to expand the delta distribution.}
 %
 \begin{equation} \label{eq_FP_BM}
     \partial_t \calP(\bm x,t) - D \nabla^2 \calP(\bm x,t) = 0.
@@ -263,43 +274,41 @@ Assuming that the particle sits at $\bm x = \bm 0$ at time $t=0$, the solution o
 \begin{equation*}
     \calP(\bm x,t) = \frac{1}{(4\pi D t)^{d/2}}e^{-\tfrac{|\bm x|^2}{4 D t}}.
 \end{equation*}
-We notice that the mean of the distribution is at $\bm x = \bm 0$ at all times and that the width, i.e. the standard distributions, grows as $\sqrt{t}$.
+We note that the mean of the distribution is at $\bm x = \bm 0$ at all times and that the width, i.e. the standard deviation, grows as $\sqrt{t}$ consistently with~\eqref{eq_BM_moments}.
 
 
 \textit{
     {\bf Homework:} Consider a Brownian particle in a potential $U$, write the associated Fokker-Planck equation. Show that the stationary solution corresponds to the Boltzmann distribution.
-For a harmonic potential $U = \tfrac{1}{2} k |\bm x|^2$, the solution of the FPE is given by 
+For a harmonic potential $U = \tfrac{1}{2} k |\bm x|^2$, the time dependent solution of the FPE with initial condition $\calP(\bm x,0) = \delta(\bm x)$ is given by 
 \begin{equation*}
     \calP(\bm x,t) = \left(\frac{\lambda}{2\pi D (1 - e^{-2\lambda t})}\right)^{d/2}e^{-\tfrac{\lambda}{2 D} \tfrac{|\bm x|^2}{1 - e^{-2\lambda t}}},
 \end{equation*}
 with $\lambda = k / \zeta$.
-Calculate mean displacement and MSD, comment.
+Calculate the mean and MSD, comment.
 }
-
-
 
 \subsection{Active Brownian motion}
 
-Although we described the dynamics of a passive particle in the previous section, the Langevin description approach does not a priori assume that the particle is in equilibrium. 
-Hence, we can straightforwardly generalize it by assuming that the particle is able to self-generate a force leading to an active velocity $\va$. 
+Although the previous section was devoted to the description of the dynamics of a passive particle, the Langevin equation~\eqref{eq_LangevinBM_ovd} does \textit{a priori} not assume that the particle is in equilibrium. 
+Hence, we can straightforwardly generalize it by assuming that the particle is able to self-generate a force leading to an active velocity $\va(t)$. 
 Therefore, Equation~\eqref{eq_LangevinBM_ovd} now becomes
 \begin{equation}\label{eq_LangevinABM}
-    \frac{\rmd \bm r}{\rmd t} = \va + \frac{1}{\zeta}\bm f(t).
+    \frac{\rmd \bm r}{\rmd t} = \va(t) + \frac{1}{\zeta}\bm f(t).
 \end{equation}
-To fully characterize the dynamics, we now need to specify how $\va$ evolves in time. 
-Self-propelled motion can in fact arise in various ways, but what we argue below is that its most important feature is that $\va$ introduces a finite persistence length in the particle motion.
+To fully characterize the dynamics, we now need to specify how $\va(t)$ evolves in time. 
+As we have seen previously, self-propelled motion can arise in various ways, but what we argue below is that its most important feature is that the stochastic process $\va$ introduces a finite persistence length in the particle motion.
 
-For example, the dynamics of bacteria like \textit{E. coli} consists of alternating sequences of `run' and `tumble', respectively corresponding to persistent motion along a fixed direction and random reorientations. 
-Other active swimmers like self-propelled colloids, on the other hand, follow smooth trajectories as their direction of motion slowly diffuses in time due to thermal fluctuations.
+For example, the dynamics of bacteria like \textit{E. coli} consists of randomly alternating sequences of `run' and `tumble', respectively corresponding to straight motion along a fixed direction and random reorientations. 
+Other active swimmers like self-propelled colloids, on the other hand, follow smooth trajectories as their self-propulsion direction slowly diffuses over time due to fluctuations.
 In both cases, defining the typical particle velocity as $v_0$ and reorientation time $\tau_r$, the persistence length can be built from dimensional analysis as $\lp = v_0 \tau_r$.
-Physically, this means that on length scales below $\lp$ the active particle exhibits ballistic motion with a speed $\approx v_0$, while on scales $\gg \lp$ its direction of motion has randomized and its overall dynamics is diffusive. 
+Physically, this means that on length scales below $\lp$ the active particle exhibits ballistic motion with a speed $\approx v_0$, while on scales $\gg \lp$ its direction of motion has randomized and we expect its overall dynamics to be diffusive. 
 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.2\textwidth]{Figures/introduction/runandtumble.png}
     \includegraphics[width=.2\textwidth]{Figures/introduction/smooth.png}
-    \caption{Run and tumble versus smooth trajectories of self-propulsion}
+    \caption{Run and tumble versus smooth active trajectories resulting from different modes of self-propulsion.}
     \label{fig: run and tumble vs smooth}
 \end{figure}
 
@@ -309,7 +318,7 @@ As a minimal model of active velocity, we can thus simply assume that the partic
 \end{equation}
 
 
-We then immediately deduce that, assuming the noise of the orientation and force is independent,
+We then immediately deduce that, under the assumption that the active and Brownian noises are independent,
 \begin{align}
     \langle |\Delta \bm r(t)|^2 \rangle & = 2 d D t 
     + v_0^2 \int_0^t\rmd\tau_1\int_0^t\rmd\tau_2 \, e^{-|\tau_1-\tau_2|/\tau_r} \nonumber \\
@@ -317,7 +326,8 @@ We then immediately deduce that, assuming the noise of the orientation and force
     + 2 \lp^2 \left( \frac{t}{\tau_r} - 1 + e^{-t/\tau_r} \right).
 \end{align}
 %
-This has two limiting regimes, much smaller and much larger times than the reorientation time,
+This expression can be simplified by considering the limiting regimes $t \gg \tau_r$ and $t \ll \tau_r$,
+which respectively give
 %
 \begin{align*}
     \langle |\Delta \bm r(t)|^2 \rangle & 
@@ -326,13 +336,20 @@ This has two limiting regimes, much smaller and much larger times than the reori
     \underset{t \gg \tau_r}{\simeq} 2 d D_{\rm eff} t , \qquad  D_{\rm eff} = D + \frac{v_0^2\tau_r}{d}. 
 \end{align*}
 %
-This corresponds to three dynamical regimes, with thermal diffusion at short times ($t < 2 d D / v_0^2)$, ballistic dynamics at intermediate times ($2 d D / v_0^2 < t < \tau_r)$ and diffusive motion at long times $t > \tau_r$. 
-This confirms the qualitative picture drawn earlier, and is illustrated in \autoref{fig: MSD}.
+The active particle MSD therefore highlight three dynamical regimes shown in Fig.~\ref{fig: MSD}:
+\begin{itemize}
+    \item Thermal diffusion dominates at short times ($t \ll 2 d D / v_0^2)$.
+    \item At intermediate times ($2 d D / v_0^2 \ll t \ll \tau_r)$, activity contributes and motion is ballistic with a typical speed $v_0$.
+    \item At long times ($t \gg \tau_r$) the self-propulsion direction has randomized, resulting in a diffusive motion with an enhanced diffusion coefficient.
+\end{itemize} 
+
+Due to the finite correlation time of its self-propulsion orientation, the long-time dynamics of an active particle is therefore ``Brownian-like'' (i.e. diffusive).
+However, the associated effective diffusion coefficient $D_{\rm eff}$ does not satisfy the fluctuation-dissipation relation, which is a clear signature that the dynamics is out-of-equilibrium.
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.6\textwidth]{Figures/introduction/crossover.png}
-    \caption{The mean-square displacement for different regimes}
+    \caption{The mean-square displacement of an active Brownian particle showing the three dynamical regimes discussed in the main text.}
     \label{fig: MSD}
 \end{figure}
 
@@ -345,163 +362,198 @@ This confirms the qualitative picture drawn earlier, and is illustrated in \auto
 
 \section{Phase transitions and critical phenomena}
 
-Phase transition is a central concept in active matter.
-One important example is the flocking transition, where directed units spontaneously choose a direction to align in and move together as a flock.
-This is the Active Matter version of the ordering transition in the Ising model, in which spins align in the case of a ferromagnet or anti-align in the case of an anti-ferromagnet.
-Here, we will review some basic features of the theories of phase transitions at equilibrium, and introduce tools that we apply in the context of Active matter.
+The concept of phase transition plays a central role in the study of active systems.
+A prominent example the emergence of flocking behavior which we will study in more details in Chapter~\ref{}, where directed units spontaneously choose a direction to align in and move together as a flock.
+This phenomenon can be conceptually interpreted as a nonequilibrium phase transition, where rotational symmetry is spontaneously broken.
+In some sense, flocks therefore correspond to an active version of ferromagnetic materials, where spins do not sit on the sites of a lattice but can freely move.
+%This is the Active Matter version of the ordering transition in the Ising model, in which spins align in the case of a ferromagnet or anti-align in the case of an anti-ferromagnet.
+In this section, we will therefore review some of the basic features of the theories of phase transitions at equilibrium, and introduce tools that will be useful in the context of active matter.
 
 
 
 \subsection{A simple example: the Ising model}
 
 One of these important features of phase transitions is that they are associated with the notion of scale-invariance.
-A minimal example of this is the Ising model.
-Take $N$ spins, $s_i = \pm 1$ on a lattice, whose energy is given by
+The simplest illustration of this can be obtained by analyzing the Ising model.
+We thus consider $N$ spins, $s_i = \pm 1$ on a lattice, and define an energy function as
 %
-\begin{align}
+\begin{align} \label{eq_energy_Ising}
     E = - \frac{1}{2}J \sum_{\E{ij}} s_i s_j.
 \end{align}
 %  
-Here, $\E{ij}$ indicates that the sum is first over all $i\in\{1...N\}$, then all nearest negihbours $j$ of $i$.
-The partition function, a sum over all possible configurations $\{s_i\}$, is
+Here, $\E{ij}$ indicates that the sum is over pairs of neighbors $(i,j)$ on the lattice, while the factor $\tfrac{1}{2}$ prevents double counting. 
+For $J > 0$, minimizing $E$ will thus favour configurations for which neighbouring spins are aligned, while if $J < 0$ they will preferably anti-align.
+The equilibrium state of the model is captured by the partition function, which in the canonical ensemble is obtained by summing the Boltzmann weights associated with all possible spin configurations $\{s_i\}$:
 %
 \begin{align}
-    Z = \sum_{\{s_i\}} e^{-\beta E}.
+    Z = \sum_{\{s_i\}} e^{-\beta E},
 \end{align}
 %
-We define the order parameter,
+where $\beta = (k_B T)^{-1}$.
+To measure the amount of order in the system, we also define the order parameter,
 %
 \begin{align}
     m = \frac{1}{N}\sum_i s_i,
 \end{align}
 %
-which measures the magnetization.
-If all spins points in one direction, then $m  = \pm 1$, while if they are completely randomly distributed, $m = 1$
-First, we apply a simple mean-field analysis and assume that the value of each spin is close to that of the average, so $s_i \approx m + \delta s_i$, where $\delta s_i$ is small.
-Then,
+which is usually known as the magnetization.
+If all spins points along the same direction $|m|  = 1$, while if they completely disordered $m \to 0$.
+
+To get a qualitative understanding of the phenomenology of the model, we use a simple mean-field analysis and assume that each spin weakly fluctuates around its mean value $m$, so that we write $s_i \approx m + \delta s_i$, with $\delta s_i$ small.
+Then, at linear order in the perturbation,
 %
-\begin{align}
+\begin{align*}
     s_i  s_j = m^2 + m(\delta s_i + \delta s_j) + \Oh(\delta s^2)
     \approx m(s_i + s_j - m).
-\end{align}
+\end{align*}
 %
-Here, we have neglected terms that are second order in the perturbations $\delta s$.
+%Here, we have neglected terms that are second order in the perturbations $\delta s$.
 % Handwritten page XIV
-With this assumption, we may rewrite the energy as
+Under this assumption, we rewrite the total energy~\eqref{eq_energy_Ising} as
+%
+\begin{align*}
+    E_{\rm MF} 
+    &= \frac{1}{2} J m \sum_{\E{ij}}(m - s_i - s_j)
+    = \frac{1}{2} J m z \left(m N - 2 \sum_{i} s_i  \right).
+\end{align*}
+%
+Here, $z$ is the number of nearest neighbors for each site, i.e. the coordination number of the lattice.
+Its value depends on the structure of the lattice and the dimensionality in space.
+For square and cubic lattices, $z = 2 d$, where $d$ is the dimension of space.
+At the mean field level, the partition function therefore reads
 %
 \begin{align}
-    E_{MF} 
-    &= \frac{1}{2} J m \sum_{\E{ij}}(s_i + s_j - m)\\
-    & = \frac{1}{2} J m z \left( 2 \sum_{i} s_i - m N  \right).
+    Z_{\rm MF} & = \sum_{\{s_i\}} \exp \left\{\frac{1}{2}\beta J m z \left( 2\sum_{i} s_i - mN \right) \right\} \nonumber \\
+    & = e^{-\frac{1}{2}\beta J z N m^2} 
+    \sum_{\{s_i\}} \prod_{i} e^{\beta J m z s_i} \nonumber \\
+    & = e^{-\frac{1}{2}\beta J z N m^2} 
+    \left[\sum_{s = \pm 1} \exp \left(\beta J m z s \right)\right]^N \nonumber\\
+    & = e^{-\frac{1}{2}\beta J z N m^2} \left[2 \cosh \beta J m z\right]^N, \nonumber
 \end{align}
 %
-Here, $z$ is the number of nearest neighbors for each site, the coordination number of the lattice.
-This depends on the structure of the lattice and the dimensionality in space.
-For square lattices, $z = 2 d$, where d is the dimension of space.
-Inserting this into the partition function gives
+The Helmholtz free energy of the system is obtained by taking the logarithm of the partition function, $\beta F = - \ln Z$, so that
 %
-\begin{align}
-    Z_{MF} & = \sum_{\{s_i\}} \exp \left\{\frac{1}{2}\beta J m z \left( 2\sum_{i} s_i - mN \right) \right\}\\
-    & = e^{-\frac{1}{2}\beta J z m^2} 
-    \left[\exp \left\{\frac{1}{2}\beta J m z \left( 2\sum_{s=\pm} s \right) \right\}\right]^2\\
-    & = e^{-\frac{1}{2}\beta J z m^2} \left[2 \cosh \beta J m z\right]^N.
+\begin{align} \label{eq_Ising_FMF}
+    \beta F_{\rm MF} = N \left[ \frac{1}{2}\beta Jm^2 z - \ln\left(\cosh \beta J m z\right) \right],
 \end{align}
 %
-The Helmholtz free energy is given by the logarithm of the partition function, $F = - k_B T \ln Z$, so the mean-field free energy is \todo[noinline]{we should use either $\beta$ or $k_BT$.}
+where we have discarded irrelevant constant contributions.
+At constant volume and temperature,  the equilibrium state of the system minimizes the total free energy.
+The magnetization of the system is therefore obtained from 
 %
-\begin{align}
-    F_{MF} = N k_B T \left[ \frac{1}{2}\beta Jm^2 z - \ln\left(\cosh \beta J m z\right) \right].
+\begin{align} \label{eq_Ising_mMF}
+    \pdv{F_{
+    \rm MF}}{m} = 0
+    \iff m = \tanh (\beta J m z).
 \end{align}
 %
-The system will, left to its own devices at constant volume and temperature, minimize the free energy.
-The magnetization of the system is therefore found by minimizing $F$,
-%
-\begin{align}
-    \pdv{F_{MF}}{m} = 0
-    \iff m = \tanh \beta J m z.
-\end{align}
-%
-We may solve this graphically by drawing both functions, as illustrated below.
-This shows that for inverse temperatures $\beta = 1 / k_B T$ so that $\beta J z < 1$, there is only one stationary point free energy, $m = 0$.
-In this case, this is also a minimum.
-For $\beta J z > 1$, there appear two additional stationary $m = \pm m_0$ points.
-These are now two degenerate minima of the free energy, while $m = 0$ is a local maximum.
-There is thus a \emph{phase transition} at the finite, critical temperature defined by $k_B T_c = J z$.
+Equation~\eqref{eq_Ising_mMF} can be solved graphically by drawing both its l.h.s.\ and r.h.s.\ as a function of $m$, as illustrated in Fig.~\ref{fig: free energy minimization}.
+In particular, we note that the $\tanh(\beta J m z)$ function is strictly monotonous in $[-1;1]$, while its slope at the origin is given by $\beta J z$. 
+Therefore, when $\beta J z < 1$ the only solution of~\eqref{eq_Ising_mMF} corresponds to $m = 0$,
+while for $\beta J z > 1$ a pair of additional solutions $m = \pm m_0 \ne 0$ emerges.
+Taking the second derivative of $F_{\rm MF}$, one can also show that for $\beta J z > 1$ the solutions $m = \pm m_0$ correspond to two degenerate minima, while $m = 0$ is a local maximum.
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\textwidth]{chapters/Figures/introduction/minimize.png}
     \caption{Minimization for different cases}
-    \label{fig: free energy minimization}
+    \label{fig: The graphical solution of the mean field free energy minimization.}
 \end{figure}
 
-At the phase transition, the $m \rightarrow - m$ symmetry is spontaneously broken, as the magnetization $m$ picks out one of the degenerate minima $m = \pm m_0$.
-If we expand the free energy around the point of phase transition $T \approx T_c$ where $m$ is small, we get
+Hence, there exists is finite value of the system temperature $k_B T_c = J z$ that marks a qualitative change in the equilibrium properties of the system.
+This is exactly the definition of a phase transition, which is here associated with the emergence of a finite macroscopic magnetization in the system. 
+% This shows that for inverse temperatures $\beta = 1 / k_B T$ so that $\beta J z < 1$, there is only one stationary point free energy, $m = 0$.
+% In this case, this is also a minimum.
+% For $\beta J z > 1$, there appear two additional stationary $m = \pm m_0$ points.
+%These are now two degenerate minima of the free energy, while $m = 0$ is a local maximum.
+%There is thus a \emph{phase transition} at the finite, critical temperature defined by $k_B T_c = J z$.
+For $T \le T_c$, the $m \rightarrow - m$ symmetry of the theory is spontaneously broken, as the magnetization $m$ randomly settles at one of the degenerate minima $\pm m_0$.
+If we now study the behavior of the system close to the transition, we can assume that $m$ is small and expand the free energy around $T \approx T_c$
+so as to obtain a simplified expression known as the \textit{Landau free energy}:
 %
-\begin{align}
-    F_{MF}
-    \sim 
-    \frac{1}{2} Nk_B TC
-    \left[
-        \left(\frac{T - T_c}{T} m^2 + \frac{T_c}{T} \frac{m^4}{6}\right)
-    \right]
-    + \Oh(m^6).
+\begin{align} \label{eq_LandauFE_Ising}
+    F_{\rm MF}
+    \underset{T \to T_c}{\simeq} 
+    \frac{1}{2} Nk_B T_c
+    \left( \vartheta m^2 + \frac{m^4}{6}\right)
+    + \Oh(m^6),
 \end{align}
 %
-This is the \emph{Landau Free energy}.
-With the reduced temperature $t = (T - T_c) / T_c$, often called the control parameter, t has the form $F = \frac{1}{2} \alpha t m^2 + \beta \frac{1}{4} m^4$.
-As the $m^2$ changes sign at $t = 0$, this free energy goes from a single-well potential to a double-well one.
-This is a characteristic feature of phase transitions.
+where we have defined the reduced temperature $\vartheta \equiv (T - T_c) / T_c$, often called the control parameter. 
 
-\begin{figure}[!htb]
+Thanks to its simple form, it is easier to get an intuitive picture from~\eqref{eq_LandauFE_Ising} of the changes in the free energy landscape that induce the phase transition.
+%t has the form $F = \frac{1}{2} \alpha t m^2 + \beta \frac{1}{4} m^4$.
+As $\vartheta$ changes sign, the free energy indeed transitions from a single-well to a double-well structure with two degenerate minima.
+This feature is very general, so that using symmetry arguments one can always write the free energy of the system in the form of~\eqref{eq_LandauFE_Ising}, regardless of the details of the microscopic dynamics.
+This points out to the existence of a kind of universality in the properties of the system close to the ordering transition, but to understand it fully we now need to account as well for the spatial dynamics of $m$.
+
+\begin{figure}[!b]
     \centering
     \includegraphics[width=.8\textwidth]{chapters/Figures/introduction/double_well.png}
     \caption{The double Landau free energy changes from a single to a double well as the control parameter is tuned past the critical point.}
     \label{fig: double well}
 \end{figure}
 
-To go beyond the mean-field approach, we include spatial dynamics.
-This means that the magnetization field now depends on space, $m = m(\bm x)$.
-We assume the free energy density has the same Landau form close to the critical temperature, 
+%To go beyond the mean-field approach, we include spatial dynamics.
+From now, the system magnetization will therefore no more be a global scalar number, but a field that depends on space and time $m = m(\bm x,t)$.
+Considering a small subvolume of the system $\rmd\bm x$, close enough to the transition we can thus reasonably assume that the associated `bulk' free energy is given by $f(m) \rmd\bm x$
+with
 %
 \begin{align}
-    f(m) = \frac{1}{2}\alpha t  m^2 + \frac{1}{4} \beta m^4,
+    f(m) = \frac{1}{2}\alpha \vartheta  m^2 + \frac{1}{4} \beta m^4,
 \end{align}
 %
-where $\alpha \approx N K_B T_c$ and $\beta \approx N k_B T_C / 3 \approx \alpha / 3 $. \todo[noinline]{shoudl we not divide out $N$ to get an intensive quantity?}
-This is the ``Bulk free energy density''.
-The full free energy is the integral of this density, plus a term that takes into account the cost of gradients.
-The lowest order term which is invariant under spatial orientations, which we must have as this is a symmetry of the microscopic dynamics, is $|\nabla m|^2$.
-Combining these terms together gives us the Ginzburg-Landau free energy functional\footnote{\emph{Functional}, not function, as this is a function of a function $m(\bm x)$. This means derivatives $\odv{}{m}$ now becomes functional derivatives, $\fdv{}{m(\bm x)}$.}
+where $\alpha \approx k_B T_c$ and $\beta \approx k_B T_c / 3 \approx \alpha / 3 $. 
+Of course, we also need to account for the fact that $m$ cannot change arbitrarily fast between neighboring subvolumes, so that the presence of finite gradients must come at a cost.
+%This is the ``Bulk free energy density''.
+%The full free energy is the integral of this density, plus a term that takes into account the cost of gradients.
+The simplest way to do this while preserving the invariance of the free energy under $m \to -m$ and rotations of space (which must always be obeyed as they are symmetries of the microscopic dynamics) is to include a term $\propto |\nabla m|^2$ in the free energy density.
+Combining these terms together gives us the Ginzburg-Landau free energy functional\footnote{\emph{Functional}, not function, as $F[m]$ is a function of a function $m(\bm x)$. 
+This means that the minimum of $F[m]$ is not determined by using derivatives $\odv{}{m}$, but functional derivatives $\fdv{}{m(\bm x)}$.}
 %
-\begin{align}
+\begin{align} \label{eq_GL_Ising}
     F[m] = \int \dd \bm x 
     \left(f(m) + \frac{1}{2} K |\nabla m|^2\right).
 \end{align}
 %
 
-
-To obtain a dynamical equation for this system, which governs the time-evolution of $m$, we assume pureyly dissipative dynamics, 
+Analogously to the mean field analysis, the equilibrium magnetization profile minimizes the free energy~\eqref{eq_GL_Ising}. 
+Namely, the associated condition is
+$\delta F / \delta m(\bm x) = 0$, where the $\delta$ symbol indicates that we perform a functional derivative.
+In fact, here we won't really be interested in the mean magnetization profile, but rather in characterizing the behaviour of the fluctuations around it.
+One way to achieve this is to generalize the Langevin approach that we used in Sec.~\ref{} to describe Brownian motion to model the dynamics of fields.
+Namely, under the reasonable assumption that the force acting on $m$ derives from the free energy functional, we can write\footnote{We will see in Chapter~\ref{} how this form of the equation of motion gives the correct detailed-balance condition on the stochastic field dynamics.}
+%To obtain a dynamical equation for this system, which governs the time-evolution of $m$, we assume purely dissipative dynamics, 
 %
-\begin{align}
+\begin{align} \label{eq_dyn_m_Ising}
     \pdv{}{t} m(\bm x, t)
     =
-    \fdv{F}{{M(\bm x, t)}} 
-    = - [\alpha t + \beta m(\bm x, t)] m(\bm x, t) + K \nabla^2 m^2.
+    - \fdv{F}{{m(\bm x, t)}} + \psi(\bm x,t)
+    = - [\alpha \vartheta + \beta m^2(\bm x, t)] m(\bm x, t) + K \nabla^2 m + \psi(\bm x,t),
 \end{align}
 %
-If we assume a homogeneous configuration $m = m_0$, where $\nabla m_0 = 0$, the steady state solution is
+where $\psi$ is Gaussian white noise satisfying
 %
-\begin{align}
-    (\alpha t + \beta m_0^2) m_0 = 0
+\begin{align*}
+    \E{\psi(\bm x, t)} &= 0, &
+    \E{\psi(\bm x, t) \psi(\bm x', t')}
+    = \Psi \delta^d(\bm x - \bm x') \delta(t - t').
+\end{align*} 
+
+Momentarily discarding the noise, Eq.~\eqref{eq_dyn_m_Ising} admits a homogeneous steady state solution $m_0$ given by
+%
+\begin{align*}
+    (\alpha \vartheta + \beta m_0^2) m_0 = 0
     \implies
     \begin{cases}
-        m_0 = 0, & t > 0, \\
-        m_0 = \sqrt{ \frac{ \alpha |t| }{ \beta } }, & t < 0,
+        m_0 = 0, & \vartheta > 0, \\
+        m_0 = \sqrt{ \frac{ \alpha |\vartheta| }{ \beta } }, & \vartheta < 0,
     \end{cases}
-\end{align}
+\end{align*}
 %
-as before.
+consistently with our previous analysis.
+To study how this homogeneous solution is affected by the presence of fluctuations, 
+
 However, we may now also consider how this state responds to fluctuation.
 We write $m(\bm x, t) = m_0 + \delta m(\bm x, t)$, and study the dynamics of $\delta m$ at linear level.
 The equation of motion is
@@ -518,14 +570,6 @@ where
         \alpha t, & t > 0, \\
         2 \alpha |t|, & t < 0,
     \end{cases}
-\end{align}
-%
-and $\xi$ is Gaussian white noise, satisfying
-%
-\begin{align}
-    \E{\xi(\bm x, t)} &= 0, &
-    \E{\xi(\bm x, t) \xi(\bm x', t')}
-    = \Xi \delta^d(\bm x - \bm x') \delta(t - t').
 \end{align}
 %
 We consider the equations in Fourier space by inserting the fourier transform of the perturbation,
