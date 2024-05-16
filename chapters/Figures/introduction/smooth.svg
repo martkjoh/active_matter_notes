@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="smooth.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.6017536"
+     inkscape:cx="323.70771"
+     inkscape:cy="596.53368"
+     inkscape:window-width="1920"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g928" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="marker1632"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1374" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3367"
+       id="linearGradient3369"
+       x1="47.811054"
+       y1="51.444347"
+       x2="68.495583"
+       y2="51.532425"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-0.72558159,0.07613929)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3367">
+      <stop
+         style="stop-color:#9d0909;stop-opacity:1;"
+         offset="0"
+         id="stop3363" />
+      <stop
+         style="stop-color:#9d0909;stop-opacity:0;"
+         offset="1"
+         id="stop3365" />
+    </linearGradient>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3639" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g928"
+       transform="translate(15.963451,95.518996)">
+      <g
+         id="g1917"
+         transform="matrix(0.56588489,-0.18896244,0.18896244,0.56588489,17.690594,35.305422)">
+        <g
+           id="g1828">
+          <g
+             id="g1645"
+             transform="matrix(0.69360576,-0.31006127,0.31006127,0.69360576,36.672764,95.734435)">
+            <g
+               id="g914"
+               transform="translate(-43.071607,-79.633951)">
+              <circle
+                 style="opacity:0.652876;fill:url(#linearGradient3369);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+                 id="path950"
+                 r="19.060633"
+                 cy="51.731804"
+                 cx="66.744156"
+                 inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/janus.png"
+                 inkscape:export-xdpi="1000"
+                 inkscape:export-ydpi="1000" />
+              <circle
+                 id="path2321"
+                 style="fill:#d5261d;stroke:#000000;stroke-width:0.264583"
+                 cx="51.416603"
+                 cy="48.304569"
+                 r="0.011018467"
+                 inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/janus.png"
+                 inkscape:export-xdpi="1000"
+                 inkscape:export-ydpi="1000" />
+              <circle
+                 id="path2323"
+                 style="fill:#d5151d;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
+                 cx="51.416603"
+                 cy="48.304569"
+                 r="0.011018467"
+                 inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/janus.png"
+                 inkscape:export-xdpi="1000"
+                 inkscape:export-ydpi="1000" />
+              <path
+                 style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+                 d="M 78.68608,51.898925 H 93.176742"
+                 id="path3634"
+                 inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/janus.png"
+                 inkscape:export-xdpi="1000"
+                 inkscape:export-ydpi="1000" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1632)"
+         d="M 42.801881,83.874196 C 89.888224,77.015207 78.541543,-4.506283 99.670187,9.3802911 117.64809,21.196077 128.25855,53.477844 107.43252,62.233861 88.289445,70.282303 35.077616,22.47625 69.235766,7.6858689 103.39391,-7.1045081 122.50616,78.791575 137.65272,47.130537 152.79927,15.469498 109.60378,3.1362264 109.60378,3.1362264"
+         id="path890"
+         sodipodi:nodetypes="cssssc"
+         inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/smooth.png"
+         inkscape:export-xdpi="1000"
+         inkscape:export-ydpi="1000" />
+    </g>
+  </g>
+</svg>

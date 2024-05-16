@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="runandtumble.svg"
+   inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/runandtumble.png"
+   inkscape:export-xdpi="1000"
+   inkscape:export-ydpi="1000"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.6017536"
+     inkscape:cx="418.6037"
+     inkscape:cy="641.48441"
+     inkscape:window-width="1920"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="DotL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(7.4, 1)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         id="path1060" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DotM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="DotM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) translate(7.4, 1)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         id="path1063" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1002" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker34816"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path34814" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1606"
+       transform="matrix(-0.38391362,0.2901449,-0.2901449,-0.38391362,115.53388,187.29308)">
+      <g
+         id="g962"
+         transform="translate(-94.706949,-52.479326)">
+        <ellipse
+           style="opacity:0.950028;fill:#03007d;fill-opacity:0.688791;stroke:#000000;stroke-width:0.264999;stroke-opacity:1;paint-order:markers fill stroke"
+           id="path18941"
+           cx="105.26325"
+           cy="122.15968"
+           rx="19.210022"
+           ry="8.6729326"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 124.50094,122.23518 c 1.91219,-0.10366 5.86546,2.4735 5.91957,-0.55016 0.0758,-4.23563 -2.25504,-3.42985 -2.31179,0.20074 -0.048,3.07292 1.38496,4.03383 3.67516,4.03954"
+           id="path20710"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 131.78388,125.9253 c 2.75123,-0.0919 4.05067,-1.50632 3.76363,-4.70277 -0.28703,-3.19646 -2.70532,-3.65227 -3.14794,0.1744 -0.28001,2.42089 1.21313,4.7268 5.37151,4.5469"
+           id="path28404"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 137.77108,125.94383 c 2.75124,-0.092 4.05067,-1.50632 3.76364,-4.70277 -0.28703,-3.19646 -2.70533,-3.65227 -3.14794,0.1744 -0.28001,2.42088 1.21313,4.72679 5.37151,4.54689"
+           id="path28404-6"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 143.75829,125.96235 c 2.75123,-0.0919 4.05067,-1.50632 3.76363,-4.70277 -0.28703,-3.19645 -2.70532,-3.65226 -3.14793,0.17441 -0.28002,2.42088 1.21312,4.72679 5.3715,4.54689"
+           id="path28404-7"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 149.74549,125.98088 c 2.75123,-0.0919 4.05067,-1.50632 3.76364,-4.70277 -0.28702,-3.19645 -2.70532,-3.65227 -3.14794,0.1744 -0.28001,2.42089 1.21313,4.7268 5.37151,4.5469"
+           id="path28404-3"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 155.7327,125.99941 c 2.75125,-0.0919 4.05068,-1.50632 3.76364,-4.70277 -0.28703,-3.19646 -2.70533,-3.65227 -3.14794,0.1744 -0.28002,2.42089 1.21312,4.72679 5.37152,4.54689"
+           id="path28404-6-5"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 161.71992,126.01793 c 2.75123,-0.092 4.05066,-1.50632 3.76362,-4.70277 -0.28703,-3.19645 -2.70532,-3.65226 -3.14794,0.17441 -0.28001,2.42088 1.21313,4.72679 5.3715,4.54689"
+           id="path28404-7-3"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 167.7071,126.03646 c 2.75122,-0.092 4.05065,-1.50632 3.76361,-4.70277 -0.28702,-3.19645 -2.70531,-3.65227 -3.14792,0.1744 -0.28002,2.42089 1.21311,4.7268 5.3715,4.5469"
+           id="path28404-7-3-5"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.597276;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 173.69429,126.05499 c 2.75123,-0.0919 4.05067,-1.50632 3.76362,-4.70277 -0.28702,-3.19646 -2.70532,-3.65227 -3.14794,0.1744 -0.28001,2.42089 1.21313,4.7268 5.37152,4.54689"
+           id="path28404-7-3-9"
+           sodipodi:nodetypes="cssc"
+           inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/swimmers.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#DotL);marker-end:url(#Arrow1Lend)"
+       d="m 65.43978,190.35596 60.63397,-42.55929 18.25149,42.20052 16.33898,-86.11094 -76.114768,6.0963 110.573598,42.64832"
+       id="path997"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 95.241213,160.93715 108.24683,151.7443"
+       id="path2046" />
+  </g>
+</svg>
