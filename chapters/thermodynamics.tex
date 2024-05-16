@@ -283,7 +283,7 @@ In the case of, for example, a non-degrading chemical density, the order paramet
 \begin{align}
     \partial_t \rho(\bm x, t)
     = 
-    \bm \nabla
+    \bm \nabla\cdot
     \left[
         M[\rho(\bm x, t)]
         \bm \nabla G_\rho[\rho(\bm x, t), \bm \nabla\rho(\bm x, t)]
@@ -316,7 +316,7 @@ Solving for the noise, we get
 \begin{align}
     \eta
     = 
-    \frac{[\nabla^{(k)}]^{-1} \partial_t \phi + M(\phi) \nabla^{(k)} G}{\sqrt{ 2 k_ T Q(\psi) }}.
+    \frac{[\nabla^{(k)}]^{-1} \partial_t \phi + M[\phi] \nabla^{(k)} G}{\sqrt{ 2 k_B T Q(\phi) }}.
 \end{align}
 %
 We now draw on the Onsager-Machlup function for the path probabilities, which was introduced in the first part of the lecture, to calculate the average rate of entropy production associated with the field dynamics. Once again, the idea is to relate the probability of a certain history of the field to the probability of the corresponding noise realisation, keeping in mind that an additional integral over space needs to be introduced to account for the spatially-extended nature of the fluctuations,
@@ -326,7 +326,7 @@ We now draw on the Onsager-Machlup function for the path probabilities, which wa
     \exp 
     \left\{ 
         - \frac{1}{4 k_B T}
-        \int_0^T \dd t \int \dd^d r \, \frac{[(\nabla^{(k)})^{-1} \partial_t \phi - M \nabla^{(k)}G]^2}{Q[\phi]}
+        \int_0^\tau \dd t \int \dd^d r \, \frac{[(\nabla^{(k)})^{-1} \partial_t \phi - M(\phi) \nabla^{(k)}G]^2}{Q[\phi]}
      \right\}.
 \end{align}
 %
@@ -336,7 +336,7 @@ The probability for the reverse path is $\mathbb{P}_R[\phi, \dot \phi] = \mathbb
     \ln \frac{\mathbb P_F}{\mathbb P_R}
     = 
     \frac{1}{k_B T}
-    \int_0^T \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{k}]^{-1}
+    \int_0^\tau \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{(k)}]^{-1}
     \left[
         \frac{M[\phi]}{Q[\phi]}
         \nabla^{(k)}G(\phi)
@@ -347,14 +347,14 @@ In the case of equilibrium, the fluctuation-dissipation theorem (FDT) means that
 The integral may thus be easily solved,
 %
 \begin{align}
-    \int_0^T \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{k}]^{-1}
+    \int_0^\tau \dd t\ \int \dd^d r \, \partial_t \phi [\nabla^{k}]^{-1}
     \left[
         \nabla^{(k)}\fdv{F}{\phi}
     \right]
     = 
-    \int_0^T \dd t\, \odv{}{t} F(t)
+    \int_0^\tau \dd t\, \odv{}{t} F(t)
     = 
-    F(T) - F(0),
+    F(\tau) - F(0),
 \end{align}
 %
 which means the path probabilities follow detail balance
@@ -363,7 +363,7 @@ which means the path probabilities follow detail balance
     \frac{\mathbb P_F}{\mathbb P_R} = e^{\Delta F / k_B T}.
 \end{align}
 %
-Furthermore, as long as $F$ is bounded below, the Kullbeck-Leibler divergence per unit time, $\langle F(T)-F(0)\rangle/T$, will vanish at steady state as $T \to \infty$ and necessarily so will the total entropy production $\dot\sigma$.
+Furthermore, as long as $F$ is bounded from below, the Kullbeck-Leibler divergence per unit time, $\langle F(\tau)-F(0)\rangle/\tau$, will vanish at steady state as $\tau \to \infty$ and necessarily so will the total entropy production $\dot\sigma$.
 When either the FDT is not satisfied by our (a priori generic) choice of $M$ and $Q$, or the generalized force $G$ cannot be expressed as the functional derivative of a free-energy-like functional, all the above simplifications fail to apply and we should expect a non-vanishing value of $\dot\sigma$.
 
 As an example of how this undestanding can help us build models of active matter, take a ``dry'' active field theory for a conserved density.
@@ -377,7 +377,7 @@ where the current can be split into an active and a passive term, $\bm J = \bm J
 The passive terms alone are equilibrium effects and therefore have the form
 %
 \begin{align}
-    \bm J^p = - M \bm \nabla \fdv{F}{\rho} + \sqrt{2 k_b T M} \eta
+    \bm J^p = - M \bm \nabla \fdv{F}{\rho} + \sqrt{2 k_B T M} \bm \eta
 \end{align}
 %
 satisfying both FDT and the derivative structure of the force.
@@ -404,7 +404,7 @@ This reduces to the ``Toner-Tu model'' of dry flocking, if we set $M\rightarrow 
 \begin{align}
     F = \int \dd x \, 
     \left(
-        \frac{1}{2}a q^2 + \frac{1}{4}bq^4 + \frac{1}{2} \bm \nabla \bm p : \bm \nabla \bm p
+        \frac{1}{2}a p^2 + \frac{1}{4}b p^4 + \frac{1}{2} \bm \nabla \bm p : \bm \nabla \bm p
         - \bar \omega \bm \nabla \cdot \bm p \rho + \frac{\lambda}{2 \Gamma} p^2 \bm \nabla \cdot \bm p
     \right)
 \end{align}
@@ -421,7 +421,7 @@ For dynamics near equilibrium, linear irreversible thermodynamics gives us a mor
 
 \section{A primer on linear irreversible thermodynamics}
 
-The following is based on the more extended discussions in \cite{pottier2009nonequilibrium} and \cite{de2013non}. Consider the dynamics of a set of $N+M$ interacting fields $\{\phi_i\}_{i=1}^N\cup \{\rho_i\}_{j=1}^M$, where $\phi$ and $\rho$ denote non-conserved and conserved densities, respectively.
+The following is based on the more extended discussions in \cite{pottier2009nonequilibrium} and \cite{de2013non}. Consider the dynamics of a set of $N+M$ interacting fields $\{\phi_i\}_{i=1}^N\cup \{\rho_j\}_{j=1}^M$, where $\phi$ and $\rho$ denote non-conserved and conserved densities, respectively.
 The rate of change of the energy $\mathcal{F} = U - TS$ under isothermal conditions is
 %
 \begin{align}
@@ -434,10 +434,10 @@ The rate of change of the energy $\mathcal{F} = U - TS$ under isothermal conditi
     \right].
 \end{align}
 %
-Again, we assume that $\rho_i$ follows the conservation law
+Again, we assume that $\rho_j$ follows the conservation law
 %
 \begin{align}
-    \partial_t \rho = \bm \nabla \cdot \bm J^{(c)},
+    \partial_t \rho_j = \bm \nabla \cdot \bm J^{(c)}_j,
 \end{align}
 %
 while the current of $\phi$, $\dot \phi_i = J^{(nc)}_i$, is non-conserved.
