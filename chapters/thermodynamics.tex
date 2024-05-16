@@ -145,7 +145,7 @@ We now demonstrate how a formula analogous to \eqref{eq:q_vs_eqr} can be derived
 Given a system that evolves stochastically with time, which we assume to be discrete for simplicity, we can write the Markov master equation
 %
 \begin{align}
-    \odv{  }{ t } P_i(t) = K_{ij} P_j(t),
+    \odv{  }{ t } P_i(t) = \sum_j K_{ij} P_j(t),
 \end{align}
 %
 where $K_{ij}$ denotes the (Poisson) rate of transitioning from state $j$ to state $i$. The transition rates must obey $\sum_i K_{ij} = 0$ to conserve probability.
@@ -161,7 +161,7 @@ which allows us to directly compute the rate of change of the entropy
     \odv{  }{ t } S(t)
     \equiv \dot S(t)
     & = - \underbrace{{\sum}_i \dot P_i(t)}_{= 0}
-    + - \sum_i \dot P_i(t) \ln P_i(t)\\
+    - \sum_i \dot P_i(t) \ln P_i(t)\\
     & = 
     -\frac{1}{2}\sum_{ij}
     \left(
