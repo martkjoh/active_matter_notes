@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg18731"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="bacteria.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview18733"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4.3994184"
+     inkscape:cx="313.10957"
+     inkscape:cy="355.95614"
+     inkscape:window-width="3840"
+     inkscape:window-height="2123"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs18728">
+    <marker
+       style="overflow:visible;"
+       id="marker34816"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path34814" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1174" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker33454"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path33452" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path1192" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1168" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1174-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-0-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1174-5-0" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="opacity:0.950028;fill:#03007d;stroke-width:0.264999;paint-order:markers fill stroke;stroke:#000000;stroke-opacity:1;fill-opacity:0.68879145"
+       id="path18941"
+       cx="53.022663"
+       cy="78.643105"
+       rx="19.210022"
+       ry="8.6729326"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 72.271277,78.717901 c 1.153406,-0.10416 3.537955,2.485527 3.570592,-0.55283 0.04572,-4.256212 -1.360203,-3.446518 -1.394434,0.201711 -0.02897,3.087861 0.835384,4.053435 2.216798,4.059173"
+       id="path20710"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 76.664233,82.425955 c 1.659502,-0.0924 2.443304,-1.51364 2.270168,-4.725623 -0.173132,-3.211984 -1.63181,-3.670012 -1.898789,0.175252 -0.1689,2.432648 0.73174,4.749763 3.240013,4.568988"
+       id="path28404"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 80.275625,82.444572 c 1.659502,-0.0924 2.443304,-1.51364 2.270168,-4.725623 -0.173132,-3.211984 -1.63181,-3.670012 -1.898789,0.175252 -0.1689,2.432648 0.73174,4.749763 3.240013,4.568988"
+       id="path28404-6"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 83.887017,82.463189 c 1.659502,-0.0924 2.443304,-1.51364 2.270168,-4.725623 -0.173132,-3.211984 -1.63181,-3.670012 -1.898789,0.175252 -0.1689,2.432648 0.73174,4.749763 3.240013,4.568988"
+       id="path28404-7"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 87.498409,82.481806 c 1.659499,-0.0924 2.443299,-1.51364 2.270169,-4.725623 -0.17313,-3.211984 -1.63181,-3.670012 -1.89879,0.175252 -0.1689,2.432648 0.73174,4.749763 3.24001,4.568988"
+       id="path28404-3"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 91.109798,82.500423 c 1.659512,-0.0924 2.443312,-1.51364 2.270172,-4.725623 -0.17313,-3.211984 -1.631812,-3.670012 -1.898792,0.175252 -0.1689,2.432648 0.73174,4.749763 3.240022,4.568988"
+       id="path28404-6-5"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 94.7212,82.51904 c 1.6595,-0.0924 2.443298,-1.51364 2.270158,-4.725623 -0.17313,-3.211984 -1.631808,-3.670012 -1.898788,0.175252 -0.1689,2.432648 0.73174,4.749763 3.240009,4.568988"
+       id="path28404-7-3"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 98.332579,82.537657 c 1.659491,-0.0924 2.443291,-1.51364 2.270151,-4.725623 -0.17313,-3.211984 -1.631804,-3.670012 -1.898781,0.175252 -0.1689,2.432648 0.731734,4.749763 3.240011,4.568988"
+       id="path28404-7-3-5"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 101.94396,82.556274 c 1.6595,-0.0924 2.4433,-1.51364 2.27016,-4.725623 -0.17313,-3.211984 -1.63181,-3.670012 -1.89879,0.175252 -0.1689,2.432648 0.73174,4.749763 3.24002,4.568988"
+       id="path28404-7-3-9"
+       sodipodi:nodetypes="cssc"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <ellipse
+       style="opacity:0.950028;fill:#03957d;fill-opacity:0.688791;stroke:#000000;stroke-width:0.180662;stroke-opacity:1;paint-order:markers fill stroke"
+       id="path18941-5"
+       cx="129.28745"
+       cy="80.044518"
+       rx="8.7924948"
+       ry="8.8069286"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.469849;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 132.46896,75.215626 c 4.30193,-7.716787 13.54763,-11.637252 16.07638,-3.373082"
+       id="path33746"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.469849;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 126.40359,75.152712 C 122.10166,67.435925 112.85596,63.51546 110.32721,71.77963"
+       id="path33746-2"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.267342px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-0)"
+       d="M 129.4453,73.873278 V 65.049619"
+       id="path34179"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.267342px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-0-2)"
+       d="M 36.620838,78.631225 H 27.797179"
+       id="path34179-6"
+       inkscape:export-filename="/home/mjohnsrud/repos/active_matter_notes/chapters/Figures/introduction/bacteria.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+  </g>
+</svg>
