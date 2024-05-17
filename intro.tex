@@ -275,8 +275,8 @@ Taking averages over the noise, this solution implies in particular that
     \langle |\Delta \bm r(t)|^2 \rangle = d \sigma^2 t / \zeta^2,
 \end{equation}
 where $d$ is the number of spatial dimensions.
-Equation~\eqref{eq_BM_moments} summarizes the two main features of Brownian (or diffusive) motion : it is associated with no net motion, and leads to a mean-squared displacement (MSD) linear in time.
-The quantity $D = \sigma^2 / 2 \zeta^2$ corresponds to the diffusion coefficient of the particle.
+Equation~\eqref{eq_BM_moments} summarizes the two main features of Brownian (or diffusive) motion: it is associated with no net motion and leads to a mean-squared displacement (MSD) linear in time.
+The quantity $D = \sigma^2 / 2 \zeta^2$ is the diffusion coefficient of the particle.
 Since both the viscous drag and stochastic force in~\eqref{eq_LangevinBM_ovd} originate from interactions between the particle and the solvent, the diffusion and friction coefficients are related by Einstein relation as $D = k_{\rm B}T / \zeta$.
 This relation belongs to a more general class of equalities known as fluctuation-dissipation relations, and which are a hallmark of equilibrium (or near-equilibrium) dynamics.
 
@@ -287,7 +287,7 @@ This relation belongs to a more general class of equalities known as fluctuation
 % Hand written page VIII
 
 The problem of overdamped Brownian motion is sufficiently simple so that one can determine the full statistics of the particle displacement. 
-For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$ as the distribution of the particle position, which obeys the Fokker-Planck equation\footnote{A simple way to demonstrate Eq.~\eqref{eq_FP_BM} is to take the time derivative of $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$, and use Ito's lemma to expand the delta distribution.}
+For this, we define $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$ as the distribution of the particle position, which obeys the Fokker-Planck equation\footnote{A simple way to demonstrate Eq.~\eqref{eq_FP_BM} is to take the time derivative of $\calP(\bm x,t) = \langle \delta(\bm x - \bm r(t)) \rangle$, and use Ito's lemma to expand the delta distribution.}\todo[noinline]{I don't know if this is very helpfull\dots}
 %
 \begin{equation} \label{eq_FP_BM}
     \partial_t \calP(\bm x,t) - D \nabla^2 \calP(\bm x,t) = 0.
