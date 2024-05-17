@@ -567,8 +567,8 @@ Namely, under the reasonable assumption that the force acting on $m$ derives fro
 \begin{align} \label{eq_dyn_m_Ising}
     \partial_t m(\bm x, t)
     =
-    - \fdv{F}{{m(\bm x, t)}} + \psi(\bm x,t)
-    = - [\alpha \vartheta + \beta m^2(\bm x, t)] m(\bm x, t) + K \nabla^2 m + \psi(\bm x,t),
+    - \fdv{F}{{m(\bm x, t)}} + \psi(\bm x, t)
+    = - [\alpha \vartheta + \beta m^2(\bm x, t)] m(\bm x, t) + K \nabla^2 m(\bm x, t) + \psi(\bm x,t),
 \end{align}
 %
 where $\psi$ is Gaussian white noise satisfying
@@ -578,7 +578,7 @@ where $\psi$ is Gaussian white noise satisfying
     \E{\psi(\bm x, t) \psi(\bm x', t')}
     = \Psi \delta(\bm x - \bm x') \delta(t - t').
 \end{align*} 
-
+%
 Momentarily discarding the noise, Eq.~\eqref{eq_dyn_m_Ising} admits a homogeneous steady state solution $m_0$ given by
 %
 \begin{align*}
@@ -648,28 +648,24 @@ We obtain the equal-time correlation by integrating over all frequencies. Perfor
 $\int_{-\infty}^{+\infty} \tfrac{\dd x}{2\pi} \tfrac{1}{x^2 + a^2} = 
 \tfrac{1}{2\pi a}\int_{-\infty}^{+\infty} \tfrac{\dd y}{y^2 + 1} = \tfrac{1}{2\pi a} [\arctan(y)]_{-\infty}^{+\infty}= \tfrac{1}{2a}$}, 
 we get
-%by contour integration 
-\todo[noinline]{Draw contour, explain
-BM: Not necessary, one can simply express the indefinite integral in terms of arctan.}
 %
 \begin{align}
-    \hat C(\bm q) \equiv \int_{-\infty}^{+\infty} \frac{\dd \omega}{2 \pi} \hat C(\bm q, \omega)
+    \hat C(\bm q) \equiv \int\limits_{-\infty}^{+\infty} \frac{\dd \omega}{2 \pi} \hat C(\bm q, \omega)
     = 
     \frac{1}{2}\frac{\Psi }{a^2 + K q^2}.
 \end{align}
 %
 The real space two-point correlation function is then
 %
-\begin{align}
+\begin{align}    \label{eq_CF_Ising}
     C(\bm x)
     = \E{\delta m(\bm 0) \delta m(\bm x)}
     & = \frac{\Psi}{2 K}
-    \int \frac{\dd \bm q}{(2 \pi)^d} \frac{e^{-i\bm q \cdot \bm x}}{\xi^{-2} + q^2}, \nonumber \\
-    \label{eq_CF_Ising}
-    & = \frac{\Psi}{2 K}
+    \int \frac{\dd \bm q}{(2 \pi)^d} \frac{e^{-i\bm q \cdot \bm x}}{\xi^{-2} + q^2}
+    = \frac{\Psi}{2 K}
     \int \frac{\dd q}{2 \pi} 
-     \frac{q^{d-1}}{\xi^{-2} + q^2}
-    I(q x),
+    \frac{q^{d-1}}{\xi^{-2} + q^2}
+    I(\bm q \cdot \bm x),
     %\int \frac{\dd\Omega}{(2\pi)^{d-1}}   \frac{e^{-i q x \cos\theta}}{\xi^{-2} + q^2}, \nonumber \\
 \end{align}
 %
@@ -679,16 +675,16 @@ where we have introduced the \emph{correlation length}
     \xi \equiv \sqrt{ \frac{ K }{ a^2 } },
 \end{align}
 %
-while $I(q x) = \int \tfrac{\dd\Omega_q}{(2\pi)^{d-1}} \exp(- i \bm q \cdot \bm x)$, and the integration is performed over all orientations of $\bm q$.
+while $I(\bm q \cdot \bm x) = \int \tfrac{\dd\Omega_q}{(2\pi)^{d-1}} \exp(- i \bm q \cdot \bm x)$, and the integration is performed over all orientations of $\bm q$.
 As expected from the symmetries of the problem, the correlation function $C(x)$ is isotropic, and measures how much, on average, fluctuations in the magnetization are correlated over a distance $x$. 
 The correlation length $\xi$ basically measures the length scale over which these correlations are significant.
-We may see this by taking the two limits of the integral~\eqref{eq_CF_Ising}
+We may see this by taking the two limits of the integral~\eqref{eq_CF_Ising},
 %
 \begin{align*}
     C(x) \simeq
     \begin{cases}
-        x^{2-d} & x \ll \xi, \\
-        x^{1-d/2} e^{- x / \xi} & x \gg \xi.
+        x^{2-d}, & x \ll \xi, \\
+        x^{1-d/2} e^{- x / \xi}, & x \gg \xi.
     \end{cases}
 \end{align*}
 %
