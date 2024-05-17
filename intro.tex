@@ -714,6 +714,20 @@ As the critical point corresponds to the vanishing of the damping term in Eq.~\e
 we can however reasonably question the validity of this approximation.
 %these mean field predictions are generally incorrect, because we have neglected the non-linearities in the equation, and we have not taken into account the effects of fluctuations.
 
+\begin{table}[!htb]
+    \centering
+    \caption{Critical exponents of the Ising model. Those in $d=2$ are exact, the $d=3$ ones are obtained from numerical simulations~\cite{CampostriniPRE2002}, while those in $d \ge 4$ are follow from the mean field analysis.}
+    \begin{tabular}{r|c c c}
+        $d$ & 2 & 3 & $\ge 4$ \\
+        \hline
+        $\beta$ & $1/8$ & $0.32653(10)$ & $1 / 2$ \\
+        $\nu$ & $1$ & $0.63012(16)$ & $1 / 2$ \\
+        $\eta$ & $1/4$ & $0.03639(15)$ & $0$
+    \end{tabular}   
+    \label{table_Ising_exp}
+\end{table}
+
+
 In fact, the Ising model can be solved exactly in dimensions one and two, 
 and the corresponding solutions (unsurprisingly) do not match the predictions of the mean field theory.
 Namely, in one dimension the dynamics is dominated by entropy: spins have too few nearest neighbors to for the alignment to compete with fluctuations, so that the system is disordered at any finite temperature.
@@ -723,17 +737,31 @@ A similar situation is found in three dimensions, although the absence of an exa
 In the end, the mean field theory is only quantitatively valid in dimensions higher than $4$, while $d_c = 4$ is known has the upper critical dimension of the model.
 The values of the critical exponents in $d \ge 2$ are reported in Table~\ref{table_Ising_exp}.
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.4\textwidth]{chapters/Figures/introduction/flow.pdf}
+    \caption{
+        The flow in parameter space under renormalization group transformations.
+        As you integrate out short wavelength physics, the parameters $\alpha\vartheta$ and $\beta$ flow following the lines in this plot, which are given by the RG equations.
+        The two red dots indicate fixed points, where the theory is invariant under RG flow.
+        }
+    \label{fig: flow}
+\end{figure}
+
 A refined prediction for the value of the exponents in three dimensions requires to take into account the effect of nonlinearities, which can be done using the theoretical framework of the \emph{Renormalization Group} (RG).
 %In fact, the one-dimensional Ising model can be solved exactly, and \emph{does not} feature a phase transition at finite temperature. In one dimension, there are too few nearest neighbors to keep spins ordered when thermal noise is introduced, and any non-zero temperature results in a finite correlation length.
 %In the case of the Ising model, the mean-field breaks down for all dimensions lower than its \emph{critical dimension}, $d < d_c = 4$.
 %To go beyond the mean field prediction and obtain accurate results for the critical exponents, one has to employ the \emph{Renormalization Group} or RG for short.
 The RG framework relies on the scale invariance property of the critical point.
 Its main idea is to study how the parameters of the free energy~\eqref{eq_GL_Ising} ($\alpha$, $\beta$ and $K$) renormalize as one changes the scale of the theory and integrates out the short wavelength physics. 
-This approach leads to equations whose solution tell us how the effective parameters of the theory `flow' as we investigate the physics over larger and larger scales. 
+This approach leads to the RG equations, whose solution tells us how the effective parameters of the theory `flow' as we investigate the physics over larger and larger scales. 
+this is illustrated for the Ising model in \autoref{fig: flow}, where the parameters $\alpha \vartheta$ and $\beta $ follow the lines given by the RG equations.
 The critical point then corresponds to a fixed point of these equations, meaning that the parameters do not change anymore with the scale of the theory: the physics is scale-free.
+The red dot at $\alpha\vartheta = 0$ and $\beta = 0$ is the Gaussian fixed point, while the red dot at $\beta \neq 0$ is the Willson-Fischer fixed point.
 You can find a visual illustration of these ideas \href{https://www.youtube.com/watch?v=MxRddFrEnPc}{here}.
-\todo[inline]{BM: Is this clear (wanted to stay brief)? Could we maybe show a sketch of a flow diagram as an illustration?}
 For a more detailed introduction on RG, we invite you to read textbook references~\cite{Goldenfeld1992,Kardar2007}. 
+
+
 
 %In this method, one explicitly integrates out the short-wavelength dynamics.
 %With this, one may derive equations describing how the parameters in the free energy, such as $\alpha$ and $\beta$ above, change as one changes the scale of the theory.
@@ -746,18 +774,6 @@ For a more detailed introduction on RG, we invite you to read textbook reference
 %In the table below, we provide some the exponents in various dimensions.
 %Those in 2D are exact, the 3D ones are from numerics, while those above 4D are the mean-field exponents.
 
-\begin{table}[h]
-    \centering
-    \caption{Critical exponents of the Ising model. Those in $d=2$ are exact, the $d=3$ ones are obtained from numerical simulations~\cite{CampostriniPRE2002}, while those in $d \ge 4$ are follow from the mean field analysis.}
-    \begin{tabular}{r|c c c}
-        $d$ & 2 & 3 & $\ge 4$ \\
-        \hline
-        $\beta$ & $1/8$ & $0.32653(10)$ & $1 / 2$ \\
-        $\nu$ & $1$ & $0.63012(16)$ & $1 / 2$ \\
-        $\eta$ & $1/4$ & $0.03639(15)$ & $0$
-    \end{tabular}   
-    \label{table_Ising_exp}
-\end{table}
 
 
 \subsection*{Continuous symmetries: Goldstone modes and the Mermin-Wagner theorem}
@@ -806,9 +822,9 @@ where the gradient term should be understood as $|\nabla \bm m|^2 = \sum_{i, \al
 For $\vartheta > 0$, the bulk part of the free energy~\eqref{eq_FE_ON} corresponds to a single well centered at $\bm m = \bm 0$, while for $\vartheta < 0$ it has a continuum of degenerate minima satisfying $|\bm m| = \sqrt{|\vartheta|}$.
 For $n = 2$, in particular, the free energy landscape takes the well-known Mexican-hat shape shown in Fig.~\ref{fig: mexican}.
 
-\begin{figure}[!t]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[width=.6\textwidth]{chapters/Figures/introduction/mexican.png}
+    \includegraphics[width=.5\textwidth]{chapters/Figures/introduction/mexican.png}
     \caption{The Mexican-hat potential.}
     \label{fig: mexican}
 \end{figure}
@@ -890,7 +906,7 @@ To quantify this, we calculate their typical amplitude $\E{|\delta\bm m_\perp|^2
 \begin{align} \label{eq_fluct_MW}
     \E{|\delta\bm m_\perp|^2} = 
     \int \frac{\dd\bm q}{(2 \pi)^d} \hat C_\perp(\bm q) 
-    \propto \int_{1 / L}^{1/a} q^{d - 3}
+    \propto \int\limits_{1 / L}^{1/a} q^{d - 3}
     \underset{L \to \infty}{\sim}
     \begin{cases}
         L^{2 - d}, & d < 2, \\
@@ -921,7 +937,7 @@ This feature is an instance of the so-called \emph{Mermin-Wagner theorem}.
 
 \subsection*{Universality and active matter}
 
-As we have just shown, for systems with continuous symmetries the concepts of scale invariance --and thus universality-- are not only associated with phase transitions, but also more generally with the emergence of macroscopic order.
+As we have just shown, for systems with continuous symmetries the concepts of scale invariance---and thus universality---are not only associated with phase transitions but also more generally with the emergence of macroscopic order.
 Naturally, we expect these features to extend to certain out-of-equilibrium dynamics, and especially to active matter.
 This, in particular, motivates the classification of active systems in terms of their symmetries and conservation laws which is used to structure this course.
 
