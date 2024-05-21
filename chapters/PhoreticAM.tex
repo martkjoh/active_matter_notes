@@ -1,1 +1,63 @@
-Notes from Gennaro Lectures 7 \& 8
+Phoresis comes from Greek and means to be carried.
+There are several types of phoresis, but common for all is that there is a gradient in some fields that carries particles around.
+Some kinds of phoresis, and the corresponding gradients are
+\begin{itemize}
+    \item Diffusiophoresis, $\bm \nabla C$,
+    \item Electrophoresis, $\bm \nabla \varphi = \bm E$,
+    \item Thermophoresis, $\bm \nabla T$.
+\end{itemize}
+%
+This gradient gives rise to a \emph{slip velocity} $\bm v_s$ along the surface of particles and allows for motion.
+
+
+\section{Diffusiophoresis}
+
+We will now consider a particle of radius $R$ suspended in a liquid, surrounded by a chemical density $c$.
+In this section, we will show that, given some criteria for the interaction of the particle with the chemical, this gives rise to a slip-velocity $\bm v_s$ of the fluid around the particle, which is given by
+%
+\begin{align}
+    \bm v_s  = \mu \bm \nabla_\parallel c_{\mathrm{out}},
+\end{align}
+%
+where $c_{\mathrm{out}}$ is the gradient surronding sphere, outside the slip region(?).
+\todo[inline]{figure}
+
+The slip region is a thin layer of width $\sigma \ll R$ around the sphere, where the chemical and fluid is interacting with the surface of the sphere.
+\todo[inline]{figure}
+
+We assume the particle interacts with the chemical through a potential of the form
+%
+\begin{align}
+    W(\bm x) = 
+    \begin{cases}
+        0 , & z \geq \sigma \\
+        W(z), & z < 0.
+    \end{cases}
+\end{align}
+%
+This potential must diverge as we approach the sphere, $W(z\rightarrow 0) = \infty$, as we model the particle as a hard sphere.
+
+We assume the solute follow
+%
+\begin{align}
+    \partial_t c &= \bm \cdot \bm J,\\
+    \bm J &= - \bm \nabla c + \beta D C \bm F + c \bm v,
+\end{align}
+%
+and the fluid is Stoksean,
+%
+\begin{align}
+    - \eta \nabla^2 \bm v &= - \bm \nabla p + \bm f, \quad\quad \bm f = - c \bm \nabla W,\\
+    \bm \nabla \cdot \bm v &= 0.
+\end{align}
+%
+We will assume the chemical relaxes fast, so $\partial_t c = 0$.
+Then we consider the flow in the $z$-direction, perpendicular to surface of the sphere, and the parallel flow seperatly.
+This leaves the following equations,
+%
+\begin{align}
+    D \nabla^2 c &= \beta D \bm \nabla \cdot (c \bm \nabla W) - \bm v \cdot \bm \nabla c,\\
+    - \eta \nabla^2 v_z &= - \partial_z p - c \partial_z W, \\
+    - \eta \nabla^2 \bm v_\parallel & = - \bm \nabla_\parallel p.
+\end{align}
+%
