@@ -1,79 +1,104 @@
 \section{Introduction}
 
-Scalar active systems are those whose large-scale nonequilibrium dynamics can be captured by a real (scalar) field, hereafter denoted $\phi$ or $\rho$. 
-The field $\phi$ is usually referred to as the \emph{order parameter} of the theory and can represent various quantities (see below). 
-In many cases, though, it is related in various ways to the particle density.
+Scalar active systems are those whose large-scale dynamics is well captured by a real (scalar) field, hereafter denoted $\rho$. 
+As we have seen in chapter~\ref{chap_intro}, the field $\rho$ is usually referred to as the \emph{order parameter} of the theory.
+While it can in general represent various quantities related to the dynamics, here it will be most of time given by the particle density.
 
-At equilibrium, the minimal continuous description of scalar systems with conserved order parameter 
-is achieved via \emph{model B} (see~\cite{HohenbergRMP} for a comprehensive classification).
-Model B indeed describes a class of equilibrium systems whose dissipative dynamics is captured by a conserved field, such that $\intd{r} \, \phi(\bm r,t) = {\rm const}$, for all times $t$,  where hereafter the variables $\bm r$ and $t$ account for space and time, respectively, while $d$ denotes the number of spatial dimensions.
-As model B describes the universal large-scale features of many systems, it can be formulated based on relevant symmetries and conservation laws.
-Such a phenomenological approach can moreover be supplemented by direct coarse-graining from microscopic (particle-based) theories, which provide additional physical insights. 
+% At equilibrium, the minimal continuous description of scalar systems with conserved order parameter is achieved via \emph{model B} (see~\cite{HohenbergRMP} for a comprehensive classification).
+% Model B indeed describes a class of equilibrium systems whose dissipative dynamics is captured by a conserved field, such that $\intd{r} \, \phi(\bm r,t) = {\rm const}$, for all times $t$,  where hereafter the variables $\bm r$ and $t$ account for space and time, respectively, while $d$ denotes the number of spatial dimensions.
+% As model B describes the universal large-scale features of many systems, it can be formulated based on relevant symmetries and conservation laws.
+% Such a phenomenological approach can moreover be supplemented by direct coarse-graining from microscopic (particle-based) theories, which provide additional physical insights. 
 
-In these notes, we will apply both approaches---phenomenological and coarse-graining---to study the dynamics of scalar active systems.
-We begin with a bottom-up approach
-In \autoref{chapter: introduction}, we introduced the active Brownian particle (ABP). 
-By extending this model to a collection of interacting ABPs, we will employ coarse-graining techniques to obtain one of the paradigmatic examples of collective active matter, motility-induced phase separation (MIPS).
-Here we will review some of the essentials of equilibrium phase separation physics, what changes for methods that do not admit an equilibrium description, and discuss what is needed for this to be the case.
-We will then take a more phenomenological approach to derive the Active Model B (AMB) and the Non-Reciprocal Cahn-Hilliard (NRCH) model, and explore their rich out-of-equilibrium features.
+% In these notes, we will apply both approaches---phenomenological and coarse-graining---to study the dynamics of scalar active systems.
+% We begin with a bottom-up approach
+% In \autoref{chapter: introduction}, we introduced the active Brownian particle (ABP). 
+% By extending this model to a collection of interacting ABPs, we will employ coarse-graining techniques to obtain one of the paradigmatic examples of collective active matter, motility-induced phase separation (MIPS).
+% Here we will review some of the essentials of equilibrium phase separation physics, what changes for methods that do not admit an equilibrium description, and discuss what is needed for this to be the case.
+% We will then take a more phenomenological approach to derive the Active Model B (AMB) and the Non-Reciprocal Cahn-Hilliard (NRCH) model, and explore their rich out-of-equilibrium features.
 
 
 
 \section{Interacting Active Brownian particles}
 
-We will again consider the case of two spatial dimensions, but we now have $N$ particles at positions $\bm r_i$, $i \in \{1, \dots N\}$.
-The dynamics of each of these particles are described by an underdamped Langevin equation with an active velocity, as in \autoref{chapter: introduction}.
-Without interaction, it 
+In Chapter~\ref{chap_intro}, we have introduced a simple model of noninteracting active Brownian particles. 
+Here, we consider the simplest extension of this model by assuming that we have isotropic particles that interact via volume exclusion. 
+For simplicity, we restrict our analysis to two spatial dimensions, most of what we present below will also hold in $d=3$.
+
+We thus have $N$ active particles defined by their positions $\bm r_i$ and self-propulsion orientations $\theta_i$, $i \in \{1, \dots N\}$.
+As we have seen before, we can write their dynamics in terms of overdamped Langevin equations
+% The dynamics of each of these particles are described by an underdamped Langevin equation with an active velocity, as in \autoref{chapter: introduction}.
+% Without interaction, it 
+% %
+% \begin{align}
+%     \odv{\bm r_i}{t} = \bm v_{i,a}(t) + \sqrt{ 2 D_t } \bm \xi_i(t),
+% \end{align}
+% %
+% where $\bm \xi_i(t)$ is white Gaussian noise, which obey
+% %
+% \begin{align}
+%     \E{\xi_{k,i}(t)} &= 0, &
+%     \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{ij} \delta_{kk'} \delta(t - t').
+% \end{align}
+% %
+% In two dimensions, the active velocity may be parametrized in terms of a single angle, $\bm v_a(t) = v_0 \hat {\bm e}(\theta(t))$, where 
+% %
+% \begin{align}
+%     \hat {\bm e}(\theta) 
+%     =
+%     \begin{pmatrix}
+%         \cos \theta \\ \sin \theta
+%     \end{pmatrix}.
+% \end{align}
 %
+%We focus on times much larger than the time scale of the rotational noise, $t\gg \tau_r = 1 / D_r$, so we may consider the rotational noise $\xi_i(t)$ to be white Gaussian noise as well.
+%Including the interaction potential $U$, the full equations of motion for each particle becomes
+%
+\begin{subequations}
+\label{eq_Langevin_int_ABPs}
 \begin{align}
-    \odv{\bm r_i}{t} = \bm v_{i,a}(t) + \sqrt{ 2 D_t } \bm \xi_i(t),
+    \odv{\bm r_i}{t} & = v_0 \hat {\bm e}(\theta_i) - \frac{1}{\zeta} \nabla_{\bm r_i} U(\{\bm r_j\}) + \sqrt{ 2 D } \bm \xi_i, \\
+    \odv{\theta_i}{t} & = \sqrt{ 2 D_r } \chi_i,
 \end{align}
+\end{subequations}
 %
-where $\bm \xi_i(t)$ is white Gaussian noise, which obey
+where $\zeta$ and $D$ correspond respectively to the friction and diffusivity and are related by the relation $D = k_B T / \zeta$,
+while $D_r$ denotes the rotational diffusivity of the self-propulsion direction.
+As before, the noises in~\eqref{eq_Langevin_int_ABPs} are Gaussian with zero mean and satisfy
+\begin{equation*}
+    \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{kk'}\delta_{ij} \delta(t - t'), \qquad
+    \E{\chi_{k}(t)\chi_{k'}(t')} = \delta_{kk'} \delta(t - t'). 
+    %\qquad k,k' \in \{1,\ldots,N\}, \quad i,j \in \{1,2\}.
+\end{equation*}
+The interactions between the particles are modeled via a potential $U$, which we assume of the form
 %
-\begin{align}
-    \E{\xi_{k,i}(t)} &= 0, &
-    \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{ij} \delta_{kk'} \delta(t - t').
-\end{align}
-%
-In two dimensions, the active velocity may be parametrized in terms of a single angle, $\bm v_a(t) = v_0 \hat {\bm e}(\theta(t))$, where 
-%
-\begin{align}
-    \hat {\bm e}(\theta) 
-    =
-    \begin{pmatrix}
-        \cos \theta \\ \sin \theta
-    \end{pmatrix}.
-\end{align}
-%
-We focus on times much larger than the time scale of the rotational noise, $t\gg \tau_r = 1 / D_r$, so we may consider the rotational noise $\xi_i(t)$ to be white Gaussian noise as well.
-Including the interaction potential $U$, the full equations of motion for each particle becomes
-%
-\begin{align}
-    \odv{\bm r_i(t)}{t} & = v_0 \hat {\bm e}(\theta_i(t)) - \mu \nabla_{\bm r_i} U(\bm r_j(t)) + \sqrt{ 2 D } \bm \xi_i(t), \\
-    \odv{\theta_i(t)}{t} & = \sqrt{ 2 D_R } \chi_i(t).
-\end{align}
-%
-Here, $\mu$ is the mobility, which through Einsteins relation is related to the temperature and the diffusivity by $D = \mu k_b T$, and $D_r = 1 / \tau_r$ is the rotational diffusivity.
-We assume the potential to be a two-body interaction of the form
-%
-\begin{align}
+\begin{align*}
     U(\bm r_1, ..., \bm r_n) = \sum_{i \neq j} u(|\bm r_i - \bm r_j|).
-\end{align}
+\end{align*}
 %
-For the following calculation, $u$ is assumed to be short-ranged, isotropic and repulsive: two particles only interact within a finite range, and the $u$ only depends on the distance between their centers of mass.
-For example, $u$ can either model hard-core repulsion 
-\begin{equation}
-    u(r) = \begin{cases} +\infty & {\rm if}\; r < d_0\\
+In the following, we also assume that $u$ is short-ranged, isotropic and repulsive: two particles only interact when they get in contact, while the amplitude and direction of the resulting force only depend on the vector joining their centers of mass.
+The simplest choice satisfying these criteria is the hard-core potential 
+\begin{equation*}
+    u_{\rm HC}(r) = \begin{cases} +\infty & {\rm if}\; r < d_0\\
         0 & {\rm otherwise} \end{cases} ,
- \end{equation}
-with $d_0$ the particle diameter, or be a softer harmonic repulsion $u(r) = \tfrac{k}{2}(d_0 - r)^2\Theta(d_0 - r)$.
+ \end{equation*}
+with $d_0$ the particle diameter, 
+that prevents any overlap between the particles.  
+In practice --i.e. for simulations-- the hard core potential is often approximated via the Weeks-Chandler-Andersen potential (or truncated Lehnnard-Jones potential):
+\begin{equation*}
+    u_{\rm WCA}(r) = \begin{cases} 4\epsilon\left[ \left(\frac{d_0}{r}\right)^{12} - \left(\frac{d_0}{r}\right)^{6} \right] + \epsilon & {\rm if}\; r < 2^{1/6} d_0\\
+        0 & {\rm otherwise} \end{cases} .
+ \end{equation*}
+Alternatively, one can also `allow' for finite overlap between particles by using a softer repulsion potential:
+\begin{equation*}
+    u_{\rm soft}(r) = \begin{cases} \tfrac{k}{2}(d_0 - r)^2 & {\rm if}\; r < d_0\\
+        0 & {\rm otherwise} \end{cases} .
+ \end{equation*}
+ All the aspects that we describe below are qualitatively independent of the specific choice of the interaction potential.
 
-
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=.4\textwidth]{chapters/Figures/scalar/scalar_01.jpg}
-    \caption{Hard and soft sphere repulsion}
+    \caption{Illustration of the possible choices for the potential $u$. A hard repulsion corresponds to $\lim_{r\to0} u(r) = +\infty$, such that the particles can never fully overlap. On the other hand, for the soft repulsion the maximum value of the potential is finite, such that overlaps are always possible.}
     \label{fig: hard soft}
 \end{figure}
 
