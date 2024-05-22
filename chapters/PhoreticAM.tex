@@ -9,6 +9,7 @@ Some kinds of phoresis, and the corresponding gradients are
 %
 This gradient gives rise to a \emph{slip velocity} $\bm v_s$ along the surface of particles and allows for motion.
 
+\todo[inline]{Draw diagrams}
 
 \section{Diffusiophoresis}
 
@@ -55,9 +56,236 @@ We will assume the chemical relaxes fast, so $\partial_t c = 0$.
 Then we consider the flow in the $z$-direction, perpendicular to surface of the sphere, and the parallel flow seperatly.
 This leaves the following equations,
 %
-\begin{align}
-    D \nabla^2 c &= \beta D \bm \nabla \cdot (c \bm \nabla W) - \bm v \cdot \bm \nabla c,\\
-    - \eta \nabla^2 v_z &= - \partial_z p - c \partial_z W, \\
+\begin{subequations}
+\begin{align}\label{eq c diffusion}
+    D \nabla^2 c &= \beta D \bm \nabla \cdot (c \bm \nabla W) - \bm v \cdot \bm \nabla c,\\\label{eq vz}
+    - \eta \nabla^2 v_z &= - \partial_z p - c \partial_z W, \\\label{eq v par}
     - \eta \nabla^2 \bm v_\parallel & = - \bm \nabla_\parallel p.
+\end{align}    
+\end{subequations}
+%
+We will further assume that the flow in the vertical direction is negligible, $v_z = 0$, and that the gradient is dominated by the $z$-direction, i.e., $\partial_z \gg |\bm \partial_\parallel c|$ and $\nabla^2 \approx \partial_z^2$.
+This is correct to $\Oh((\sigma/R)^2)$.
+With this, we have
+%
+\begin{align}
+    \bm v &=
+    \begin{pmatrix}
+        v_x \\ v_y \\ 0
+    \end{pmatrix},&
+    \bm \nabla c
+    &= 
+    \begin{pmatrix}
+        0 \\ 0 \\ \partial_z c
+    \end{pmatrix}, &\implies &
+    \bm \nabla \cdot\bm v = 0.
+\end{align} 
+%
+With this, \autoref{eq c diffusion} becomes
+%
+\begin{align}
+    \partial_z^2 c = \beta \partial_z \left(c \partial_z W\right),
+\end{align}
+%
+Which we can solve exactly yielding the Boltzmann distribution,
+%
+\begin{align}
+    c(\bm x) = c_\mathrm{out} e^{-\beta W(\bm x)}.
+\end{align}
+%
+Next, \autoref{eq vz} becomes
+%
+\begin{align}
+    \partial_z p =  c \partial_z W.
+\end{align}
+%
+using the solution we found earlier, we have that $c \partial_z W = - \frac{1}{\beta}\partial_z c$, so we write
+%
+\begin{align}
+    \partial_z\left(p - \frac{1}{\beta} c\right) = 0.
+\end{align}
+%
+This means that the quantity $p - \frac{1}{\beta} c$ is constant within the slip layer, and we can apply the boundary condition to write
+%
+\begin{align}
+    p(\bm x) 
+    = p_\mathrm{out} 
+    + k_B T c_\mathrm{out}(\bm x_\parallel) \left( e^{- \beta W(z)} - 1 \right).
+\end{align}
+%
+Finally, \autoref{eq v par} becomes
+%
+\begin{align}
+    \eta \partial_z \bm b = -\bm \nabla_\parallel p_\mathrm{out}
+    - k_B T \left(\bm \nabla_\parallel c_\mathrm{out} \right)
+    \left(e^{- \beta W}\right).
+\end{align}
+%
+Outside the slip layer, the pressure is assumed constant, so $-\bm \nabla_\parallel p_\mathrm{out} = 0$.
+We then apply $\int_{0}^\sigma z \, z$ to both parts, integrating by parts, to obtain
+\todo[inline]{detail this}  
+%
+\begin{align}
+    \bm v_z = \underbrace{\int \dd z \, z \left(1 - e^{-\beta w(z)}\right)}_{\mu}
+    \bm \nabla_\parallel c_\mathrm{out},
+\end{align}
+%
+as promised at the beginning of this section.
+
+This calculation shows that, due to the interaction potential $W(z)$ between the particle and the solute concentration $c$, a gradient in $c$ gives rise to a flow along the surface of the particle.
+This flow will exert a force on the particle.
+In fact, we may use the reciprocal theorem, as discussed in \autoref{chap_hydro}, to calculate the resulting net velocity $\bm v$ and rotational rate $\omega$ of the particle.
+\todo[inline]{details?}
+They are given by integrals over the surface $s$ of the particles
+%
+\begin{align}
+    \bm v & = 
+    \frac{1}{4 \pi} \int \dd s \, \bm v_s
+    = \frac{1}{4 \pi R^2} \in \dd s \,  \mu \bm \nabla_\parallel c_\mathrm{out}, 
+    \Omega = - \frac{3}{8 \pi R^3} \int \dd s \, \hat {\bm e}_z \times \bm v_s.
+\end{align}
+%
+As the simplest example, consider
+\todo[inline]{write example}
+
+\subsection*{Self-diffusiophoresis}
+
+We will now consider what happens when a particle creates the gradient it is reacting to, at a rate $\alpha$.
+This means the introduction of activity, as such a mechanism needs to consume energy.
+Outside the slip layer, the chemical obeys the diffusion equation,
+%
+\begin{align}
+    D_c \nabla^2 c = 0,
+\end{align}
+%
+while at the boundary, the production of chemical by the particle results in a gradient, which imposes the boundary condition
+%
+\begin{align}
+    - D_c \bm \nabla c \cdot \hat{\bm e}_r \big|_s = \alpha(\bm r_s).
+\end{align}
+%
+We will consider the chemical diffuses a lot faster than the particle, $D_c \gg D$, and that \todo[noinline]{is this right?}
+%
+\begin{align}
+    \mathrm{Pe} = \frac{R v}{D_c }\ll 1.
+\end{align}
+%
+This results in the slip velocity
+\todo[inline]{details}
+%
+\begin{align}
+    \bm v_s = \mu\left( \one - \hat {\bm e}_r \otimes \hat {\bm e}_r \right) \bm \nabla c.
+\end{align}
+%
+
+\subsection*{Mixture of $M$ spicies}
+
+\todo[inline]{More on the jump from single particel to density?}
+
+We now consider a mixture of $M$ different species with phoretic particles.
+Particles of species $i$ each have the same mobility $\mu_i$ and activity $\alpha_i$, and the density of such particles is given by $\rho_i(\bm x, t)$.
+These particles are thus active Brownian particles, but the self-propulsion velocity is now given not by the polarity $p_i$ and the inherent drive $v_0$, $\bm v = v_0 \bm p$, but rather the gradient and mobility $\bm v = - \mu \bm \nabla c$.
+The equations of $\rho_i$ are therefore given by swapping the self propulsion in \autoref{eq: closed density},
+%
+\begin{align}
+    \partial_t \rho_i 
+    = - \bm \nabla \cdot \left[ (- \mu \bm \nabla c) \rho_i - D \bm \nabla \rho_i \right],
+\end{align}
+%
+while the chemical follows
+\todo[inline]{show this?}
+%
+\begin{align}
+    \partial_t c = D_c \nabla^2 c + \sum_i \alpha_i \rho_i.
+\end{align}
+%
+If we consider the perturbations $\delta \rho_i$ and $\delta c$ around homogenous solutions $\bar \rho_i$ and $c_0$, we see that
+%
+\begin{align}
+    \bar c_0(t) = c_0 + t \sum_i \alpha_i \bar \rho_i
+\end{align}
+%
+and, considering again the concentration fast so $0 = \partial_t\delta c$, we get
+%
+\begin{align}
+    \nabla^2 \delta c = - \frac{1}{D_c} \sum_i \alpha_i \delta \rho_i.
+\end{align}
+%
+For the density, we have
+%
+\begin{align}
+    \partial_t \delta \rho_i 
+    &= D \nabla^2 \delta \rho_i + \mu_i \bar \rho_i \nabla^2 \delta c\\
+    & = D \nabla^2\delta \rho_i 
+    - \mu_i \bar \rho_i \sum_j \frac{\alpha_j \delta \rho_j}{D_c}.
+\end{align}
+%
+If we define
+%
+\begin{align}
+    U_i &= \alpha_i \delta \rho_i & 
+    \gamma_i = \frac{\alpha_i \mu_i \bar \rho_i}{D_c},
+\end{align}
+%
+then, in Fourier space, this may be written as an eigenvalue equation,
+%
+\begin{align}
+    \underbrace{\left[ \lambda + Dk^2 \right]}_{\tilde \lambda} \tilde U_i =
+    - \gamma_i \sum_j \tilde U_j,
+\end{align}
+%
+where $\tilde U_i(t) = e^{- \lambda t} \tilde U_i(t = 0)$.
+In matrix option,
+%
+\begin{align}
+    \begin{pmatrix}
+        \gamma_1 & \cdots & \gamma_1 \\
+        \vdots & \ddots & \vdots \\
+        \gamma_M & \cdots & \gamma_M
+    \end{pmatrix}
+    \begin{pmatrix}
+        \tilde U_1 \\ \vdots\\ \tilde U_M
+    \end{pmatrix}
+    = 
+    \tilde \lambda 
+    \begin{pmatrix}
+        \tilde U_1 \\ \vdots \\\tilde U_M
+    \end{pmatrix}.
+\end{align}
+%
+All columns/rows of this matrix are linearly dependent on each other, so $M - 1$ of the eigenvalues vanish, $\tilde \lambda_- = 0 $.
+The single non-vanishing eigenvalue is given by the trace, $\tilde \lambda_+ \equiv \Gamma = \sum_i \gamma_i$.
+This eigenvalue gives the stability of the system.
+The time evolution of a homogenous mixture is given by $\lambda$, and $\lambda_- = \tilde \lambda_- - D k^2 =  - Dk^2 \leq 0$, so these modes are exponentially supressed.
+However, $\lambda_+ = -\Gamma - D k^2$ will be possitive for certain wavenumbers $k$ if $\Gamma< 0$.
+\todo[noinline]{Draw diagram of $\lambda$}.
+This criterion of in-stability translates to 
+%
+\begin{align}
+    \sum_i \alpha_i \mu_i \bar \rho _i  < 0.
+\end{align}
+%
+
+
+As a first example, consider $M=1$.
+The criterion for instability is then $\alpha \mu < 0$.
+This is called the Keller-Segel instability, and is the result of particles producing a chemical they are attracted to, and thus creating an effective, long-range attractive interaction.
+
+In the case of $M = 2$, we can show that the lead order growth terms of the different species is given by
+%
+\begin{align}
+    U_i \sim \frac{\gamma_i}{\Gamma} e^{-\Gamma t} + \dots
+\end{align}
+%
+Thus, the relative stoichiometry in the domains are given by
+%
+\begin{align}
+    \frac{\delta \rho_i}{\delta \rho_1} = \frac{\mu_i \bar \rho_i}{\mu_1 \bar \rho_1},
+\end{align}
+%
+or
+%
+\begin{align}
+    \delta \rho_2 = \frac{\mu_2 \bar \rho_2}{\mu_1 \bar \rho_1} \delta \rho_1.
 \end{align}
 %

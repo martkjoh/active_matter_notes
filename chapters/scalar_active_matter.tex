@@ -296,10 +296,11 @@ We therefore remove terms that are fourth order or more in gradients.
 For example, the lowest order contribution to $\partial_t \rho $ is the diffusion term, so $\rho = \Oh(\nabla^2)$.
 If we were to write out the equation for the nematic tensor, we would see that $Q = \Oh(\nabla)$, so $\nabla_j [v(\rho) \rho Q] = \Oh(\nabla^4)$ and is therefore neglected.
 This closes the hierarchy of equations, and we are left with
+\todo[noinline]{write in terms of $\bm v(\bm x)$ instead}
 %
 \begin{align}
     \label{eq: closed density}
-    \partial_t \rho &= - \nabla_i [v(\rho) \rho p_i - D \nabla_i \rho], \\
+    \partial_t \rho &= - \nabla_i [v(\rho) p_i \rho - D \nabla_i \rho], \\
     \label{eq: closed polarity}
     \partial_t (\rho p_i)
     & = 
