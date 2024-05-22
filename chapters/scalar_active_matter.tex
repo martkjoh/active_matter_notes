@@ -20,12 +20,13 @@ While it can in general represent various quantities related to the dynamics, he
 
 \section{Interacting Active Brownian particles}
 
-In Chapter~\ref{chap_intro}, we have introduced a simple model of noninteracting active Brownian particles. 
+In \autoref{intro_ABM} we introduced a simple model of noninteracting active Brownian particles. 
 Here, we consider the simplest extension of this model by assuming that we have isotropic particles that interact via volume exclusion. 
 For simplicity, we restrict our analysis to two spatial dimensions, most of what we present below will also hold in $d=3$.
 
 We thus have $N$ active particles defined by their positions $\bm r_i$ and self-propulsion orientations $\theta_i$, $i \in \{1, \dots N\}$.
-As we have seen before, we can write their dynamics in terms of overdamped Langevin equations
+As we have seen before, we can write their dynamics in terms of overdamped Langevin equations.
+In two dimensions, these take the form
 % The dynamics of each of these particles are described by an underdamped Langevin equation with an active velocity, as in \autoref{chapter: introduction}.
 % Without interaction, it 
 % %
@@ -62,7 +63,16 @@ As we have seen before, we can write their dynamics in terms of overdamped Lange
 \end{subequations}
 %
 where $\zeta$ and $D$ correspond respectively to the friction and diffusivity and are related by the relation $D = k_B T / \zeta$,
-while $D_r$ denotes the rotational diffusivity of the self-propulsion direction.
+while $D_r$ denotes the rotational diffusivity of the self-propulsion direction, and the unit vector pointing in the direction of self-propulsion takes the form
+%
+\begin{align}\label{unit vector}
+    \hat {\bm e}(\theta) 
+    =
+    \begin{pmatrix}
+        \cos \theta \\ \sin \theta
+    \end{pmatrix}.
+\end{align}
+%
 As before, the noises in~\eqref{eq_Langevin_int_ABPs} are Gaussian with zero mean and satisfy
 \begin{equation*}
     \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{kk'}\delta_{ij} \delta(t - t'), \qquad
@@ -90,14 +100,14 @@ In practice --i.e. for simulations-- the hard core potential is often approximat
  \end{equation*}
 Alternatively, one can also `allow' for finite overlap between particles by using a softer repulsion potential:
 \begin{equation*}
-    u_{\rm soft}(r) = \begin{cases} \tfrac{k}{2}(d_0 - r)^2 & {\rm if}\; r < d_0\\
+    u_{\rm soft}(r) = \begin{cases} \tfrac{\epsilon}{2}(1 - r/d_0)^2 & {\rm if}\; r < d_0\\
         0 & {\rm otherwise} \end{cases} .
  \end{equation*}
  All the aspects that we describe below are qualitatively independent of the specific choice of the interaction potential.
 
 \begin{figure}[!t]
     \centering
-    \includegraphics[width=.4\textwidth]{chapters/Figures/scalar/scalar_01.jpg}
+    \includegraphics[width=.4\textwidth]{chapters/Figures/scalar/pot.pdf}
     \caption{Illustration of the possible choices for the potential $u$. A hard repulsion corresponds to $\lim_{r\to0} u(r) = +\infty$, such that the particles can never fully overlap. On the other hand, for the soft repulsion the maximum value of the potential is finite, such that overlaps are always possible.}
     \label{fig: hard soft}
 \end{figure}
@@ -150,15 +160,17 @@ With this picture in mind, we assume that the effective self-propulsion speed wi
 \end{align}
 %
 and neglect any other effects of the interaction between the particles.
+In general, we may consider a self-propulsion speed dependent on space and time, $v = v(\bm x, t)$.
+The case above is then a special case where the temporal and spatial dependence of $V$ is through $\rho(\bm x, t)$.
 The Fokker-Planck equation for the one-particle density is then
 %
-\begin{align} \label{eq: mips fokker planck}
-    \partial_t \calP(\bm r, \phi, t)
+\begin{align} \label{eq: space dependent fokker planck}
+    \partial_t \calP(\bm x, \phi, t)
     + \bm \nabla \cdot [
-        v(\rho) \hat {\bm e}(\phi ) \calP(\bm r, \phi, t)
-        - D \bm \nabla \calP(\bm r, \phi, t)
+        v(\bm x, t) \hat {\bm e}(\phi ) \calP(\bm x, \phi, t)
+        - D \bm \nabla \calP(\bm x, \phi, t)
     ]
-        - D_r \partial_\phi^2 \calP(\bm r, \phi, t)
+        - D_r \partial_\phi^2 \calP(\bm x, \phi, t)
         = 0,
 \end{align}
 %
@@ -167,36 +179,27 @@ However, in the regime where $t\gg 1 / D_R \equiv \tau_R$ it may be described we
 This is a powerful technique is is also very useful for more complex situations.
 
 
+
 \subsection{Spatial variation}
 
+If the environment of the Active Brownian particles, such as the surface they move in, varies as a function of space, then we expect the self-propulsion velocity to do so as well.
 Before we start with the momentum expansion, we consider the case where the local velocity depends on space directly, not through the density of particles.
-This can be achieved experimentally by engineering the environment of active particles, which leads to rich behavior.\todo{add sources, discuss more?}
-The Fokker-Planck is then
-%
-\begin{align} \label{eq: mips fokker planck}
-    \partial_t \calP(\bm x, \phi, t)
-    + \bm \nabla \cdot [
-        v(\bm x) \hat {\bm e}(\phi ) \calP(\bm x, \phi, t)
-        - D \bm \nabla \calP(\bm x, \phi, t)
-    ]
-        - D_r \partial_\phi^2 \calP(\bm x, \phi, t)
-        = 0.
-\end{align}
-%
-A steady state configuration $P_{SS}$ obeys by assumption $\partial_t P_{SS} = 0$.
-Assuming it is isotropic, so $\partial_\phi P_{SS} = 0$, and that diffusion $D$ is small compared to the active velocity, then the steady-state distribution obeys \todo[noinline]{Are these the right assumptions?}
+This can be achieved experimentally by engineering the environment of active particles, which leads to rich behavior, and this is described by \autoref{eq: space dependent fokker planck}.\todo{add sources, discuss more?}
+We will consider only the stationary state solution, $\calP_{SS}$, which by assumption obeys $\partial_t \calP_{SS}{\bm x, \phi, t} = 0$.
+We assume this state to be isotropic, $\partial_\phi \calP(\bm x, \phi, t) = 0$, so probability density is proportional to the particle density, $\rho_{SS} \propto \calP_{SS}$, and that the diffusion $D$ is small compared to the active velocity, so this term can be neglected.
+From \autoref{eq: space dependent fokker planck}, the equation for the steady state then beomces
 %
 \begin{align}
-    \bm \nabla \cdot [v(\bm x) \hat {\bm e}(\phi ) \calP(\bm x, \phi, t)] = 0
+    \bm \nabla \cdot [v(\bm x) \hat {\bm e}(\phi ) \rho_{SS}(\bm x)] = 0
     \implies 
-    \calP(\bm x, \phi, t) \propto \frac{1}{v(\bm x)}.
+    \rho_{SS}(\bm x) \propto \frac{1}{v(\bm x)}.
 \end{align}
 %
 The particles thus clump together where the active velocity is high, leading to higher density, while in the regions with high active velocity, the density is low.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=.4\textwidth]{chapters/Figures/scalar/scalar_02.jpg}
+    \includegraphics[width=.35\textwidth]{chapters/Figures/scalar/perturb.pdf}
     \caption{Perturbation in density gives perturbation in velocity}
     \label{fig: perturb}
 \end{figure}
@@ -230,82 +233,116 @@ This happens if
 
 \subsection{Moment expansion}
 
-We begin by defining the particle density,
+To find the full dynamics of the particle density
 %
-\begin{align}
-    \rho(\bm x, t) = \int_0^{2\pi} \dd \phi\, \calP(\bm x, \phi, t).
+\begin{align} \label{scalar order parameter}
+    \rho(\bm x, t) = \int\limits _0^{2\pi} \dd \phi\, \calP(\bm x, \phi, t),
 \end{align}
 %
-We now seek to find the equation of motion of this field.
-By integrating the Fokker-Planck for the one-particle distribution over $\phi$, i.e. applying $\int \dd \phi$ to  \autoref{eq: mips fokker planck}, we obtain
-%
-\begin{align}\label{eq: density FP}
-    \partial_t \rho 
-    = 
-    - \bm \nabla \cdot [ v(\rho) \rho \bm p - D \nabla \rho ].
-\end{align}
-%
-The radial diffusion term $\propto D_r$ vanishes as it is a
-where we have defined the orientational order parameter
+we must apply the \emph{moment expansion}.
+We will see that the dynamics of $\rho$, which is the first moment of the probability distribution $\calP(\phi)$, will depend on the higher moments, of the distribution.
+This creates a hierarchy of equations, which we will argue can be truncated, yielding a closed set of equations.
+In addition to the particle density~\autoref{scalar order parameter}, also called the scalar order parameter, the relevant moments are the polar and nematic order fields,
 %
 \begin{align}
-    \bm p(\bm x, t)
-    =
-    \frac{1}{\rho}
-    \int_0^{2\pi} \dd \phi \, \hat {\bm e}(\phi) \calP(\bm x, \phi, t).
-\end{align}
-%
-This measures how much the particles align.
-If there is no alignment, then $\cal P$ is constant as a function of $\phi$, and the integral vanishes.
-If all particles are oriented in some direction $\phi = \phi_0$, then $\calP \propto \delta(\phi - \phi_0)$  and $\rho = \hat {\bm e}(\phi_0)$ is a unit-vector pointing in the direction of alignment.
-% Handwritten page XI
-In the same manner, we find the equation of motion for $\bm p$ by applying $\int \dd\phi \, \hat{\bm e}(\phi)$ to \autoref{eq: mips fokker planck}, which yields
-%
-\begin{align} \label{eq: polarity FP}
-    \partial_t (\rho  p_i)
-    =
-    -
-    \nabla_{j}
-    \left[
-        v(\rho) \rho \left( Q_{ij} + \frac{ 1 }{ 2 }  \delta_{ij}\right)
-        - D \nabla_j (\rho p_i)
-    \right]
-    - D_r \rho p_i.
-\end{align}\todo[noinline]{check indices}
-%
-The last term is obtained by integration by parts.
-In this equation, we are using the Einstein summation convention, which means that repeated indices are summed over.
-We have defined the tension, also called the nematic order parameter,
-%
-\begin{align}
-    \rho Q_{ij}
-    = \int_0^{2 \pi} \dd \phi
+    \label{polar order parameter}
+    \rho(\bm x, t) p_i(\bm x, t)
+    & =
+    \int\limits_0^{2\pi} \dd \phi \, \hat {e}_i(\phi) \calP(\bm x, \phi, t),
+    \\\label{nematic order parameter}
+    \rho(\bm x, t) Q_{ij}(\bm x, t)
+    & = \int\limits_0^{2 \pi} \dd \phi
     \left[
         \hat e_i(\phi)\hat e_j(\phi) - \frac{1}{2} \delta_{ij}
     \right] \calP(\bm r, \phi, t).
 \end{align}
 %
-The Krönecker delt term ensures that the nematic tensor is traceless, $\text{Tr}(Q) = 0$.
-This quantity measures the \emph{nematic} alignment of particles, which means it neglects whether the particles are aligned or anti-aligned.
-\todo[inline]{Draw picture of nematic alignment}
-\noindent{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless (${\sum}_i Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}\\
+The polar order parameter, $p_i$, measures how much the particles align in the same direction.
+If the distribution of particles is independent of the direction $\phi$, then using the explicit form of $\hat {\bm e}$~\autoref{unit vector}, we see that the polar order parameter vanishes: $\bm p = \frac{1}{2\pi} \int_0^{2\pi}\hat {\bm e}(\phi) = \bm 0$.
+If the distribution is strongly peaked around som angle $\theta$, so we can approximate $\calP(\bm x, \phi, t) \propto \delta(\phi - \theta)$, then $\bm p = \hat{\bm e}(\theta)$.
+In general, the polar order parameter will take on values between these extremes, varying as a function of space and time.
+
+While the polar order parameter $\bm p$ measures the alignment of small arrows, we can consider the nematic order parameter $Q$ measures the alignment of objects that are symmetric back to front, such as an ellipse.
+If the system is completely disordered, then $Q = 0$.
+If 50\% of the particles points in direction $\theta = 0$, while the rest points in the opposite direction $\theta = \pi$, the $p_i = 0$, while $Q\neq 0$.
+In fact, 
+%
+\begin{equation}
+    Q = 
+    \begin{pmatrix}
+        1 & 0 \\ 0 & -1
+    \end{pmatrix}.
+\end{equation}
+%
+We see that $\mathrm{Tr} Q = 0$.
+This is in general true for $Q$, and is due to the Krönkecker delta in its definition.
+General, higher-order moments describe the alignment of objects invariant under shorter and shorter rotations.
+The polar order parameter is invariant under a $2 \pi$ rotation, the nematic under a $\pi$ rotation, and so on.\footnote{
+    In quantum mechanics, we must also include fields that pick up a minus sign under rotations by $2 \pi / n$.
+    These are fermionic fields, while the fields introduced here are boson fields.
+}
+The difference between polar and nematic ordering is shown in \autoref{fig: polar and nematic}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.38\textwidth]{chapters/Figures/scalar/polar.pdf}
+    \hspace{1cm}
+    \includegraphics[width=.4\textwidth]{chapters/Figures/scalar/nematic.pdf}
+    \caption{
+        To the left, to configurations that have high and low polar ordering.
+    To the right, two configurations which both have low polar ordering, but one has high nematic ordering, while the other has low.}
+    \label{fig: polar and nematic}
+\end{figure}
+
+To derive the equations of motion of the scalar order parameter, we integrating the Fokker-Planck for the one-particle distribution over $\phi$.
+In other words, we apply $\int \dd \phi$ to \autoref{eq: space dependent fokker planck}, which gives
+%
+\begin{align}\label{eq: density FP}
+    \partial_t \rho(\bm x, t)
+    = 
+    - \bm \nabla \cdot [ v(\bm x, t) \rho(\bm x, t) \bm p(\bm x, t) - D \nabla \rho(\bm x, t)].
+\end{align}
+%
+The radial diffusion term $\propto D_r$ vanishes as it is a total derivative.
+
+% Handwritten page XI
+
+In the same manner, we find the equation of motion for $\bm p$ by applying $\int \dd\phi \, \hat{\bm e}(\phi)$ to \autoref{eq: space dependent fokker planck}, which yields\todo[noinline]{check indices}
+%
+\begin{align} \label{eq: polarity FP}
+    \partial_t [\rho(\bm x, t)  p_i(\bm x, t)]
+    =
+    -
+    \nabla_{j}
+    \left\{
+        v(\bm x, t) \rho(\bm x, t) \left[ Q_{ij}(\bm x, t) + \frac{ 1 }{ 2 }  \delta_{ij}\right]
+        - D \nabla_j [\rho p_i(\bm x, t)]
+    \right\}
+    - D_r \rho p_i(\bm x, t).
+\end{align}
+%
+The last term is obtained by integration by parts.
+In this equation, we are using the Einstein summation convention, which means that repeated indices are summed over.
+
+{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless (${\sum}_i Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}
 
 As we can see, this expansion is a runaway process, and we need a criterion for closing this hierarchy of equations.
 When we do coarse-graining, we are interested in the large-scale, long-term behavior of the system.
 We therefore remove terms that are fourth order or more in gradients.
 For example, the lowest order contribution to $\partial_t \rho $ is the diffusion term, so $\rho = \Oh(\nabla^2)$.
-If we were to write out the equation for the nematic tensor, we would see that $Q = \Oh(\nabla)$, so $\nabla_j [v(\rho) \rho Q] = \Oh(\nabla^4)$ and is therefore neglected.
+If we were to write out the equation for the nematic tensor, we would see that $Q = \Oh(\nabla)$, so $\nabla [v \rho Q] = \Oh(\nabla^4)$ and is therefore neglected.
 This closes the hierarchy of equations, and we are left with
-\todo[noinline]{write in terms of $\bm v(\bm x)$ instead}
 %
+\begin{subequations}
 \begin{align}
     \label{eq: closed density}
-    \partial_t \rho &= - \nabla_i [v(\rho) p_i \rho - D \nabla_i \rho], \\
+    \partial_t \rho(\bm x, t) &= - \nabla_i [v(\bm x, t) p_i(\bm x, t) \rho(\bm x, t) - D \nabla_i \rho(\bm x, t)], \\
     \label{eq: closed polarity}
-    \partial_t (\rho p_i)
+    \partial_t [\rho(\bm x, t) p_i(\bm x, t)]
     & = 
-    - \nabla_j \left[\frac{1}{2} v(\rho) \rho \delta_{ij} - D\nabla_j (\rho p_i)\right] - D_r \rho p_i.
+    - \nabla_j \left[\frac{1}{2} v(\bm x, t) \rho(\bm x, t) \delta_{ij} - D\nabla_j [\rho(\bm x, t) p_i(\bm x, t)]\right] - D_r \rho(\bm x, t) p_i(\bm x, t).
 \end{align}
+\end{subequations}
 %
 As all terms in the density equation are proportional to at least one gradient term, the only time scale in this equation in this equation is the system size, $\partial_t^{-1} \sim \nabla^{-1} \sim L$, which diverges in the thermodynamic limit $L\rightarrow\infty$.
 We therefore expect this dynamics to be slow.
@@ -339,8 +376,9 @@ We will assume now that $t\gg \tau_R$, so that the first term is suppressed, and
 where we in the last step we assume $A$ does not vary much over the time-scale $\tau_R = 1 / D_R$.
 This shows that, given our assumptions, we may neglect the time-derivative term in the original equation \autoref{eq: enslave}, and dynamics of $\bm p$ is now complete determined by $A(\bm x, t)$.
 We say $\bm p$ is \emph{enslaved} to the slow dynamics of $A$.
-
 Finally, we see that the diffusion term, proportional to $D$ in \autoref{eq: closed polarity}, is fourth order in gradients, and should therefore be neglected.\todo[noinline]{Is this counting right?}
+
+We now return to the special case of a density-dependent self-propulsion velocity, $v(\bm x, t) = v(\rho(\bm x, t))$.
 We can now explicitly solve for the polar order,
 %
 \begin{align}
