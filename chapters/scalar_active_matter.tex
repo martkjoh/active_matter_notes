@@ -1,4 +1,3 @@
-\section{Introduction}
 
 Scalar active systems are those whose large-scale dynamics is well captured by a real (scalar) field, hereafter denoted $\rho$. 
 As we have seen in chapter~\ref{chap_intro}, the field $\rho$ is usually referred to as the \emph{order parameter} of the theory.
@@ -18,14 +17,16 @@ While it can in general represent various quantities related to the dynamics, he
 
 
 
-\section{Interacting Active Brownian particles}
+\section{Interacting active Brownian particles}
 
-In \autoref{intro_ABM} we introduced a simple model of noninteracting active Brownian particles. 
+\subsection{The microscopic model}
+
+In \autoref{intro_ABM}, we have introduced a simple model of noninteracting active Brownian particles. 
 Here, we consider the simplest extension of this model by assuming that we have isotropic particles that interact via volume exclusion. 
-For simplicity, we restrict our analysis to two spatial dimensions, most of what we present below will also hold in $d=3$.
+For simplicity, we restrict our analysis to two spatial dimensions, while most of what we present below also holds in $d=3$.
 
 We thus have $N$ active particles defined by their positions $\bm r_i$ and self-propulsion orientations $\theta_i$, $i \in \{1, \dots N\}$.
-As we have seen before, we can write their dynamics in terms of overdamped Langevin equations.
+As we have seen before, we can model their dynamics in terms of overdamped Langevin equations.
 In two dimensions, these take the form
 % The dynamics of each of these particles are described by an underdamped Langevin equation with an active velocity, as in \autoref{chapter: introduction}.
 % Without interaction, it 
@@ -62,8 +63,8 @@ In two dimensions, these take the form
 \end{align}
 \end{subequations}
 %
-where $\zeta$ and $D$ correspond respectively to the friction and diffusivity and are related by the relation $D = k_B T / \zeta$,
-while $D_r$ denotes the rotational diffusivity of the self-propulsion direction, and the unit vector pointing in the direction of self-propulsion takes the form
+where $\zeta$ and $D$ correspond respectively to the friction and diffusivity, and are related by the relation $D = k_B T / \zeta$,
+while $D_r$ denotes the rotational diffusivity of the self-propulsion direction, and the unit vector parametrizing the direction of self-propulsion takes the form
 %
 \begin{align}\label{unit vector}
     \hat {\bm e}(\theta) 
@@ -73,7 +74,7 @@ while $D_r$ denotes the rotational diffusivity of the self-propulsion direction,
     \end{pmatrix}.
 \end{align}
 %
-As before, the noises in~\eqref{eq_Langevin_int_ABPs} are Gaussian with zero mean and satisfy
+As before, the noises in~\eqref{eq_Langevin_int_ABPs} are Gaussian with zero mean, uncorrelated, and satisfy
 \begin{equation*}
     \E{\xi_{k,i}(t)\xi_{k',j}(t')} = \delta_{kk'}\delta_{ij} \delta(t - t'), \qquad
     \E{\chi_{k}(t)\chi_{k'}(t')} = \delta_{kk'} \delta(t - t'). 
@@ -91,19 +92,21 @@ The simplest choice satisfying these criteria is the hard-core potential
     u_{\rm HC}(r) = \begin{cases} +\infty & {\rm if}\; r < d_0\\
         0 & {\rm otherwise} \end{cases} ,
  \end{equation*}
-with $d_0$ the particle diameter, 
+with $d_0$ giving the particle diameter, 
 that prevents any overlap between the particles.  
 In practice --i.e. for simulations-- the hard core potential is often approximated via the Weeks-Chandler-Andersen potential (or truncated Lehnnard-Jones potential):
 \begin{equation*}
     u_{\rm WCA}(r) = \begin{cases} 4\epsilon\left[ \left(\frac{d_0}{r}\right)^{12} - \left(\frac{d_0}{r}\right)^{6} \right] + \epsilon & {\rm if}\; r < 2^{1/6} d_0\\
         0 & {\rm otherwise} \end{cases} .
  \end{equation*}
-Alternatively, one can also `allow' for finite overlap between particles by using a softer repulsion potential:
+Alternatively, one can also allow finite overlaps between particles by using a softer repulsion potential.
+A common choice is the harmonic repulsion:
 \begin{equation*}
     u_{\rm soft}(r) = \begin{cases} \tfrac{\epsilon}{2}(1 - r/d_0)^2 & {\rm if}\; r < d_0\\
         0 & {\rm otherwise} \end{cases} .
  \end{equation*}
- All the aspects that we describe below are qualitatively independent of the specific choice of the interaction potential.
+ All the aspects that we describe below are qualitatively independent of the details of the interaction potential, 
+ so that we do not make any specific choice in what follows. 
 
 \begin{figure}[!t]
     \centering
@@ -112,6 +115,46 @@ Alternatively, one can also `allow' for finite overlap between particles by usin
     \label{fig: hard soft}
 \end{figure}
 
+\subsection{Numerical simulations}
+
+Rescaling space respectively with the particle diameter $d_0$ and time with the typical rotational diffusion timescale $\tau_r = 1/D_r$, Eqs.~\eqref{eq_Langevin_int_ABPs} read in dimensionless coordinates
+\begin{subequations}
+\label{eq_Langevin_int_ABPs_ND}
+\begin{align}
+    \odv{\bm r_i}{t} & = {\rm Pe} \, \hat {\bm e}(\theta_i) - \frac{\epsilon\tau_r}{\zeta d_0^2} \nabla_{\bm r_i} U(\{\bm r_j\}) + \sqrt{ \frac{2 D\tau_r}{d_0^2} } \bm \xi_i, \\
+    \odv{\theta_i}{t} & = \sqrt{ 2 } \chi_i,
+\end{align}
+\end{subequations}
+where we have defined $\epsilon$ as the unit scale of energies, while ${\rm Pe} = v_0\tau_r / d_0$ is usually referred to as the \textit{Péclet number}.
+
+\textit{
+{\bf Homework:}
+From the relation $\int_{-\infty}^{+\infty}\dd t \,  \delta(t) = 1$, show that the physical unit of $\delta(t)$ corresponds to the inverse of a time. 
+Use this result to deduce how the noises in Eqs.~\eqref{eq_Langevin_int_ABPs} rescale in dimensionless coordinates, and recover Eqs.~\eqref{eq_Langevin_int_ABPs_ND}. 
+}
+
+In dimensionless coordinates, the strength of activity, given by ${\rm Pe}$, is therefore set by the ratio of the persistence length of the active motion and the interaction range.
+Simulating Eqs.~\eqref{eq_Langevin_int_ABPs_ND} in the low activity regime (i.e., either at low $v_0$ and/or low $\tau_r$), 
+the dynamics qualitatively corresponds to that of an equilibrium gas of repelling particles.
+On the other hand, when activity is increased sufficiently \autoref{fig: MIPS} shows that the particles spontaneously self-organize into a dense macroscopic domain coexisting with a surrounding dilute gas.
+The densities of the dilute and dense phases are largely insensitive to variations of the mean particle density, which only set their relative volume fractions.
+This phenomenology is similar to that of phase separation at equilibriumparticles
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=.6\textwidth]{chapters/Figures/scalar/Fig_MIPS_PD.pdf}
+    \caption{Phase diagram of the active Brownian particle model in the particle density - activity plane.
+    Each panel shows a representative snapshot of the steady state configuration of the system.
+    At large enough activity, the system undergoes a clustering instability, resulting in phase separated configurations where a dilute and a dense phase coexist.
+    The red line serves as a guide for the eye to separate homogeneous and phase-separated configurations.
+    \textit{Figure credits: Theo Spornhauer, University of Göttingen.}}
+    \label{fig: MIPS}
+\end{figure}
+
+
+\subsection{The Mean field approach: a simple argument}
+
+\subsection{The Mean field approach: coarse-graining}
 
 In \autoref{chapter: introduction}, we wrote down the Fokker-Planck equation for the single particle, \autoref{eq_FP_BM}, which describes the time evolution of the probability distribution of the system, $\calP(\bm x, t) = \E{\delta(\bm r(t) - x)}$.
 We can likewise write the Fokker-Planck for a single active Brownian particle, whose probability-density also depends on the angle of said particle
@@ -240,7 +283,7 @@ To find the full dynamics of the particle density
 \end{align}
 %
 we must apply the \emph{moment expansion}.
-We will see that the dynamics of $\rho$, which is the first moment of the probability distribution $\calP(\phi)$, will depend on the higher moments, of the distribution.
+We will see that the dynamics of $\rho$, which is the first moment of the probability distribution $\calP(\phi)$, will depend on the higher moments of the distribution.
 This creates a hierarchy of equations, which we will argue can be truncated, yielding a closed set of equations.
 In addition to the particle density~\autoref{scalar order parameter}, also called the scalar order parameter, the relevant moments are the polar and nematic order fields,
 %
@@ -258,8 +301,8 @@ In addition to the particle density~\autoref{scalar order parameter}, also calle
 \end{align}
 %
 The polar order parameter, $p_i$, measures how much the particles align in the same direction.
-If the distribution of particles is independent of the direction $\phi$, then using the explicit form of $\hat {\bm e}$~\autoref{unit vector}, we see that the polar order parameter vanishes: $\bm p = \frac{1}{2\pi} \int_0^{2\pi}\hat {\bm e}(\phi) = \bm 0$.
-If the distribution is strongly peaked around som angle $\theta$, so we can approximate $\calP(\bm x, \phi, t) \propto \delta(\phi - \theta)$, then $\bm p = \hat{\bm e}(\theta)$.
+If the distribution of particles is independent of the direction $\phi$, then using the explicit form of $\hat {\bm e}$, \autoref{unit vector}, we see that the polar order parameter vanishes: $\bm p = \frac{1}{2\pi} \int_0^{2\pi}\hat {\bm e}(\phi) = \bm 0$.
+If the distribution is strongly peaked around some angle $\theta$, so we can approximate $\calP(\bm x, \phi, t) \propto \delta(\phi - \theta)$, then $\bm p = \hat{\bm e}(\theta)$.
 In general, the polar order parameter will take on values between these extremes, varying as a function of space and time.
 
 While the polar order parameter $\bm p$ measures the alignment of small arrows, we can consider the nematic order parameter $Q$ measures the alignment of objects that are symmetric back to front, such as an ellipse.
@@ -283,6 +326,9 @@ The polar order parameter is invariant under a $2 \pi$ rotation, the nematic und
 }
 The difference between polar and nematic ordering is shown in \autoref{fig: polar and nematic}
 
+{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless (${\sum}_i Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}
+
+
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=.38\textwidth]{chapters/Figures/scalar/polar.pdf}
@@ -304,9 +350,7 @@ In other words, we apply $\int \dd \phi$ to \autoref{eq: space dependent fokker 
 \end{align}
 %
 The radial diffusion term $\propto D_r$ vanishes as it is a total derivative.
-
 % Handwritten page XI
-
 In the same manner, we find the equation of motion for $\bm p$ by applying $\int \dd\phi \, \hat{\bm e}(\phi)$ to \autoref{eq: space dependent fokker planck}, which yields\todo[noinline]{check indices}
 %
 \begin{align} \label{eq: polarity FP}
@@ -323,8 +367,6 @@ In the same manner, we find the equation of motion for $\bm p$ by applying $\int
 %
 The last term is obtained by integration by parts.
 In this equation, we are using the Einstein summation convention, which means that repeated indices are summed over.
-
-{\it Exercise: Explain why the matrix $\bm Q$ is defined as traceless (${\sum}_i Q_{ii} = 0$). Hint: Try to calculate its expression assuming a uniform distribution of orientations.}
 
 As we can see, this expansion is a runaway process, and we need a criterion for closing this hierarchy of equations.
 When we do coarse-graining, we are interested in the large-scale, long-term behavior of the system.
@@ -419,7 +461,7 @@ where $P(\theta,t)$ is the distribution of $\theta$ satisfying $P(\theta,0) = \d
 
 \subsection{MIPS}
 
-If we take the more general case, where the active velocity depends on the density, $|v_a| = v(\rho)$, we may write the Fokker-Planck for the density as a conservation law
+If we take the more general case, where the active velocity depends on the density, $v = v(\rho)$, we may write \autoref{eq: closed density} as conservatoin law
 %
 \begin{align}
     \partial_t \rho(\bm x, t)  = - \bm \nabla \cdot \bm J(\bm x, t),
@@ -431,16 +473,11 @@ where the current has the form \todo[noinline]{Is the factor $\rho$ right?}
     J[\rho] = - \rho M[\rho] \bm \mu[\rho].
 \end{align}
 %
-Here, we have introduced the mobility,
+Here, we have introduced the mobility $M$ and the chemical potential $\mu$,
 %
 \begin{align}
-    M[\rho] = \frac{v[\rho]^2}{2 D_r},
-\end{align}
-%
-and the chemical potential
-%
-\begin{align}
-    \mu[\rho] = \ln(\rho v[\rho]).
+    M[\rho] & = \frac{v[\rho]^2}{2 D_r},&
+    \mu[\rho] & = \ln(\rho v[\rho]).
 \end{align}
 %
 This chemical may be written as the derivative of a free energy,
@@ -477,9 +514,7 @@ To break equilibrium also at the large scale, we must have a more general curren
 One way to obtain this is to extend the momentum expansion to higher orders.
 
 
-\section{Top-down approach}
-
-\subsection{Active model B}
+\section{Top-down approach: Active model B}
 
 Another way to achieve a model with out-of-equilibrium effects is to take the Ginzbur-Landau approach and write down all possible terms allowed by symmetry and conservation.
 We begin with the conservation law,
@@ -508,65 +543,5 @@ More details on this model are given in \autoref{section: active model B top dow
 
 
 
-
-
-
-\section{Scalar active matter: a bottom-up approach}
-
-
-
-\subsection{Motility Induced Phase Separation}
-
-\todo[inline]{Should this be included?}
-
-We now use the fact that the spatial dependencies of $v$ and $D$ come from their dependencies in the local density field $\phi$. We thus consider
-\begin{equation} \label{eq_local_coeffs}
-    v(\bm r) = v(\phi(\bm r)), \qquad D(\bm r) = D(\phi(\bm r)).
-\end{equation}
-Now Equation~\eqref{eq_closed_phi} for the particle density takes the form of simple diffusion equation $\partial_t\phi = \nabla \cdot [D_{\rm eff}(\phi)\nabla\phi]$ with effective nonlinear diffusivity
-\begin{equation} \label{eq_Deff_QS}
-    D_{\rm eff}(\phi) = D(\phi) + \frac{v^2(\phi) + \phi v'(\phi) v(\phi)}{d (d-1) D_r} ,
-\end{equation}
-where as previously primes denote derivatives wrt $\phi$.
-As we immediately note, if the effective self propulsion speed $v(\phi)$ of the active particles decreases fast enough when their local density increases, $D_{\rm eff}(\phi)$ may become negative leading to, as we discussed in Sec.~\ref{sec_top_down}, spinodal decomposition of a state with uniform density $\bphi$. Namely, the corresponding condition reads
-\begin{equation} \label{eq_cond_MIPS_sp}
-    1 + \frac{\bphi v'(\bphi)}{v(\bphi)} < -\frac{d (d-1) D_r D(\bphi)}{v^2(\bphi)} .
-\end{equation}
-As we discussed previously, this instability will lead to a phase separated state between a dense, slow liquid and a dilute, fast gas. Remarkably, this phase separation phenomenon occurs despite the absence of explicit attractive interactions between the particles, but is induced by a nonequilibrium characteristic which couples the particle local density to their self propulsion force.
-Namely, if active particles accumulate in regions of low self propulsion speeds while the latter decreases with the local density, a positive feedback loop sets in leading small density perturbations to be naturally amplified.
-This phenomenon is known as \emph{Motility Induced Phase Separation (MIPS)}~\cite{CatesMIPS}.
-Neglecting positional diffusion, the condition~\eqref{eq_cond_MIPS_sp} simplifies as $v'(\bphi)/v(\bphi) < -1/\bphi$.
-
-Eq.~\eqref{eq_cond_MIPS_sp} defines the spinodals of MIPS.
-As we saw in Sec.~\ref{sec_top_down}, calculating the corresponding binodals then imposes to know which nonlocal (higher order in gradients) terms will appear in the dynamics of $\phi$. 
-At the level of Eq.~\eqref{eq_local_coeffs} this can be done by relaxing the constraint that the effective self-propulsion speed and diffusivity depend on locally on the density field. Considering, on the contrary, a short ranged interaction kernel $K(|\bm r|)$ such that
-\begin{equation}
-    v[\phi] = \tilde{v}\left(\intd{r'} K(|\bm r - \bm r'|)\phi(\bm r') \right),
-    \qquad D[\phi] = \tilde D\left(\intd{r'} K(|\bm r - \bm r'|)\phi(\bm r')\right),
-\end{equation}
-we can expand $\tilde v$ and $\tilde D$ in the gradients of $\phi$ which leads to
-\begin{equation} \label{eq_nonloc_coeffs}
-    v[\phi] \simeq \tilde v(\phi) + \frac{\ell^2}{2}\tilde v'(\phi) \nabla^2\phi ,
-    \qquad
-    D[\phi] \simeq \tilde D(\phi) + \frac{\ell^2}{2}\tilde D'(\phi) \nabla^2\phi ,
-\end{equation}
-where we have used the fact that $K$ is isotropic and normalized to unity, while 
-$\ell^2 \equiv \intd{r} K(|\bm r|) |\bm r|^2$.
-
-\paragraph{Absence of positional diffusion}
-In the case where $D[\phi]$ can be neglected, Eq.~\eqref{eq_closed_phi} takes the form
-\begin{equation} \label{eq_phi_AMB_mapping}
-    \partial_t\phi = -\nabla\cdot \bm J, \qquad \bm J = -M_{\rm eff}[\phi]\phi \nabla \ln(v[\phi]\phi),
-\end{equation}
-where the effective mobility is defined as $M_{\rm eff}[\phi] = v^2[\phi]/(d(d-1)D_r)$. Using the nonlocal expression of the self propulsion speed~\eqref{eq_nonloc_coeffs}, we find that the model maps onto AMB with the effective chemical potential given by
-\begin{equation}
-    \mu = \ln(\tilde v(\phi) \phi) - \kappa(\phi)\nabla^2 \phi, \qquad \kappa(\phi) = -\frac{\ell^2}{2}\frac{\tilde v'(\phi)}{\tilde v(\phi)}.
-\end{equation}
-In this case the binodals can thus be calculated from the free energy mapping that we studied in Sec.~\ref{sec_top_down}~\cite{Solon2018}.
-
-\paragraph{The case with positional diffusion}
-If $D[\phi]$ cannot be neglected, on the contrary, then one can easily check that the current in Eq.~\eqref{eq_phi_AMB_mapping} includes terms of the form $\sim (\nabla^2\phi)\nabla\phi$ which cannot be written as deriving from a generalized chemical potential. This case corresponds to the AMB+ (active model B+) class which, as shown in Ref.~\cite{Tjhung2018PRX}, shows a qualitatively different physics than that of AMB or equilibrium phase separation.
-Indeed, such non-curl free current is responsible for the emergence reversed Ostwald ripening selecting a preferred (finite) phase separated domain length scale.
-Although a comprehensive derivation of such term from coarse-graining approaches at outlined in this section is still missing, such microphase separation scenario has recently been shown to be revelant in numerical simulations of microscopic models of ABPs with pairwise repulsion~\cite{Caporusso2020MIPS,Shi2020bubbles}. 
 
 
