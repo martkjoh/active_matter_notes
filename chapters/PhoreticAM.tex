@@ -289,3 +289,109 @@ or
     \delta \rho_2 = \frac{\mu_2 \bar \rho_2}{\mu_1 \bar \rho_1} \delta \rho_1.
 \end{align}
 %
+
+
+
+\section{Polar phoretic active matter}
+
+We now consider the case where the activity of the particle varies acros the surface.
+The simplest case is the Janus-colloid, in which the two halves of the particle has two different mobilities $\mu_1, \mu_2$ and activities, $\alpha_1, \alpha_2$.
+We will solve for the resulting concentration field, given a isolated particle.
+The equations of the field are the
+%
+\begin{align}
+    D\nabla^2 c & = 0\\
+    -D \bm \nabla c \cdot \hat{ \bm e}_r|_s &= \alpha(\theta)\\
+    \lim_{\bm x \rightarrow \infty} c(\bm x) &= 0.
+\end{align}
+%
+We will assume a axisymmetric setup, so $\alpha$ only depends on $\theta$, and $\partial_\phi c = 0$.
+In spherical coordinates, the laplace equation is then
+%
+\begin{align}
+    \partial_r \left( r^2 \partial_r c \right) + \frac{1}{\sin \theta} \partial_\theta \left( \sin\theta \partial_\theta c \right) = 0.
+\end{align}
+%
+By assuming separation of variables, $c(r, \theta) = f(r) \Phi(\theta)$, we can write this as
+%
+\begin{align}
+    \frac{1}{f(r)} \partial_r f(r) r^2 \left[\partial_r f(r)\right] = 
+    - \frac{1}{\Phi(\theta)\sin\theta} \partial_\theta \left( \sin\theta \partial_\theta \Phi(\theta) \right)  = \lambda.
+\end{align}
+%
+We begin with the $\theta$ equation, defining $z = \cos\theta \in [-1, 1]$, and $Z(z) = \Phi(\arcsin z)$ which gives
+%
+\begin{align}
+    \odv{}{z}   \left[ (1 - z^2) \odv{}{z} Z(z) \right] = - \lambda Z(z).
+\end{align}
+%
+This is solved by Legandre polynomials, $Z(z) = P_m(z)$, with the eigenvalue $\lambda = m(m+1)$.
+These have the orthogonality property
+\begin{align}
+    \int \dd z \, P_m(z)P_\ell(z) = \frac{2}{2m + 1} \delta_{m\ell}.
+\end{align}
+%
+In terms of $\theta$, we thus have $\Phi(\theta) = P_m(\cos\theta)$.
+
+The eigenvalue problem for the radial function is now
+\begin{align}
+    r^2\partial_r^2 f(r) + z r \partial_r  f(r)  -m(m+1) f(r) = 0.
+\end{align}
+%
+This equation is homogneous, that is, invariant under $r\rightarrow c r$ for a constant $c$. 
+This means that the solution has the form $f = r^{-\alpha}$, where we must have $\alpha>0$ to satisfy the vanishing boundary condition at infinity.
+Inserting this ansatz, we find that $\alpha = m + 1$.
+The full solution is a superposition of the eigenmode, so
+%
+\begin{align}
+    c(r, \theta) = \sum_m c_m r^{-(m + 1)} P_m(\cos\theta).
+\end{align}
+%
+We now apply the boundary condition, which give
+\begin{align}
+    \alpha(\theta) 
+    = - \hat {\bm e}_r(\theta) \cdot \bm \nabla c(r)
+    = D \sum_m c_m (m + 1) r^{-(m + 1)} P_m(\cos\theta).
+\end{align}
+%
+We decompose the activity into lagandre polynomials as well, $\alpha(\theta) = \sum_m \alpha_m P_m(\cos\theta)$, which means that we may find $c_m$ by integrating and using the orthogonality property to find the coefficients $c_m$.
+
+\todo[inline]{fill out rest}
+
+
+\subsection*{Multi-particle system}
+
+We now consider a system of many particles, each governed by a Langevin equation, as we did in \autoref{chap_scalar}.
+However, we will now consider three dimensions, which means the equations are slightly different.
+They take the form
+\begin{align}
+    \odv{}{t} \bm r_i &= v_i(c) + \sqrt{2D } \bm \xi,\\
+    \odv{}{t} \hat{\bm e} & = \bm \omega(c) + \sqrt{2D} \hat{\bm e} \xi_r.
+\end{align}
+%
+The unit vector $\hat {\bm n}$ now lives on a sphere, instead of the circle as in 2D.
+The probability density is then
+\begin{align}
+    \calP(\bm x, \hat{\bm n}, t)
+    = \E{ \delta(\bm r(t) - \bm x ) \delta(\hat{\bm n}(t) - \hat{\bm e}) },
+\end{align}
+%
+and it is governed by the following Fokker-Planck equation,
+%
+\begin{align}
+    \partial_t \calP = - \bm \nabla \cdot \bm J - \mathcal{R} \cdot \bm J_R.
+\end{align}
+%
+Here, $\mathcal{R} = \hat{\bm n} \times \partial_{\hat{\bm n}}$ is the generators of rotation, i.e. translations on the sphere, in the same way that the nabla-operator $\bm \nabla$ is the generator of translations in space.
+This operators behaves as a derivative, for example, one may perform partial integration.
+The currents are
+\begin{align}
+    \bm J & = - D \bm \nabla \calP + \bm v(c) \calP,\\ 
+    \bm J_r &= - D \mathcal{R} P + \bm \omega(c) \calP.
+\end{align}
+%
+We are now, as in \autoref{chap_scalar}, going to perform a moment-expansion, to find the quations of $\rho$, $\bm p$ and $Q$.
+\todo{Write down definitions in 3D}
+
+The equation for the density is
+\todo[inline]{Write mom-expansion}

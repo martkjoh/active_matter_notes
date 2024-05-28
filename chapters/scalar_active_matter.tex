@@ -138,7 +138,10 @@ Simulating Eqs.~\eqref{eq_Langevin_int_ABPs_ND} in the low activity regime (i.e.
 the dynamics qualitatively corresponds to that of an equilibrium gas of repelling particles.
 On the other hand, when activity is increased sufficiently \autoref{fig: MIPS} shows that the particles spontaneously self-organize into a dense macroscopic domain coexisting with a surrounding dilute gas.
 The densities of the dilute and dense phases are largely insensitive to variations of the mean particle density, which only set their relative volume fractions.
-This phenomenology is similar to that of phase separation at equilibriumparticles
+This phenomenology is thus similar to that of phase separation at equilibrium.
+Here, however, there is no explicit attractive interactions between the particles, and the cluster formation finds its origin in the interplay of activity and crowding effects.
+This collective behavior is known as \textit{motility-induced phase separation} (MIPS), and we will spend the following sections to explain its emergence. 
+For detailed a review on MIPS that goes beyond the contents of this chapter, we recommend Ref.~\cite{}.
 
 \begin{figure}[!t]
     \centering
@@ -151,8 +154,42 @@ This phenomenology is similar to that of phase separation at equilibriumparticle
     \label{fig: MIPS}
 \end{figure}
 
-
 \subsection{The Mean field approach: a simple argument}
+
+As the phenomenology of MIPS is qualitatively similar to that of equilibrium phase separation, we believe that it can be understood, as in the latter case, by an effective theory written in terms of the relevant field variable, which is here the particle density.
+%As MIPS results from a many-body dynamics, it'll be better understood from a field theoretical description of the microscopic dynamics~\eqref{eq_Langevin_int_ABPs} expressed in terms of the relevant variables.
+To achieve this, the usual procedure consist in writing the statistical description of the microscopic dynamics~\eqref{eq_Langevin_int_ABPs} in terms of the $N$-body particle distribution distribution,
+%
+\begin{align} \label{eq_PN}
+    \calP_N(\{\bm x_i, \phi_i\}, t) = \E{ \prod_i \delta(\bm r_i(t) - \bm x_i)\delta(\theta_i(t) - \phi_i) },
+\end{align}
+%
+whose evolution is ruled by the Fokker-Planck equation.
+The particle density $\rho$ is then obtained from the single-body distribution $\calP(\bm x,\phi,t) = N\int\prod_{j=2}^N [\dd\bm x_j \dd\phi_j]\calP_N(\{\bm x,\phi,\bm x_2,\phi_2,\ldots,\bm x_N,\phi_N\},t)$ as
+$\rho(\bm x,t) = \int\dd\phi \calP(\bm x,\phi,t)$.
+
+If the particles are non-interacting, the probability distribution~\eqref{eq_PN} simply factors into $N$ independent single-body distributions. 
+On the other hand, interactions introduce non-trivial correlations which prevent such factorization.
+In this case the effective equation for the single-body distribution is a function of the two-body distribution, which itself depends on the three-body distribution, and so on. 
+Obtaining the effective theory for $\calP(\bm x,\phi,t)$ thus requires to solve the so-called Bogoliubov-Born-Green-Kirkwood-Yvon (BBGKY) hierarchy.
+It is in general impossible to do it exactly, so that achieving analytical progress requires to use a number of approximations.
+While for those interested we present a derivation of the effective dynamics for $\calP(\bm x,\phi,t)$ in~\autoref{appendxi: BBKGY}, here we will instead focus on the describing the effective effect of the coupling between the particle self-propulsion and their repelling interactions by means of a mean field approximation.
+
+Consider an isolated particle moving freely.
+Its instantaneous self-propulsion speed is then given by $v_0$. 
+If, on the other hand, our tagged particle enters a region of high density, it will begin to collide with other particles, and the main result of these collisions will be an effective self-propulsion speed $< v_0$.
+To use a familiar analogy, imagine yourself running in an open field or within a crowd at a concert.
+Using this simple reasoning, we can thus approximate the interactions in Eqs.~\eqref{eq_Langevin_int_ABPs} as an effective slowing down of the self-propelled motion when the particle density increases.
+Therefore, we can simply discard the interaction potential in~\eqref{eq_Langevin_int_ABPs} and replace the constant self-propulsion speed with a $\rho$-dependent function:
+%
+\begin{align}
+    v_0 &\rightarrow v(\rho), &
+    \odv{v}{\rho} & \le 0.
+\end{align}
+%
+This way, we achieve a simpler description of the dynamics as it can now be expressed directly in terms of the single-body distribution $\calP$.
+%In general, we may consider a self-propulsion speed dependent on space and time, $v = v(\bm x, t)$.
+
 
 \subsection{The Mean field approach: coarse-graining}
 
@@ -179,31 +216,13 @@ This obeys the Fokker-Planck equation
 %
 which describes how the probability distribution of a single ABP, or equivalently density of a large number of non-interacting ABPs, evolves with time.
 
-When we consider $N$ \emph{interacting} particles, however, the picture becomes significantly more complicated.
-We now have to consider the $N$-body distribution,
-%
-\begin{align}
-    \calP_N(\{\bm x_i, \phi_i\}, t) = \E{ \prod_i \delta(\bm r_i(t) - \bm x_i)\delta(\theta_i(t) - \phi_i) },
-\end{align}
-%
-and its corresponding Fokker-Planck.
-If the particles are non-interacting, the probability distribution simply factors into $N$ independent one-body distributions, while interactions introduce non-trivial correlations.
-One way of tackling this is the Bogoliubov-Born-Green-Kirkwood-Yvon (BBGKY) hierarchy, which is described in \autoref{appendxi: BBKGY}.
-We will instead make a simplifying mean-field assumption about the effects of the interaction.
 
-Consider a single particle moving freely, far from any other particles.
-This will move at a velocity close to the self-propulsion velocity.
-If, instead, the particle is in an area with a high density, the other particles will act as barriers due to their repulsive interactions, slowing our particle down.
-As an analogy, imagine the difference between running in an open feel versus trying to move in a crowd at a concert.
-With this picture in mind, we assume that the effective self-propulsion speed will be lowered as the local density of particles increases, and replace the constant self-propulsion speed with one that depends on the density $\rho$,
-%
-\begin{align}
-    v_0 &\rightarrow v(\rho), &
-    \odv{v}{\rho} & < 0,
-\end{align}
-%
-and neglect any other effects of the interaction between the particles.
-In general, we may consider a self-propulsion speed dependent on space and time, $v = v(\bm x, t)$.
+
+
+%%%%%%%%%%
+
+
+
 The case above is then a special case where the temporal and spatial dependence of $V$ is through $\rho(\bm x, t)$.
 The Fokker-Planck equation for the one-particle density is then
 %
