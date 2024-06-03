@@ -171,11 +171,21 @@ In a system with `normal' density fluctuations, the law of large number would im
 Here, however, $\phi > 1$, i.e.\ the variance of $n$ grows faster than its mean, 
 so that density fluctuations in the homogeneous ordered phase are deemed as `anomalous', or `giant'\footnote{Note that these giant density fluctuations are not related to any clustering phenomenon (e.g.\ like the motility induced phase separation discussed in~\autoref{chap_scalar}),
 but instead due to the infinite correlation length of density fluctuations in an overall spatially homogeneous system.}.
-\item Finally, contrary to magnetic systems at equilibrium (i.e.\ described by the Ising or $XY$ models) the transition to order in the Vicsek model does not occur via a second order transition but is best described as a phase separation scenario where elongated dense ordered liquid domains --which are usually referred to as \textit{bands}, see Fig.~\ref{figVM}(b)-- coexist with a dilute disordered gas.
+\item Finally, contrary to magnetic systems at equilibrium (i.e.\ described by the Ising or $XY$ models) the transition to collective motion is not second order, but is best described as a phase separation scenario where elongated dense ordered domains --which are usually referred to as \textit{bands}, see Fig.~\ref{figVM}(b)-- coexist with a dilute disordered gas.
 Because of the coupling between density and order, these bands travel in the direction orthogonal to their axis.
-They moreover have a well-defined width selected by the noise, so that their number grows with the mean particle density or system size,
-and in large systems they arrange into a regular smectic configuration.
-This {\it micro-phase separated} phase is thus distinct from the usual phase separation in which a single liquid domain occupies a macroscopic fraction of space and grows with density and system size.
+Contrary to usual phase separation between two macroscopic domains, bands here are quantized, i.e. they have a finite width $\lambda_{\rm b}$ selected by the parameters of the model.
+In this case, conservation of volume and mass thus imply that 
+\begin{equation*}
+    L_\| = n_{\rm b}\lambda_{\rm b} + L_{g}, \qquad
+    N = \bar\rho L_\| = n_{\rm b}\langle \rho \rangle_{\rm b} + \rho_g L_g,
+\end{equation*}
+where we have assumed that the dynamics can be reduced to a quasi-one-dimensional problem. $L_\|$ is then the system size along the direction of order, $n_{\rm b}$ is the number of bands and $\langle \rho \rangle_{\rm b}$ is their mean density, while $\rho_g$ and $L_g$ are respectively the density and volume of the gas phase.
+We then find that the number of bands is given by
+\begin{equation}
+    n_{\rm b} = \frac{L_\| (\bar\rho - \rho_g)}{\lambda_{\rm b}(\langle \rho \rangle_{\rm b} - \rho_g)}.
+\end{equation}
+In contrast with the lever rule that we introduced in~\autoref{chap_scalar}, the volume fraction of ordered liquid here is set by the number of quanta of liquid $n_{\rm b}$, which grows linearly with the mean particle density $\bar\rho$ and system size $L_\|$.
+Such scenario is usually named {\it micro-phase separation}, and here results in phase-separated configurations that take the form of regular arrangements of traveling bands.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -258,13 +268,22 @@ Namely, let us consider
 \end{subequations}
 with now only one advection term in~\eqref{eq_TT_w_new}, but still with the coefficient $\lambda$ kept arbitrary.
 Moreover, we will restrict most of the calculations to two dimensions.
-For $\mu(\bar{\rho}) > 0$, the continuous theory admits the homogeneous ordered solution 
+As in the classical Ginzburg-Landau model, a change of sign of the coefficient $\mu(\rho)$ defines a phase transition where the system becomes macroscopically ordered.
+Namely, Eqs.~\eqref{eq_TT_new} admit the homogeneous solution
 \begin{equation} \label{eq_hos}
-\rho = \bar{\rho}, \qquad \bm w = \sqrt{\mu(\bar{\rho})/\xi} \hat{\bm e}_\| .
+\rho = \bar{\rho}, \qquad \bm w = \begin{cases}
+    \bm 0 & \mu(\bar\rho) \le 0 \\
+    \sqrt{\mu(\bar{\rho})/\xi} \hat{\bm e}_\| & \mu(\bar\rho) > 0
+\end{cases} ,
 \end{equation}
+where $\hat{\bm e}_\|$ is an arbitrary unit vector.
+% For $\mu(\bar{\rho}) > 0$, the continuous theory admits the homogeneous ordered solution 
+% \begin{equation} \label{eq_hos}
+% \rho = \bar{\rho}, \qquad \bm w = \sqrt{\mu(\bar{\rho})/\xi} \hat{\bm e}_\| .
+% \end{equation}
 
-In this section, we are interested in the stability of this solution.
-We thus write the fields $\rho$ and $\bm w$ in terms of small perturbations around~\eqref{eq_hos}:
+In this section, we are interested in the stability of the ordered solution and thus assume that $\mu(\bar\rho) > 0$.
+We write the fields $\rho$ and $\bm w$ in terms of small perturbations around~\eqref{eq_hos}:
 \begin{equation} 
 \rho(\bm r,t) = \bar{\rho} + \delta\rho(\bm r,t), \qquad \bm w(\bm r,t) = \left( w_0 + \delta w_\|(\bm r,t) \right) \hat{\bm e}_\| + \delta w_\perp(\bm r,t) \hat{\bm e}_\perp ,
 \end{equation}
@@ -314,10 +333,10 @@ The other two eigenvalues solve the second order polynomial equation
 For $q_\| = 0$, it is straightforward to show that the solutions of this equation are ${\cal Y}_+ = 0$ and ${\cal Y}_- = -2\mu(\bar\rho)$.
 As we are interested in long-wavelength instabilities, we focus here on ${\cal Y}_+$ and make use of the ansatz
 \begin{equation*}
-    {\rm Re}({\cal Y}) \underset{q_\| \to 0}{\simeq} q_\|^2, \qquad
-    {\rm Im}({\cal Y}) \underset{q_\| \to 0}{\simeq} q_\|.
+    {\rm Re}({\cal Y}) \underset{q_\| \to 0}{\sim} q_\|^2, \qquad
+    {\rm Im}({\cal Y}) \underset{q_\| \to 0}{\sim} q_\|.
 \end{equation*}
-Replacing this ansatz in Eq.~\eqref{eq_poly_Y} we obtain at order $q_\|^2$
+Replacing this ansatz in Eq.~\eqref{eq_poly_Y}, we obtain at order $q_\|^2$
 \begin{equation*}
     2 \mu(\bar\rho){\rm Re}({\cal Y}) - {\rm Im}^2({\cal Y}) + \lambda w_0 q_\| {\rm Im}({\cal Y}) + \tfrac{1}{2}q_\|^2 + i\left[ 2\mu(\bar\rho) {\rm Im}({\cal Y}) - q_\| \mu'(\bar\rho) w_0 \right] = 0,
 \end{equation*}
@@ -326,6 +345,16 @@ from which we deduce
     {\rm Im}({\cal Y}) = \frac{\mu'(\bar\rho)w_0}{2\mu(\bar\rho)}q_\|, \qquad
     {\rm Re}({\cal Y}) = \frac{q_\|^2}{4\mu(\bar\rho)}\left[ \frac{(\mu'(\bar\rho))^2}{2 \mu(\bar\rho)\xi} - \frac{\lambda\mu'(\bar\rho)}{\xi} - 1 \right].
 \end{equation}
+In particular, at the onset of orientational order $\mu(\bar\rho)\to0$, such that the real part of the growth rate simplifies to ${\rm Re}({\cal Y}) \sim (\mu'(\bar\rho))^2 q_\|^2/(8\mu^2(\bar\rho)\xi)$, which is always positive.
+We thus conclude from this analysis that the homogeneous polar ordered solution of Eqs.~\eqref{eq_TT_new} is always unstable to longitudinal perturbations as one approaches the transition.
+This instability in fact leads to the emergence of polar bands similar to that observed in simulations of the microscopic dynamics.
+As it appears clearly from the expression of ${\rm Re}({\cal Y})$, this instability results from the local coupling between density and order, which translates to $\mu'(\bar\rho) > 0$. 
+Physically, the instability arises because denser regions are more ordered (order grows with density), while the presence of order leads the particles to travel together for longer (density grows with order).
+The combination of these two effects creates a self-amplifying feedback loop leading to an instability at the ordering transition where the system is most sensitive to fluctuations. 
+
+An analytical description of the one-dimensional band solutions of Eqs.~\eqref{eq_TT_new} can be achieved via a mapping of the dynamics to a nonlinear dynamical system (for details on the procedure, see Ref.~\cite{DADAM_LesHouches}).
+This analysis notably shows that the band solutions indeed correspond to phase-separated configurations, and allows to calculate the corresponding binodal densities.
+Hence, both simulations of the microscopic Vicsek model and the analysis of the generic continuous theory point to a liquid-gas scenario for the transition to collective motion. 
 
 \section{The Toner Tu theory: linearized hydrodynamics}
 
@@ -537,7 +566,7 @@ at odds with observations of long-range orientational order~\eqref{eq_LRO} in nu
 As we show below, these differences can be qualitatively explained by the fact that the effect of nonlinearities in the Toner Tu equations cannot be neglected in low dimensions, 
 so that the linearized theory effectively breaks down.
 
-\section{Some elements of the nonlinear Toner Tu theory}
+\section{Some elements of the nonlinear theory}
 
 To evaluate the importance of nonlinearities, we need to derive a nonlinear version of Eqs.~\eqref{eq_TT_lin_closed}.
 Then, the question arises of which nonlinear terms should be kept and which should be discarded. The method to evaluate the relevance of these additional terms is called scaling analysis, or more formally the Renormalization Group (RG). 
