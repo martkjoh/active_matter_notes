@@ -1,14 +1,14 @@
 
 \section{Introduction}
 
-So far, the Active Matter lectures have mostly focused on `scalar' active matter whose mean field continuous description
+So far, we have mostly focused on `scalar' active matter whose continuous description
 is generally expressed in terms of a scalar density field.
-Here, on the contrary, we will address the cases where activity is coupled with orientational order.
+In this chapter, on the contrary, we will address cases where active systems present large scale orientational order.
 The goal of these lectures is to present a minimalist approach to this problem, which consists of building simple models 
 including relevant physical ingredients so as to capture physical features common to a broad variety of active matter systems.
-We will start this journey by adopting a microscopic point of view, i.e. by constructing a particle model for collective motion.
+We will start by adopting a microscopic point of view, i.e. by constructing a particle model for collective motion.
 Then, as we will be interested in collective effects involving many individuals, 
-we will coarse grain our model using kinetic theory in order to obtain its `hydrodynamic' description
+we will coarse grain our model using kinetic theory in order to obtain its hydrodynamic description
 which will allow us to theoretically characterize the large scale physics at play.
 
 \section{A minimal approach to collective motion} 
@@ -17,22 +17,23 @@ Collective motion can be described as the ability of some self propelled agents 
 Such definition encompasses various examples found in nature, 
 most obvious are human crowds, bird flocks, or insect swarms.
 At the micron scale one can moreover mention bacterial colonies, or cellular migration which is involved in various biological phenomena such as morphogenesis, wound healing, or cancer development.
-Cells are actually put into motion thanks to an elaborate machinery involving various types of molecular motors, so that collective motion is also found at sub-cellular scales.
+Cells are actually put into motion thanks to an elaborate machinery involving various types of molecular motors, so that collective motion is also found at sub-cellular scales (cf~\autoref{chap_intro}).
 
-A natural question for a physicist is then whether all the above systems, even though their size spans ten orders of magnitude, share common {\it universal} properties which could be captured by a unified theoretical framework.
-To answer this question, we will adopt a reductionist approach by building such a framework that `forgets' about the details of each system and only includes the physically relevant ingredients necessary for collective motion.
+A natural question for a physicist is then whether all the above systems, even though their size spans many orders of magnitude, share common {\it universal} properties which could be captured by a unified theoretical framework.
+To answer this question, we will adopt a minimalist approach that will discard the details of each system, but only include the physically relevant ingredients necessary for collective motion to arise.
 
 \paragraph*{How physicists see birds}
-During the last years, flocks of birds became one of the paradigmatic examples of biological active matter. A combination of tracking experimental data and theoretical approaches based on statistical physics allowed to unveil and quantify many properties of their collective behavior. When moving along a fixed direction, 
+In the past thirty years, flocks of birds became one of the paradigmatic examples of biological active matter. A combination of tracking experimental data and theoretical approaches based on statistical physics allowed to unveil and quantify many properties of their collective behavior. 
+When moving along a fixed direction, 
 the large cohesive structures formed by birds can be seen as breaking the global symmetry of rotation.
 In analogy with liquid crystal physics, the velocities $\{\bm v_i\}_{i = 1,...N}$ of birds 
 thus exhibit a certain amount of order,
 which can be quantified computing the average polarization
 \begin{equation}
-\Pi(t) = \Big | \frac{1}{N} \sum_{i}^N \frac{\bm v_i(t)}{|\bm v_i(t)|} \Big |
+\Pi(t) = \left | \frac{1}{N} \sum_{i}^N \frac{\bm v_i(t)}{|\bm v_i(t)|} \right |
 \end{equation}
 which is $1$ for a perfectly aligned system, and it is $0$ for a disordered one.
-The average value for flocks is around $\langle \Pi \rangle \sim 0.96$, reflecting a high degree of polar order. However, this feature is not enough to ensure a self-organized collective behavior of the group. Flocks move without a leader, interacting with only a few neighbours but being correlated on length scales much larger than the typical inter-element distance. This has been understood looking at the individual velocity fluctuation around the mean velocity of the group,
+The average value for flocks is around $\langle \Pi \rangle \sim 0.96$, reflecting a high degree of polar order. However, this feature is not enough to ensure a self-organized collective behavior of the group. Birds move without a leader, interact with only a few neighbors, but their motion is correlated on length scales much larger than the typical inter-element distance. This has been understood looking at the individual velocity fluctuation around the mean velocity of the group,
 $$
 \delta \bm v_i (t) = \bm v_i(t) - \frac{1}{N} \sum_k \bm v_k(t)
 $$
@@ -40,14 +41,17 @@ and at its correlation function,
 \begin{equation}
  C(r) = \frac{1}{C_0} \left\langle \frac{\sum_{ij} \delta \bm v_i(t) \cdot \delta \bm v_j(t) \delta(r-r_{ij}(t))}{\sum_{ij} \delta(r-r_{ij}(t))} \right\rangle_t
 \end{equation}
-that measures how much the fluctuation in the moving direction of bird $i$ influences that of bird $j$, when they are separated by a distance $r_{ij}$. $C(r)$ is a static quantity, thus averaged along all the trajectory. Fig \ref{scalefree} shows this function on experimental data of flocks: the correlation is relevant for very short distances, then it decays till crossing the zero at a point $\ell_c$, and finally it becomes negative. This last feature is due to the definition of velocity fluctuation, but this trend highlights that there are only two large correlated domains in the flock and they are of size $\ell_c$. Adopting this quantity as a measure of correlation length, it has been found that it scales linearly with the flock's size: $\ell_c \sim L$ (Fig \ref{scalefree}), reflecting a scale-free behavior for finite-size systems. It can be shown indeed that from $\ell_c \sim L$ follows a power law decay,
+that measures how much the fluctuation in the moving direction of bird $i$ influences that of bird $j$, when they are separated by a distance $r_{ij}$. $C(r)$ is a static quantity, thus averaged over all the trajectories. 
+\autoref{scalefree} shows this function obtained from experimental data from real flocks: the correlation is positive for short distances, then it decays until crossing the zero at a point $\ell_c$, and finally it becomes negative. This last feature is due to the definition of velocity fluctuation, but this trend highlights that there are only two large correlated domains in the flock and they are of size $\approx \ell_c$. Adopting $\ell_c$ as a measure of the correlation length, \autoref{scalefree}(b) shows that it scales linearly with the flock's size: $\ell_c \sim L$.
+This reflects a scale-free behavior similar to the ones we have encountered in~\autoref{chap_intro} for the study of equilibrium magnetized systems.
+It can indeed be shown that $\ell_c \sim L$ implies power law velocity correlations,
 $$
 C(r) = r^{-\gamma} g \left( \frac{r}{L}\right)
 $$
-typical of strongly correlated systems near-criticality ($T=T_c$) or in a symmetry-broken phase ($T\to 0$, $\mathcal O(n)$).
-As for statistical systems, also in birds the collective behavior finds its explanation in the extent of strong correlation through all the system, thus ensuring high sensitivity to respond to external perturbations.
+typical of strongly correlated systems near-criticality ($T=T_c$) or in a continuous symmetry-broken phase ($T\to 0$, $O(n)$).
+As these systems, assemblies of collectively moving birds undergo system spanning correlations, thus ensuring high sensitivity to external perturbations.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}
 	\includegraphics[width=.75\textwidth]{Figures/scalefree.pdf}
 	\caption{(a) The correlation function $C(r)$ is the average inner product of the velocity fluctuations of pairs of birds at mutual distance $r$. This correlation function therefore measures to which extent the orientations of the velocity fluctuations are correlated. The function changes sign at $r=\ell_c$, which gives a good estimate of the average size of the correlated domains.(b) The orientation correlation length $\ell_c$ is plotted as a function of the linear size $L$ of the flock. Each point corresponds to a specific flocking event and it is an average over several instants of time in that event. The figure was reproduced from Ref.~\cite{cavagna2010scale}.
@@ -56,28 +60,28 @@ As for statistical systems, also in birds the collective behavior finds its expl
 	\end{center}
 \end{figure}
 
-Our purpose is to develop minimal models able to explain these features found not only in birds, but also in a variety of different systems.
-Therefore, we will build our model from the example of a bird for illustration purposes, but won't consider the details of its behavior or morphology.
+Our purpose here will be to develop minimal models able to explain these features found not only in birds, but also in a variety of other systems.
+Therefore, we will build our model from the example of birds for illustration purposes, but we won't consider the details of their ethology or morphology.
 From far away, a flying bird is nothing but a polar object, meaning that is moves along a preferred direction set by its body axis.
-Such feature is recurrent among the systems we are interested in, so that in the following we will  adopt an abstract representation
-for which the bird is represented by an arrow pointing along its direction of motion.
+Such feature is common in the systems we are interested in, so that in the following we will adopt an abstract representation
+for which the bird is a simple arrow pointing along its direction of motion.
 
 \paragraph*{Interactions with the environment}
 Interactions between a biological systems and its environment are generally very complex and their quantitative description is here out of reach. 
 Rather than solving the Navier-Stokes equations
-to characterize the motion of the bird, 
-we will here neglect inertia and the effect of the surrounding fluid by assuming that the animal self propels with a constant speed.
-Such an approximation is arguably not so good for birds, but it turns out to be well verified for microscopic objects such as bacteria moving at low Reynolds numbers, or for any two dimensional active motion in presence of a substrate.
-Although setting the bird self propulsion speed to a constant leads to neglecting speed fluctuations, fluctuations in the direction of motion of the bird are generally still possible such that our model retains orientational noise. 
+to characterize the interaction of the bird with the surrounding air, 
+we will here neglect inertia and the aerodynamics by assuming that the animal self-propels with a constant speed.
+Such an approximation is arguably not so good for birds, but it turns out to be well verified for microscopic objects such as bacteria moving at low Reynolds numbers, or for any two dimensional active motion in the presence of a substrate.
+Although setting the bird self propulsion speed to a constant leads to neglecting speed fluctuations, fluctuations in the direction of motion of the bird are generally still possible such that our model will retain orientational noise. 
  
  \paragraph*{Interactions with neighbors}
- Above, we have described the motion of a single bird, but here we are interested in collective behaviors which implies to describe interactions between distinct individuals.
+ Above, we have described the motion of a single bird, but below we will describe collective behaviors which implies to describe interactions between individuals.
  A prerequisite for flocking is that the birds seek to move together. 
  In the context of polar objects moving at constant speed, this effect is easily achieved via social rules leading to local alignment of velocities.
  Other types of interactions can of course be implemented. 
  For example, animals generally try to avoid colliding with each other, which can be described as a kind of short-ranged repulsion. Moreover, swarms or flocks usually show a certain degree of cohesion, which also suggests the presence of an effective attraction at long distances. 
- Another type of effective interactions may come from the medium our agents are moving into. An example of such interactions which we have studied are phoretic interactions mediated by production/consumption and motility response to a chemical concentration. 
- Another prominent example are of course hydrodynamic interactions which play a central role in biological systems.
+ Another type of effective interactions may come from the medium our agents are moving into. An example of such interactions which we have studied in~\autoref{chap_phoretic} are phoretic interactions mediated by production/consumption and motility response to a chemical concentration. 
+ Another prominent example are of course hydrodynamic interactions which play a central role in biological systems (cf~\autoref{chap_hydro}).
  Although these effects need to be considered when studying specific systems in details, they will enrich\footnote{Understand `complicate'.} the physics and may hide some of the universal features we are looking for. 
  In this lecture, we will thus restrict to the simplest setting where the agents of the model only interact via pairwise velocity alignment.
 
@@ -86,8 +90,9 @@ Although setting the bird self propulsion speed to a constant leads to neglectin
 
 \subsection{Definition of the Vicsek class}
 
-We now have discussed all the necessary ingredients for a minimal model for collective motion, which is known as the Vicsek model~\cite{chate2020dry} as it was first formulated by T. Vicsek and collaborators.
-In the Vicsek setting, point-like particles move in two dimensions with constant speed $v_0$ and align their velocities with their neighbors in presence of noise.
+We now have all the necessary ingredients for a minimal model of collective motion.
+The most famous one is arguably the Vicsek model~\cite{chate2020dry}, as it was first formulated by T. Vicsek and collaborators.
+In the Vicsek setting, point-like particles move in two dimensions with constant speed $v_0$ and align their velocities with their neighbors in the presence of noise.
 These rules mathematically translate in two dimensions into the following discrete time dynamics for the $i^{\rm th}$ particle's position $\bm r_i$ and velocity orientation $\theta_i$
 \begin{subequations}
 \label{eq_VM}
@@ -105,24 +110,24 @@ The second term in the rhs of Eq.\eqref{eq_VM_theta} accounts for the angular fl
 whose strength are set by the parameter $\eta$. 
 $\xi_i^t$ is therefore a white noise with zero mean and unit variance:
 $\langle \xi_i^t \xi_j^{t'} \rangle = \delta_{ij} \delta_{t t'}$ --hereafter angular brackets without indices are meant as averages over the noise.
-In numerical simulations the distribution of $\xi$ is usually taken uniform in $(-\pi;\pi]$ for simplicity, 
-but other choices are possible (for instance Gaussian) and they do not qualitatively modify the Vicsek dynamics 
+In numerical simulations, the distribution of $\xi$ is usually taken uniform in $(-\pi;\pi]$ for simplicity, 
+but other choices are possible (for instance Gaussian) and they do not qualitatively modify the dynamics 
 so long as clockwise and counter-clockwise fluctuations remain equiprobable.
-Similarly, different implementations of the Vicsek-dynamics have been considered (e.g.\ considering continuous time dynamics, or with different forms of the noise etc...),
+Similarly, different implementations of the Vicsek model have been proposed (e.g.\ considering continuous time dynamics, or with different forms of the noise etc...),
 but those lead to large-scale collective features qualitatively similar to those of Eqs.~\eqref{eq_VM}.
 For more details on the different numerical implementations of the Vicsek dynamics, see Ref.\cite{chate2020dry} and references therein.
 Here, for practical purposes we'll consider the case where Eqs.~\eqref{eq_VM} are simulated in a square domain of linear size $L$ with periodic boundary conditions on all sides.
 
-As for the Ising or Heisenberg models for ferromagnets, the importance of the role of the Vicsek model in active matter studies stems from its simplicity and genericity.
-Indeed, numerical and theoretical studies of the model allowed to uncover generic physical principles which can be applied to a broad range of active matter systems.
+As for the Ising or $XY$ models for ferromagnets, the importance of the role of the Vicsek model in active matter studies stems from its simplicity and genericity.
+Indeed, numerical and theoretical studies of the model allowed to uncover general physical principles which can be applied to a broad range of active matter systems.
 In this context, Eqs.~\eqref{eq_VM} thus define a {\it Vicsek class} (or polar class), whose members all satisfy the following requirements:
 \begin{itemize}
 \item The alignment interactions between the particles are {\it local} and {\it polar}. 
 Particles moreover do not point towards a preferred direction so that the dynamics is {\it isotropic}.  
 \item {\it The particles are advected by their polarities.} 
 While the polarity and velocity of Vicsek particles are identical, this constraint can be relaxed to some extent if the two remain coupled.
-\item As a consequence of the previous point, the Vicsek class is defined out of equilibrium. 
-In particular the dynamics does not conserve momemtum, so that it is not invariant by change of inertial frame and {\it Galilean symmetry is broken}.
+\item As a consequence of the previous point, the Vicsek class is inherently out of equilibrium. 
+In particular, the dynamics does not conserve momemtum, so that it is not invariant by change of inertial frame and {\it Galilean symmetry is broken}.
 \item The dynamics~\eqref{eq_VM} nevertheless {\it conserves the total particle number $N$} (there are no particle creation or annihilation).
 \end{itemize}
 
@@ -131,7 +136,7 @@ In particular the dynamics does not conserve momemtum, so that it is not invaria
 \label{sec_pd}
 
 Rescaling space and time, we set $\Delta t$ and $r_0$ to unity. 
-Therefore, the Vicsek model possesses three control parameters: $v_0$, $\eta$, and the mean particle density $\bar{\rho} \equiv N / L^2$.
+Therefore, the Vicsek model has three control parameters: $v_0$, $\eta$, and the mean particle density $\bar{\rho} \equiv N / L^2$.
 Considering $v_0$ in a `reasonable' range --meaning not too small so that activity appears on scales accessible via simulations, 
 or not too large so that the neighborhood of each particle is not completely randomized at each simulation step-- its specific value does not qualitatively affect the dynamics\footnote{Typically $v_0$ is taken between 0.1 and 1.}.
 Hence, the dynamical behaviors of Vicsek particles can be explored tuning the remaining two parameters: the average particle density $\bar{\rho}$ and the strength of the noise $\eta$.
@@ -140,7 +145,7 @@ The phase diagram of the Vicsek model in the ($\bar{\rho}$,$\eta$) plane is show
 \begin{itemize}
 \item At low particle densities and high noises, fluctuations dominate over alignment interactions and the system is thus globally disordered. 
 Namely, the polarity and density correlations are exponential with a finite associated correlation length $\ell_c$. 
-The system can thus be split into uncorrelated domains of linear size $> \ell_c$ so that by the law of large numbers the global polar order asymptotically vanishes as
+The system can thus be split into uncorrelated domains of linear size $> \ell_c$ so that from the law of large numbers the global polar order vanishes over large scales as
 \begin{equation}
 \Pi \equiv \langle \|\langle \hat{\bm e}(\theta_i^{t}) \rangle_{i=1\ldots N}\|\rangle_t \underset{L \gg \ell_c}{\sim} N^{-1/2} \sim L^{-1} .
 \end{equation} 
@@ -148,28 +153,28 @@ The system can thus be split into uncorrelated domains of linear size $> \ell_c$
 a homogeneous ordered state in which particles move collectively along a randomly selected direction. 
 This symmetry broken phase exhibits characteristic features such as scale free (power law) density and order correlations, 
 as well as long-range orientational (polar) order.
-Namely, as shown in Fig.~\ref{figVM}(c) the system's global polarization is found to decay with system size to a nonzero value $\Pi_\infty$, and with power law finite size corrections:
+Namely, as shown in Fig.~\ref{figVM}(c) the system's global polarization is found to decay with system size to a nonzero value $\Pi_\infty$, with power law finite-size corrections:
 \begin{equation}
 \label{eq_LRO}
 \Pi \sim \Pi_{\infty} + A L^{-\omega} .
 \end{equation} 
 Here $\Pi_\infty$ and $A$ depend on the parameters $\bar{\rho}$ and $\eta$ and the details of the microscopic dynamics, 
-but the exponent $\omega \simeq 2/3$~\cite{chate2020dry} is universal so that its value is the same throughout the homogeneous ordered phase and for all two dimensional systems in the Vicsek class.
+while the exponent $\omega \simeq 2/3$~\cite{chate2020dry} is universal so that its value is the same throughout the homogeneous ordered phase and for all two dimensional systems in the Vicsek class (similarly to the critical exponents that we have used in~\autoref{chap_intro} to describe the transition to order in the Ising model).
 
-Another peculiar feature of the ordered phase can be found measuring the statistics of the number of particle $n(t) \equiv \int_{\cal V}{\rm d}\bm r \, \sum_i \delta(\bm r - \bm r_i^t)$ into a sub-domain of volume $\cal V$.
+Another peculiar feature of the ordered phase can be observed by measuring the statistics of the number of particle $n(t) \equiv \int_{\cal V}{\rm d}\bm r \, \sum_i \delta(\bm r - \bm r_i^t)$ into a sub-domain of volume $\cal V$.
 Namely, measuring the mean and variance of $n$ in domains of increasing sizes one finds that
 \begin{equation}
-\langle \Delta n^2 \rangle_t \sim \langle n \rangle_t^\phi ,
+\langle \Delta n^2 \rangle \sim \langle n \rangle^\phi ,
 \end{equation}
 with $\phi \simeq 1.6$ (see Fig.~\ref{figVM}(c))~\cite{chate2020dry}. 
 In a system with `normal' density fluctuations, the law of large number would impose that $\phi = 1$. 
 Here, however, $\phi > 1$, i.e.\ the variance of $n$ grows faster than its mean, 
-so that density fluctuations in the homogeneous ordered phase are deemed as `anomalous', or `giant'\footnote{Note that these giant density fluctuations are not related to any clustering phenomenon (e.g.\ like motility induced phase separation),
+so that density fluctuations in the homogeneous ordered phase are deemed as `anomalous', or `giant'\footnote{Note that these giant density fluctuations are not related to any clustering phenomenon (e.g.\ like the motility induced phase separation discussed in~\autoref{chap_scalar}),
 but instead due to the infinite correlation length of density fluctuations in an overall spatially homogeneous system.}.
-\item Finally, contrary to magnetic systems at equilibrium (i.e.\ described by the Ising or Heisenberg models) the transition to order in the Vicsek model does not occur via a second order transition but is best described as a phase separation scenario where elongated dense ordered liquid domains --which are usually referred to as bands, see Fig.~\ref{figVM}(b)-- coexist with a dilute disordered gas.
+\item Finally, contrary to magnetic systems at equilibrium (i.e.\ described by the Ising or $XY$ models) the transition to order in the Vicsek model does not occur via a second order transition but is best described as a phase separation scenario where elongated dense ordered liquid domains --which are usually referred to as \textit{bands}, see Fig.~\ref{figVM}(b)-- coexist with a dilute disordered gas.
 Because of the coupling between density and order, these bands travel in the direction orthogonal to their axis.
 They moreover have a well-defined width selected by the noise, so that their number grows with the mean particle density or system size,
-and in large systems they arrange into a regular smectic A configuration.
+and in large systems they arrange into a regular smectic configuration.
 This {\it micro-phase separated} phase is thus distinct from the usual phase separation in which a single liquid domain occupies a macroscopic fraction of space and grows with density and system size.
 \end{itemize}
 
@@ -177,10 +182,10 @@ This {\it micro-phase separated} phase is thus distinct from the usual phase sep
 \begin{figure}[t!]
 	\includegraphics[width=\textwidth]{Figures/figVM.pdf}
 	\caption{(a) The stylized phase diagram of the Vicsek model in the density-noise plane showing the three phases described in the text: disordered, homogeneously ordered, and the phase separated phase separating the two.
-	(b) A snapshot of a regular smectic band configuration found in the phase separated phase, the white arrow indicates the mean order direction and the color codes the local particle density. 
+	(b) A snapshot of a regular smectic band configuration found in the phase-separated phase, the white arrow indicates the mean order direction and the color codes the local particle density. 
 	Parameters are $\bar{\rho} = 1/2$, $\eta = 0.2$ and $v_0 = 0.5$.
 	(c, top) Global polarization in the homogeneous ordered phase (in double-log representation) decreasing slower than a power law, the solid black line is a fit of the data by Eq.~\eqref{eq_LRO} giving $\Pi_\infty = 0.8685(2)$ and $\omega \simeq 0.64$. The inset shows the power law scaling of $\Pi - \Pi_\infty$ with system size.
-	(c, bottom) $\langle \Delta n^2 \rangle/\langle n \rangle$ (see Sec.~\ref{sec_pd} for a definition) as function of $\langle n \rangle$ showing giant density fluctuations in the ordered phase (filled circles) and normal fluctuations in the disordered phase (hollow squares). Different colors indicate different system sizes.
+	(c, bottom) $\langle \Delta n^2 \rangle/\langle n \rangle$ (see Sec.~\ref{sec_pd} for a definition) as a function of $\langle n \rangle$ showing anomalous density fluctuations in the ordered phase (filled circles) and normal fluctuations in the disordered phase (hollow squares). Different colors indicate different system sizes.
 	Parameters for (c) are $\bar{\rho} = 2$, $v_0 = 0.5$, $\eta = 0.2$(ordered) and 0.6(disordered).
 	All figures are reproduced from~\cite{DADAM_LesHouches}. 
 	}
@@ -196,7 +201,7 @@ It can be shown that a microscopic dynamics similar to that defined by Eqs.~\eqr
 \bm w(\bm r,t) = \rho(\bm r,t) \bm v(\bm r,t) \equiv \left\langle \sum_i \hat{\bm e}(\theta_i^t)\delta(\bm r - \bm r_i^t) \right\rangle .
 \end{align*}
 Using the Boltzmann-Ginzburg-Landau (BGL) approach detailed in Sec.~3 of Ref.~\cite{DADAM_LesHouches}, 
-one can indeed derive the set of partial differential equations governing the dynamics of $\rho$ and $\bm w$, known as the Toner Tu equations, which read in nondimensional units
+one can derive the set of partial differential equations governing the dynamics of $\rho$ and $\bm w$, known as the Toner Tu equations, which read
 \begin{subequations}
 \label{eq_TT}
 \begin{align}
@@ -207,7 +212,7 @@ one can indeed derive the set of partial differential equations governing the dy
 -\frac{1}{2}\nabla \rho + \left( \mu(\rho) - \xi |\bm w|^2 \right) \bm w + \nu \Delta \bm w .
 \end{align}
 \end{subequations}
-Thanks to the coarse-graining BGL procedure, all coefficients of Eqs.~\eqref{eq_TT} can be expressed as function of the microscopic dynamics parameters, i.e.\ density and noise.
+Thanks to the coarse-graining procedure, all coefficients of Eqs.~\eqref{eq_TT} can be expressed as functions of the microscopic dynamics parameters, i.e.\ density, noise and velocity.
 This way it is possible to check from linear stability analysis and numerical simulations that Eqs.~\eqref{eq_TT} reproduce qualitatively the 
 Vicsek model phase diagram of Fig.~\ref{figVM}(a) with the transition to collective motion occurring through a phase separated phase.
  
@@ -217,10 +222,10 @@ so that their structure turns out to be quite generic and would not qualitativel
 In fact, Eqs.~\eqref{eq_TT} were first written by considering all relevant terms which satisfy the symmetries and conservation rules 
 set by Eqs.~\eqref{eq_VM}:
 \begin{itemize}
-\item As a consequence of the particle number conservation, $\rho$ is a conserved field and Eq.~\eqref{eq_TT_rho} takes the form of a continuity equation with a mass flux $\bm w$ reflecting the fact that density is advected by order.
-\item In Eq.~\eqref{eq_TT_w} the symmetry breaking associated with collective motion is accounted for by the Ginzburg-Landau term on the r.h.s. which, for $\mu(\bar{\rho}) > 0$, leads to the homogeneous ordered solution $\bm w = \sqrt{\mu(\bar{\rho}) / \xi} \hat{\bm e}_\|$ and $\hat{\bm e}_\|$ a unit vector pointing along an arbitrary direction.
+\item As a consequence of the particle number conservation, $\rho$ is a conserved field and Eq.~\eqref{eq_TT_rho} takes the form of a continuity equation with a mass flux $\bm w$, reflecting the fact that density is advected by order.
+\item In Eq.~\eqref{eq_TT_w} the symmetry breaking associated with collective motion is accounted for by the Landau cubic term on the r.h.s. which, for $\mu(\bar{\rho}) > 0$, leads to the homogeneous ordered solution $\bm w = \sqrt{\mu(\bar{\rho}) / \xi} \hat{\bm e}_\|$ and $\hat{\bm e}_\|$ a unit vector pointing along an arbitrary direction.
 \item The nonlinear terms on the l.h.s.\ of Eq.~\eqref{eq_TT_w} are moreover all allowed with arbitrary coefficients due to the absence 
-of momentum conservation\footnote{The advective term conserving momentum takes the form $\partial_t \bm w + \nabla \cdot (\bm w \bm w / \rho)$.}. 
+of momentum conservation\footnote{In a compressible system, the advective term conserving momentum takes the form $\partial_t \bm w + \nabla \cdot (\bm w \bm w / \rho)$.}. 
 Indeed, it is easy to check that they generally beak Galilean symmetry which would require the equations to be invariant under the transformation
 \begin{equation*}
 \bm w \to \bm w + \rho \bm u , \qquad \bm r \to \bm r - \bm u t ,
@@ -229,14 +234,14 @@ with $\bm u$ a constant velocity.
 Moreover, because of these terms Eqs.~\eqref{eq_TT} generally cannot be written from minimizing of a free energy-type functional,
 which highlights again the nonequilibrium nature of the underlying dynamics.
 \end{itemize}
-Finally, we shall specify that the `simple' form of the pressure term ($\sim \nabla\rho$) in Eq.~\eqref{eq_TT_w} is a consequence of the point-wise nature of the particles, 
-and considering short-range repulsion would lead to more a complicated expression. \\
-\\
-In the remainder of these notes we are going to focus on the derivation of large scale and long time universal properties of the fluctuating homogeneous ordered solution of Eqs.~\eqref{eq_TT}.
-The approach presented below follows the seminal work by Toner and Tu~\cite{toner1995long,toner1998flocks}.
-For readers interested in more details about the topic, we recommend the more recent treatments of Refs.~\cite{toner2012reanalysis,tonerlecture2018}.
+%Finally, we shall specify that the `simple' form of the pressure term ($\sim \nabla\rho$) in Eq.~\eqref{eq_TT_w} is a consequence of the point-wise nature of the particles, and considering short-range repulsion would lead to more a complicated expression. \\
 
-\section{The Toner and Tu theory -- linearized hydrodynamics}
+
+In the remainder of these notes, we are going to focus on the derivation of large scale and long time universal properties of the fluctuating homogeneous ordered solution of Eqs.~\eqref{eq_TT}.
+The approach presented below follows the seminal work by Toner and Tu~\cite{toner1995long,toner2012reanalysis}.
+For readers interested in more details about the topic, we recommend the more recent treatment of Ref.~\cite{chate2024dynamic}.
+
+\section{The transition to collective motion: linear stability analysis}
 
 As Eqs.~\eqref{eq_TT} contain many terms which will not qualitatively affect the results derived below, 
 for the sake of pedagogy we will study here simplified equations containing all relevant physical ingredients.
@@ -253,21 +258,20 @@ Namely, let us consider
 \end{subequations}
 with now only one advection term in~\eqref{eq_TT_w_new}, but still with the coefficient $\lambda$ kept arbitrary.
 Moreover, we will restrict most of the calculations to two dimensions.
-
-\subsection{Identification of the hydrodynamic modes}
-
-For $\mu(\bar{\rho}) > 0$ the hydrodynamic equations admit the homogeneous ordered solution 
+For $\mu(\bar{\rho}) > 0$, the continuous theory admits the homogeneous ordered solution 
 \begin{equation} \label{eq_hos}
 \rho = \bar{\rho}, \qquad \bm w = \sqrt{\mu(\bar{\rho})/\xi} \hat{\bm e}_\| .
 \end{equation}
-We moreover consider a set of coefficients ($\lambda,\mu(\bar{\rho}),\xi,\nu$) so that we work deep enough in the ordered phase where~\eqref{eq_hos} is stable and does not coexist with the band solutions of Eqs.~\eqref{eq_TT_new}.
-We now write the fields $\rho$ and $\bm w$ in terms of small perturbations around~\eqref{eq_hos}:
+
+In this section, we are interested in the stability of this solution.
+We thus write the fields $\rho$ and $\bm w$ in terms of small perturbations around~\eqref{eq_hos}:
 \begin{equation} 
 \rho(\bm r,t) = \bar{\rho} + \delta\rho(\bm r,t), \qquad \bm w(\bm r,t) = \left( w_0 + \delta w_\|(\bm r,t) \right) \hat{\bm e}_\| + \delta w_\perp(\bm r,t) \hat{\bm e}_\perp ,
 \end{equation}
 with $w_0 \equiv \sqrt{\mu(\bar{\rho}) / \xi}$ and $\hat{\bm e}_\| \cdot \hat{\bm e}_\perp = 0$.
 Keeping terms up to linear order, we obtain for the perturbations
 \begin{subequations}
+\label{eq_TT_lin}
 \begin{align}
 \label{eq_TT_lin_rho}
 &\partial_t \delta \rho + \partial_\| \delta w_\| + \partial_\perp \delta w_\perp = 0, \\
@@ -278,12 +282,62 @@ Keeping terms up to linear order, we obtain for the perturbations
 \end{align}
 \end{subequations}
 where we have defined $\mu' \equiv {\rm d}\mu /{\rm d}\rho|_{\bar{\rho}}$ and $\partial_{\| , \perp} \equiv \hat{\bm e}_{\| , \perp} \cdot \nabla$.
-Comparing the r.h.s.\ of Eq.~\eqref{eq_TT_lin_para} with that of Eqs.~(\ref{eq_TT_lin_rho},\ref{eq_TT_lin_perp}) 
+
+Going into Fourier space, we recast Eqs.~\eqref{eq_TT_lin} into the linear system
+\begin{equation*}
+    \partial_t \begin{pmatrix}
+        \delta\hat{\rho} \\
+        \delta\hat{w}_\| \\
+        \delta\hat{w}_\perp
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        0 & i q_\| & i q_\perp \\
+        \mu'(\bar\rho)w_0 + \tfrac{1}{2}i q_\| & i\lambda w_0 q_\| - [2\mu(\bar\rho) + \nu q^2] & 0 \\
+        \tfrac{1}{2}i q_\perp & 0 & i\lambda w_0 q_\| - \nu q^2
+    \end{pmatrix}
+    \begin{pmatrix}
+        \delta\hat{\rho} \\
+        \delta\hat{w}_\| \\
+        \delta\hat{w}_\perp
+    \end{pmatrix},
+\end{equation*}
+where $\delta\hat{\rho}(\bm q,t) = \int\dd\bm r \, \delta\rho(\bm r,t)\exp(i\bm q\cdot\bm r)$ and the other fields are defined in a similar way, while $\bm q = q_\|\hat{\bm e}_\| + q_\perp\hat{\bm e}_\perp$ with $q^2 = q_\|^2 + q_\perp^2$.
+The stability of the homogeneous ordered solution is then set by the sign of the real part of the eigenvalue of the above matrix.
+
+Given the configuration of the Vicsek bands (see~\autoref{figVM}), we moreover focus on perturbations in the direction longitudinal to the order here by setting $q_\perp = 0$.
+This way, we directly obtain the eigenvalue associated to $\delta\hat{w}_\perp$: ${\cal Y}_\perp = -\nu q_\|^2 + i \lambda w_0 q_\|$,
+whose real part is always negative.
+The other two eigenvalues solve the second order polynomial equation
+\begin{equation}\label{eq_poly_Y}
+    {\cal Y}({\cal Y} + 2\mu(\bar\rho) + \nu q_\|^2 - i \lambda w_0 q_\|) - i q_\|\left(\mu'(\bar\rho) w_0 + \tfrac{1}{2}i q_\|\right) = 0.
+\end{equation}
+For $q_\| = 0$, it is straightforward to show that the solutions of this equation are ${\cal Y}_+ = 0$ and ${\cal Y}_- = -2\mu(\bar\rho)$.
+As we are interested in long-wavelength instabilities, we focus here on ${\cal Y}_+$ and make use of the ansatz
+\begin{equation*}
+    {\rm Re}({\cal Y}) \underset{q_\| \to 0}{\simeq} q_\|^2, \qquad
+    {\rm Im}({\cal Y}) \underset{q_\| \to 0}{\simeq} q_\|.
+\end{equation*}
+Replacing this ansatz in Eq.~\eqref{eq_poly_Y} we obtain at order $q_\|^2$
+\begin{equation*}
+    2 \mu(\bar\rho){\rm Re}({\cal Y}) - {\rm Im}^2({\cal Y}) + \lambda w_0 q_\| {\rm Im}({\cal Y}) + \tfrac{1}{2}q_\|^2 + i\left[ 2\mu(\bar\rho) {\rm Im}({\cal Y}) - q_\| \mu'(\bar\rho) w_0 \right] = 0,
+\end{equation*}
+from which we deduce
+\begin{equation}
+    {\rm Im}({\cal Y}) = \frac{\mu'(\bar\rho)w_0}{2\mu(\bar\rho)}q_\|, \qquad
+    {\rm Re}({\cal Y}) = \frac{q_\|^2}{4\mu(\bar\rho)}\left[ \frac{(\mu'(\bar\rho))^2}{2 \mu(\bar\rho)\xi} - \frac{\lambda\mu'(\bar\rho)}{\xi} - 1 \right].
+\end{equation}
+
+\section{The Toner Tu theory: linearized hydrodynamics}
+
+\subsection{Identification of the hydrodynamic modes}
+
+Here, we consider a set of coefficients ($\lambda,\mu(\bar{\rho}),\xi,\nu$) so that we work deep enough in the ordered phase where~\eqref{eq_hos} is stable.
+Comparing the r.h.s.\ of Eq.~\eqref{eq_TT_lin_para} with that of Eqs.~(\ref{eq_TT_lin_rho},\ref{eq_TT_lin_perp}), 
 we find that $\delta w_\|$ is the only perturbation whose equation presents a damping term with coefficient $- 2\mu(\bar{\rho})$.
 Consequently, longitudinal order perturbations typically relax on a finite timescale $\tau_\| \sim (2\mu(\bar{\rho}))^{-1}$,
-while for density and transverse order perturbations this timescale $\sim \nabla^{-1} \sim L$ diverges with system size.
-Therefore, in systems large enough $\delta w_\|$ can be considered as fast, 
-while $\delta \rho$ and $\delta w_\perp$ are said to be `slow' or `hydrodynamic'.
+while for density and transverse order perturbations are massless.
+Therefore, $\delta w_\|$ can be considered as fast, 
+while $\delta \rho$ and $\delta w_\perp$ are the hydrodynamic modes.
 
 Using this separation of timescales between the fields, 
 we neglect the time derivative in Eq.~\eqref{eq_TT_lin_para} and keep only the leading order terms in fields and gradients, which leads to
@@ -341,7 +395,7 @@ and we have defined
 \Gamma_\rho(\bm q,\omega) \equiv i(\omega - \tilde{v}_0 q_\|) + D_\rho q_\|^2 , \qquad 
 \Gamma_\perp(\bm q,\omega) \equiv i(\omega - \lambda w_0 q_\|) + \nu (q_\|^2 + q_\perp^2) .
 \end{equation*}
-In the following we will focus on the scaling of the fields correlation functions in the large scale and long time limits, i.e.\ in the limits of vanishing $\omega$ and $q \equiv |\bm q|$.
+In the following, we will focus on the scaling of the fields correlation functions in the large scale and long time limits, i.e.\ in the limits of vanishing $\omega$ and $q \equiv |\bm q|$.
 In this regime the conserved noise term in Eq.~\eqref{eq_TT_lin_fourier} is subdominant w.r.t.\ $\hat{f}_\perp$, and we neglect it.
 The system~\eqref{eq_TT_lin_fourier} is easily solved formally, and we find
 \begin{equation}
@@ -353,7 +407,7 @@ i q_\perp \\ \Gamma_\rho(\bm q,\omega)
 \end{pmatrix} \hat{f}_\perp(\bm q,\omega) ,
 \end{equation}
 with ${\cal D}(\bm q,\omega) \equiv \Gamma_\rho(\bm q,\omega)\Gamma_\perp(\bm q,\omega) + q_\perp^2/2$.
-In the limit where $\omega$ and $q$ go to zero we simplify the expression of ${\cal D}(\bm q,\omega)$ by considering the following factorization
+In the limit where $\omega$ and $q$ go to zero, we simplify the expression of ${\cal D}(\bm q,\omega)$ by considering the following factorization
 \begin{equation*}
 {\cal D}(\bm q,\omega) \underset{\omega, q \to 0}{\simeq} -(\omega - \omega_+(\bm q))(\omega - \omega_-(\bm q)) ,
 \end{equation*}
@@ -370,16 +424,16 @@ c_\pm(\theta_{\bm q}) &\equiv \frac{\lambda w_0 + \tilde{v}_0}{2}\cos(\theta_{\b
 {2 c_\pm(\theta_{\bm q}) + (\lambda w_0 + \tilde{v}_0)\cos(\theta_{\bm q}) } q^2 \sim q^2 ,
 \end{align}
 \end{subequations}
-and where we have defined $\theta_{\bm q}$ as the angle between $\bm q$ and the global order ($q_\| = q\cos(\theta_{\bm q})$ and $q_\perp = q\sin(\theta_{\bm q})$). 
+and where we have defined $\theta_{\bm q}$ as the angle between $\bm q$ and the global order ($q_\| = q\cos\theta_{\bm q}$ and $q_\perp = q\sin\theta_{\bm q}$). 
 Using the expression of the noise variance in Fourier space $\langle \hat{f}_\perp(\bm q,\omega) \hat{f}_\perp(\bm q',\omega') \rangle = \Delta_\perp (2\pi)^3 \delta(\bm q + \bm q') \delta(\omega + \omega')$, we get the following expressions of the density and order correlation functions
 \begin{subequations}
 \label{eq_space_tim_cfs}
 \begin{align}
 \label{eq_space_tim_cfs_rho}
-\left\langle \left|\delta \hat{\rho}(\bm q,\omega)\right|^2 \right\rangle &\underset{\omega, q \to 0}{\simeq} \frac{\Delta_\perp (2\pi)^3 q_\perp^2}
+\left\langle \left|\delta \hat{\rho}(\bm q,\omega)\right|^2 \right\rangle &\underset{\omega, q \to 0}{\simeq} \frac{\Delta_\perp q_\perp^2}
 {\left[ ( \omega - c_+(\theta_{\bm q}) q)^2  + \varepsilon^2_+(\bm q)   \right]\left[ ( \omega - c_-(\theta_{\bm q}) q)^2  + \varepsilon^2_-(\bm q)   \right]} , \\
 \label{eq_space_tim_cfs_w}
-\left\langle \left|\delta \hat{w}_\perp(\bm q,\omega)\right|^2 \right\rangle &\underset{\omega, q \to 0}{\simeq} \frac{\Delta_\perp (2\pi)^3 (\omega - \tilde{v}_0 q_\|)^2}
+\left\langle \left|\delta \hat{w}_\perp(\bm q,\omega)\right|^2 \right\rangle &\underset{\omega, q \to 0}{\simeq} \frac{\Delta_\perp (\omega - \tilde{v}_0 q_\|)^2}
 {\left[ ( \omega - c_+(\theta_{\bm q}) q)^2  + \varepsilon^2_+(\bm q)   \right]\left[ ( \omega - c_-(\theta_{\bm q}) q)^2  + \varepsilon^2_-(\bm q)   \right]} .
 \end{align}
 \end{subequations}
@@ -391,7 +445,7 @@ Moreover, measuring the two different speeds of the modes in the direction longi
 a direct indication of the absence of Galilean invariance in the system ($\tilde{v}_0 \ne \lambda w_0$).
 The predicted life time of the modes takes a more conventional form set by $\varepsilon^{-1}_\pm(\bm q)\sim q^{-2} \sim \lambda^2$ with $\lambda$ the mode wavelength, which corresponds to the expected scaling for diffusive damping.
 
-As we derived the above structure of the propagating density and order modes from the generic hydrodynamic theory, 
+As we derived the structure of the propagating density and order modes from the generic hydrodynamic theory, 
 we expect it to hold for a broad variety of systems.
 Simulations of the Vicsek model~\eqref{eq_VM} indeed confirm the two-peaks structure predicted by Eqs.~\eqref{eq_space_tim_cfs}.
 Measuring the peaks positions, one finds that they indeed scale linearly with $q$. 
@@ -419,27 +473,27 @@ Equal-time density and order correlations are simply obtained by integrating Eqs
 The full calculation can be carried out explicitly, but can be simplified considering the limit of small wavenumbers.
 Indeed, although the two peaks in the space-time correlation functions are separated by $\sim q$, their respective widths $\sim q^2$ and their heights $\sim q^{-2}$.
 Therefore, for $q \to 0$ the integral over $\omega$ of Eqs.~\eqref{eq_space_tim_cfs} will be dominated by the contributions from the individual peaks, 
-which can moreover be treated independently.
+which can be treated independently.
 Using the relation $\int_{-\infty}^{+\infty} {\rm d}x \, [(x - x_0)^2 + \alpha^2]^{-1} = \pi/\alpha$, we thus get after little algebra
 %\begin{subequations}
 %\label{eq_eq_tim_cfs}
 \begin{align*}
 %\label{eq_eq_tim_cfs_rho}
-\left\langle \left|\delta \hat{\rho}(\bm q)\right|^2 \right\rangle &\underset{q \to 0}{\simeq} \frac{\Delta_\perp 4\pi^3 \sin^2(\theta_{\bm q})}{ [c_+(\theta_{\bm q}) - c_-(\theta_{\bm q})]^2 }
+\left\langle \left|\delta \hat{\rho}(\bm q)\right|^2 \right\rangle &\underset{q \to 0}{\simeq} \frac{\Delta_\perp \sin^2(\theta_{\bm q})}{ 2[c_+(\theta_{\bm q}) - c_-(\theta_{\bm q})]^2 }
 \left( \frac{1}{\varepsilon_+(\bm q)} + \frac{1}{\varepsilon_-(\bm q)}  \right) , \\
 %\label{eq_eq_tim_cfs_w}
-\left\langle \left|\delta \hat{w}_\perp(\bm q)\right|^2 \right\rangle &\underset{q \to 0}{\simeq} \frac{\Delta_\perp 4\pi^3}{ [c_+(\theta_{\bm q}) - c_-(\theta_{\bm q})]^2}
+\left\langle \left|\delta \hat{w}_\perp(\bm q)\right|^2 \right\rangle &\underset{q \to 0}{\simeq} \frac{\Delta_\perp}{ 2[c_+(\theta_{\bm q}) - c_-(\theta_{\bm q})]^2}
 \left( \frac{ [ c_+(\theta_{\bm q}) - \tilde{v}_0\cos(\theta_{\bm q}) ]^2 }{\varepsilon_+(\bm q)} + \frac{[ c_-(\theta_{\bm q}) - \tilde{v}_0\cos(\theta_{\bm q}) ]^2}{\varepsilon_-(\bm q)}  \right) .
 \end{align*}
 %\end{subequations}
-Using the expressions of the $c_\pm(\theta_{\bm q})$ and $\varepsilon_\pm(\bm q)$ given in Eq.~\eqref{eq_speed_damp} we finally simplify these expressions into
+Using the expressions of the $c_\pm(\theta_{\bm q})$ and $\varepsilon_\pm(\bm q)$ given in Eq.~\eqref{eq_speed_damp} we finally rewrite these expressions into a more compact form:
 \begin{equation}
 \label{eq_eq_tim_cfs_simple}
 \left\langle \left|\delta \hat{\rho}(\bm q)\right|^2 \right\rangle \underset{q \to 0}{\simeq} \frac{P_\rho(\theta_{\bm q})\sin^2(\theta_{\bm q})}{q^2} , \qquad
 \left\langle \left|\delta \hat{w}_\perp(\bm q)\right|^2 \right\rangle \underset{q \to 0}{\simeq} \frac{P_\perp(\theta_{\bm q})}{q^2} ,
 \end{equation}
 with $P_\rho(\theta_{\bm q})$ and $P_\perp(\theta_{\bm q})$ two ${\cal O}(1)$ functions.
-In agreement with numerical and experimental observations, density and order correlations are predicted to be scale free (they scale like a power of $q$).
+In agreement with numerical and experimental observations, density and order correlations are scale free (they scale like a power of $q$).
 Moreover, although we derived Eqs.~\eqref{eq_eq_tim_cfs_simple} starting from a two dimensional theory, this result holds in arbitrary dimensions $d \ge 1$~\cite{toner2012reanalysis}.
 
 \subsubsection{Giant density fluctuations}
@@ -465,14 +519,14 @@ For any dimension $d$, the typical strength of order fluctuations is set by
 \begin{cases}
 L & (d=1) \\
 \ln(L / \Lambda) & (d=2) \\
-1 - \left(\frac{\Lambda}{L}\right)^{d-2} & (d \ge 3)
+\Lambda^{2-d} & (d \ge 3)
 \end{cases},
 \end{equation}
 with $\Lambda$ and ultra-violet cutoff length.
 Eq.~\eqref{eq_order_flucts} predicts that the global polar order is destroyed by fluctuations in the limit of infinite system sizes for dimensions $d \le 2$.
 More specifically, the logarithmic divergence predicted in $d=2$ is `slow enough' that, although the order vanishes asymptotically, the associated correlation length remains infinite.
 Consequently, the global polarization decays with system size as $L^{-\kappa}$ with the exponent $0 < \kappa < 1$ usually nonuniversal.
-This regime corresponds e.g.\ to that of the ordered phase of the two dimensional XY model at equilibrium, and is named `quasi-long-range order'.
+This regime corresponds e.g.\ to that of the ordered phase of the two dimensional $XY$ model at equilibrium, and is named `quasi-long-range order'.
 In $d \ge 3$, however, Eq.~\eqref{eq_order_flucts} predicts bounded polar order fluctuations so that order should remain long-ranged.\\
 \\
 In summary, we have derived the scaling of density and order correlation functions around the fluctuating homogeneous ordered solution of the Toner Tu equations~\eqref{eq_TT_new}.
@@ -488,13 +542,13 @@ so that the linearized theory effectively breaks down.
 To evaluate the importance of nonlinearities, we need to derive a nonlinear version of Eqs.~\eqref{eq_TT_lin_closed}.
 Then, the question arises of which nonlinear terms should be kept and which should be discarded. The method to evaluate the relevance of these additional terms is called scaling analysis, or more formally the Renormalization Group (RG). 
 
-The main idea behind this is the validity of the scaling hypothesis: when the system is largely correlated, i.e. $\ell_c \gg \Lambda$, the correlation length is the solely relevant length scale of the system, and it determines its macroscopic behavior through universal critical exponents. Indeed, all the microscopic details on scales smaller than $\ell_c$ do not really matter in a hydrodynamic description of the system. This is even more evident when $\ell_c \to \infty$, namely at the critical point of a phase transition or in the presence of spontaneous symmetry breaking with a Goldstone mode. In these cases, the system is scale invariant: the fluctuations extend on all the length scales (scale-free), and the physical properties are preserved when the observation scale is changed. To understand this, let's change the unit of space $r \to a r$, shrinking or dilating it with a scale factor $a$. We learned that when a system is scale-free, the correlation function of the order parameter decays with a power law $C(r) \sim r^{-\gamma}$. We perform the space rescaling on this latter, obtaining
+The main idea behind this is the validity of the scaling hypothesis: when the system is largely correlated, i.e. $\ell_c \gg \Lambda$, the correlation length is the only relevant length scale of the dynamics, and it determines the macroscopic behavior through universal critical exponents. Indeed, all the microscopic details on scales smaller than $\ell_c$ do not really matter in a hydrodynamic description of the system. This is even more evident when $\ell_c \to \infty$, namely at the critical point of a phase transition or in the presence of spontaneous symmetry breaking with a Goldstone mode. In these cases, the system is scale invariant: the fluctuations extend on all the length scales (scale-free), and the physical properties are preserved when the observation scale is changed. To understand this, let's change the unit of space $r \to a r$, shrinking or dilating it with a scale factor $a$. We learned that when a system is scale-free, the correlation function of the order parameter decays with a power law $C(r) \sim r^{-\gamma}$. Performing the rescaling, we obtain
 $$
-C(ar) = \frac{a^{\gamma}}{r^{\gamma}} = a^{\gamma} C(r) \ .
+C(ar) = \frac{1}{(ar)^{\gamma}} = a^{-\gamma} C(r) \ .
 $$
-The correlation function of the rescaled system is thus equal to the old correlation function, just multiplied by a constant factor: space rescaling does not change the physics of the system when it is at the point of scale invariance.  The RG is the set of transformations that allows to find the points of scale invariance (fixed points) of a specific field theory. It provides the information on how all the involved parameters have to change when space-time is rescaled, and the system is observed at larger and larger scales. 
+The correlation function of the rescaled system is thus equal to the old correlation function multiplied by a constant factor: space rescaling does not change the physics when scale invariance is satisfied.  The RG is the set of transformations that allows to find the points of scale invariance (fixed points) of a specific field theory. It provides the information on how all the involved parameters have to change when space-time is rescaled, and the system is observed at larger and larger scales. 
 
-We are now going to use RG arguments to understand which are the relevant nonlinearities. For simplicity, we will consider here only the leading order nonlinearities, which are quadratic in the fields and linear in gradients. 
+We are now going to use RG arguments to understand which nonlinearities are relevant. For simplicity, we will consider here only the leading order nonlinearities, which are quadratic in the fields and linear in gradients. 
 Carrying out the procedure detailed above, we find after enslaving the longitudinal order fluctuations\footnote{For the full derivation in the general case, see~\cite{toner2012reanalysis}.}
 \begin{subequations}
 \label{eq_TT_nlin_closed}
@@ -507,8 +561,8 @@ D_\rho \partial_\|^2 \delta\rho + w_2\partial_\|  \delta \rho^2 + w_3 \partial_\
 - \frac{1}{2}\partial_\perp \delta \rho + \nu \Delta \delta w_\perp + g_1 \delta \rho \partial_\|  \delta w_\perp + g_2\delta w_\perp\partial_\|\delta \rho  + f_\perp,
 \end{align}
 \end{subequations}
-and where as previously we have discarded the conserved noise term in Eq.~\eqref{eq_TT_nlin_rho_closed}.
-Note moreover that all nonlinear terms in Eq.~\eqref{eq_TT_nlin_rho_closed} are total derivatives as a consequence of the particle number conservation.
+and where, as previously, we have discarded the conserved noise term in Eq.~\eqref{eq_TT_nlin_rho_closed}.
+Note, moreover, that all nonlinear terms in Eq.~\eqref{eq_TT_nlin_rho_closed} are total derivatives as a consequence of the particle number conservation.
 
 We have shown from the linearized theory that the correlation functions of density and order in the ordered phase are scale free in $d\ge 2$,
 therefore 
@@ -561,9 +615,9 @@ Solving for the three exponents, we then obtain their value given by the linear 
 z_{\rm lin} = 2, \qquad \xi_{\rm lin} = 1, \qquad \chi _{\rm lin} = 1 - \frac{d}{2} .
 \end{equation}
 In agreement with the results of the previous section, the linear theory thus predicts an isotropic scaling ($\xi = 1$), with diffusive damping of the modes ($z =2$)
-and long-range order in $d \ge 3$ only ($\chi < 0$)\footnote{In two dimensions $\chi = 0$ but velocity correlations still diverge due to logarithmic corrections which cannot be captured by the present simple argument.}.
+and long-range order in $d \ge 3$ only ($\chi < 0$)\footnote{In two dimensions $\chi = 0$ but velocity correlations still diverge due to logarithmic corrections which cannot be captured by the scaling argument.}.
 
-We now replace these values of the exponents in the nonlinear terms of  Eq.~\eqref{eq_TT_rescalednonlin_closed} to understand if the corresponding parameters grow or decrease upon rescaling. In the first situation the nonlinear terms are said to be {\it relevant} (positive scaling dimension), in the sense that they carry the system away from the linear fixed point. On the other hand, if they are irrelevant (negative scaling dimension) a small perturbation in their direction will be stable for the linear fixed point. We find in particular that all nonlinearities renormalize as
+We now replace these values of the exponents in the nonlinear terms of  Eq.~\eqref{eq_TT_rescalednonlin_closed} to understand if the corresponding parameters grow or decrease upon rescaling. If they grow, the nonlinear terms are said to be {\it relevant} (positive scaling dimension), in the sense that they carry the system away from the linear fixed point. On the other hand, if they are irrelevant (negative scaling dimension) a small perturbation in their direction will be stable for the linear fixed point. We find that all nonlinearities renormalize as
 \begin{equation}
 \lambda; w_{1,2,3}; g_{1,2} \to a^{ \tfrac{4-d}{2} } \lambda; w_{1,2,3}; g_{1,2} .
 \end{equation}
@@ -587,7 +641,7 @@ and where the functions ${\cal F}_\perp$ and ${\cal F}_\pm$ are unknown but univ
 {\cal F}_\Delta(x) \underset{x \to 0}{\to} {\rm const} , \qquad {\cal F}_\Delta(x) \underset{x \to +\infty}{\to} x^{\tfrac{z - (d-1 + 2\chi + \xi)}{\xi}} ,\qquad
 {\cal F}_\pm(x) \underset{x \to 0}{\to} {\rm const} , \qquad {\cal F}_\pm(x) \underset{x \to +\infty}{\to} x^{\tfrac{z}{\xi}} .
 \end{equation*}
-Replacing Eq.~\eqref{eq_renormalized_params} into Eq.~\eqref{eq_eq_tim_cfs_simple} for instance leads, up to some ${\cal O}(1)$ factors,
+Replacing Eq.~\eqref{eq_renormalized_params} into Eq.~\eqref{eq_eq_tim_cfs_simple}, for instance, leads up to some ${\cal O}(1)$ factors
 to the following expression of the equal-time correlation functions
 \begin{equation} \label{eq_nl_scaling}
 \left\langle \left|\delta \hat{\rho}(\bm q)\right|^2 \right\rangle \underset{q \to 0}{\simeq} \frac{q_\perp^{2 - (d-1 + 2\chi + \xi)}}{q^2}{\cal F}_\rho \left( \frac{q_\| }{q_\perp^\xi} \right)  , \qquad
@@ -604,9 +658,32 @@ while the true long range order is confirmed ($\chi < 0$)\footnote{Actually, the
 The fact that $z< 2$ moreover indicates that density and order fluctuations are damped 
 on large scales more heavily than predicted by the linear theory (their life time scales as $\lambda^z$, with $\lambda$ their wavelength).
 Going back to the giant density fluctuations, the exponents~\eqref{eq_exps} moreover imply that $\phi \simeq 1.67$, 
-which is a value compatible with that usually directly measured from the scaling of $\langle \Delta n^2\rangle$ with $\langle n \rangle$~\cite{chate2020dry,DADAM_LesHouches,geyer2018sounds,deseigne2012vibrated} (see also Fig.~\ref{figVM}(c)).
- 
- Appart from the giant density fluctuations, the scaling laws giving access to the values of the exponents $\chi$, $\xi$ and $z$ are difficult to measure
- due to the strong finite size effects present in the Vicsek model. 
- These effects are moreover amplified considering more realistic models with repulsion, or in experiments.
- Therefore, for far there has not been any convincing experimental confirmation of the values of the exponents~\eqref{eq_exps}.
+which is a value compatible with that usually directly measured from the scaling of $\langle \Delta n^2\rangle$ with $\langle n \rangle$ (see Fig.~\ref{figVM}(c)).
+
+Although no proper RG treatment of Eqs.~\eqref{eq_TT_nlin_closed} has been carried out yet, recently alternative approaches based on scaling arguments have been proposed to predict the values of the exponents in dimension $d=2$.
+Namely, the idea is first to note that for $\delta w_\perp$ to be a Goldstone mode, the deterministic part of its dynamics must be written as a total derivative (otherwise, the nonlinear terms that are not total derivatives effectively generate a mass), which implies in practice that $g_1 = g_2$.
+As a consequence, the noise in Eq.~\eqref{eq_TT_nlin_perp_closed} cannot be renormalized by nonlinearities as the short scales of the theory are integrated out, since it is the only contribution on the r.h.s.\ that is not a total derivative. 
+Hence, at the RG fixed point the hyperscaling relation
+\begin{equation*}
+    z = 1 + 2\chi + \xi,
+\end{equation*}
+must be satisfied.
+Two other scaling relations can moreover be obtained by noting that Eqs.~\eqref{eq_TT_nlin_closed} remain invariant under a generalized Galilean transformation.
+The details of this argument are quite subtle, so we refer to~\cite{chate2024dynamic} for details, but as a result the coefficients $w_{1,2,3},\lambda,g_1$ in front of the nonlinearities in Eqs.~\eqref{eq_TT_nlin_closed} are also not renormalized under RG transformation.
+This implies two other scaling relations at the fixed point:
+\begin{equation*}
+    \chi + z - 1 = 0, \qquad
+    \chi + z - \xi = 0.
+\end{equation*}
+Solving for $\chi$, $\xi$ and $z$, we then conclude that
+\begin{equation}
+    \chi = -\frac{1}{3}, \qquad
+    \xi = 1, \qquad
+    z = \frac{4}{3}.
+\end{equation}
+Note that these values are indeed very close to the ones obtained from numerical simulations (Eq.~\eqref{eq_exps}).
+
+ % Appart from the giant density fluctuations, the scaling laws giving access to the values of the exponents $\chi$, $\xi$ and $z$ are difficult to measure
+ % due to the strong finite size effects present in the Vicsek model. 
+ % These effects are moreover amplified considering more realistic models with repulsion, or in experiments.
+ % Therefore, for far there has not been any convincing experimental confirmation of the values of the exponents~\eqref{eq_exps}.

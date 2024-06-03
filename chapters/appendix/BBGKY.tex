@@ -1,88 +1,93 @@
 \label{appendxi: BBKGY}
 
-To begin with, we denote $N$ the total particle number and $P_N(\{r_i,\theta_i\},t)$ the $N$-body particle distribution.
-From standard stochastic calculus, $P_N$ obeys the Fokker-Planck equation
+We first recall the definition of the microscopic model:
+\begin{subequations}
+\begin{align} \label{eq_Langevin_ABP_APP}
+    \odv{\bm r_i}{t} & = v_0 \hat {\bm e}(\theta_i) - \frac{1}{\zeta} \nabla_{\bm r_i} U(\{\bm r_j\}) + \sqrt{ 2 D } \bm \xi_i, \\
+    \odv{\theta_i}{t} & = \sqrt{ 2 D_r } \chi_i.
+\end{align}
+\end{subequations}
+See Eq.~\eqref{eq_Langevin_int_ABPs} for a definition of all the terms.
+
+Below, we denote $N$ the total particle number and $\calP_N(\{\bm r_i,\theta_i\},t)$ the $N$-body particle distribution.
+From standard stochastic calculus, $\calP_N$ obeys the Fokker-Planck equation
 \begin{equation} \label{eq_FPN}
-    \partial_t P_N = \sum_{i=1}^{N} \nabla_{\bm r_i}\cdot \left[ \left( M \nabla_{\bm r_i}U - v_0 \hat{\bm e}(\theta_i) + D\nabla_{\bm r_i} \right)P_N\right] + D_r \sum_{i=1}{N} \partial_{\theta_i\theta_i}^2 P_N ,
+    \partial_t \calP_N = \sum_{i=1}^{N} \nabla_{\bm r_i}\cdot \left[ \left( \frac{1}{\zeta} \nabla_{\bm r_i}U - v_0 \hat{\bm e}(\theta_i) + D\nabla_{\bm r_i} \right)\calP_N\right] + D_r \sum_{i=1}^{N} \partial_{\theta_i\theta_i}^2 \calP_N ,
 \end{equation}
 where, to lighten notations, we make the dependencies of the distribution in the degrees of freedom and time implicit.
 
-Eq.~\eqref{eq_FPN} is exact. However it is of limited practical use as we went from a description of the system in terms of $3N$ microscopic degrees of freedom to a partial differential equation (PDE) for a distribution with $3N$ independent variables. 
+Equation~\eqref{eq_FPN} is exact. However, it is of limited practical use as it describes a system with $3N$ microscopic degrees of freedom with a partial differential equation (PDE) for a distribution with $3N$ independent variables. 
 Our goal now is to derive a simpler description of the system, essentially by integrating out `fast' processes which do not affect the dynamics over large scales.
 To achieve this, we now consider the single-body distribution
 \begin{equation} \label{eq_FP_P1}
-    P(\bm r,\theta,t) = N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] P_N(\{\bm r,\theta,\bm r_2,\theta_2,\ldots,\bm r_N,\theta_N\},t),
+    \calP(\bm r,\theta,t) = N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] \calP_N(\{\bm r,\theta,\bm r_2,\theta_2,\ldots,\bm r_N,\theta_N\},t),
 \end{equation}
-obtained by integrating $P_N$ over $3(N-1)$ degrees of freedom and where the $N$ factor on the rhs accounts for the fact that the particles are indistinguishable.  
+obtained by integrating $\calP_N$ over $3(N-1)$ degrees of freedom and where the $N$ factor on the rhs accounts for the fact that the particles are indistinguishable.  
 Note that here for simplicity we have dropped the `1' subscript. 
-Integrating Eq.~\eqref{eq_FPN} over $3(N-1)$ degrees of freedom, we find that $P$ obeys
+Integrating Eq.~\eqref{eq_FPN} over $3(N-1)$ degrees of freedom, we find that $\calP$ obeys
 \begin{equation} \label{eq_FP1}
-    \partial_t P = \nabla \cdot \left[ - \bm J_{\rm eff} - v_0 \hat{\bm e}(\theta) P + D\nabla P \right] + D_r \partial_{\theta\theta}^2 P ,
+    \partial_t \calP = \nabla \cdot \left[ - \bm J_{\rm eff} - v_0 \hat{\bm e}(\theta) \calP + D\nabla \calP \right] + D_r \partial_{\theta\theta}^2 \calP ,
 \end{equation}
 where the effective flux coming from the interaction term reads
 \begin{align*}
-    \bm J_{\rm eff} & = -M N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] \, P_N(\{\bm r,\theta,\ldots,\bm r_N,\theta_N\},t) \sum_{j \ne 1} \nabla u(|\bm r - \bm r_j|) \\
-    & = -M \int \rmd^2 \bm r' \, \tilde{P}_2(\bm r,\theta,\bm r',t) \nabla u(|\bm r - \bm r'|) \\
-    & = -M \int \rmd^2 \bm r' \, \tilde{P}_2(\bm r,\theta,\bm r',t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} ,
+    \bm J_{\rm eff} & = -\frac{1}{\zeta} N \int \prod_{j=2}^N [\rmd^2 \bm r_j \rmd \theta_j] \, \calP_N(\{\bm r,\theta,\ldots,\bm r_N,\theta_N\},t) \sum_{j \ne 1} \nabla u(|\bm r - \bm r_j|) \\
+    & = -\frac{1}{\zeta} \int \rmd^2 \bm r' \, \tilde{\calP}_2(\bm r,\theta,\bm r',t) \nabla u(|\bm r - \bm r'|) \\
+    & = -\frac{1}{\zeta} \int \rmd^2 \bm r' \, \tilde{\calP}_2(\bm r,\theta,\bm r',t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} ,
 \end{align*}
 where 
 \begin{equation}
-    \tilde{P}_2(\bm r,\theta,\bm r',t) = N(N-1) \int \rmd\theta' \prod_{j=3}^N [\rmd^2 \bm r_j \rmd \theta_j] P_N(\{\bm r,\theta,\bm r',\theta',\ldots,\bm r_N,\theta_N\},t) ,
+    \tilde{\calP}_2(\bm r,\theta,\bm r',t) = N(N-1) \int \rmd\theta' \prod_{j=3}^N [\rmd^2 \bm r_j \rmd \theta_j] \calP_N(\{\bm r,\theta,\bm r',\theta',\ldots,\bm r_N,\theta_N\},t) ,
 \end{equation}
 denotes the two body probability density to find a particle at position $\bm r$ with an orientation $\theta$ while another particle is at position $\bm r'$ with an arbitrary orientation. 
     
-Due to the pairwise interactions, the equation for $P$ is thus coupled to the two body particle distribution. Similarly, if we had derived the equation for $\tilde{P}_2$ we would have found that it depends on the three body distribution, etc. 
-This structure commonly appears when one coarse-grains interacting systems, and is known as the \emph{BBGKY hierarchy}, where the letters stand for Bogoliubov–Born–Green–Kirkwood–Yvon. To proceed further, we thus need to truncate the BBGKY hierarchy in order to get a closed equation for $P$. This can be done by means of various approximation schemes, the most common one being the molecular chaos hypothesis (or `Stosszahlansatz' for German speakers) which can be used to derive e.g.\ the Boltzmann equation for dilute gases. The molecular chaos assumption consists in factorizing the two body particle distribution into the product of two single body distributions.    
-This amounts to assume that the positions and/or velocities of two particles on average decorrelate between collisions. This approximation works decently at low particle density, but of course becomes increasingly worse at higher densities.
-Here, we therefore write
+Due to the presence of pairwise interactions, the equation for $\calP$ is coupled to the two-body particle distribution. Similarly, if we had derived the equation for $\tilde{\calP}_2$ we would have found that it depends on the three-body distribution, etc. 
+This structure commonly appears when one coarse-grains interacting systems, and is known as the \emph{BBGKY hierarchy}, where the acronym stands for Bogoliubov–Born–Green–Kirkwood–Yvon. To proceed further, we truncate the BBGKY hierarchy in order to get a closed equation for $\calP$. This can be done by means of various approximation schemes, the most common one being the molecular chaos hypothesis (or `Stosszahlansatz' for German speakers) which can be used to derive e.g.\ the Boltzmann equation for dilute gases. The molecular chaos assumption consists in factorizing the two-body particle distribution into the product of two single-body distributions.    
+This amounts to assume that the positions and/or velocities of two particles on average decorrelate between collisions. This approximation works decently for low particle density, but of course becomes increasingly worse as the density becomes high.
+Here, we therefore write instead
 \begin{equation} \label{eq_P2}
-    \tilde{P}_2(\bm r,\theta,\bm r',t) = P(\bm r,\theta,t) \, \phi(\bm r',t) \, g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t),
+    \tilde{\calP}_2(\bm r,\theta,\bm r',t) = \calP(\bm r,\theta,t) \, \rho(\bm r',t) \, g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t),
 \end{equation}
-where $\phi$ denotes the particle density field, while $g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t)$ 
+where $\rho$ denotes the particle density field, while $g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t)$ 
 is the conditional probability to find another 
-particle at position $\bm r'$ given that there is another particle at position $\bm r$ self propelling along $\theta$, the angle $\varphi$ being that formed by the vectors $\bm r' - \bm r$ and $\hat{\bm e}(\theta)$.
+particle at position $\bm r'$ given that there is another particle at position $\bm r$ moving along $\theta$, the angle $\varphi$ being that formed by the vectors $\bm r' - \bm r$ and $\hat{\bm e}(\theta)$.
 
 Setting $g=1$ in Eq.~\eqref{eq_P2} corresponds to the molecular chaos assumption. 
-Getting an explicit expression for $g$, however, would require to consider the dynamics of the two body distribution. In general, such approach is quite tedious and we won't pursue it here.
-For quantitative descriptions, a simpler approach is to measure $g$ directly from simulations of the microscopic dynamics~\eqref{eq_ABP_micro}. 
+Getting an explicit expression for $g$, however, would require to consider the dynamics of the two-body distribution. In general, such approach is quite tedious and we won't pursue it here.
+For quantitative descriptions, a simpler approach is to measure $g$ directly from simulations of the microscopic dynamics~\eqref{eq_Langevin_ABP_APP}. 
 Doing this in a dilute suspension, one finds that $g$ is generally maximal 
-at $\varphi = 0$, i.e.\ there is more chance for a tagged particle to find another one at its front (where here `front' and `back' are defined wrt the particle polarity $\hat{\bm e}(\theta)$) than behind it~\cite{Bialk_2013}.
+at $\varphi = 0$, i.e.\ that there is more chance for a tagged particle to find another one at its front (where here `front' and `back' are defined wrt the particle polarity $\hat{\bm e}(\theta)$) than behind it~\cite{Bialk_2013}.
 
 Using~\eqref{eq_P2}, we now rewrite the effective current as
 \begin{align}
-    \bm J_{\rm eff} & = -M P(\bm r,\theta,t) \int \rmd^2 \bm r' \, \phi(\bm r',t) g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} , \\
-    & = M P(\bm r,\theta,t) \int_0^\infty s \rmd s \int_0^{2\pi} \rmd\varphi \, \phi(\bm r + s\hat{\bm e}(\theta + \varphi),t) g(s,\varphi|\bm r,\theta,t) u'(s) \hat{\bm e}(\theta + \varphi) ,
+    \bm J_{\rm eff} & = -\frac{1}{\zeta} \calP(\bm r,\theta,t) \int \rmd^2 \bm r' \, \rho(\bm r',t) g(|\bm r - \bm r'|,\varphi|\bm r,\theta,t) u'(|\bm r - \bm r'|) \frac{\bm r - \bm r'}{|\bm r - \bm r'|} , \\
+    & = \frac{1}{\zeta} \calP(\bm r,\theta,t) \int_0^\infty s \rmd s \int_0^{2\pi} \rmd\varphi \, \rho(\bm r + s\hat{\bm e}(\theta + \varphi),t) g(s,\varphi|\bm r,\theta,t) u'(s) \hat{\bm e}(\theta + \varphi) ,
     \end{align}
 where $\bm s = \bm r' - \bm r = s \hat{\bm e}(\theta + \varphi)$.
-Assuming that $u$ is sufficiently short-ranged such that we can neglect variations of $\phi$ over the length scale of the interaction, while supposing that $g$ is homogeneous and stationary: $g(s,\varphi|\bm r,\theta,t) \simeq g(s,\varphi)$,
-we moreover get that $\bm J_{\rm eff} = M P(\bm r,\theta,t) \bm F_{\rm eff}(\bm r,\theta,t)$ with
+Assuming that $u$ is sufficiently short-ranged such that we can neglect variations of $\rho$ over the length scale of the interaction, while supposing that $g$ is homogeneous and stationary: $g(s,\varphi|\bm r,\theta,t) \simeq g(s,\varphi)$,
+we moreover get that $\bm J_{\rm eff} = \tfrac{1}{\zeta} \calP(\bm r,\theta,t) \bm F_{\rm eff}(\bm r,\theta,t)$, with
 \begin{equation}
-    \bm F_{\rm eff}(\bm r,\theta,t) = -\phi(\bm r,t) \bm \zeta(\theta) = \phi(\bm r,t) \int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \bm \hat{\bm e}(\varphi+\theta)
+    \bm F_{\rm eff}(\bm r,\theta,t) = -\rho(\bm r,t) \bm \omega(\theta) = \rho(\bm r,t) \int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \bm \hat{\bm e}(\varphi+\theta).
 \end{equation}
-Given the other terms in the positional current on the rhs of Eq.~\eqref{eq_FP1}, we now express $\bm \zeta(\theta)$ in the (nonorthogonal) basis formed by $\hat{\bm e}(\theta)$ and $\nabla P$.
-Keeping terms up to ${\cal O}(|\nabla P|^2)$, we get
+To simplify $\bm F_{\rm eff}$ further, we note that
 \begin{equation}
-    \bm \zeta(\theta) = \zeta_\| \hat{\bm e}(\theta) + \left( \frac{\bm \zeta \cdot \nabla P - \zeta_\| \hat{\bm e}(\theta) \cdot \nabla P}{|\nabla P|^2}  \right)\nabla P + {\cal O}(|\nabla P|^2),
+    \hat{\bm e}_\perp(\theta)\cdot\bm \omega(\theta) = -\int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \sin(\varphi) = 0.
 \end{equation}
-where the important parameter $\zeta_\|$ is given by
+where $\hat{\bm e}_\perp(\theta) = \hat{\bm e}(\theta+\pi/2)$ is orthogonal to the self-propulsion direction of the tagged particle.
+The cancelling of the intergal over $\varphi$ comes from the left-right symmetry of the active particles, which imposes that $g(s,\varphi)$ is an even function of $\varphi$.
+We thys get
+$\bm \omega(\theta) = \omega_\| \hat{\bm e}(\theta)$,
+where the parameter $\omega_\|$ is given by
 \begin{equation}
-    \zeta_\| = -\int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \cos(\varphi).
+    \omega_\| = -\int_0^\infty s \rmd s \, u'(s) \int_0^{2\pi} \rmd \varphi \,  g(s,\varphi) \cos(\varphi).
 \end{equation}
 
 Putting back the explicit expression of $\bm J_{\rm eff}$ into Eq.~\eqref{eq_FP_P1}, we finally end up with a drift-diffusion-type equation:
 \begin{equation} \label{eq_FP_P}
-    \partial_t P = -\nabla \cdot \left[ v_{\rm eff} \hat{\bm e}(\theta) P - D_{\rm eff}\nabla P \right] + D_r \partial_{\theta\theta}^2 P ,
+    \partial_t \calP = -\nabla \cdot \left[ v_{\rm eff}(\rho) \hat{\bm e}(\theta) \calP - D\nabla \calP \right] + D_r \partial_{\theta\theta}^2 \calP ,
 \end{equation}
-whose effective coefficients read
-\begin{equation}
-    v_{\rm eff} = v_0 - M \zeta_\| \phi, \qquad
-    D_{\rm eff} = D + M \phi P \bm \zeta \cdot \left( \frac{ \nabla P - (\hat{\bm e}(\theta) \cdot \nabla P) \hat{\bm e}(\theta)}{|\nabla P|^2}  \right).
-\end{equation}
-
-Some comments are now in order:
+where $v_{\rm eff}(\rho) = v_0 - \omega_\|\rho/\zeta$ is the effective self-propulsion velocity at the mean field level.
 \begin{itemize}
-    \item Activity shows at the level of $g$ by its anisotropic behavior wrt the angle $\varphi$. Therefore, we find that activity renormalizes both the self propulsion velocity and active fluctuations. In a passive system, one would indeed get $\bm \zeta = 0$ by symmetry.
-    \item For repulsive interactions between the particles $u'(r) < 0$. Moreover, we know that $g(r,\varphi)$ is maximum in the sector $-\tfrac{\pi}{2} \le \varphi \le \tfrac{\pi}{2}$ where $\cos(\varphi) \ge 0$, so one expects $\zeta_\| > 0$ in general. Therefore, our derivation reveals that the main effect of coupling self-propulsion with interactions is to slow down particles in dense regions ($v_{\rm eff} < v_0$ for $\phi > 0$). As one can already anticipate, this phenomenon amounts to having effective attractive interactions between the particles despite their absence at the microscopic level.
-    Note that the linear decay of $v_{\rm eff}(\phi)$ is actually in agreement with numerical simulations of repelling ABPs~\cite{CatesMIPS}.
-    \item In contrast, diffusivity is renormalized in a non-trivial way. In practice, this effect is weak which we can understand from Eq.~\eqref{eq_FP_P} by noting that in steady state $\nabla P$ and $\hat{\bm e}(\theta)$ must be aligned. In what follows, we will thus neglect corrections to the diffusivity and consider that it is given by a constant coefficient.
+    \item The main effect of the presence of activity is to induce an anisotropic behavior of the correlation function $g$ w.r.t. the angle $\varphi$. As a consequence, activity renormalizes the self-propulsion velocity. In a passive system, one would indeed get $\bm \omega = 0$ by symmetry.
+    \item For repulsive interactions between the particles $u'(r) < 0$. Moreover, we know that $g(r,\varphi)$ is maximal in the sector $-\tfrac{\pi}{2} \le \varphi \le \tfrac{\pi}{2}$ where $\cos(\varphi) \ge 0$, so one generally expects $\omega_\| > 0$. Therefore, our derivation reveals that the main effect of coupling self-propulsion with interactions is to slow down particles in dense regions ($v_{\rm eff} < v_0$ for $\rho > 0$). As one can already anticipate, this phenomenon amounts to having effective attractive interactions between the particles despite their absence at the microscopic level.
+    Note that the linear decay of $v_{\rm eff}(\rho)$ was observed in numerical simulations of repelling ABPs~\cite{CatesMIPS}.
 \end{itemize}

@@ -41,8 +41,8 @@ This potential must diverge as we approach the sphere, $W(z\rightarrow 0) = \inf
 We assume the solute follow
 %
 \begin{align}
-    \partial_t c &= \bm \cdot \bm J,\\
-    \bm J &= - \bm \nabla c + \beta D C \bm F + c \bm v,
+    \partial_t c &= - \bm \nabla \cdot \bm J,\\
+    \bm J &= - \bm \nabla c + \beta D c \bm F + c \bm v,
 \end{align}
 %
 and the fluid is Stoksean,
@@ -78,7 +78,7 @@ With this, we have
     \begin{pmatrix}
         0 \\ 0 \\ \partial_z c
     \end{pmatrix}, &\implies &
-    \bm \nabla \cdot\bm v = 0.
+    \bm \nabla c \cdot \bm v = 0.
 \end{align} 
 %
 With this, \autoref{eq c diffusion} becomes
@@ -315,23 +315,34 @@ In spherical coordinates, the laplace equation is then
 By assuming separation of variables, $c(r, \theta) = f(r) \Phi(\theta)$, we can write this as
 %
 \begin{align}
-    \frac{1}{f(r)} \partial_r f(r) r^2 \left[\partial_r f(r)\right] = 
-    - \frac{1}{\Phi(\theta)\sin\theta} \partial_\theta \left( \sin\theta \partial_\theta \Phi(\theta) \right)  = \lambda.
+    \frac{1}{f(r)} \partial_r f(r) +  r^2 \left[\partial_r f(r)\right] 
+    + 
+    \frac{1}{\Phi(\theta)\sin\theta} \partial_\theta \left( \sin\theta \partial_\theta \Phi(\theta) \right)  
+    = 0.
 \end{align}
 %
-We begin with the $\theta$ equation, defining $z = \cos\theta \in [-1, 1]$, and $Z(z) = \Phi(\arcsin z)$ which gives
+As the two terms are only depend on one of the variables, we can conclude that they have to each be constant, canceling each other out.
+That is, we can write two equations for each of the two functions,
+%
+\begin{align}
+    \frac{1}{f(r)} \partial_r f(r) +  r^2 \left[\partial_r f(r)\right] & = \lambda &
+    \frac{1}{\Phi(\theta)\sin\theta} \partial_\theta \left( \sin\theta \partial_\theta \Phi(\theta) \right)  & = -\lambda
+\end{align}
+
+We begin with the $\theta$ equation, defining $z = \cos\theta \in [-1, 1]$, and $Z(z) = \Phi(\arccos z)$, so that $\partial_\theta = \pdv{cos\theta}{\theta} \odv{}{z} = - \sin \theta \odv{}{z}$, which gives
 %
 \begin{align}
     \odv{}{z}   \left[ (1 - z^2) \odv{}{z} Z(z) \right] = - \lambda Z(z).
 \end{align}
 %
-This is solved by Legandre polynomials, $Z(z) = P_m(z)$, with the eigenvalue $\lambda = m(m+1)$.
+This is solved by Legendre polynomials, $Z(z) = P_m(z)$, with the eigenvalue $\lambda = m(m+1)$.
 These have the orthogonality property
 \begin{align}
     \int \dd z \, P_m(z)P_\ell(z) = \frac{2}{2m + 1} \delta_{m\ell}.
 \end{align}
 %
 In terms of $\theta$, we thus have $\Phi(\theta) = P_m(\cos\theta)$.
+\todo[inline]{More details on Legandre}
 
 The eigenvalue problem for the radial function is now
 \begin{align}
