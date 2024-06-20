@@ -1,1 +1,345 @@
-Notes from Yuto Lecture 3
+\section{Stokes flow}
+
+
+\subsection{Navier-Stokes equations}
+
+We start with the hydrodynamic equation with inertia
+\begin{align}
+    \rho\left(
+    \frac{\partial \mathbf{v}}{\partial t}
++\mathbf{v}\cdot\nabla\mathbf{v}
+    \right)
+    =\eta\nabla^2\mathbf{v}
+    -\nabla p +\rho\mathbf{f},
+    \label{eq:NS}
+\end{align}
+with $\rho$ density, $\mathbf{v}$ velocity field, $\eta$ viscosity, $p$ pressure, and $\rho\mathbf{f}$ force density.
+The first term on the LHS varies with time and the second represents convection, while the first term on the RHS results from dissipation and the second represents force due to the pressure gradient.
+If fluids cannot be compressed, the continuity equation holds
+\begin{align}
+    \frac{\partial \rho}{\partial t}
+    + \nabla\cdot(\rho\mathbf{v})=0.
+\end{align}
+
+
+Taking the ratio of the second term on the LHS of Eq.~(\ref{eq:NS}) and the first term on the RHS gives the Reynolds number
+\begin{align}
+    \frac{\rho V^2/a}{\eta V/a^2}
+    =
+    \frac{\rho V a}{\eta}
+    \equiv {\rm Re},
+\end{align}
+where $V$ is a characteristic velocity and $a$ is a typical size relevant to microswimmers.
+On the other hand, taking the ratio of the first term on the LHS of Eq.~(\ref{eq:NS}) and the first term on the RHS leads to the Strouhal number:
+\begin{align}
+    \frac{\rho V/\tau}{\eta V/a^2}
+    =
+    \frac{\rho a^2/\eta}{\tau}
+    \equiv {\rm Re}\cdot{\rm St},
+\end{align}
+where the characteristic timescale is chosen as $\tau$.
+Using typical values such $\rho\sim1000~{\rm kg}\cdot{\rm m}^{-3}$ (water), $a\sim1~\mu{\rm m}$, $\eta\sim10^{-3}~{\rm Ps}\cdot{\rm s}$ (water), and $V\sim10$ body length per second, one can obtain ${\rm Re}\sim10^{-5}$ and ${\rm Re}\cdot{\rm St}\sim10^{-6}~{\rm s}/\tau$.
+
+
+
+\subsection{Stokes equations}
+
+At zero Reynolds number, the governing equations become
+\begin{align}
+    \eta\nabla^2\mathbf{v}-\nabla p +\rho\mathbf{f}=\mathbf{0}, \quad
+    \nabla\cdot\mathbf{v}=0.
+\end{align}
+It is worth noting that 
+\begin{itemize}
+    \item no time dependence in the equations
+    \item fluids responds to any change in the boundary condition instantly
+    \item equations are linear in the velocity and hence kinematic reversibility holds.
+    \item Scallop theorem holds, which states that in order for a microswimmer to swim using cyclic deformations, more than two decrees of freedom is necessary.
+\end{itemize}
+The Scallop theorem was proposed in E.\ M.\ Puercell, Am.\ J.\ Phys.\ (1977) and was later mathematically proved in Ishimoto and Yamada, SIAM Journal on Applied Mathematics (2012).
+
+
+\subsection{How to circumvent the Scallop theorem?}
+
+For example, inertialess single rigid swimmers cannot show net motion by undergoing reciprocal body distortions. But some flexibility leads the swimmers to show motion. This can be seen in a bacterium, which has a single helix and seems that only one degree of freedom exists. 
+The fact that it can swim is explained by the flexibility of the flagella attached to the body. Another simple model is the three-sphere microswimmer proposed by Najafi and Golestanian in 2004, which is composed of three spheres connected by rigid shafts.
+
+
+\subsection{Passive hydrodynamic problem}
+
+We consider a passive (forced) rigid particle in viscous fluids, which moves with translational velocity $\mathbf{V}$ and rotational velocity $\boldsymbol{\Omega}$. 
+The velocity induced by this particle obeys the Stokes equations
+\begin{align}
+    \eta\nabla^2\mathbf{v}-\nabla p =\mathbf{0}, \quad
+    \nabla\cdot\mathbf{v}=0,
+    \label{eq:stokes}
+\end{align}
+with the no-slip boundary condition at the surface
+\begin{align}
+    \mathbf{v} = \mathbf{V}+\boldsymbol{\Omega}\times\mathbf{r}.
+\end{align}
+Here background flows are set to be zero, i.e., $\mathbf{v}=\mathbf{0}$ for $r\to\infty$.
+In this setup, the external force acting on the particle is balanced by the drag exerting from a medium:
+\begin{align}
+    \mathbf{F}+\mathbf{F}_{\rm D}= \mathbf{0}.
+\end{align}
+The force acting from the fluid can be calculated by integrating the traction over the object surface
+\begin{align}
+    \mathbf{F}_{\rm D}
+    =
+    \int_{\rm S}dS\, \boldsymbol{\sigma}\cdot\mathbf{n},
+\end{align}
+where the second-rank stress tensor of a Newtonian fluid is given by $\boldsymbol{\sigma}=-p\mathbf{I}+\eta(\nabla\mathbf{v}+\nabla\mathbf{v}^T)$ and $\mathbf{n}$ is a surface normal pointing into the fluid.
+
+
+In the following, we shall derive Stokes' law for a translating sphere, which is a basic hydrodynamic problem solved by George Gabriel Stokes. 
+The law states that the force acting on a sphere (radius $a$) moving with velocity $\mathbf{V}$ in a medium of viscosity $\eta$ is expressed with
+\begin{align}
+    \mathbf{F}_{\rm D}= -6\pi\eta a \mathbf{V}.
+\end{align}
+
+
+We start with obtaining the pressure expression. Taking the divergence of Eq.~(\ref{eq:stokes}) gives $\nabla^2p=0$, implying the pressure is harmonic. Possible solutions are $1/r$ and its spatial derivatives such as $\mathbf{r}/r^3$ (source), $\mathbf{I}/r^3-3\mathbf{rr}/r^5$ (source dipole), and so on. 
+From the fact that the pressure is a scalar and the equations~(\ref{eq:stokes}) are linear in the velocity, one can infer that the pressure takes the form of
+\begin{align}
+    p(\mathbf{r})= c_1 \frac{\mathbf{r}\cdot\mathbf{V}}{r^3}.
+\end{align}
+
+
+In order to solve the velocity $\mathbf{v}$, one can decompose the Stokes equation~(\ref{eq:stokes}) into the homogeneous $\mathbf{v}_{\rm h}$ and particular solutions $\mathbf{v}_{\rm p}$, where $\nabla^2\mathbf{v}_{\rm h}=\mathbf{0}$. 
+Again from the similar arguments, since the velocity is a vectorial quantity and is linearly proportional to $\mathbf{V}$, the homogeneous solution is constructed by a source and source dipole
+\begin{align}
+    \mathbf{v}_{\rm h} =  
+    c_2 \frac{\mathbf{V}}{r}
+    +
+    c_3 \left(
+    \frac{\mathbf{I}}{r^3}-\frac{3\mathbf{rr}}{r^5}
+    \right)\cdot\mathbf{V}.
+\end{align}
+The particular solution can be obtained from the expression $\eta\nabla^2\mathbf{v}_{\rm p}-\nabla p=\mathbf{0}$.
+Through the relation $\nabla^2(\mathbf{r}p)=2\nabla p$, the Stokes equation can be rewritten as
+\begin{align}
+    \eta\nabla^2 
+    \left(
+    \mathbf{v}_{\rm p}-
+    \frac{1}{2\eta}\mathbf{r}p
+    \right)=\mathbf{0},
+\end{align}
+which yields $\mathbf{v}_{\rm p}=\mathbf{r}p/(2\eta)$.
+
+
+Having obtained the velocity and pressure, one finds the velocity follows
+\begin{align}
+    \mathbf{v}=
+    \frac{1}{r}
+    \left(
+    c_2 + \frac{c_3}{r^2}
+    \right)
+    \mathbf{V}
+    +
+    \frac{1}{r}
+    \left(
+    \frac{c_1}{2\eta}\frac{\mathbf{rr}}{r^2}
+    -
+    c_3 
+    \frac{3\mathbf{rr}}{r^4}
+    \right)
+    \cdot
+    \mathbf{V}.
+\end{align}
+From the boundary condition, one finds
+\begin{align}
+    \mathbf{v}=
+    \left(
+    \frac{3a}{4r} + \frac{a^3}{4r^3}
+    \right)
+    \mathbf{V}
+    +
+    \left(
+    \frac{3a}{4r^3}
+    -
+    \frac{3a^3}{4r^5}
+    \right)
+    \mathbf{rr}
+    \cdot
+    \mathbf{V}.
+    \label{eq:sphere}
+\end{align}
+
+
+\subsection{Oseen tensor: the linear hydrodynamic response due to a point force}
+
+
+By solving the forced Stokes equation, we derive the corresponding Green's function, which is known as the Oseen tensor.
+One can obtain this propagator from the solution to the flow problem around a sphere.
+For a point force at the origin, its induced velocity is calculated from Eq.~(\ref{eq:sphere}) when two neighboring spheres have vanishing small radii, i.e., in the limit of $a\to0$
+\begin{align}
+    \mathbf{v}(\mathbf{r})
+    =
+    \frac{1}{8\pi\eta r}
+    \left(
+    \mathbf{I} +\frac{\mathbf{rr}}{r^2}
+    \right)
+    \cdot
+    \mathbf{F},
+\end{align}
+where $\mathbf{F}= 6\pi\eta a \mathbf{V}$ has been used.
+
+
+\section{Active hydrodynamic problem}
+
+
+\subsection{Hydrodynamic flow around an active particle}
+
+
+In general, the far-field from around an object immersed in a fluid of viscosity $\eta$ can be expressed with
+\begin{align}
+    v_i(\mathbf{r})
+    =
+    \frac{1}{8\pi\eta}G_{ij}F_j
+    -
+    \frac{1}{8\pi\eta}C_{ij}T_j
+    +
+    \frac{1}{16\pi\eta}
+    K_{ijk}S_{jk}
+    +\dots,
+\end{align}
+where $\mathbf{F}$ is the force, $\mathbf{T}$ is the torque, and $\mathbf{S}$ is the symmetric tensor called stresslet with $\mathbf{C}$ and $\mathbf{K}$ being, respectively, the symmetric and anti-symmetric part of the derivative of the Oseen tensor $\mathbf{G}$.
+One can see that the velocity, to the leading order, decays with a power of $r^{-1}$, while the other terms above decreases faster as $r^{-2}$.
+For active or living particles, the force-free and torque-free conditions should hold, namely, $\mathbf{F}=\mathbf{T}=\mathbf{0}$. Hence, the leading contribution decays as $r^{-2}$.
+
+Stresslet or symmetric force dipole characterizes the flow induced by a microswimmer. 
+For a trace-free and symmetric second-rank tensor, the stresslet is written as $\mathbf{S}=\alpha(\mathbf{ee}-\mathbf{I}/3)$ with direction $\mathbf{e}$.
+The sign of the parameter $\alpha$ determines the type of microswimmers: $B_2 > 0$ corresponds to pullers, which generate thrust from the front, while $B_2 < 0$ corresponds to pushers, which generate thrust from the back. Swimmers with $\alpha=0$ are neutral swimmers.
+
+
+
+\subsection{Squirmer model}
+
+
+Here we consider a simple model of microswimmers with surface activity, such as ciliated microorganisms. By assuming that cilia are smaller than body size and all activity takes place in the narrow regime at the surface, one can replace them with effective slip velocity.
+Such a model is called squirmer model and was first proposed by Lighthill (1952) and later developed by Blake (1971).
+If we denote by $\mathbf{v}_{\rm s}$ the effective surface velocity, the velocity in the laboratory frame is given by $\mathbf{v}=\mathbf{V}+\boldsymbol{\Omega}\times\mathbf{r}+\mathbf{v}_{\rm s}$ at the object surface.
+
+
+
+We can now make use of the Lorentz reciprocal theorem to calculate the propulsion velocity directly from the surface slip (see the next subsection for the derivation).
+\begin{align}
+    \int_\mathcal{S} dS\,
+    \mathbf{v}\cdot\hat{\boldsymbol{\sigma}}
+    \cdot\mathbf{n}
+    =
+    \int_\mathcal{S} dS\,
+    \hat{\mathbf{v}}\cdot\boldsymbol{\sigma}
+    \cdot\mathbf{n}
+    .
+    \label{eq:LRT}
+\end{align}
+Let us now choose $(\mathbf{v},\boldsymbol{\sigma})$ to be the force-free and torque-free motion of an object with a surface slip velocity boundary condition, and $(\hat{\mathbf{v}},\hat{\boldsymbol{\sigma}})$ to describe the motion of the same object when dragged through the viscous fluid by an external force $\hat{\mathbf{F}}$ with velocity $\hat{\mathbf{V}}$.
+Since $\hat{\mathbf{v}}=\hat{\mathbf{V}}$ at the surface and solution is force-free, the right hand side of Eq.~(\ref{eq:LRT}) vanishes. 
+Inserting $\mathbf{v}$ without the angular velocity into the theorem gives
+\begin{align}    
+    \mathbf{V}\cdot
+    \hat{\mathbf{F}}
+    =
+    -
+    \int_\mathcal{S} dS\,
+    \mathbf{v}_{\rm s}\cdot\hat{\mathbf{f}}.
+\end{align}
+For a sphere of radius $a$, we have $\hat{\mathbf{f}}=\hat{\mathbf{F}}/(4\pi a^2)$, from which the drift velocity of a spherical squirmer follows
+\begin{align}
+    \mathbf{V}=- \frac{1}{4\pi a^2} \int_S dS\, \mathbf{v}_{\rm s}.
+\end{align}
+Similarly, the angular velocity of a spherical particle is obtained as
+\begin{align}
+    \boldsymbol{\Omega} =
+    - \frac{3}{8\pi a^3} \int_S dS\, \mathbf{n}\times\mathbf{v}_{\rm s}.
+\end{align}
+In general, the tangential surface velocity can be expanded in the basis of Legendre polynomials as $v_\theta=\sum_{n=1} 2B_n/[n(n+1)]\sin\theta P_n^\prime(\cos\theta)$.
+One can show that the slip velocity should have a nonvanishing first harmonic in order for an axisymmetric squirmer to lead to a translational velocity. 
+Specifically, the swimmer with direction $\mathbf{e}$ moves with $\mathbf{V}=(2/3)B_1\mathbf{e}$.
+
+
+
+\subsection{Lorentz reciprocal theorem}
+
+
+Here we provide a general form of the reciprocal theorem for a two-phase compressible flow with body force.
+Let the unhatted and hatted symbols represent the variables for any two arbitrary types of flows that satisfy the following equations:
+\begin{align}
+    \partial_j\sigma_{ij}+\mathfrak{f}_i=0,\quad
+    \partial_j\hat{\sigma}_{ij}+\hat{\mathfrak{f}}_i=0,
+    \label{eq:body}
+\end{align}
+where $\sigma_{ij}=-p\delta_{ij}+\eta_{ijk\ell}\partial_\ell v_k$ and $\hat{\sigma}_{ij}=-\hat{p}\delta_{ij}+\hat{\eta}_{ijk\ell}\partial_\ell\hat{v}_k$ are the stress tensors with the pressure field $p$, the identity tensor $\delta_{ij}$, the viscosity tensor $\boldsymbol{\eta}$, the velocity field $\mathbf{v}$, and the arbitrary body force density $\boldsymbol{\mathfrak{f}}$.
+The inner product of $\mathbf{v}$ with the second expression in Eq.~(\ref{eq:body}) gives
+\begin{align}
+    \partial_j (\hat{\sigma}_{ij}v_i)+\hat{p}\partial_iv_i
+    -\hat{\eta}_{k\ell ij}(\partial_\ell v_k)(\partial_j\hat{v}_i)
+    + \hat{\mathfrak{f}}_iv_i = 0,
+    \label{eq:hatted0}
+\end{align}
+and the equivalent expression with $\boldsymbol{\sigma}$ and $\hat{\mathbf{v}}$
+\begin{align}
+    \partial_j (\sigma_{ij}\hat{v}_i)+p\partial_i\hat{v}_i
+    -\eta_{ijk\ell}(\partial_\ell v_k)(\partial_j\hat{v}_i)
+    + \mathfrak{f}_i\hat{v}_i = 0.
+    \label{eq:unhatted0}
+\end{align}
+In classical fluids, the viscosity tensor is composed solely of its symmetric components with respect to swapping the indices $ij\leftrightarrow k\ell$, namely,
+\begin{align}
+    \eta_{ijk\ell}= \eta_{k\ell ij}.
+\end{align}
+Based on this symmetry argument, we find from Eqs.~(\ref{eq:hatted0}) and (\ref{eq:unhatted0})
+\begin{align}
+    \partial_j (\hat{\sigma}_{ij}v_i)+\hat{p}\partial_iv_i
+    -\hat{\eta}_{ijk\ell}(\partial_\ell v_k)(\partial_j\hat{v}_i)
+    + \hat{\mathfrak{f}}_iv_i &= 0, \label{eq:hatted}\\
+    \partial_j (\sigma_{ij}\hat{v}_i)+p\partial_i\hat{v}_i
+    -\eta_{ijk\ell}(\partial_\ell v_k)(\partial_j\hat{v}_i)
+    + \mathfrak{f}_i\hat{v}_i &= 0. \label{eq:unhatted}
+\end{align}
+If we allow for the linear relation between the two tensorial quantities, i.e., $
+\hat{\boldsymbol{\eta}}=c\boldsymbol{\eta}$ with a constant $c$ and subtract Eq.~(\ref{eq:unhatted}) from Eq.~(\ref{eq:hatted}), we obtain
+\begin{align}
+    \partial_j (\hat{\sigma}_{ij}v_i)+\hat{p}\partial_iv_i + \hat{\mathfrak{f}}_iv_i
+    =
+    c[
+    \partial_j (\sigma_{ij}\hat{v}_i)+p\partial_i\hat{v}_i + \mathfrak{f}_i\hat{v}_i
+    ]
+    .
+\end{align}
+Integrating over the fluid volume $\mathcal{V}$ and using the divergence theorem to obtain corresponding surface integrals over all bounding surfaces $\mathcal{S}$, the generalized reciprocal theorem is derived as
+\begin{align}
+    \int_\mathcal{S} dS\,
+    \mathbf{v}\cdot\hat{\boldsymbol{\sigma}}
+    \cdot\mathbf{n}
+    -
+    \int_\mathcal{V} dV\,
+    (
+    \hat{p}
+    \nabla\cdot\mathbf{v}
+    +
+    \hat{\boldsymbol{\mathfrak{f}}}
+    \cdot\mathbf{v}
+    )
+    =
+    c
+    \left[
+    \int_\mathcal{S} dS\,
+    \hat{\mathbf{v}}\cdot\boldsymbol{\sigma}
+    \cdot\mathbf{n}
+    -
+    \int_\mathcal{V} dV\,
+    (
+    p
+    \nabla\cdot\hat{\mathbf{v}}
+    +
+    \boldsymbol{\mathfrak{f}}
+    \cdot\hat{\mathbf{v}}
+    )
+    \right]
+    ,
+\end{align}
+where $\mathbf{n}$ is a surface normal pointing into the fluid.
+For incompressible fluids with $c=1$ and without body forces, the Lorentz reciprocal theorem reduces to Eq.~(\ref{eq:LRT}).
