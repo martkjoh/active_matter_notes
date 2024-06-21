@@ -1,5 +1,12 @@
+As alluded to in \autoref{sec: hydrodynamics of microswimmers}, microswimmers are often immersed in a fluid, which we have to take into account in our models.
+In this lecture, we will extend the analysis of hydrodynamics needed to model active particles.
+
+
 \section{Stokes flow}
 
+The interaction of microswimmers with a fluid is quite different to what we are used to at macroscopic scales.
+To see the effect of scales on the hydrodynamics, we begin with the most general equations for a fluid, the Navier-Stokes equation, and show that in certain regimes, this reduces to the much simpler Stokes equation.
+Hydrodynamic flows where this is the case are called Stokes flows, and as we will show, this is the relevant regime for microswimmers.
 
 \subsection{Navier-Stokes equations}
 
@@ -66,6 +73,8 @@ The fact that it can swim is explained by the flexibility of the flagella attach
 
 
 \subsection{Passive hydrodynamic problem}
+
+\todo[inline]{add motivation/figure for problem}
 
 We consider a passive (forced) rigid particle in viscous fluids, which moves with translational velocity $\mathbf{V}$ and rotational velocity $\boldsymbol{\Omega}$. 
 The velocity induced by this particle obeys the Stokes equations
@@ -167,6 +176,8 @@ From the boundary condition, one finds
 \end{align}
 
 
+\todo[inline]{add velocity plot}
+
 \subsection{Oseen tensor: the linear hydrodynamic response due to a point force}
 
 
@@ -209,19 +220,21 @@ One can see that the velocity, to the leading order, decays with a power of $r^{
 For active or living particles, the force-free and torque-free conditions should hold, namely, $\mathbf{F}=\mathbf{T}=\mathbf{0}$. Hence, the leading contribution decays as $r^{-2}$.
 
 Stresslet or symmetric force dipole characterizes the flow induced by a microswimmer. 
-For a trace-free and symmetric second-rank tensor, the stresslet is written as $\mathbf{S}=\alpha(\mathbf{ee}-\mathbf{I}/3)$ with direction $\mathbf{e}$.
+For a trace-free and symmetric second-rank tensor, the stresslet is written as $\mathbf{S}=\alpha(\mathbf{e}\otimes\mathbf{e}-\mathbf{I}/3)$ with direction $\mathbf{e}$.
 The sign of the parameter $\alpha$ determines the type of microswimmers: $B_2 > 0$ corresponds to pullers, which generate thrust from the front, while $B_2 < 0$ corresponds to pushers, which generate thrust from the back. Swimmers with $\alpha=0$ are neutral swimmers.
 
 
 
 \subsection{Squirmer model}
 
+\todo[inline]{Hsould have illustration}
+
 
 Here we consider a simple model of microswimmers with surface activity, such as ciliated microorganisms. By assuming that cilia are smaller than body size and all activity takes place in the narrow regime at the surface, one can replace them with effective slip velocity.
 Such a model is called squirmer model and was first proposed by Lighthill (1952) and later developed by Blake (1971).
 If we denote by $\mathbf{v}_{\rm s}$ the effective surface velocity, the velocity in the laboratory frame is given by $\mathbf{v}=\mathbf{V}+\boldsymbol{\Omega}\times\mathbf{r}+\mathbf{v}_{\rm s}$ at the object surface.
 
-
+\todo[inline]{should have an explenation of what the theorem says.}
 
 We can now make use of the Lorentz reciprocal theorem to calculate the propulsion velocity directly from the surface slip (see the next subsection for the derivation).
 \begin{align}
